@@ -12,14 +12,10 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json({type:'*/*'}));//parse request to json
 
-// app.use(express.static(path.join(__dirname, '.././client')))
+app.use(express.static(path.join(__dirname, './../client/dist')))
+
 router(app);
 
-// app.all('/*', (req, res)=>{
-//   res.sendFile('index.html', {
-//     root: path.resolve(__dirname, '.././client')
-//   });
-// })
 const port = process.env.PORT || 3000;
 app.set('port', port);
 
