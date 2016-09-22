@@ -4,7 +4,8 @@
   "description": "challenge all the records",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
+    "test": "jshint hello.js",
+    "testtwo": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
@@ -17,6 +18,7 @@
     "babel-preset-react": "^6.11.1",
     "chai": "^3.5.0",
     "jsdom": "^9.5.0",
+    "jshint": "^2.9.3",
     "mocha": "^3.0.2",
     "react-hot-loader": "^3.0.0-beta.5",
     "webpack": "^1.13.2",
