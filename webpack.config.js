@@ -9,7 +9,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclued: /node_modules/,
+      exclude: /node_modules/,
       loader: 'react-hot!babel'
     }]
   },
@@ -28,4 +28,4 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};
