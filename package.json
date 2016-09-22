@@ -4,8 +4,7 @@
   "description": "challenge all the records",
   "main": "index.js",
   "scripts": {
-    "test": "jshint hello.js",
-    "testtwo": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
