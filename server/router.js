@@ -1,5 +1,8 @@
 module.exports = function (app) {
-  app.get('/', function (req, res) {
-    res.send('Hello Harris')
-  })
+
+  app.all('/', (req, res)=>{
+  res.sendFile('index.html', {
+    root: path.resolve(__dirname, './../client/dist')
+  });
+
 }
