@@ -1,6 +1,10 @@
 language: node_js
 node_js:
-- '6'
+  - '6'
+services:
+  - postgresql
+before_script:
+  - pdql -c 'create database wechallenge;' -U postgres
 deploy:
   provider: heroku
   api_key:
