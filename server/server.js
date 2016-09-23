@@ -6,10 +6,11 @@ const morgan = require('morgan');
 
 const router = require('./router.js');
 const db = require('./db')
-
+const cors = require('cors');
 const app = express();
 
 app.use(morgan('dev'));
+app.use(cors());
 app.use(bodyParser.json({type:'*/*'}));//parse request to json
 app.use(express.static(path.join(__dirname, './../client/dist')))
 
