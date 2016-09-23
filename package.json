@@ -4,7 +4,7 @@
   "description": "challenge all the records",
   "main": "./server/server.js",
   "scripts": {
-    "test": "jshint hello.js"
+    "test": "jshint faketest.js"
   },
   "keywords": [],
   "author": "",
