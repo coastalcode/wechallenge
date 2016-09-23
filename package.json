@@ -4,7 +4,9 @@
   "description": "challenge all the records",
   "main": "./server/server.js",
   "scripts": {
-    "test": "jshint faketest.js"
+    "start": "node server/server.js",
+    "test": "jshint faketest.js",
+    "mocha": "mocha --compilers js:babel-core/register server/tests/auth_specs.js"
   },
   "engines": {
     "node": "6.1"
@@ -21,6 +23,7 @@
     "jsdom": "^9.5.0",
     "jshint": "^2.9.3",
     "mocha": "^3.0.2",
+    "sinon": "^1.17.6",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
   },

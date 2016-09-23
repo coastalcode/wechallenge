@@ -5,6 +5,7 @@ const Authentication = require('./query/auth');
 const passportService = require('./query/passport');
 const passport = require('passport');
 const query = require('./query')
+const path = require('path');
 
 const requireAuth = passport.authenticate('jwt', { session: false});
 const requireSignin = passport.authenticate('local', {session: false})
