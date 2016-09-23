@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
-const config = require('./config.js')
+const config = require('./config.js');
+var bcrypt = require('bcrypt-nodejs');
+var Promise = require('bluebird');
 let db;
 
 if (process.env.DATABASE_URL) {
@@ -29,6 +31,17 @@ const User = db.define('User', {
   state: Sequelize.STRING,
   country: Sequelize.STRING,
   type: Sequelize.STRING,
+  test: Sequelize.STRING
+},
+{
+  instanceMethods: {
+    comparePassword: function (attemptedPassword, callback) {
+      bcrypt.compare(attemptedPassword, this.password, function (err, isMatch) {
+        if (err) { throw err; }
+        callback(null, isMatch);
+      });
+    }
+  }
 });
 
 const Submission = db.define('Submission', {
@@ -58,6 +71,7 @@ const Record = db.define('Record', {
   moreisgood: Sequelize.INTEGER,
   lessisgood: Sequelize.INTEGER,
 });
+
 // puts a UserId column on each Message instance
 // also gives us the `.setUser` method available
 // after creating a new instance of Message
@@ -90,7 +104,7 @@ Record.sync(/*{force: true}*/);
 db.Sequelize = Sequelize;
 module.exports = db;
 
-exports.User = User;
+module.exports.User = User;
 exports.Submission = Submission;
 exports.Comment = Comment;
 exports.Vote = Vote;
