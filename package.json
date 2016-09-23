@@ -1,24 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "wechallenge",
-  "version": "1.0.0",
-  "description": "amazing videos",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/coastalcode/wechallenge.git"
-  },
-  "author": "coastalcode",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/coastalcode/wechallenge/issues"
-  },
-  "homepage": "https://github.com/coastalcode/wechallenge#readme",
-  "dependencies": {
-=======
   "name": "client-structure",
   "version": "1.0.0",
   "description": "challenge all the records",
