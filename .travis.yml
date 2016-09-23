@@ -4,7 +4,7 @@ node_js:
 services:
   - postgresql
 before_script:
-  - pdql -c 'create database wechallenge;' -U postgres
+  - psql -c 'create database wechallenge;' -U postgres
 deploy:
   provider: heroku
   api_key:
