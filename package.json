@@ -6,6 +6,9 @@
   "scripts": {
     "test": "jshint faketest.js"
   },
+  "engines": {
+    "node": "6.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
