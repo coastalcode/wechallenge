@@ -19,7 +19,7 @@
     "jshint": "^2.9.3",
     "mocha": "^3.0.2",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.1",
+    "webpack-dev-server": "^1.16.1"
   },
   "babel": {
     "presets": [
