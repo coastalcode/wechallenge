@@ -109,4 +109,3 @@ module.exports.Submission = Submission;
 module.exports.Comment = Comment;
 module.exports.Vote = Vote;
 module.exports.Record = Record;
-
