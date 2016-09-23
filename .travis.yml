@@ -1,3 +1,10 @@
 language: node_js
 node_js:
-  - 6
+- 6
+deploy:
+  provider: heroku
+  api_key:
+    secure: G3b4O2PJ08Q2+mN4X15NxxdGJxwsMh1vUWdAd+sl0FuXzSu65cpLQcIXSVp5En/AnBnAd6vWcsQJ05TL8fKPW4asesyC33sorrFR6nDzbSrvtX+MaQALItWbq2c9IrC3U0+LZGSueX1+578K7I6cr+0Vfc3Cefrhe72nn5GIgyLyibT6UmqnTqH3qulTHvR9QrJ8KOELwBP969bXtAMQS7PqtqENUjX8W0Rnb7gCxKGBcROjQ0N2PAdHUwSjoXDchOuNt+kNeUU6spREl88N284/LFk1IJJp0KeOihasyaXdOoDhIenWKo3+YdNnKSQUMslK4q3NkBcrg2oQDG+dGFQTMf83RcuyFRfnycBXPRByoGswl14P80zQf1DxQ6zP9g1jTxdnsVUeXirpa+vPfzUCLttSJRbhGrHgHfYKb9vsxiW+3YYsHC6vpp+khnIOuO8cmPS6/SXYw3CytTynleyImQ7YJsY/hxuX2jdvLtZEreG2HdW4qT/OCF9A3Zvu9lsE1go8+dLnrTtj8jb5MmRd2zEFIxCFDmqo0fXG3pzmxCLk/M6k3sMaBhsf0T35xDRtOAxFbZlxjR5MMI9uzSG2qviETX1ZUvzmYvLSABCfDREID3SVT+NkO5MZHauFAKN/OQAuqZesn6nFaFniInUmAlg/bgOZmE6RFf1UPOU=
+  app: wechallenge
+  on:
+    repo: coastalcode/wechallenge
