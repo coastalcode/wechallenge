@@ -5,8 +5,8 @@
   "main": "./server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "jshint faketest.js",
-    "mocha": "mocha --compilers js:babel-core/register server/tests/auth_specs.js"
+    "faketest": "jshint faketest.js",
+    "test": "mocha --compilers js:babel-core/register server/tests/auth_specs.js"
   },
   "engines": {
     "node": "6.1"
