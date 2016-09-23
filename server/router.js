@@ -1,3 +1,5 @@
+'use strict';
+
 const db = require('./db/index');
 const Authentication = require('./query/auth');
 const passportService = require('./query/passport');
