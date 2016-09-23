@@ -32,7 +32,7 @@ function startApp() {
 }
 
 // sync the database before starting the server, unless there is an error
-db.sync()
+db.sync({force: true})
     .then(startApp)
     .catch(function (err) {
         throw new Error(err);
