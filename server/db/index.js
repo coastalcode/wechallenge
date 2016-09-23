@@ -90,8 +90,8 @@ Record.sync(/*{force: true}*/);
 db.Sequelize = Sequelize;
 module.exports = db;
 
-exports.User = User;
-exports.Submission = Submission;
-exports.Comment = Comment;
-exports.Vote = Vote;
-exports.Record = Record;
+module.exports.User = User;
+module.exports.Submission = Submission;
+module.exports.Comment = Comment;
+module.exports.Vote = Vote;
+module.exports.Record = Record;
