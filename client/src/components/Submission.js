@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader'
 
 class Submission extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: true
-    }
-  }
 
   componentWillUnmount() {
     window.location.reload();
@@ -23,7 +17,6 @@ class Submission extends Component {
         <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
                attribute in the following tag with your project's client ID. -->*/}
-          {this.state.loaded ?
           <span
             className="g-signin"
             data-callback="signinCallback"
@@ -31,7 +24,6 @@ class Submission extends Component {
             data-cookiepolicy="single_host_origin"
             data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube">
           </span>
-          : null }
         </span>
 
         <div className="post-sign-in">

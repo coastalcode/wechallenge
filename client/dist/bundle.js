@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7c9ccb4a8123c6b214b0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c9a2c237b8ad5b496161"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -46491,15 +46491,10 @@
 	var Submission = function (_Component) {
 	  _inherits(Submission, _Component);
 
-	  function Submission(props) {
+	  function Submission() {
 	    _classCallCheck(this, Submission);
 
-	    var _this = _possibleConstructorReturn(this, (Submission.__proto__ || Object.getPrototypeOf(Submission)).call(this, props));
-
-	    _this.state = {
-	      loaded: true
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (Submission.__proto__ || Object.getPrototypeOf(Submission)).apply(this, arguments));
 	  }
 
 	  _createClass(Submission, [{
@@ -46522,12 +46517,12 @@
 	        _react2.default.createElement(
 	          'span',
 	          { id: 'signinButton', className: 'pre-sign-in' },
-	          this.state.loaded ? _react2.default.createElement('span', {
+	          _react2.default.createElement('span', {
 	            className: 'g-signin',
 	            'data-callback': 'signinCallback',
 	            'data-clientid': '909357984704-5rs2lm82uopdd1d94l8v34thi31mnc2e.apps.googleusercontent.com',
 	            'data-cookiepolicy': 'single_host_origin',
-	            'data-scope': 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube' }) : null
+	            'data-scope': 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
