@@ -21,15 +21,15 @@ body {
 }
 
 .post-sign-in {
-  display: none;
+  display: block;
 }
 
 .during-upload {
-  display: none;
+  display: block;
 }
 
 .post-upload {
-  display: none;
+  display: block;
 }
 
 label {
