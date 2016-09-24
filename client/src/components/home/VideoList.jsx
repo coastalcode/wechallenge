@@ -1,5 +1,6 @@
 import React from 'react';
 import Video from './Video';
+import YouTube from 'react-youtube';
 
 export default class VideoList extends React.Component {
   constructor(props) {
@@ -11,11 +12,21 @@ export default class VideoList extends React.Component {
   }
 
   render() {
-
+    const opts = {
+      height: '200',
+      width: '400'
+    }
     return (
       <div>
         { this.state.videos.map((val)=>{
-          return <Video content={val} />
+          return (
+            <div>
+              <YouTube videoId={'l6Zs_l7TOhg'}
+                opts={opts}
+              />
+              <Video key={val} content={val} />
+            </div>
+          )
         })}
       </div>
     )
