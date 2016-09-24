@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "315dfcd167cfc2c70fd8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c9a2c237b8ad5b496161"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -741,7 +741,7 @@
 
 	var _Submission2 = _interopRequireDefault(_Submission);
 
-	var _reducers = __webpack_require__(472);
+	var _reducers = __webpack_require__(474);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -46464,7 +46464,7 @@
 /* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -46475,6 +46475,10 @@
 	var _react = __webpack_require__(4);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAsyncScriptLoader = __webpack_require__(472);
+
+	var _reactAsyncScriptLoader2 = _interopRequireDefault(_reactAsyncScriptLoader);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46494,133 +46498,138 @@
 	  }
 
 	  _createClass(Submission, [{
-	    key: "render",
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      window.location.reload();
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 
 	      return _react2.default.createElement(
-	        "div",
+	        'div',
 	        null,
 	        _react2.default.createElement(
-	          "h1",
+	          'h1',
 	          null,
-	          "Hello from Submit Challenge Page!!!"
+	          '10Hello from Submit Challenge Page!!! Google Client'
 	        ),
 	        _react2.default.createElement(
-	          "span",
-	          { id: "signinButton", "class": "pre-sign-in" },
-	          _react2.default.createElement("span", {
-	            className: "g-signin",
-	            "data-callback": "signinCallback",
-	            "data-clientid": "909357984704-5rs2lm82uopdd1d94l8v34thi31mnc2e.apps.googleusercontent.com",
-	            "data-cookiepolicy": "single_host_origin",
-	            "data-scope": "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube" })
+	          'span',
+	          { id: 'signinButton', className: 'pre-sign-in' },
+	          _react2.default.createElement('span', {
+	            className: 'g-signin',
+	            'data-callback': 'signinCallback',
+	            'data-clientid': '909357984704-5rs2lm82uopdd1d94l8v34thi31mnc2e.apps.googleusercontent.com',
+	            'data-cookiepolicy': 'single_host_origin',
+	            'data-scope': 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "post-sign-in" },
+	          'div',
+	          { className: 'post-sign-in' },
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
-	            _react2.default.createElement("img", { id: "channel-thumbnail" }),
-	            _react2.default.createElement("span", { id: "channel-name" })
+	            _react2.default.createElement('img', { id: 'channel-thumbnail' }),
+	            _react2.default.createElement('span', { id: 'channel-name' })
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
 	            _react2.default.createElement(
-	              "label",
-	              { "for": "title" },
-	              "Title:"
+	              'label',
+	              { 'for': 'title' },
+	              'Title:'
 	            ),
-	            _react2.default.createElement("input", { id: "title", type: "text", value: "Default Title" })
+	            _react2.default.createElement('input', { id: 'title', type: 'text', value: 'Default Title' })
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
 	            _react2.default.createElement(
-	              "label",
-	              { "for": "description" },
-	              "Description:"
+	              'label',
+	              { 'for': 'description' },
+	              'Description:'
 	            ),
 	            _react2.default.createElement(
-	              "textarea",
-	              { id: "description" },
-	              "Default description"
+	              'textarea',
+	              { id: 'description' },
+	              'Default description'
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
 	            _react2.default.createElement(
-	              "label",
-	              { "for": "privacy-status" },
-	              "Privacy Status:"
+	              'label',
+	              { 'for': 'privacy-status' },
+	              'Privacy Status:'
 	            ),
 	            _react2.default.createElement(
-	              "select",
-	              { id: "privacy-status" },
+	              'select',
+	              { id: 'privacy-status' },
 	              _react2.default.createElement(
-	                "option",
+	                'option',
 	                null,
-	                "public"
+	                'public'
 	              ),
 	              _react2.default.createElement(
-	                "option",
+	                'option',
 	                null,
-	                "unlisted"
+	                'unlisted'
 	              ),
 	              _react2.default.createElement(
-	                "option",
+	                'option',
 	                null,
-	                "private"
+	                'private'
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
-	            _react2.default.createElement("input", { input: true, type: "file", id: "file", className: "button", accept: "video/*" }),
+	            _react2.default.createElement('input', { input: true, type: 'file', id: 'file', className: 'button', accept: 'video/*' }),
 	            _react2.default.createElement(
-	              "button",
-	              { id: "button" },
-	              "Upload Video"
+	              'button',
+	              { id: 'button' },
+	              'Upload Video'
 	            ),
 	            _react2.default.createElement(
-	              "div",
-	              { className: "during-upload" },
+	              'div',
+	              { className: 'during-upload' },
 	              _react2.default.createElement(
-	                "p",
+	                'p',
 	                null,
-	                _react2.default.createElement("span", { id: "percent-transferred" }),
-	                "% done (",
-	                _react2.default.createElement("span", { id: "bytes-transferred" }),
-	                "/",
-	                _react2.default.createElement("span", { id: "total-bytes" }),
-	                " bytes)"
+	                _react2.default.createElement('span', { id: 'percent-transferred' }),
+	                '% done (',
+	                _react2.default.createElement('span', { id: 'bytes-transferred' }),
+	                '/',
+	                _react2.default.createElement('span', { id: 'total-bytes' }),
+	                ' bytes)'
 	              ),
-	              _react2.default.createElement("progress", { id: "upload-progress", max: "1", value: "0" })
+	              _react2.default.createElement('progress', { id: 'upload-progress', max: '1', value: '0' })
 	            ),
 	            _react2.default.createElement(
-	              "div",
-	              { className: "post-upload" },
+	              'div',
+	              { className: 'post-upload' },
 	              _react2.default.createElement(
-	                "p",
+	                'p',
 	                null,
-	                "Uploaded video with id ",
-	                _react2.default.createElement("span", { id: "video-id" }),
-	                ". Polling for status..."
+	                'Uploaded video with id ',
+	                _react2.default.createElement('span', { id: 'video-id' }),
+	                '. Polling for status...'
 	              ),
-	              _react2.default.createElement("ul", { id: "post-upload-status" }),
-	              _react2.default.createElement("div", { id: "player" })
+	              _react2.default.createElement('ul', { id: 'post-upload-status' }),
+	              _react2.default.createElement('div', { id: 'player' })
 	            ),
 	            _react2.default.createElement(
-	              "p",
-	              { id: "disclaimer" },
-	              "By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at ",
+	              'p',
+	              { id: 'disclaimer' },
+	              'By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at ',
 	              _react2.default.createElement(
-	                "a",
-	                { href: "http://www.youtube.com/t/terms", target: "_blank" },
-	                "http://www.youtube.com/t/terms"
+	                'a',
+	                { href: 'http://www.youtube.com/t/terms', target: '_blank' },
+	                'http://www.youtube.com/t/terms'
 	              )
 	            )
 	          )
@@ -46632,10 +46641,309 @@
 	  return Submission;
 	}(_react.Component);
 
-	exports.default = Submission;
+	exports.default = (0, _reactAsyncScriptLoader2.default)('https://apis.google.com/js/client:plusone.js')(Submission);
 
 /***/ },
 /* 472 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	exports.startLoadingScripts = startLoadingScripts;
+
+	var _react = __webpack_require__(4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _hoistNonReactStatics = __webpack_require__(200);
+
+	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
+
+	var _utils = __webpack_require__(473);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var loadedScript = [];
+	var pendingScripts = {};
+	var failedScript = [];
+
+	function startLoadingScripts(scripts) {
+	  var onComplete = arguments.length <= 1 || arguments[1] === undefined ? _utils.noop : arguments[1];
+
+	  // sequence load
+	  var loadNewScript = function loadNewScript(src) {
+	    if (loadedScript.indexOf(src) < 0) {
+	      return function (taskComplete) {
+	        var callbacks = pendingScripts[src] || [];
+	        callbacks.push(taskComplete);
+	        pendingScripts[src] = callbacks;
+	        if (callbacks.length === 1) {
+	          return (0, _utils.newScript)(src)(function (err) {
+	            pendingScripts[src].forEach(function (cb) {
+	              return cb(err, src);
+	            });
+	            delete pendingScripts[src];
+	          });
+	        }
+	      };
+	    }
+	  };
+	  var tasks = scripts.map(function (src) {
+	    if (Array.isArray(src)) {
+	      return src.map(loadNewScript);
+	    } else return loadNewScript(src);
+	  });
+
+	  _utils.series.apply(undefined, _toConsumableArray(tasks))(function (err, src) {
+	    if (err) {
+	      failedScript.push(src);
+	    } else {
+	      if (Array.isArray(src)) {
+	        src.forEach(addCache);
+	      } else addCache(src);
+	    }
+	  })(function (err) {
+	    removeFailedScript();
+	    onComplete(err);
+	  });
+	}
+
+	var addCache = function addCache(entry) {
+	  if (loadedScript.indexOf(entry) < 0) {
+	    loadedScript.push(entry);
+	  }
+	};
+
+	var removeFailedScript = function removeFailedScript() {
+	  if (failedScript.length > 0) {
+	    failedScript.forEach(function (script) {
+	      var node = document.querySelector('script[src=\'' + script + '\']');
+	      if (node != null) {
+	        node.parentNode.removeChild(node);
+	      }
+	    });
+
+	    failedScript = [];
+	  }
+	};
+
+	var scriptLoader = function scriptLoader() {
+	  for (var _len = arguments.length, scripts = Array(_len), _key = 0; _key < _len; _key++) {
+	    scripts[_key] = arguments[_key];
+	  }
+
+	  return function (WrappedComponent) {
+	    var ScriptLoader = function (_Component) {
+	      _inherits(ScriptLoader, _Component);
+
+	      function ScriptLoader(props, context) {
+	        _classCallCheck(this, ScriptLoader);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ScriptLoader).call(this, props, context));
+
+	        _this.state = {
+	          isScriptLoaded: false,
+	          isScriptLoadSucceed: false
+	        };
+	        return _this;
+	      }
+
+	      _createClass(ScriptLoader, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	          var _this2 = this;
+
+	          startLoadingScripts(scripts, function (err) {
+	            _this2.setState({
+	              isScriptLoaded: true,
+	              isScriptLoadSucceed: !err
+	            }, function () {
+	              if (!err) {
+	                _this2.props.onScriptLoaded();
+	              }
+	            });
+	          });
+	        }
+	      }, {
+	        key: 'render',
+	        value: function render() {
+	          var props = _extends({}, this.props, this.state);
+
+	          return _react2.default.createElement(WrappedComponent, props);
+	        }
+	      }]);
+
+	      return ScriptLoader;
+	    }(_react.Component);
+
+	    ScriptLoader.propTypes = {
+	      onScriptLoaded: _react.PropTypes.func
+	    };
+	    ScriptLoader.defaultProps = {
+	      onScriptLoaded: _utils.noop
+	    };
+
+
+	    return (0, _hoistNonReactStatics2.default)(ScriptLoader, WrappedComponent);
+	  };
+	};
+
+	exports.default = scriptLoader;
+
+/***/ },
+/* 473 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var isDefined = exports.isDefined = function isDefined(val) {
+	  return val != null;
+	};
+	var isFunction = exports.isFunction = function isFunction(val) {
+	  return typeof val === 'function';
+	};
+	var noop = exports.noop = function noop(_) {};
+
+	var newScript = exports.newScript = function newScript(src) {
+	  return function (cb) {
+	    var script = document.createElement('script');
+	    script.src = src;
+	    script.addEventListener('load', function () {
+	      return cb(null, src);
+	    });
+	    script.addEventListener('error', function () {
+	      return cb(true, src);
+	    });
+	    document.body.appendChild(script);
+	    return script;
+	  };
+	};
+
+	var keyIterator = function keyIterator(cols) {
+	  var keys = Object.keys(cols);
+	  var i = -1;
+	  return {
+	    next: function next() {
+	      i++; // inc
+	      if (i >= keys.length) return null;else return keys[i];
+	    }
+	  };
+	};
+
+	// tasks should be a collection of thunk
+	var parallel = exports.parallel = function parallel() {
+	  for (var _len = arguments.length, tasks = Array(_len), _key = 0; _key < _len; _key++) {
+	    tasks[_key] = arguments[_key];
+	  }
+
+	  return function (each) {
+	    return function (cb) {
+	      var hasError = false;
+	      var successed = 0;
+	      var ret = [];
+	      tasks = tasks.filter(isFunction);
+
+	      if (tasks.length <= 0) cb(null);else {
+	        tasks.forEach(function (task, i) {
+	          var thunk = task;
+	          thunk(function (err) {
+	            for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+	              args[_key2 - 1] = arguments[_key2];
+	            }
+
+	            if (err) hasError = true;else {
+	              // collect result
+	              if (args.length <= 1) args = args[0];
+
+	              ret[i] = args;
+	              successed++;
+	            }
+
+	            if (isFunction(each)) each.call(null, err, args, i);
+
+	            if (hasError) cb(true);else if (tasks.length === successed) {
+	              cb(null, ret);
+	            }
+	          });
+	        });
+	      }
+	    };
+	  };
+	};
+
+	// tasks should be a collection of thunk
+	var series = exports.series = function series() {
+	  for (var _len3 = arguments.length, tasks = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	    tasks[_key3] = arguments[_key3];
+	  }
+
+	  return function (each) {
+	    return function (cb) {
+	      tasks = tasks.filter(function (val) {
+	        return val != null;
+	      });
+	      var nextKey = keyIterator(tasks);
+	      var nextThunk = function nextThunk() {
+	        var key = nextKey.next();
+	        var thunk = tasks[key];
+	        if (Array.isArray(thunk)) thunk = parallel.apply(null, thunk).call(null, each);
+	        return [+key, thunk]; // convert `key` to number
+	      };
+	      var key = void 0,
+	          thunk = void 0;
+	      var next = nextThunk();
+	      key = next[0];
+	      thunk = next[1];
+	      if (thunk == null) return cb(null);
+
+	      var ret = [];
+	      var iterator = function iterator() {
+	        thunk(function (err) {
+	          for (var _len4 = arguments.length, args = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+	            args[_key4 - 1] = arguments[_key4];
+	          }
+
+	          if (args.length <= 1) args = args[0];
+	          if (isFunction(each)) each.call(null, err, args, key);
+
+	          if (err) cb(err);else {
+	            // collect result
+	            ret.push(args);
+
+	            next = nextThunk();
+	            key = next[0];
+	            thunk = next[1];
+	            if (thunk == null) return cb(null, ret); // finished
+	            else iterator();
+	          }
+	        });
+	      };
+	      iterator();
+	    };
+	  };
+	};
+
+/***/ },
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46648,7 +46956,7 @@
 
 	var _reduxForm = __webpack_require__(402);
 
-	var _auth_reducer = __webpack_require__(473);
+	var _auth_reducer = __webpack_require__(475);
 
 	var _auth_reducer2 = _interopRequireDefault(_auth_reducer);
 
@@ -46665,7 +46973,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 473 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
