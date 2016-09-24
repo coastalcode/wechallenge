@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 export default class Submission extends Component {
+  constructor() {
+    super(props);
+    this.state = {
+      loaded: false
+    }
+  }
+
+  componentDidMount() {
+    this.setState({loaded: true});
+    console.log("inside did mount");
+  }
+
   render() {
 
     return (
@@ -10,6 +22,7 @@ export default class Submission extends Component {
         <span id="signinButton" class="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
                attribute in the following tag with your project's client ID. -->*/}
+          {this.state.loaded ?
           <span
             className="g-signin"
             data-callback="signinCallback"
@@ -17,6 +30,7 @@ export default class Submission extends Component {
             data-cookiepolicy="single_host_origin"
             data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube">
           </span>
+          : null }
         </span>
 
         <div className="post-sign-in">
@@ -59,6 +73,9 @@ export default class Submission extends Component {
             <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
           </div>
         </div>
+        <script src="http://apis.google.com/js/client:plusone.js"></script>
+        <script src="lib/youtube/cors_upload.js"></script>
+        <script src="lib/youtube/upload_video.js"></script>
       </div>
     )
   }
