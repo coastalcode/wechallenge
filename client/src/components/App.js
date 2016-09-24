@@ -6,7 +6,8 @@ export default class App extends Component {
     return (
       <div>
         <NavBar />
-        <h1>Hello World!!!</h1>
+        {this.props.children}
+        <h1>Smalley Empire</h1>
       </div>
     )
   }
