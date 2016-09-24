@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
+import scriptLoader from 'react-async-script-loader'
 
-export default class Submission extends Component {
+class Submission extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: true
     }
   }
 
-  componentDidMount() {
-    this.setState({loaded: true});
-    console.log("inside did mount");
+  componentWillUnmount() {
+    window.location.reload();
   }
 
   render() {
+
+
     return (
       <div>
-        <h1>8Hello from Submit Challenge Page!!! Google Client</h1>
+        <h1>10Hello from Submit Challenge Page!!! Google Client</h1>
 
-        <span id="signinButton" class="pre-sign-in">
+        <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
                attribute in the following tag with your project's client ID. -->*/}
           {this.state.loaded ?
@@ -72,8 +74,9 @@ export default class Submission extends Component {
             <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
           </div>
         </div>
-        {this.googleClient()}
       </div>
     )
   }
 }
+
+export default scriptLoader('https://apis.google.com/js/client:plusone.js')(Submission);
