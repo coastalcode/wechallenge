@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Submission extends Component {
-  constructor() {
+  constructor(props) {
     super(props);
     this.state = {
       loaded: false
@@ -14,10 +14,9 @@ export default class Submission extends Component {
   }
 
   render() {
-
     return (
       <div>
-        <h1>Hello from Submit Challenge Page!!!</h1>
+        <h1>8Hello from Submit Challenge Page!!! Google Client</h1>
 
         <span id="signinButton" class="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
@@ -73,9 +72,7 @@ export default class Submission extends Component {
             <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
           </div>
         </div>
-        <script src="http://apis.google.com/js/client:plusone.js"></script>
-        <script src="lib/youtube/cors_upload.js"></script>
-        <script src="lib/youtube/upload_video.js"></script>
+        {this.googleClient()}
       </div>
     )
   }
