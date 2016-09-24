@@ -1,14 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './reducers';
-import App from './components/App';
+import { createStore, applyMiddleware } from 'redux';
+import { Router, Route, IndexRoute, browserHistory} from 'react-router';
+import reduxThunk from 'redux-thunk';
 
-let store = createStore(rootReducer);
+import App from './components/App';
+import Signin from './components/auth/signin';
+import Signout from './components/auth/signout'
+
+import rootReducer from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <Route path="signin" component={Signin} />
+        <Route path="signout" component={Signout} />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );
