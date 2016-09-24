@@ -6,9 +6,12 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <div>hi</div>
-        <MainVideo />
-        <VideoList />
+        <div>
+          <h1>Staff Pick:</h1>
+          <MainVideo />
+        </div>
+        <div>
+        </div>
       </div>
     )
   }
