@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "faketest": "jshint faketest.js",
-    "test": "mocha --compilers js:babel-core/register server/tests/auth_specs.js",
+    "test": "mocha --compilers js:babel-core/register server/tests/",
     "postinstall": "webpack --progress --colors"
   },
   "engines": {
