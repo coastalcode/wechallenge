@@ -94,10 +94,13 @@ UploadVideo.prototype.ready = function(accessToken) {
  * @param {object} file File object corresponding to the video to upload.
  */
 UploadVideo.prototype.uploadFile = function(file) {
+  var uploadTitle = $('#title').val();
+  var uploadDescription = $('#description').val();
+  // + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
   var metadata = {
     snippet: {
-      title: $('#title').val(),
-      description: $('#description').text(),
+      title: uploadTitle,
+      description: uploadDescription,
       tags: this.tags,
       categoryId: this.categoryId
     },
@@ -105,6 +108,7 @@ UploadVideo.prototype.uploadFile = function(file) {
       privacyStatus: $('#privacy-status option:selected').text()
     }
   };
+  console.log(metadata);
   var uploader = new MediaUploader({
     baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
     file: file,
@@ -149,6 +153,24 @@ UploadVideo.prototype.uploadFile = function(file) {
       var uploadResponse = JSON.parse(data);
       this.videoId = uploadResponse.id;
       $('#video-id').text(this.videoId);
+      // Updates wechallenge Database with submission
+      $.ajax({
+        method: "POST",
+        url: "/submissions",
+        data: JSON.stringify({
+          "title": uploadTitle,
+          "description": uploadDescription,
+          "link": this.videoId,
+          "UserId": '1',
+          "RecordId": '1'
+        })
+      })
+        .done(function(msg) {
+          console.log('done msg: ', msg);
+        })
+        .fail(function(msg) {
+          console.log('fail msg: ', msg);
+        });
       $('.post-upload').show();
       this.pollForVideoStatus();
     }.bind(this)
