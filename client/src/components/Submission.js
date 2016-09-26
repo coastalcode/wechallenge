@@ -34,11 +34,11 @@ class Submission extends Component {
 
           <div>
             <label for="title">Title:</label>
-            <input id="title" type="text" value="Default Title" />
+            <input id="title" type="text"/>
           </div>
           <div>
             <label for="description">Description:</label>
-            <textarea id="description">Default description</textarea>
+            <textarea id="description"></textarea>
           </div>
           <div>
             <label for="privacy-status">Privacy Status:</label>

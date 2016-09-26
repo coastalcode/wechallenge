@@ -94,10 +94,12 @@ UploadVideo.prototype.ready = function(accessToken) {
  * @param {object} file File object corresponding to the video to upload.
  */
 UploadVideo.prototype.uploadFile = function(file) {
+  var uploadTitle = $('#title').val();
+  var uploadDescription = $('#description').text() + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
   var metadata = {
     snippet: {
-      title: $('#title').val(),
-      description: $('#description').text(),
+      title: uploadTitle,
+      description: uploadDescription,
       tags: this.tags,
       categoryId: this.categoryId
     },
@@ -105,6 +107,7 @@ UploadVideo.prototype.uploadFile = function(file) {
       privacyStatus: $('#privacy-status option:selected').text()
     }
   };
+  console.log(metadata);
   var uploader = new MediaUploader({
     baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
     file: file,
