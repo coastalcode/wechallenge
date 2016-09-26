@@ -83,8 +83,7 @@ module.exports = {
 
     add(req, res) {
       db.Submission.create({
-        //title: req.body.title,
-        title: 'fun',
+        title: req.body.title,
         link: req.body.link,
         description: req.body.description,
         votes: 0,
