@@ -12,7 +12,7 @@ class Submission extends Component {
 
     return (
       <div>
-        <h1>10Hello from Submit Challenge Page!!! Google Client</h1>
+        <h1>Submit a Challenge</h1>
 
         <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>

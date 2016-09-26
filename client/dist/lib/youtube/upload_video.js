@@ -95,7 +95,8 @@ UploadVideo.prototype.ready = function(accessToken) {
  */
 UploadVideo.prototype.uploadFile = function(file) {
   var uploadTitle = $('#title').val();
-  var uploadDescription = $('#description').text() + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
+  var uploadDescription = $('#description').val();
+  // + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
   var metadata = {
     snippet: {
       title: uploadTitle,
@@ -152,6 +153,24 @@ UploadVideo.prototype.uploadFile = function(file) {
       var uploadResponse = JSON.parse(data);
       this.videoId = uploadResponse.id;
       $('#video-id').text(this.videoId);
+      // Updates wechallenge Database with submission
+      $.ajax({
+        method: "POST",
+        url: "/submissions",
+        data: JSON.stringify({
+          "title": uploadTitle,
+          "description": uploadDescription,
+          "link": this.videoId,
+          "UserId": '1',
+          "RecordId": '1'
+        })
+      })
+        .done(function(msg) {
+          console.log('done msg: ', msg);
+        })
+        .fail(function(msg) {
+          console.log('fail msg: ', msg);
+        });
       $('.post-upload').show();
       this.pollForVideoStatus();
     }.bind(this)
