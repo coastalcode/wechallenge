@@ -4,13 +4,19 @@ import VideoList from './VideoList';
 console.log('home')
 export default class Home extends React.Component {
   render() {
+    let testVideo = {
+      videoID: 'l6Zs_l7TOhg',
+      title: 'Oranges?!'
+    }
+    let testVideoArray = new Array(5).fill(testVideo)
     return (
       <div>
-        <div>
-          <h1>Staff Pick:</h1>
-          <MainVideo />
-        </div>
-        <div>
+        <MainVideo video={testVideo}/>
+        <div className="videolists-container">
+          <div className="videolists-flexbuffer"></div>
+          <VideoList videos={testVideoArray} locale={'state'}/>
+          <VideoList videos={testVideoArray} locale={'global'}/>
+          <div className="videolists-flexbuffer"></div>
         </div>
       </div>
     )

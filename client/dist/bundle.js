@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b7b4f7cee9bbae6dcd93"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2276a5d5a324e13b6a25"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -29468,11 +29468,6 @@
 	        null,
 	        _react2.default.createElement(_NavBar2.default, null),
 	        this.props.children,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Smalley Empire'
-	        ),
 	        _react2.default.createElement(_Home2.default, null)
 	      );
 	    }
@@ -29698,20 +29693,23 @@
 	  _createClass(Home, [{
 	    key: 'render',
 	    value: function render() {
+	      var testVideo = {
+	        videoID: 'l6Zs_l7TOhg',
+	        title: 'Oranges?!'
+	      };
+	      var testVideoArray = new Array(5).fill(testVideo);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_MainVideo2.default, { video: testVideo }),
 	        _react2.default.createElement(
 	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Staff Pick:'
-	          ),
-	          _react2.default.createElement(_MainVideo2.default, null)
-	        ),
-	        _react2.default.createElement('div', null)
+	          { className: 'videolists-container' },
+	          _react2.default.createElement('div', { className: 'videolists-flexbuffer' }),
+	          _react2.default.createElement(_VideoList2.default, { videos: testVideoArray, locale: 'state' }),
+	          _react2.default.createElement(_VideoList2.default, { videos: testVideoArray, locale: 'global' }),
+	          _react2.default.createElement('div', { className: 'videolists-flexbuffer' })
+	        )
 	      );
 	    }
 	  }]);
@@ -29761,6 +29759,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (MainVideo.__proto__ || Object.getPrototypeOf(MainVideo)).call(this, props));
 
+	    console.log(props);
 	    _this.state = {
 	      videos: [1, 2, 3]
 	    };
@@ -29776,10 +29775,20 @@
 	      };
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'video-container' },
-	        _react2.default.createElement(_reactYoutube2.default, { videoId: 'l6Zs_l7TOhg',
-	          opts: opts
-	        })
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'home-header mainHeader' },
+	          'weChallenge of the Day: ',
+	          this.props.video.title
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'video-container' },
+	          _react2.default.createElement(_reactYoutube2.default, { videoId: this.props.video.videoID,
+	            opts: opts
+	          })
+	        )
 	      );
 	    }
 	  }]);
@@ -29905,7 +29914,6 @@
 	function filterResetOptions(opts) {
 	  return _extends({}, opts, {
 	    playerVars: _extends({}, opts.playerVars, {
-	      autoplay: 0,
 	      start: 0,
 	      end: 0
 	    })
@@ -41471,7 +41479,7 @@
 
 	var MapCache = __webpack_require__(341);
 
-	/** Error message constants. */
+	/** Used as the `TypeError` message for "Functions" methods. */
 	var FUNC_ERROR_TEXT = 'Expected a function';
 
 	/**
@@ -41890,10 +41898,7 @@
 	  function VideoList(props) {
 	    _classCallCheck(this, VideoList);
 
-	    var _this = _possibleConstructorReturn(this, (VideoList.__proto__ || Object.getPrototypeOf(VideoList)).call(this, props));
-
-	    _this.state = { videos: [1, 2, 3, 4, 5] };
-	    return _this;
+	    return _possibleConstructorReturn(this, (VideoList.__proto__ || Object.getPrototypeOf(VideoList)).call(this, props));
 	  }
 
 	  _createClass(VideoList, [{
@@ -41911,14 +41916,25 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.state.videos.map(function (val) {
+	        this.props.locale === 'state' ? _react2.default.createElement(
+	          'h1',
+	          { className: 'home-header topLocal' },
+	          'Top Records In Your Area'
+	        ) : _react2.default.createElement(
+	          'h1',
+	          { className: 'home-header topGlobal' },
+	          'Top Records Worldwide'
+	        ),
+	        this.props.videos.map(function (val) {
 	          return _react2.default.createElement(
 	            'div',
-	            null,
-	            _react2.default.createElement(_reactYoutube2.default, { videoId: 'l6Zs_l7TOhg',
-	              opts: opts
-	            }),
-	            _react2.default.createElement(_Video2.default, { key: val, content: val })
+	            { className: 'youtube-container' },
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'title-banner' },
+	              val.title
+	            ),
+	            _react2.default.createElement('img', { src: "http://img.youtube.com/vi/" + val.videoID + "/hqdefault.jpg" })
 	          );
 	        })
 	      );
