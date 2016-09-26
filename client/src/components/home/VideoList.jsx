@@ -5,7 +5,6 @@ import YouTube from 'react-youtube';
 export default class VideoList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {videos: [1,2,3,4,5]}
   }
   componentDidMount() {
     console.log('grab list of videos from', this.props)
@@ -18,13 +17,16 @@ export default class VideoList extends React.Component {
     }
     return (
       <div>
-        { this.state.videos.map((val)=>{
+        { this.props.locale === 'state' ?
+          <h1 className="home-header topLocal">Top Records In Your Area</h1>
+          :
+          <h1 className="home-header topGlobal">Top Records Worldwide</h1>
+        }
+        { this.props.videos.map((val)=>{
           return (
-            <div>
-              <YouTube videoId={'l6Zs_l7TOhg'}
-                opts={opts}
-              />
-              <Video key={val} content={val} />
+            <div className="youtube-container">
+              <span className="title-banner">{val.title}</span>
+              <img src={"http://img.youtube.com/vi/" + val.videoID + "/hqdefault.jpg"}/>
             </div>
           )
         })}

@@ -5,6 +5,7 @@ import YouTube from 'react-youtube';
 export default class MainVideo extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       videos: [1,2,3]
     };
@@ -16,10 +17,13 @@ export default class MainVideo extends React.Component {
       width: '560'
     }
     return (
-      <div className="video-container">
-        <YouTube videoId={'l6Zs_l7TOhg'}
-          opts={opts}
-        />
+      <div>
+        <h1 className="home-header mainHeader">weChallenge of the Day: {this.props.video.title}</h1>
+        <div className="video-container">
+          <YouTube videoId={this.props.video.videoID}
+            opts={opts}
+          />
+        </div>
       </div>
     )
   }
