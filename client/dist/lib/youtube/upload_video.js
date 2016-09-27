@@ -165,7 +165,11 @@ UploadVideo.prototype.uploadFile = function(file) {
           "UserId": '1',
           "RecordId": '1',
           "selectedCategory": selectedCategory,
-          "selectedSubCategory": selectedSubCategory
+          "selectedSubCategory": selectedSubCategory,
+          "measurement": 5,
+          "units": "mile",
+          "moreisgood": 1,
+          "lessisgood": 0
         })
       })
         .done(function(msg) {
