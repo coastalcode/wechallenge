@@ -7,12 +7,66 @@ class Submission extends Component {
     window.location.reload();
   }
 
-  render() {
 
+  selectCategory(category, subCategory) {
+    console.log('category: ', category);
+    console.log('sub category: ', subCategory);
+    $('#selectedCategory').text(category);
+    $('#selectedSubCategory').text(subCategory);
+  }
+
+  render() {
 
     return (
       <div>
         <h1>Submit a Challenge</h1>
+        <h3>Select a Category</h3>
+        <div className="panel-group" id="accordion">
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                Art
+              </h4>
+            </div>
+            <div id="collapse1" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Drawing')}>Drawing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Sculptures')}>Sculptures</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Origami')}>Origami</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                Computers
+              </h4>
+            </div>
+            <div id="collapse2" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Typing')}>Typing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Speed')}>Speed</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                Exercise
+              </h4>
+            </div>
+            <div id="collapse3" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pushups')}>Pushups</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Situps')}>Situps</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pullups')}>Pullups</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Handstand')}>Handstand time</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h4>Selected Category: <span id="selectedCategory"></span> / <span id="selectedSubCategory"></span></h4>
 
         <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
