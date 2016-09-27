@@ -82,17 +82,36 @@ module.exports = {
     },
 
     add(req, res) {
-      db.Submission.create({
-        title: req.body.title,
-        link: req.body.link,
-        description: req.body.description,
-        votes: 0,
-        official: 1,
-        UserId: req.body.userId,
-        RecordId: req.body.recordId
-      })
-      .then(submission => res.sendStatus(201))
-      .catch(error => console.error(error))
+      db.Record.findOrCreate({
+        where: {
+          category: req.body.selectedCategory,
+          subcategory: req.body.selectedSubCategory,
+          title: req.body.title
+        },
+        defaults: {
+          category: req.body.selectedCategory,
+          subcategory: req.body.selectedSubCategory,
+          title: req.body.title,
+          measurement: req.body.measurement,
+          units: req.body.units,
+          moreisgood: req.body.moreisgood,
+          lessisgood: req.body.lessisgood
+        }
+    }).spread(function(record) {
+      console.log('record-------', record);
+    })
+
+      // db.Submission.create({
+      //   title: req.body.title,
+      //   link: req.body.link,
+      //   description: req.body.description,
+      //   votes: 0,
+      //   official: 1,
+      //   UserId: req.body.userId,
+      //   RecordId: req.body.recordId
+      // })
+      // .then(submission => res.sendStatus(201))
+      // .catch(error => console.error(error))
     },
 
     findOne(req, res) {
