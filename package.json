@@ -7,7 +7,8 @@
     "start": "node server/server.js",
     "postinstall": "webpack --progress --colors",
     "faketest": "jshint faketest.js",
-    "test": "mocha --compilers js:babel-core/register server/tests/"
+    "test": "mocha --compilers js:babel-core/register server/tests/",
+    "dev": "webpack -d --watch"
   },
   "engines": {
     "node": "6.1"
