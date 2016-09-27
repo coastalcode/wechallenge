@@ -6,7 +6,7 @@ export default class Challenges extends Component {
   constructor(props) {
     super(props)
 
-    this.recieved = [];
+    this.received = [];
     this.sent = [];
   }
 
@@ -17,7 +17,7 @@ export default class Challenges extends Component {
       <div>
         <div>Current challenges!</div>
 
-        Recieved:
+        Received:
 
 
         Sent:
