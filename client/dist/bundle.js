@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b3ff63758c2416f076bc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d0d6302babe989aa3be9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -756,6 +756,10 @@
 	var _signup = __webpack_require__(478);
 
 	var _signup2 = _interopRequireDefault(_signup);
+
+	var _Home = __webpack_require__(266);
+
+	var _Home2 = _interopRequireDefault(_Home);
 
 	var _reducers = __webpack_require__(480);
 
@@ -29470,10 +29474,13 @@
 	var App = function (_Component) {
 	  _inherits(App, _Component);
 
-	  function App() {
+	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	    console.log('App', _this.props);
+	    return _this;
 	  }
 
 	  _createClass(App, [{
@@ -29484,7 +29491,7 @@
 	        null,
 	        _react2.default.createElement(_NavBar2.default, null),
 	        this.props.children,
-	        _react2.default.createElement(_Home2.default, null)
+	        this.props.location.pathname === '/' ? _react2.default.createElement(_Home2.default, null) : null
 	      );
 	    }
 	  }]);
@@ -29820,7 +29827,7 @@
 	            opts: opts
 	          })
 	        ),
-	        _react2.default.createElement(_VideoActions2.default, null)
+	        _react2.default.createElement(_VideoActions2.default, { points: this.props.video.points, comments: this.props.video.comments })
 	      );
 	    }
 	  }]);
@@ -29946,6 +29953,7 @@
 	function filterResetOptions(opts) {
 	  return _extends({}, opts, {
 	    playerVars: _extends({}, opts.playerVars, {
+	      autoplay: 0,
 	      start: 0,
 	      end: 0
 	    })
@@ -41511,7 +41519,7 @@
 
 	var MapCache = __webpack_require__(341);
 
-	/** Used as the `TypeError` message for "Functions" methods. */
+	/** Error message constants. */
 	var FUNC_ERROR_TEXT = 'Expected a function';
 
 	/**
@@ -46842,6 +46850,49 @@
 	              'Description:'
 	            ),
 	            _react2.default.createElement('textarea', { id: 'description' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'measurement' },
+	              'Measurement:'
+	            ),
+	            _react2.default.createElement('input', { id: 'measurement', type: 'text' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'units' },
+	              'Units:'
+	            ),
+	            _react2.default.createElement('input', { id: 'units', type: 'text' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'measurement-direction' },
+	              'Is a lower or higher measurment impressive?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'measurement-direction' },
+	              _react2.default.createElement(
+	                'option',
+	                null,
+	                'lower'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                null,
+	                'higher'
+	              )
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',

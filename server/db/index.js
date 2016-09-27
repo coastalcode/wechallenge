@@ -52,6 +52,7 @@ const Submission = db.define('Submission', {
   description: Sequelize.STRING,
   votes: Sequelize.INTEGER,
   official: Sequelize.STRING,
+  measurement: Sequelize.INTEGER
 });
 
 const Comment = db.define('Comment', {
@@ -68,10 +69,9 @@ const Record = db.define('Record', {
   category: Sequelize.STRING,
   subcategory: Sequelize.STRING,
   title: Sequelize.STRING,
-  measurement: Sequelize.INTEGER,
   units: Sequelize.STRING,
   moreisgood: Sequelize.INTEGER,
-  lessisgood: Sequelize.INTEGER,
+  lessisgood: Sequelize.INTEGER
 });
 
 // puts a UserId column on each Message instance
