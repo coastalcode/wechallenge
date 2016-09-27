@@ -63,7 +63,7 @@ h1.home-header.topGlobal {
   padding-top: 30px;
   height: 0;
   overflow: hidden;
-  margin-bottom: -20%;
+  margin-bottom: -23%;
 }
 
 .video-container iframe, .video-container object, .video-container embed {
@@ -83,25 +83,31 @@ h1.home-header.topGlobal {
 }
 
 .videoaction-button {
+  padding: 10px 5px 10px 5px;
   flex-grow: 1;
   text-align: center;
   border-radius: 3px;
   color: #FDFFFC;
-  border: 5px solid #FF9F1C;
   margin: 3px;
+  font-weight: bold;
+  background-color: #011627;
 }
 
 .videoaction-button.points {
-  background-color: #FF9F1C;
+  /*Should buttons have individual colors?*/
 }
 
 .videoaction-button:hover {
   cursor: pointer;
-  color: #011627;
-  background-color: #FDFFFC;
+  color: #FDFFFC;
+  background-color: #FF9F1C;
 }
 
 /*VideoList Component*/
+
+.videolist-columns {
+  margin: 5px;
+}
 
 .videolists-container {
   display: flex;
@@ -116,12 +122,30 @@ h1.home-header.topGlobal {
 }
 
 .youtube-container .title-banner {
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
   position: absolute;
   margin-top: 10%;
   color: #FDFFFC;
-  font-size: 6em;
+  font-size: 2em;
   overflow-wrap: break-word;
-  text-shadow: black 1px 1px 5px;
+  text-shadow: black 1px 1px 4px;
+}
+
+.videolist-thumb {
+  width: 50%;
+  height: 50%;
+}
+
+.videolist-thumb:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/*centers video lists*/
+.videolists-flexbuffer {
+  flex-grow: 2;
 }
 
 /*Media queries*/
@@ -137,9 +161,5 @@ h1.home-header.topGlobal {
     flex-direction: row;
   }
 
-  /*centers video lists for desktop*/
-  .videolists-flexbuffer {
-    flex-grow: 2;
-  }
 }
 
