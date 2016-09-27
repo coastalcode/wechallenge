@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8dc15f0061f299ac7f0f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "10e12d80ad521266af26"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -46546,6 +46546,13 @@
 	      window.location.reload();
 	    }
 	  }, {
+	    key: 'selectCategory',
+	    value: function selectCategory(category, subCategory) {
+	      console.log('category: ', category);
+	      console.log('sub category: ', subCategory);
+	      $('#selectedCategory').text(category + " / " + subCategory);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 
@@ -46560,7 +46567,7 @@
 	        _react2.default.createElement(
 	          'h3',
 	          null,
-	          'Choose a category'
+	          'Select a Category'
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -46585,17 +46592,17 @@
 	                _defineProperty({ className: 'panel-body' }, 'className', 'list-group'),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Art', 'Drawing') },
 	                  'Drawing'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Art', 'Sculptures') },
 	                  'Sculptures'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Art', 'Origami') },
 	                  'Origami'
 	                )
 	              )
@@ -46621,12 +46628,12 @@
 	                _defineProperty({ className: 'panel-body' }, 'className', 'list-group'),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Computers', 'Typing') },
 	                  'Typing'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Computers', 'Speed') },
 	                  'Speed'
 	                )
 	              )
@@ -46652,27 +46659,33 @@
 	                _defineProperty({ className: 'panel-body' }, 'className', 'list-group'),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Pushups') },
 	                  'Pushups'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Situps') },
 	                  'Situps'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Pullups') },
 	                  'Pullups'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'list-group-item btn-xs' },
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Handstand') },
 	                  'Handstand time'
 	                )
 	              )
 	            )
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Selected Category: ',
+	          _react2.default.createElement('span', { id: 'selectedCategory' })
 	        ),
 	        _react2.default.createElement(
 	          'span',
