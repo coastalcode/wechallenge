@@ -10,7 +10,8 @@ class Submission extends Component {
   selectCategory(category, subCategory) {
     console.log('category: ', category);
     console.log('sub category: ', subCategory);
-    $('#selectedCategory').text(category +" / " + subCategory);
+    $('#selectedCategory').text(category);
+    $('#selectedSubCategory').text(subCategory);
   }
 
   render() {
@@ -64,7 +65,7 @@ class Submission extends Component {
           </div>
         </div>
 
-        <h4>Selected Category: <span id="selectedCategory"></span></h4>
+        <h4>Selected Category: <span id="selectedCategory"></span> / <span id="selectedSubCategory"></span></h4>
 
         <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>

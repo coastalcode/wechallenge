@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "10e12d80ad521266af26"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "64d09afc07a0b89dc140"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -46550,7 +46550,8 @@
 	    value: function selectCategory(category, subCategory) {
 	      console.log('category: ', category);
 	      console.log('sub category: ', subCategory);
-	      $('#selectedCategory').text(category + " / " + subCategory);
+	      $('#selectedCategory').text(category);
+	      $('#selectedSubCategory').text(subCategory);
 	    }
 	  }, {
 	    key: 'render',
@@ -46685,7 +46686,9 @@
 	          'h4',
 	          null,
 	          'Selected Category: ',
-	          _react2.default.createElement('span', { id: 'selectedCategory' })
+	          _react2.default.createElement('span', { id: 'selectedCategory' }),
+	          ' / ',
+	          _react2.default.createElement('span', { id: 'selectedSubCategory' })
 	        ),
 	        _react2.default.createElement(
 	          'span',
