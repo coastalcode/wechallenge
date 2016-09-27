@@ -98,6 +98,15 @@ UploadVideo.prototype.uploadFile = function(file) {
   var uploadDescription = $('#description').val();
   var selectedCategory = $('#selectedCategory').text();
   var selectedSubCategory = $('#selectedSubCategory').text();
+  var measurement = $('#measurement').val();
+  var units = $('#units').val();
+  if ($('#measurement-direction').val() === 'lower') {
+    var moreisgood = 0;
+    var lessisgood = 1;
+  } else {
+    var moreisgood = 1;
+    var lessisgood = 0;
+  }
   // + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
   var metadata = {
     snippet: {
@@ -165,10 +174,10 @@ UploadVideo.prototype.uploadFile = function(file) {
           "UserId": '1',
           "selectedCategory": selectedCategory,
           "selectedSubCategory": selectedSubCategory,
-          "measurement": 5,
-          "units": "mile",
-          "moreisgood": 1,
-          "lessisgood": 0
+          "measurement": measurement,
+          "units": units,
+          "moreisgood": moreisgood,
+          "lessisgood": lessisgood
         })
       })
         .done(function(msg) {

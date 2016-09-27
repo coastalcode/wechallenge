@@ -86,13 +86,15 @@ module.exports = {
         where: {
           category: req.body.selectedCategory,
           subcategory: req.body.selectedSubCategory,
-          title: req.body.title
+          title: req.body.title,
+          units: req.body.units,
+          moreisgood: req.body.moreisgood,
+          lessisgood: req.body.lessisgood
         },
         defaults: {
           category: req.body.selectedCategory,
           subcategory: req.body.selectedSubCategory,
           title: req.body.title,
-          measurement: req.body.measurement,
           units: req.body.units,
           moreisgood: req.body.moreisgood,
           lessisgood: req.body.lessisgood
@@ -107,7 +109,8 @@ module.exports = {
           votes: 0,
           official: 1,
           UserId: req.body.userId,
-          RecordId: record[0].dataValues.id
+          RecordId: record[0].dataValues.id,
+          measurement: req.body.measurement,
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
       })

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0d4c3db7316cb927cd09"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d0d6302babe989aa3be9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -46850,6 +46850,49 @@
 	              'Description:'
 	            ),
 	            _react2.default.createElement('textarea', { id: 'description' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'measurement' },
+	              'Measurement:'
+	            ),
+	            _react2.default.createElement('input', { id: 'measurement', type: 'text' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'units' },
+	              'Units:'
+	            ),
+	            _react2.default.createElement('input', { id: 'units', type: 'text' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'measurement-direction' },
+	              'Is a lower or higher measurment impressive?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'measurement-direction' },
+	              _react2.default.createElement(
+	                'option',
+	                null,
+	                'lower'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                null,
+	                'higher'
+	              )
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
