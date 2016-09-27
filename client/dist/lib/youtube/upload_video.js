@@ -163,7 +163,6 @@ UploadVideo.prototype.uploadFile = function(file) {
           "description": uploadDescription,
           "link": this.videoId,
           "UserId": '1',
-          "RecordId": '1',
           "selectedCategory": selectedCategory,
           "selectedSubCategory": selectedSubCategory,
           "measurement": 5,

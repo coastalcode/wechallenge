@@ -97,21 +97,20 @@ module.exports = {
           moreisgood: req.body.moreisgood,
           lessisgood: req.body.lessisgood
         }
-    }).spread(function(record) {
-      console.log('record-------', record);
-    })
-
-      // db.Submission.create({
-      //   title: req.body.title,
-      //   link: req.body.link,
-      //   description: req.body.description,
-      //   votes: 0,
-      //   official: 1,
-      //   UserId: req.body.userId,
-      //   RecordId: req.body.recordId
-      // })
-      // .then(submission => res.sendStatus(201))
-      // .catch(error => console.error(error))
+      }).then((record) => {
+        console.log('record-------', record);
+        console.log('record ID----', record[0].dataValues.id);
+        db.Submission.create({
+          title: req.body.title,
+          link: req.body.link,
+          description: req.body.description,
+          votes: 0,
+          official: 1,
+          UserId: req.body.userId,
+          RecordId: record[0].dataValues.id
+        }).then(submission => res.sendStatus(201))
+          .catch(error => console.error(error))
+      })
     },
 
     findOne(req, res) {
