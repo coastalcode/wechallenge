@@ -96,6 +96,8 @@ UploadVideo.prototype.ready = function(accessToken) {
 UploadVideo.prototype.uploadFile = function(file) {
   var uploadTitle = $('#title').val();
   var uploadDescription = $('#description').val();
+  var selectedCategory = $('#selectedCategory').text();
+  var selectedSubCategory = $('#selectedSubCategory').text();
   // + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
   var metadata = {
     snippet: {
@@ -108,7 +110,6 @@ UploadVideo.prototype.uploadFile = function(file) {
       privacyStatus: $('#privacy-status option:selected').text()
     }
   };
-  console.log(metadata);
   var uploader = new MediaUploader({
     baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
     file: file,
@@ -162,7 +163,9 @@ UploadVideo.prototype.uploadFile = function(file) {
           "description": uploadDescription,
           "link": this.videoId,
           "UserId": '1',
-          "RecordId": '1'
+          "RecordId": '1',
+          "selectedCategory": selectedCategory,
+          "selectedSubCategory": selectedSubCategory
         })
       })
         .done(function(msg) {

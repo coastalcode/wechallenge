@@ -17,7 +17,6 @@ class Submission extends Component {
 
   render() {
 
-
     return (
       <div>
         <h1>Submit a Challenge</h1>
