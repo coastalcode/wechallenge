@@ -13,6 +13,7 @@ import Challenges from './components/Challenges';
 import Records from './components/Records';
 import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
+import Home from './components/home/Home';
 
 import rootReducer from './reducers';
 
