@@ -1,11 +1,11 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	var parentHotUpdateCallback = this["webpackHotUpdate"];
-/******/ 	this["webpackHotUpdate"] = 
+/******/ 	this["webpackHotUpdate"] =
 /******/ 	function webpackHotUpdateCallback(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		hotAddUpdateChunk(chunkId, moreModules);
 /******/ 		if(parentHotUpdateCallback) parentHotUpdateCallback(chunkId, moreModules);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotDownloadUpdateChunk(chunkId) { // eslint-disable-line no-unused-vars
 /******/ 		var head = document.getElementsByTagName("head")[0];
 /******/ 		var script = document.createElement("script");
@@ -14,7 +14,7 @@
 /******/ 		script.src = __webpack_require__.p + "" + chunkId + "." + hotCurrentHash + ".hot-update.js";
 /******/ 		head.appendChild(script);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotDownloadManifest(callback) { // eslint-disable-line no-unused-vars
 /******/ 		if(typeof XMLHttpRequest === "undefined")
 /******/ 			return callback(new Error("No browser support"));
@@ -51,8 +51,8 @@
 /******/ 		};
 /******/ 	}
 
-/******/ 	
-/******/ 	
+/******/
+/******/
 /******/ 	// Copied from https://github.com/facebook/react/blob/bef45b0/src/shared/utils/canDefineProperty.js
 /******/ 	var canDefineProperty = false;
 /******/ 	try {
@@ -63,12 +63,12 @@
 /******/ 	} catch(x) {
 /******/ 		// IE will fail on defineProperty
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	var hotCurrentHash = "a51a44d120776024ee63"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
-/******/ 	
+/******/
 /******/ 	function hotCreateRequire(moduleId) { // eslint-disable-line no-unused-vars
 /******/ 		var me = installedModules[moduleId];
 /******/ 		if(!me) return __webpack_require__;
@@ -106,7 +106,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		function ensure(chunkId, callback) {
 /******/ 			if(hotStatus === "ready")
 /******/ 				hotSetStatus("prepare");
@@ -117,7 +117,7 @@
 /******/ 				} finally {
 /******/ 					finishChunkLoading();
 /******/ 				}
-/******/ 	
+/******/
 /******/ 				function finishChunkLoading() {
 /******/ 					hotChunksLoading--;
 /******/ 					if(hotStatus === "prepare") {
@@ -141,7 +141,7 @@
 /******/ 		}
 /******/ 		return fn;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotCreateModule(moduleId) { // eslint-disable-line no-unused-vars
 /******/ 		var hot = {
 /******/ 			// private stuff
@@ -150,7 +150,7 @@
 /******/ 			_selfAccepted: false,
 /******/ 			_selfDeclined: false,
 /******/ 			_disposeHandlers: [],
-/******/ 	
+/******/
 /******/ 			// Module API
 /******/ 			active: true,
 /******/ 			accept: function(dep, callback) {
@@ -183,7 +183,7 @@
 /******/ 				var idx = hot._disposeHandlers.indexOf(callback);
 /******/ 				if(idx >= 0) hot._disposeHandlers.splice(idx, 1);
 /******/ 			},
-/******/ 	
+/******/
 /******/ 			// Management API
 /******/ 			check: hotCheck,
 /******/ 			apply: hotApply,
@@ -198,22 +198,22 @@
 /******/ 				var idx = hotStatusHandlers.indexOf(l);
 /******/ 				if(idx >= 0) hotStatusHandlers.splice(idx, 1);
 /******/ 			},
-/******/ 	
+/******/
 /******/ 			//inherit from previous dispose call
 /******/ 			data: hotCurrentModuleData[moduleId]
 /******/ 		};
 /******/ 		return hot;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	var hotStatusHandlers = [];
 /******/ 	var hotStatus = "idle";
-/******/ 	
+/******/
 /******/ 	function hotSetStatus(newStatus) {
 /******/ 		hotStatus = newStatus;
 /******/ 		for(var i = 0; i < hotStatusHandlers.length; i++)
 /******/ 			hotStatusHandlers[i].call(null, newStatus);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// while downloading
 /******/ 	var hotWaitingFiles = 0;
 /******/ 	var hotChunksLoading = 0;
@@ -221,15 +221,15 @@
 /******/ 	var hotRequestedFilesMap = {};
 /******/ 	var hotAvailibleFilesMap = {};
 /******/ 	var hotCallback;
-/******/ 	
+/******/
 /******/ 	// The update info
 /******/ 	var hotUpdate, hotUpdateNewHash;
-/******/ 	
+/******/
 /******/ 	function toModuleId(id) {
 /******/ 		var isNumber = (+id) + "" === id;
 /******/ 		return isNumber ? +id : id;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotCheck(apply, callback) {
 /******/ 		if(hotStatus !== "idle") throw new Error("check() is only allowed in idle status");
 /******/ 		if(typeof apply === "function") {
@@ -249,14 +249,14 @@
 /******/ 				callback(null, null);
 /******/ 				return;
 /******/ 			}
-/******/ 	
+/******/
 /******/ 			hotRequestedFilesMap = {};
 /******/ 			hotAvailibleFilesMap = {};
 /******/ 			hotWaitingFilesMap = {};
 /******/ 			for(var i = 0; i < update.c.length; i++)
 /******/ 				hotAvailibleFilesMap[update.c[i]] = true;
 /******/ 			hotUpdateNewHash = update.h;
-/******/ 	
+/******/
 /******/ 			hotSetStatus("prepare");
 /******/ 			hotCallback = callback;
 /******/ 			hotUpdate = {};
@@ -270,7 +270,7 @@
 /******/ 			}
 /******/ 		});
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotAddUpdateChunk(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		if(!hotAvailibleFilesMap[chunkId] || !hotRequestedFilesMap[chunkId])
 /******/ 			return;
@@ -284,7 +284,7 @@
 /******/ 			hotUpdateDownloaded();
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotEnsureUpdateChunk(chunkId) {
 /******/ 		if(!hotAvailibleFilesMap[chunkId]) {
 /******/ 			hotWaitingFilesMap[chunkId] = true;
@@ -294,7 +294,7 @@
 /******/ 			hotDownloadUpdateChunk(chunkId);
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotUpdateDownloaded() {
 /******/ 		hotSetStatus("ready");
 /******/ 		var callback = hotCallback;
@@ -312,7 +312,7 @@
 /******/ 			callback(null, outdatedModules);
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotApply(options, callback) {
 /******/ 		if(hotStatus !== "ready") throw new Error("apply() is only allowed in ready status");
 /******/ 		if(typeof options === "function") {
@@ -328,11 +328,11 @@
 /******/ 				if(err) throw err;
 /******/ 			};
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		function getAffectedStuff(module) {
 /******/ 			var outdatedModules = [module];
 /******/ 			var outdatedDependencies = {};
-/******/ 	
+/******/
 /******/ 			var queue = outdatedModules.slice();
 /******/ 			while(queue.length > 0) {
 /******/ 				var moduleId = queue.pop();
@@ -363,10 +363,10 @@
 /******/ 					queue.push(parentId);
 /******/ 				}
 /******/ 			}
-/******/ 	
+/******/
 /******/ 			return [outdatedModules, outdatedDependencies];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		function addAllToSet(a, b) {
 /******/ 			for(var i = 0; i < b.length; i++) {
 /******/ 				var item = b[i];
@@ -374,7 +374,7 @@
 /******/ 					a.push(item);
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// at begin all updates modules are outdated
 /******/ 		// the "outdated" status can propagate to parents if they don't accept the children
 /******/ 		var outdatedDependencies = {};
@@ -405,7 +405,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Store self accepted outdated modules to require them later by the module system
 /******/ 		var outdatedSelfAcceptedModules = [];
 /******/ 		for(var i = 0; i < outdatedModules.length; i++) {
@@ -416,7 +416,7 @@
 /******/ 					errorHandler: installedModules[moduleId].hot._selfAccepted
 /******/ 				});
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Now in "dispose" phase
 /******/ 		hotSetStatus("dispose");
 /******/ 		var queue = outdatedModules.slice();
@@ -424,9 +424,9 @@
 /******/ 			var moduleId = queue.pop();
 /******/ 			var module = installedModules[moduleId];
 /******/ 			if(!module) continue;
-/******/ 	
+/******/
 /******/ 			var data = {};
-/******/ 	
+/******/
 /******/ 			// Call dispose handlers
 /******/ 			var disposeHandlers = module.hot._disposeHandlers;
 /******/ 			for(var j = 0; j < disposeHandlers.length; j++) {
@@ -434,13 +434,13 @@
 /******/ 				cb(data);
 /******/ 			}
 /******/ 			hotCurrentModuleData[moduleId] = data;
-/******/ 	
+/******/
 /******/ 			// disable module (this disables requires from this module)
 /******/ 			module.hot.active = false;
-/******/ 	
+/******/
 /******/ 			// remove module from cache
 /******/ 			delete installedModules[moduleId];
-/******/ 	
+/******/
 /******/ 			// remove "parents" references from all children
 /******/ 			for(var j = 0; j < module.children.length; j++) {
 /******/ 				var child = installedModules[module.children[j]];
@@ -451,7 +451,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// remove outdated dependency from module children
 /******/ 		for(var moduleId in outdatedDependencies) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(outdatedDependencies, moduleId)) {
@@ -464,19 +464,19 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Not in "apply" phase
 /******/ 		hotSetStatus("apply");
-/******/ 	
+/******/
 /******/ 		hotCurrentHash = hotUpdateNewHash;
-/******/ 	
+/******/
 /******/ 		// insert new code
 /******/ 		for(var moduleId in appliedUpdate) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
 /******/ 				modules[moduleId] = appliedUpdate[moduleId];
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// call accept handlers
 /******/ 		var error = null;
 /******/ 		for(var moduleId in outdatedDependencies) {
@@ -501,7 +501,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Load self accepted modules
 /******/ 		for(var i = 0; i < outdatedSelfAcceptedModules.length; i++) {
 /******/ 			var item = outdatedSelfAcceptedModules[i];
@@ -521,13 +521,13 @@
 /******/ 					error = err;
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// handle errors in accept handlers and self accepted module load
 /******/ 		if(error) {
 /******/ 			hotSetStatus("fail");
 /******/ 			return callback(error);
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		hotSetStatus("idle");
 /******/ 		callback(null, outdatedModules);
 /******/ 	}
@@ -1501,7 +1501,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule reactProdInvariant
-	 * 
+	 *
 	 */
 	'use strict';
 
@@ -2063,7 +2063,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	function makeEmptyFunction(arg) {
@@ -2308,7 +2308,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule getIteratorFn
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -2354,7 +2354,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule KeyEscapeUtils
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -7085,7 +7085,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule accumulateInto
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -7149,7 +7149,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule forEachAccumulated
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8419,7 +8419,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule ReactFeatureFlags
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -9692,7 +9692,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule isTextInputElement
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -13163,7 +13163,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 * @typechecks static-only
 	 */
 
@@ -16689,7 +16689,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule ReactNodeTypes
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16735,7 +16735,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @typechecks
-	 * 
+	 *
 	 */
 
 	/*eslint-disable no-self-compare */
@@ -16970,7 +16970,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule flattenChildren
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -17148,7 +17148,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule ReactServerUpdateQueue
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -19310,7 +19310,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	var isTextNode = __webpack_require__(149);
@@ -21827,7 +21827,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @providesModule adler32
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -32310,19 +32310,19 @@
 
 	/* WEBPACK VAR INJECTION */(function(process, global, setImmediate) {/* @preserve
 	 * The MIT License (MIT)
-	 * 
+	 *
 	 * Copyright (c) 2013-2015 Petka Antonov
-	 * 
+	 *
 	 * Permission is hereby granted, free of charge, to any person obtaining a copy
 	 * of this software and associated documentation files (the "Software"), to deal
 	 * in the Software without restriction, including without limitation the rights
 	 * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	 * copies of the Software, and to permit persons to whom the Software is
 	 * furnished to do so, subject to the following conditions:
-	 * 
+	 *
 	 * The above copyright notice and this permission notice shall be included in
 	 * all copies or substantial portions of the Software.
-	 * 
+	 *
 	 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -32330,7 +32330,7 @@
 	 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 	 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	 * THE SOFTWARE.
-	 * 
+	 *
 	 */
 	/**
 	 * bluebird build version 3.4.6
@@ -35789,28 +35789,28 @@
 	_dereq_('./filter.js')(Promise, INTERNAL);
 	_dereq_('./each.js')(Promise, INTERNAL);
 	_dereq_('./any.js')(Promise);
-	                                                         
-	    util.toFastProperties(Promise);                                          
-	    util.toFastProperties(Promise.prototype);                                
-	    function fillTypes(value) {                                              
-	        var p = new Promise(INTERNAL);                                       
-	        p._fulfillmentHandler0 = value;                                      
-	        p._rejectionHandler0 = value;                                        
-	        p._promise0 = value;                                                 
-	        p._receiver0 = value;                                                
-	    }                                                                        
-	    // Complete slack tracking, opt out of field-type tracking and           
-	    // stabilize map                                                         
-	    fillTypes({a: 1});                                                       
-	    fillTypes({b: 2});                                                       
-	    fillTypes({c: 3});                                                       
-	    fillTypes(1);                                                            
-	    fillTypes(function(){});                                                 
-	    fillTypes(undefined);                                                    
-	    fillTypes(false);                                                        
-	    fillTypes(new Promise(INTERNAL));                                        
-	    debug.setBounds(Async.firstLineError, util.lastLineError);               
-	    return Promise;                                                          
+
+	    util.toFastProperties(Promise);
+	    util.toFastProperties(Promise.prototype);
+	    function fillTypes(value) {
+	        var p = new Promise(INTERNAL);
+	        p._fulfillmentHandler0 = value;
+	        p._rejectionHandler0 = value;
+	        p._promise0 = value;
+	        p._receiver0 = value;
+	    }
+	    // Complete slack tracking, opt out of field-type tracking and
+	    // stabilize map
+	    fillTypes({a: 1});
+	    fillTypes({b: 2});
+	    fillTypes({c: 3});
+	    fillTypes(1);
+	    fillTypes(function(){});
+	    fillTypes(undefined);
+	    fillTypes(false);
+	    fillTypes(new Promise(INTERNAL));
+	    debug.setBounds(Async.firstLineError, util.lastLineError);
+	    return Promise;
 
 	};
 
@@ -36614,8 +36614,8 @@
 	util.inherits(ReductionPromiseArray, PromiseArray);
 
 	ReductionPromiseArray.prototype._gotAccum = function(accum) {
-	    if (this._eachValues !== undefined && 
-	        this._eachValues !== null && 
+	    if (this._eachValues !== undefined &&
+	        this._eachValues !== null &&
 	        accum !== INTERNAL) {
 	        this._eachValues.push(accum);
 	    }
@@ -38049,7 +38049,7 @@
 /* 282 */
 /***/ function(module, exports) {
 
-	
+
 	module.exports = function load (src, opts, cb) {
 	  var head = document.head || document.getElementsByTagName('head')[0]
 	  var script = document.createElement('script')
@@ -46881,6 +46881,17 @@
 	      window.location.reload();
 	    }
 	  }, {
+<<<<<<< adb08f0f1ab1efae8a021b9069a6c95cb23181d7
+=======
+	    key: 'selectCategory',
+	    value: function selectCategory(category, subCategory) {
+	      console.log('category: ', category);
+	      console.log('sub category: ', subCategory);
+	      $('#selectedCategory').text(category);
+	      $('#selectedSubCategory').text(subCategory);
+	    }
+	  }, {
+>>>>>>> serpented categories and subcategories
 	    key: 'render',
 	    value: function render() {
 
@@ -46893,6 +46904,134 @@
 	          'Submit a Challenge'
 	        ),
 	        _react2.default.createElement(
+<<<<<<< adb08f0f1ab1efae8a021b9069a6c95cb23181d7
+=======
+	          'h3',
+	          null,
+	          'Select a Category'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'panel-group', id: 'accordion' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel panel-default' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'panel-heading' },
+	              _react2.default.createElement(
+	                'h4',
+	                { className: 'panel-title', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapse1' },
+	                'Art'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'collapse1', className: 'panel-collapse collapse' },
+	              _react2.default.createElement(
+	                'div',
+	                _defineProperty({ className: 'panel-body' }, 'className', 'list-group'),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Art', 'Drawing') },
+	                  'Drawing'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Art', 'Sculptures') },
+	                  'Sculptures'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Art', 'Origami') },
+	                  'Origami'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel panel-default' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'panel-heading' },
+	              _react2.default.createElement(
+	                'h4',
+	                { className: 'panel-title', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapse2' },
+	                'Computers'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'collapse2', className: 'panel-collapse collapse' },
+	              _react2.default.createElement(
+	                'div',
+	                _defineProperty({ className: 'panel-body' }, 'className', 'list-group'),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Computers', 'Typing') },
+	                  'Typing'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Computers', 'Speed') },
+	                  'Speed'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel panel-default' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'panel-heading' },
+	              _react2.default.createElement(
+	                'h4',
+	                { className: 'panel-title', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapse3' },
+	                'Exercise'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'collapse3', className: 'panel-collapse collapse' },
+	              _react2.default.createElement(
+	                'div',
+	                _defineProperty({ className: 'panel-body' }, 'className', 'list-group'),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Pushups') },
+	                  'Pushups'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Situps') },
+	                  'Situps'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Pullups') },
+	                  'Pullups'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'list-group-item btn-xs', onClick: this.selectCategory.bind(this, 'Exercise', 'Handstand') },
+	                  'Handstand time'
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Selected Category: ',
+	          _react2.default.createElement('span', { id: 'selectedCategory' }),
+	          ' / ',
+	          _react2.default.createElement('span', { id: 'selectedSubCategory' })
+	        ),
+	        _react2.default.createElement(
+>>>>>>> serpented categories and subcategories
 	          'span',
 	          { id: 'signinButton', className: 'pre-sign-in' },
 	          _react2.default.createElement('span', {
