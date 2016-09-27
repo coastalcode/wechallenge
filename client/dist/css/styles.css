@@ -116,3 +116,8 @@ h1.home-header.topGlobal {
   }
 }
 
+/*Submission Page Category Menu*/
+.panel-heading {
+cursor: pointer;
+}
+

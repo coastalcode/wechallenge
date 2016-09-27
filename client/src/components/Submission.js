@@ -13,6 +13,52 @@ class Submission extends Component {
     return (
       <div>
         <h1>Submit a Challenge</h1>
+        <h3>Choose a category</h3>
+
+        <div className="panel-group" id="accordion">
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                Art
+              </h4>
+            </div>
+            <div id="collapse1" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs">Drawing</button>
+                <button type="button" className="list-group-item btn-xs">Sculptures</button>
+                <button type="button" className="list-group-item btn-xs">Origami</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                Computers
+              </h4>
+            </div>
+            <div id="collapse2" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                 <button type="button" className="list-group-item btn-xs">Typing</button>
+                <button type="button" className="list-group-item btn-xs">Speed</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                Exercise
+              </h4>
+            </div>
+            <div id="collapse3" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs">Pushups</button>
+                <button type="button" className="list-group-item btn-xs">Situps</button>
+                <button type="button" className="list-group-item btn-xs">Pullups</button>
+                <button type="button" className="list-group-item btn-xs">Handstand time</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
