@@ -6,7 +6,9 @@ export default class Home extends React.Component {
   render() {
     let testVideo = {
       videoID: 'l6Zs_l7TOhg',
-      title: 'Oranges?!'
+      title: 'Oranges?!',
+      comments: 23,
+      points: 99
     }
     let testVideoArray = new Array(5).fill(testVideo)
     return (

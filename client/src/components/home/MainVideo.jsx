@@ -1,6 +1,7 @@
 import React from 'react';
 import Video from './Video';
 import YouTube from 'react-youtube';
+import VideoActions from './VideoActions';
 
 export default class MainVideo extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class MainVideo extends React.Component {
             opts={opts}
           />
         </div>
+        <VideoActions />
       </div>
     )
   }
