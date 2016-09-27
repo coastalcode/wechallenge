@@ -25,7 +25,7 @@ export default class MainVideo extends React.Component {
             opts={opts}
           />
         </div>
-        <VideoActions />
+        <VideoActions points={this.props.video.points} comments={this.props.video.comments} />
       </div>
     )
   }
