@@ -6,21 +6,21 @@ class NavBar extends Component {
   //if user is authenticated, show "sign out" & "profile" on nav bar
   renderLinks() {
     if(this.props.authenticated) {
-      return [<li>
-          <Link to="/signout" className="navbar-brand" key={1}>Sign Out</Link>
+      return [<li key={1}>
+          <Link to="/signout" className="navbar-brand">Sign Out</Link>
       </li>,
-      <li>
-        <Link to="/profile" className="navbar-brand" key={2}>Profile</Link>
+      <li key={2}>
+        <Link to="/profile" className="navbar-brand">Profile</Link>
       </li>
       ];
     } else {
     //if user is not authenticated, show "sign up" & "sign in" on nav bar
       return [
-        <li>
-          <Link to="/signup" className="navbar-brand" key={3}><span className="glyphicon glyphicon-user"></span>  Sign Up</Link>
+        <li key={3}>
+          <Link to="/signup" className="navbar-brand"><span className="glyphicon glyphicon-user"></span>  Sign Up</Link>
         </li>,
-         <li>
-          <Link to="/signin" className="navbar-brand" key={4}><span className="glyphicon glyphicon-log-in"></span>  Sign In</Link>
+         <li key={4}>
+          <Link to="/signin" className="navbar-brand"><span className="glyphicon glyphicon-log-in"></span>  Sign In</Link>
         </li>
       ];
     }
@@ -47,7 +47,7 @@ class NavBar extends Component {
                 <Link to="/challenges" className="navbar-brand">Challenges</Link>
               </li>
               <li>
-                <Link to="/records" className="navbar-brand">Records</Link>
+                <Link to="/record" className="navbar-brand">Records</Link>
               </li>
               <li>
                 <Link to="/submission" className="navbar-brand">Submit Challenge</Link>

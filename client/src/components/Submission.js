@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import scriptLoader from 'react-async-script-loader'
 
-export default class Submission extends Component {
+class Submission extends Component {
+
+  componentWillUnmount() {
+    window.location.reload();
+  }
+
   render() {
+
 
     return (
       <div>
-        <h1>Hello from Submit Challenge Page!!!</h1>
+        <h1>Submit a Challenge</h1>
 
-        <span id="signinButton" class="pre-sign-in">
+        <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
                attribute in the following tag with your project's client ID. -->*/}
           <span
@@ -27,11 +34,11 @@ export default class Submission extends Component {
 
           <div>
             <label for="title">Title:</label>
-            <input id="title" type="text" value="Default Title" />
+            <input id="title" type="text"/>
           </div>
           <div>
             <label for="description">Description:</label>
-            <textarea id="description">Default description</textarea>
+            <textarea id="description"></textarea>
           </div>
           <div>
             <label for="privacy-status">Privacy Status:</label>
@@ -63,3 +70,5 @@ export default class Submission extends Component {
     )
   }
 }
+
+export default scriptLoader('https://apis.google.com/js/client:plusone.js')(Submission);

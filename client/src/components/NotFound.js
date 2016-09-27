@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 
 export default class NotFound extends Component {
+  constructor(props) {
+    super(props)
+
+    this.users = [{ name: "Harris Lee", github: "https://www.google.com" }, { name: "John Smalley", github: "https://www.google.com" }, { name: "Jim Yang", github: "https://www.google.com" }, { name: "Anna Zhao", github: "https://www.google.com" }];
+  }
   render() {
-
     return (
+      <center>
       <div className="teamProfile">
-        The page you are looking for is not found. While you're here, check out the team behind the app!
+        <h1>Oh no! The page you are looking for is not found.</h1>
+        <br/>
+        While you're here, check out the team behind the app!
 
-        <h3>CoastalCode</h3>
+        <a href="https://github.com/coastalcode"><h3>CoastalCode</h3></a>
 
-        <span>
-        <h5>Harris Lee</h5>
-        <img src="https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg"/>
-        <div>Here's a blurb about this person and why they're awesome</div>
-        </span>
-
-        <span>
-        <h5>John Smalley</h5>
-        <img src="https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg"/>
-        <div>Here's a blurb about this person and why they're awesome</div>
-        </span>
-
-        <span>
-        <h5>Jim Yang</h5>
-        <img src="https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg"/>
-        <div>Here's a blurb about this person and why they're awesome</div>
-        </span>
-
-        <span>
-        <h5>Anna Zhao</h5>
-        <img src="https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg"/>
-        <div>Here's a blurb about this person and why they're awesome</div>
-        </span>
+        { this.users.map((user, index)=>{
+            return (
+                <div>
+                <span className="teamProfileName">{ user.name }</span>
+                <br/>
+                <img src="https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg"/>
+                <br/>
+                <span>Here's a blurb about this person and why they're awesome</span>
+                <br/>
+                <a href={ user.github }><span>
+                    <i className="fa fa-github fa-2x" aria-hidden="true"></i>
+                </span></a>
+                </div>
+            )
+        }) }
       </div>
+      </center>
     )
   }
 }

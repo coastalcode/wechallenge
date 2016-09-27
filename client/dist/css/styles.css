@@ -1,11 +1,140 @@
-.teamProfile {
+/*Color Scheme
+  https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c
+  #011627 - maastricht blue (dark blue)
+  #FDFFFC - baby powder (white)
+  #2EC4B6 - max blue green (teal)
+  #E71D36 - rose madder (red/pink)
+  #FF9F1C - bright yellow (orange)
+*/
 
+/*Custom Bootstrap CSS*/
+
+body {
+  background-color: #FDFFFC;
+}
+
+.navbar-inverse {
+  background-color: #011627;
 }
 
 
-.teamProfile > span > img {
+/*navbar component*/
+
+.navbar-brand {
+  font-family: 'Oswald', sans-serif;
+  color: #FF9F1C !important;
+}
+
+/*home component*/
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+}
+
+.home-header {
+  text-align: center;
+  font-weight: bold;
+  overflow-wrap: break-word;
+}
+
+h1.home-header.mainHeader {
+  color: #FF9F1C;
+}
+
+h1.home-header.topLocal {
+  color: #E71D36;
+}
+
+h1.home-header.topGlobal {
+  color: #2EC4B6;
+}
+
+.home-container--flex {
+  /*display: flex;*/
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/*css for responsive front page video*/
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: -20%;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+  position:absolute;
+  top:0;
+  left:20%;
+  width:60%;
+  height:60%;
+}
+
+/*VideoList Component*/
+
+.videolists-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.youtube-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.youtube-container .title-banner {
+  position: absolute;
+  margin-top: 10%;
+  color: #FDFFFC;
+  font-size: 6em;
+  overflow-wrap: break-word;
+  text-shadow: black 1px 1px 5px;
+}
+
+/*Media queries*/
+
+@media (min-width: 900px) {
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .videolists-container {
+    flex-direction: row;
+  }
+
+  /*centers video lists for desktop*/
+  .videolists-flexbuffer {
+    flex-grow: 1;
+  }
+}
+
+.teamProfile > div {
+  margin: 20px;
+
+  display: inline-block;
+}
+
+.teamProfile > div > img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
+}
+
+.teamProfile > div > span {
+  display: inline-block;
+  margin-top: 10px;
+  width: 200px;
+}
+
+.teamProfileName {
+  font-size: 1.5em;
 }
 
