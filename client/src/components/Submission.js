@@ -95,6 +95,21 @@ class Submission extends Component {
             <textarea id="description"></textarea>
           </div>
           <div>
+            <label for="measurement">Measurement:</label>
+            <input id="measurement" type="text" />
+          </div>
+          <div>
+            <label for="units">Units:</label>
+            <input id="units" type="text" />
+          </div>
+          <div>
+            <label for="measurement-direction">Is a lower or higher measurment impressive?</label>
+            <select id="measurement-direction">
+              <option>lower</option>
+              <option>higher</option>
+            </select>
+          </div>
+          <div>
             <label for="privacy-status">Privacy Status:</label>
             <select id="privacy-status">
               <option>public</option>
