@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import scriptLoader from 'react-async-script-loader'
+import scriptLoader from 'react-async-script-loader';
+import { browserHistory } from 'react-router';
 
 class Submission extends Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class Submission extends Component {
 
     fetch('/submissions', init).then((res)=>{
       console.log('video added', res)
+      browserHistory.push('/');
     })
   }
 
