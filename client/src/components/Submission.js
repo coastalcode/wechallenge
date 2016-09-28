@@ -15,12 +15,17 @@ class Submission extends Component {
   }
 
   createRecord(data) {
-    console.log('create', data)
     let obj = {
       link: data.id,
       title: data.snippet.title,
       description: data.snippet.description
     };
+    if (data.snippet.tags && data.snippet.tags.length > 0) {
+      obj.tag = data.snippet.tags.join(' ')
+    }
+    if (obj.description.length > 255) {
+      obj.description = obj.description.slice(0, 252) + '...'
+    }
     let init = {
       method: 'POST',
       headers: new Headers({
@@ -30,7 +35,7 @@ class Submission extends Component {
     }
 
     fetch('/submissions', init).then((res)=>{
-      console.log('adding', res)
+      console.log('video added', res)
     })
   }
 
@@ -41,10 +46,9 @@ class Submission extends Component {
       let idx = input.indexOf('=') + 1;
       vId = input.slice(idx)
     }
-    let headers = new Headers();
     let init = {
       method: 'GET',
-      headers: headers
+      headers: new Headers()
     }
     let yturl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + vId + '&key=' + cId
     let jpromise = fetch(yturl, init).then(res => res.json())
