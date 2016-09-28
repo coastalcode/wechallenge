@@ -284,7 +284,6 @@ module.exports = {
         category: req.body.category,
         subcategory: req.body.subcategory,
         title: req.body.title,
-        measurement: req.body.measurement,
         units: req.body.units,
         moreisgood: req.body.moreisgood || 1,
         lessisgood: req.body.lessisgood || 0,

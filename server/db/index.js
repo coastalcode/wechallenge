@@ -50,6 +50,7 @@ const Submission = db.define('Submission', {
   title: Sequelize.STRING,
   link: Sequelize.STRING,
   description: Sequelize.STRING,
+  measurement: Sequelize.INTEGER,
   votes: Sequelize.INTEGER,
   official: Sequelize.STRING,
   measurement: Sequelize.INTEGER

@@ -200,9 +200,22 @@ h1.home-header.topGlobal {
   align-items: flex-start;
 }
 
+.dropdown {
+  float: left;
+}
+
+.dropdown > button {
+  width: 200px;
+}
+
+.recordList {
+  float: right;
+}
+
 .submission-warning {
   font-size: .8em;
   color: red;
   font-weight: bold;
   font-style: italic;
 }
+

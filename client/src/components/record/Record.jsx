@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
-export default class Records extends Component {
+import React from 'react';
+import CommentList from './CommentList';
+
+export default class Record extends React.Component {
   constructor(props) {
-    super(props)
-
-    // will be fed in later, this is just for testing purposes
-
-    // will need "current recordId" on the state, then map over all the videos with that recordId.
+    super(props);
 
     this.testing = {
       id: 0,
@@ -22,8 +19,14 @@ export default class Records extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log("Record successfully mounted!")
+  }
+
   render() {
     return (
+      <div>
+
       <center>
       <div>
         <h3>{ this.testing.title} </h3>
@@ -41,6 +44,11 @@ export default class Records extends Component {
         </div>
       </div>
       </center>
+
+        <h3>This is the Record page!</h3>
+
+        <CommentList />
+      </div>
     )
   }
 }
