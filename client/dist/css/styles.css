@@ -187,6 +187,22 @@ h1.home-header.topGlobal {
 
 /*Submission Page Category Menu*/
 .panel-heading {
-cursor: pointer;
+  cursor: pointer;
 }
 
+.channel-thumbnail {
+  width: 15%;
+}
+
+.flexbox-container--column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.submission-warning {
+  font-size: .8em;
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+}
