@@ -80,42 +80,114 @@ class Submission extends Component {
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                Art
+                Animal
               </h4>
             </div>
             <div id="collapse1" className="panel-collapse collapse">
               <div className="panel-body" className="list-group">
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Drawing')}>Drawing</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Sculptures')}>Sculptures</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Origami')}>Origami</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Animal','Cats')}>Cats</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Animal','Dogs')}>Dogs</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Animal','Size')}>Size</button>
               </div>
             </div>
           </div>
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                Computers
+                Art
               </h4>
             </div>
             <div id="collapse2" className="panel-collapse collapse">
               <div className="panel-body" className="list-group">
-                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Typing')}>Typing</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Speed')}>Speed</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Drawing')}>Drawing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Origami')}>Origami</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Sculptures')}>Sculptures</button>
               </div>
             </div>
           </div>
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                Exercise
+                Computers
               </h4>
             </div>
             <div id="collapse3" className="panel-collapse collapse">
               <div className="panel-body" className="list-group">
+                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Speed')}>Speed</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Typing')}>Typing</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                Exercise
+              </h4>
+            </div>
+            <div id="collapse4" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Chinups')}>Chinups</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Handstand')}>Handstand time</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pullups')}>Pullups</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pushups')}>Pushups</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Situps')}>Situps</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pullups')}>Pullups</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Handstand')}>Handstand time</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                Food
+              </h4>
+            </div>
+            <div id="collapse5" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Food','Fit in ones month')}>Fit in ones mouth</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Food','Speed Eating')}>Speed Eating</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Food','Total Amount')}>Total Amount</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                Memorization
+              </h4>
+            </div>
+            <div id="collapse6" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Memorization','Movie Quotes')}>Movie Quotes</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Memorization','Phone Numbers')}>Phone Numbers</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Memorization','Pi digits')}>Pi digits</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+                Music
+              </h4>
+            </div>
+            <div id="collapse7" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Music','Instruments')}>Instruments</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse8">
+                Sports
+              </h4>
+            </div>
+            <div id="collapse8" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Basketball')}>Basketball</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Golf')}>Golf</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Sailing')}>Sailing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Skiing')}>Skiing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Scoccer')}>Scoccer</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Weightlifting')}>Weightlifting</button>
               </div>
             </div>
           </div>
