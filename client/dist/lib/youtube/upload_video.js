@@ -1,3 +1,4 @@
+
 /*
 Copyright 2015 Google Inc. All Rights Reserved.
 
@@ -182,6 +183,7 @@ UploadVideo.prototype.uploadFile = function(file) {
       })
         .done(function(msg) {
           console.log('done msg: ', msg);
+          document.location.pathname ='/';
         })
         .fail(function(msg) {
           console.log('fail msg: ', msg);
