@@ -78,7 +78,7 @@ module.exports = {
     findAll(req, res) {
       db.Submission.findAll()
       .then(submissions => res.json(submissions))
-      .catch(err => console.error(error))
+      .catch(err => console.error(err))
     },
 
     add(req, res) {

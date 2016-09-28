@@ -33,7 +33,7 @@ export default class MainVideo extends React.Component {
       <div>
         <h1 className="home-header mainHeader">weChallenge of the Day: {this.props.video.title}</h1>
         <div className="video-container">
-          <YouTube videoId={this.props.video.videoID}
+          <YouTube videoId={this.props.video.link}
             opts={opts}
           />
         </div>
