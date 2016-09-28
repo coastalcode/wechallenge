@@ -2,7 +2,35 @@ import React from 'react';
 import MainVideo from './MainVideo';
 import VideoList from './VideoList';
 console.log('home')
+
 export default class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      videos: [],
+      mainvideo: null
+    }
+  }
+
+  componentWillMount() {
+    this.fetchVideos();
+  }
+
+  fetchVideos() {
+    console.log('hi')
+    let init = {
+      method: 'GET',
+      headers: new Headers()
+    }
+
+    let promise = fetch('/submissions').then(res=>res.json())
+    promise.then((data)=>{
+      console.log('submissions', data)
+      this.setState({videos: data});
+      this.setState({mainvideo: data[data.length - 1]})
+    })
+  }
+
   render() {
     let testVideo = {
       videoID: 'l6Zs_l7TOhg',
@@ -13,13 +41,19 @@ export default class Home extends React.Component {
     let testVideoArray = new Array(5).fill(testVideo)
     return (
       <div>
-        <MainVideo video={testVideo}/>
-        <div className="videolists-container">
-          <div className="videolists-flexbuffer"></div>
-          <VideoList videos={testVideoArray} locale={'state'}/>
-          <VideoList videos={testVideoArray} locale={'global'}/>
-          <div className="videolists-flexbuffer"></div>
-        </div>
+        { this.state.mainvideo ?
+          <MainVideo video={this.state.mainvideo}/>
+          : null
+        }
+        { this.state.videos.length > 0 ?
+          <div className="videolists-container">
+            <div className="videolists-flexbuffer"></div>
+            <VideoList videos={testVideoArray} locale={'state'}/>
+            <VideoList videos={testVideoArray} locale={'global'}/>
+            <div className="videolists-flexbuffer"></div>
+          </div>
+        : null
+        }
       </div>
     )
   }

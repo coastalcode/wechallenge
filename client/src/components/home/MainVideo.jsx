@@ -6,10 +6,22 @@ import VideoActions from './VideoActions';
 export default class MainVideo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
-    this.state = {
-      videos: [1,2,3]
-    };
+  }
+
+  componentDidMount() {
+      this.fetchTopVideo();
+  }
+
+  fetchTopVideo() {
+    let headers = new Headers();
+    let init = {
+      method: 'GET',
+      headers: headers
+    }
+    let jprom = fetch('/records', init).then(res => res.json())
+    jprom.then((data)=>{
+      console.log('data', data)
+    })
   }
 
   render() {
@@ -21,7 +33,7 @@ export default class MainVideo extends React.Component {
       <div>
         <h1 className="home-header mainHeader">weChallenge of the Day: {this.props.video.title}</h1>
         <div className="video-container">
-          <YouTube videoId={this.props.video.videoID}
+          <YouTube videoId={this.props.video.link}
             opts={opts}
           />
         </div>

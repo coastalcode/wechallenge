@@ -71,5 +71,4 @@ module.exports = function (app) {
   // only for easy testing purposes. will be removed
   app.get('/addusers/:state', query.user.testAdd);
   app.get('/testaddcomments', query.comment.testAdd);
-
 }
