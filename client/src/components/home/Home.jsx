@@ -48,8 +48,8 @@ export default class Home extends React.Component {
         { this.state.videos.length > 0 ?
           <div className="videolists-container">
             <div className="videolists-flexbuffer"></div>
-            <VideoList videos={testVideoArray} locale={'state'}/>
-            <VideoList videos={testVideoArray} locale={'global'}/>
+            <VideoList videos={this.state.videos} locale={'state'}/>
+            <VideoList videos={this.state.videos} locale={'global'}/>
             <div className="videolists-flexbuffer"></div>
           </div>
         : null

@@ -23,15 +23,16 @@ export default class VideoList extends React.Component {
           :
           <h1 className="home-header topGlobal">Top Records Worldwide</h1>
         }
-        { this.props.videos.map((val)=>{
+        { this.props.videos.map((val,i)=>{
+          console.log('videolistval', val)
           let thumbStyle = {
             width: '80%'
           }
           return (
-            <div>
+            <div key={i}>
               <div className="youtube-container">
                 <span className="title-banner">{val.title}</span>
-                <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.videoID + "/hqdefault.jpg" }/>
+                <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
               </div>
               <VideoActions points={val.points} comments={val.comments} />
             </div>
