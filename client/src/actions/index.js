@@ -14,7 +14,7 @@ export function signinUser({email, password}) {
 
       //save token to localStorage- browser native method
       localStorage.setItem('token', response.data.token)
-      localStorage.setItem('user', response.data.user)
+      localStorage.setItem('user', response.data.user.id)
       //sends user to homepage after authenticated
       browserHistory.push('/')
     })
@@ -39,7 +39,7 @@ export function signupUser({email, password, username, state, country}) {
         dispatch({type: AUTH_USER})
 
         localStorage.setItem('token', response.data.token)
-        localStorage.setItem('user', response.data.user)
+        localStorage.setItem('user', response.data.user.id)
         browserHistory.push('/')
       })
       .catch(response=> {dispatch(authError('Email in use'))
