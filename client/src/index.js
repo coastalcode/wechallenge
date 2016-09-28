@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, IndexRoute, browserHistory} from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
@@ -24,7 +24,7 @@ const routes = (
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
     <Route path="submission" component={Submission} />
-    <Route path="challenges" cats="meow!" component={Challenges} />
+    <Route path="challenges" component={Challenges} />
     <Route path="record" component={Records} />
     <Route path="*" component={NotFound} />
   </Route>

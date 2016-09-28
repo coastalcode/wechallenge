@@ -50,6 +50,7 @@ const Submission = db.define('Submission', {
   title: Sequelize.STRING,
   link: Sequelize.STRING,
   description: Sequelize.STRING,
+  measurement: Sequelize.INTEGER,
   votes: Sequelize.INTEGER,
   official: Sequelize.STRING,
 });
@@ -68,7 +69,6 @@ const Record = db.define('Record', {
   category: Sequelize.STRING,
   subcategory: Sequelize.STRING,
   title: Sequelize.STRING,
-  measurement: Sequelize.INTEGER,
   units: Sequelize.STRING,
   moreisgood: Sequelize.INTEGER,
   lessisgood: Sequelize.INTEGER,

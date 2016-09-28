@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { browserHistory } from 'react-router';
 export default class Records extends Component {
   constructor(props) {
     super(props)
@@ -34,6 +34,8 @@ export default class Records extends Component {
           upvotes: { this.testing.votes }
           <br/>
           This video was uploaded { this.testing.createdAt } by user { this.testing.UserId }
+          <br/>
+          <button onClick="">Challenge this record!</button>
         </div>
       </div>
       </center>
