@@ -14,8 +14,12 @@ class Submission extends Component {
     window.location.reload();
   }
 
-  submitLink(data) {
-
+  createRecord(data) {
+    console.log('create', data)
+    let id = data.id;
+    let title = data.snippet.title;
+    let tags = data.snippet.tags.join(' ');
+    let description = data.snippet.description;
   }
 
   parseYouTubeLink() {
@@ -38,6 +42,7 @@ class Submission extends Component {
       } else {
         // accept
         console.log('valid youtube link', data)
+        this.createRecord(data.items[0])
       }
     })
   }
