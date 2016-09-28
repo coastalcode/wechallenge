@@ -16,10 +16,22 @@ class Submission extends Component {
 
   createRecord(data) {
     console.log('create', data)
-    let id = data.id;
-    let title = data.snippet.title;
-    let tags = data.snippet.tags.join(' ');
-    let description = data.snippet.description;
+    let obj = {
+      link: data.id,
+      title: data.snippet.title,
+      description: data.snippet.description
+    };
+    let init = {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(obj)
+    }
+
+    fetch('/submissions', init).then((res)=>{
+      console.log('adding', res)
+    })
   }
 
   parseYouTubeLink() {
