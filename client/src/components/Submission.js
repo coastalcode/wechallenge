@@ -15,10 +15,25 @@ class Submission extends Component {
   }
 
   createRecord(data) {
+    if ($('#measurement-direction').val() === 'lower') {
+      var moreisgood = 0;
+      var lessisgood = 1;
+    } else {
+      var moreisgood = 1;
+      var lessisgood = 0;
+    }
+
     let obj = {
       link: data.id,
       title: data.snippet.title,
-      description: data.snippet.description
+      description: data.snippet.description,
+      userId: Number(localStorage.user),
+      selectedCategory: $('#selectedCategory').text(),
+      selectedSubCategory: $('#selectedSubCategory').text(),
+      measurement: $('#measurement').val(),
+      units: $('#units').val(),
+      moreisgood: moreisgood,
+      lessisgood: lessisgood
     };
     if (data.snippet.tags && data.snippet.tags.length > 0) {
       obj.tag = data.snippet.tags.join(' ')
