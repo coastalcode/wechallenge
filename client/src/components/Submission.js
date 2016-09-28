@@ -2,13 +2,69 @@ import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader'
 
 class Submission extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.state.selected = false;
+    this.state.submittedLink = '';
+    this.state.invalidLink = false;
+  }
 
   componentWillUnmount() {
     window.location.reload();
   }
 
+  createRecord(data) {
+    let obj = {
+      link: data.id,
+      title: data.snippet.title,
+      description: data.snippet.description
+    };
+    if (data.snippet.tags && data.snippet.tags.length > 0) {
+      obj.tag = data.snippet.tags.join(' ')
+    }
+    if (obj.description.length > 255) {
+      obj.description = obj.description.slice(0, 252) + '...'
+    }
+    let init = {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(obj)
+    }
+
+    fetch('/submissions', init).then((res)=>{
+      console.log('video added', res)
+    })
+  }
+
+  parseYouTubeLink() {
+    let vId, cId = 'AIzaSyDWcljnywJgNj3b7BWlCP6m3Hz3eqYKdMU'
+    let input = document.getElementById('submittedLink').value;
+    if (input.includes('watch')) {
+      let idx = input.indexOf('=') + 1;
+      vId = input.slice(idx)
+    }
+    let init = {
+      method: 'GET',
+      headers: new Headers()
+    }
+    let yturl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + vId + '&key=' + cId
+    let jpromise = fetch(yturl, init).then(res => res.json())
+    jpromise.then((data) => {
+      if (data.items.length === 0) {
+        this.setState({invalidLink: true})
+      } else {
+        // accept
+        console.log('valid youtube link', data)
+        this.createRecord(data.items[0])
+      }
+    })
+  }
 
   selectCategory(category, subCategory) {
+    this.setState({selected: true});
     console.log('category: ', category);
     console.log('sub category: ', subCategory);
     $('#selectedCategory').text(category);
@@ -16,7 +72,6 @@ class Submission extends Component {
   }
 
   render() {
-
     return (
       <div>
         <h1>Submit a Challenge</h1>
@@ -25,48 +80,124 @@ class Submission extends Component {
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                Art
+                Animal
               </h4>
             </div>
             <div id="collapse1" className="panel-collapse collapse">
               <div className="panel-body" className="list-group">
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Drawing')}>Drawing</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Sculptures')}>Sculptures</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Origami')}>Origami</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Animal','Cats')}>Cats</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Animal','Dogs')}>Dogs</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Animal','Size')}>Size</button>
               </div>
             </div>
           </div>
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                Computers
+                Art
               </h4>
             </div>
             <div id="collapse2" className="panel-collapse collapse">
               <div className="panel-body" className="list-group">
-                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Typing')}>Typing</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Speed')}>Speed</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Drawing')}>Drawing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Origami')}>Origami</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Art','Sculptures')}>Sculptures</button>
               </div>
             </div>
           </div>
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                Exercise
+                Computers
               </h4>
             </div>
             <div id="collapse3" className="panel-collapse collapse">
               <div className="panel-body" className="list-group">
+                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Speed')}>Speed</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Computers','Typing')}>Typing</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                Exercise
+              </h4>
+            </div>
+            <div id="collapse4" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Chinups')}>Chinups</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Handstand')}>Handstand time</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pullups')}>Pullups</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pushups')}>Pushups</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Situps')}>Situps</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pullups')}>Pullups</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Handstand')}>Handstand time</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                Food
+              </h4>
+            </div>
+            <div id="collapse5" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Food','Fit in ones month')}>Fit in ones mouth</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Food','Speed Eating')}>Speed Eating</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Food','Total Amount')}>Total Amount</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                Memorization
+              </h4>
+            </div>
+            <div id="collapse6" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Memorization','Movie Quotes')}>Movie Quotes</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Memorization','Phone Numbers')}>Phone Numbers</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Memorization','Pi digits')}>Pi digits</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+                Music
+              </h4>
+            </div>
+            <div id="collapse7" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Music','Instruments')}>Instruments</button>
+              </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse8">
+                Sports
+              </h4>
+            </div>
+            <div id="collapse8" className="panel-collapse collapse">
+              <div className="panel-body" className="list-group">
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Basketball')}>Basketball</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Golf')}>Golf</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Sailing')}>Sailing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Skiing')}>Skiing</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Scoccer')}>Scoccer</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Sports','Weightlifting')}>Weightlifting</button>
               </div>
             </div>
           </div>
         </div>
 
-        <h4>Selected Category: <span id="selectedCategory"></span> / <span id="selectedSubCategory"></span></h4>
+        <h4>Selected Category: &nbsp;
+          <span id="selectedCategory"></span>
+          { this.state.selected ? '/' : null}
+          <span id="selectedSubCategory"></span>
+        </h4>
 
         <span id="signinButton" className="pre-sign-in">
           {/*<!-- IMPORTANT: Replace the value of the <code>data-clientid</code>
@@ -81,17 +212,17 @@ class Submission extends Component {
         </span>
 
         <div className="post-sign-in">
-          <div>
-            <img id="channel-thumbnail" />
+          <div className="channel-container">
+            <img className="channel-thumbnail" id="channel-thumbnail" />
             <span id="channel-name"></span>
           </div>
 
           <div>
-            <label for="title">Title:</label>
+            <label htmlFor="title">Title:</label>
             <input id="title" type="text"/>
           </div>
           <div>
-            <label for="description">Description:</label>
+            <label htmlFor="description">Description:</label>
             <textarea id="description"></textarea>
           </div>
           <div>
@@ -118,10 +249,19 @@ class Submission extends Component {
             </select>
           </div>
 
-          <div>
-            <input input type="file" id="file" className="button" accept="video/*" />
+          <div className="submission-flexboxCol">
+            <input type="file" id="file" className="button" accept="video/*" />
             <button id="button">Upload Video</button>
-
+            <br/>
+            <p>or</p>
+            <p className="flexbox-container--column">
+              <input placeholder="Add existing YouTube link" type="text" id="submittedLink" className="button" />
+              { this.state.invalidLink ?
+                <span className="submission-warning">Please enter a valid YouTube Link</span>
+                : null
+              }
+              <button onClick={this.parseYouTubeLink.bind(this)} id="linkButton">Submit a YouTube link</button>
+            </p>
             <div className="during-upload">
               <p><span id="percent-transferred"></span>% done (<span id="bytes-transferred"></span>/<span id="total-bytes"></span> bytes)</p>
              <progress id="upload-progress" max="1" value="0"></progress>

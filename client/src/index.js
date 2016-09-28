@@ -15,6 +15,10 @@ import Records from './components/records/Records';
 import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
+import Profile from './components/auth/profile';
+
+
+
 
 import rootReducer from './reducers';
 
@@ -51,6 +55,7 @@ const routes = (
     <Route path="challenges" component={Challenges} />
     <Route path="record" component={DecoratedRecords} />
     <Route path="indivrecord" component={DecoratedRecord} />
+     <Route path="profile" component={Profile} />
     <Route path="*" component={NotFound} />
   </Route>
 );
