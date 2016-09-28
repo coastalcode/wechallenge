@@ -10,12 +10,36 @@ import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Submission from './components/Submission';
 import Challenges from './components/Challenges';
-import Records from './components/Records';
+import Record from './components/record/Record';
+import Records from './components/records/Records';
 import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
 
 import rootReducer from './reducers';
+
+// Wrapping components to pass in props before using with React Router
+// These two functions do this for us:
+function getDisplayName(component) {
+  return component.displayName || component.name || 'Component';
+}
+function withStaticProps(componentName, props) {
+  return Wrapee => {
+    class Wrapper extends React.Component {
+      render() {
+        return <Wrapee { ...this.props } { ...props } />;
+      }
+    }
+    Wrapper.displayName = `${componentName}(${getDisplayName(Wrapee)})`;
+    return Wrapper;
+  };
+}
+
+// Wrapping components with props here
+// Only top level components are wrapped, since child components will have props passed down
+// Passs these into React Router instead of original components
+const DecoratedRecord = withStaticProps('NewRecord', { foo: 'bar' })(Record)
+const DecoratedRecords = withStaticProps('NewRecords', { foo: 'bar' })(Records)
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const routes = (
@@ -25,7 +49,8 @@ const routes = (
     <Route path="signup" component={Signup} />
     <Route path="submission" component={Submission} />
     <Route path="challenges" component={Challenges} />
-    <Route path="record" component={Records} />
+    <Route path="record" component={DecoratedRecords} />
+    <Route path="indivrecord" component={DecoratedRecord} />
     <Route path="*" component={NotFound} />
   </Route>
 );

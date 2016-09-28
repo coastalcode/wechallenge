@@ -190,3 +190,15 @@ h1.home-header.topGlobal {
 cursor: pointer;
 }
 
+.dropdown {
+  float: left;
+}
+
+.dropdown > button {
+  width: 200px;
+}
+
+.recordList {
+  float: right;
+}
+
