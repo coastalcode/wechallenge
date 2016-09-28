@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
-import { options } from './states';
+import { state_list, country_list, canada_list } from './states';
 
 class Signup extends Component {
+  constructor (props){
+    super(props)
+    this.state = {state: '', country:''}
+  }
+
+  onSelectChange(event) {
+    console.log(event.target.value)
+    this.setState({country: event.target.value})
+  }
+
   handleFormSubmit(formProps) {
+    console.log(formProps)
     this.props.signupUser(formProps);
+    this.setState({country:''})
   }
 
   renderAlert() {
@@ -18,18 +30,48 @@ class Signup extends Component {
     }
   }
 
-  renderStates() {
+  renderCountry() {
     return (
-      <select name="state">
-        {options.map(option=>{
-          return <option value={option}>{option}</option>
+      <select onChange={this.onSelectChange.bind(this)} name="country" >
+        <option></option>
+        {country_list.map(country=>{
+          return <option value={country} >{country}</option>
         })};
       </select>
       )
   }
 
+  renderStates(formProps) {
+    if(this.state.country === "United States") {
+    return (
+      <select name="state">
+        <option></option>
+        {state_list.map(state=>{
+          return <option value={state} >{state}</option>
+        })};
+      </select>
+      )
+    }
+    if(this.state.country === "Canada") {
+      return (
+      <select name="state">
+        <option></option>
+        {canada_list.map(state=>{
+          return <option value={state} >{state}</option>
+        })};
+      </select>
+      )
+    } else {
+      return (
+      <select name="state">
+        <option>N/A</option>
+      </select>
+      )
+    }
+}
+
   render() {
-    const { handleSubmit, fields: {email, password, passwordConfirm, username, state}} = this.props
+    const { handleSubmit, fields: {email, password, passwordConfirm, username, state, country}} = this.props
     return(
 
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -53,10 +95,13 @@ class Signup extends Component {
           <input clasName="form-control" {...passwordConfirm} type="password" />
           {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div> }
         </fieldset>
-        <fieldset className="form-group">
-            <label>State: </label>
+        <fieldset className="form-group" {...country}>
+            <label>Country: </label>
+          {this.renderCountry()}
+        </fieldset>
+        <fieldset className="form-group" {...state}>
+            <label>State/Province: </label>
           {this.renderStates()}
-          {state.touched && state.error && <div className="error">{state.error}</div> }
         </fieldset>
         <button action="submit" className="btn btn-primary">Sign Up</button>
         {this.renderAlert()}

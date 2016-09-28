@@ -30,9 +30,10 @@ export function signoutUser() {
   }
 }
 
-export function signupUser({email, password, username, state}) {
+export function signupUser({email, password, username, state, country}) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, {email, password, username, state})
+    console.log(country);
+    axios.post(`${ROOT_URL}/signup`, {email, password, username, state, country})
       .then(response=>{
         dispatch({type: AUTH_USER})
 
