@@ -15,6 +15,7 @@ exports.signup = function (req, res, next) {
   const password = req.body.password;
   const username = req.body.username;
   const state = req.body.state;
+  const country = req.body.country;
 
   if(!email || !password) {
     return res.status(422).send({error: 'Provide email AND password'})
@@ -32,6 +33,7 @@ exports.signup = function (req, res, next) {
         email: email,
         password: req.body.password,
         username: username,
+        country: country,
         state: state
       })
         .then(function(user){
