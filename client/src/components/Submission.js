@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
 import { browserHistory } from 'react-router';
+import CategoryList from './CategoryList';
 
 class Submission extends Component {
   constructor(props) {
@@ -93,6 +94,7 @@ class Submission extends Component {
       <div>
         <h1>Submit a Challenge</h1>
         <h3>Select a Category</h3>
+        <CategoryList selectCategory={this.selectCategory.bind(this)} />
         <div className="panel-group" id="accordion">
           <div className="panel panel-default">
             <div className="panel-heading">
@@ -146,7 +148,7 @@ class Submission extends Component {
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Chinups')}>Chinups</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Handstand')}>Handstand time</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pullups')}>Pullups</button>
-                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pushups')}>Pushups</button>
+                <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Pushups')}>Pullups</button>
                 <button type="button" className="list-group-item btn-xs" onClick={this.selectCategory.bind(this,'Exercise','Situps')}>Situps</button>
               </div>
             </div>
