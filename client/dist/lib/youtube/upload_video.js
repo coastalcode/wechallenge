@@ -171,7 +171,7 @@ UploadVideo.prototype.uploadFile = function(file) {
           "title": uploadTitle,
           "description": uploadDescription,
           "link": this.videoId,
-          "UserId": '1',
+          "userId": Number(localStorage.user),
           "selectedCategory": selectedCategory,
           "selectedSubCategory": selectedSubCategory,
           "measurement": measurement,
