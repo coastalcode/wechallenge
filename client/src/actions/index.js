@@ -14,6 +14,7 @@ export function signinUser({email, password}) {
 
       //save token to localStorage- browser native method
       localStorage.setItem('token', response.data.token)
+      localStorage.setItem('user', response.data.user)
       //sends user to homepage after authenticated
       browserHistory.push('/')
     })
@@ -30,13 +31,15 @@ export function signoutUser() {
   }
 }
 
-export function signupUser({email, password, username, state}) {
+export function signupUser({email, password, username, state, country}) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, {email, password, username, state})
+    console.log(country);
+    axios.post(`${ROOT_URL}/signup`, {email, password, username, state, country})
       .then(response=>{
         dispatch({type: AUTH_USER})
 
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('user', response.data.user)
         browserHistory.push('/')
       })
       .catch(response=> {dispatch(authError('Email in use'))

@@ -14,6 +14,10 @@ import Records from './components/Records';
 import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
+import Profile from './components/auth/profile';
+
+
+
 
 import rootReducer from './reducers';
 
@@ -25,6 +29,7 @@ const routes = (
     <Route path="signup" component={Signup} />
     <Route path="submission" component={Submission} />
     <Route path="challenges" cats="meow!" component={Challenges} />
+     <Route path="profile" component={Profile} />
     <Route path="record" component={Records} />
     <Route path="*" component={NotFound} />
   </Route>
