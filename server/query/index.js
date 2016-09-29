@@ -169,6 +169,21 @@ module.exports = {
       db.Submission.destroy({ where: { id: req.params.id } })
         .then(submission => res.json(submission))
         .catch(error => console.error(error))
+    },
+
+    testAdd(req, res) {
+      db.Submission.create({
+          title: "Title of the video",
+          link: "https://www.youtube.com/embed/a1Y73sPHKxw",
+          description: "This is the best video ever",
+          votes: 0,
+          measurement: 10000,
+          official: '1',
+          UserId: 6,
+          RecordId: 5
+      })
+      .then(submission => res.sendStatus(201))
+      .catch(error => console.error(error))
     }
 
   },
@@ -266,8 +281,25 @@ module.exports = {
     },
 
     findOne(req, res) {
-    // this needs to be written
-    }
+      db.Vote.findOne({ where : { UserId: req.params.userid, SubmissionId: req.params.submissionid } })
+        .then(vote => res.json(vote))
+        .catch(error => console.error(error))
+    },
+
+    toggleVote(req, res) {
+      db.Vote.findOne({ where : { UserId: req.params.userid, SubmissionId: req.params.submissionid } })
+        .then(vote => {
+          let voted;
+          if (vote.voted) {
+            voted = 0;
+          } else {
+            voted = 1;
+          }
+          db.Vote.update({ voted } , { where : { UserId: req.params.userid, SubmissionId: req.params.submissionid } })
+            .then(vote => res.json(vote))
+            .catch(error => console.error(error))
+        })
+    },
 
   },
 

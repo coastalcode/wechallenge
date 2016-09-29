@@ -7,7 +7,9 @@ export default class CommentList extends React.Component {
 
     this.state = {
       comments : [ { key: 1, title: 'Comment1', comment: 'This is comment #1. Blah, blah blah, blah', user: 'CoastalCode'}, { key: 2, title: 'Comment2', comment: 'This is comment #2. Blah, blah blah, blah', user: 'CC'} ],
-      nextKey: 3
+      nextKey: 3,
+      newTitle: "",
+      newDescription: ""
     }
 
   }
@@ -26,12 +28,18 @@ export default class CommentList extends React.Component {
     this.setState({ nextKey })
   }
 
+  fetchUser() {
+    return localStorage.getItem('user')
+  }
+
   render() {
     return (
       <div className="commentList">
         { this.state.comments.map((comment) => <CommentEntry key={ comment.key } comment={ comment }/>) }
         <br/>
-        <button onClick={event=>{ this.addComment({ title: 'CommentNew', comment: 'This is a new comment', user: 'COASTALCODE'}) }}>
+        <input onChange={ event => this.setState({ newTitle: event.target.value}) } />
+        <input onChange={ event => this.setState({ newDescription: event.target.value}) } />
+        <button onClick={ event =>{ this.addComment({ title: this.state.newTitle, comment: this.state.newDescription, user: this.fetchUser() }) }}>
           add a comment!
         </button>
       </div>
