@@ -16,7 +16,8 @@ import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
 import Profile from './components/auth/profile';
-
+import { AUTH_USER } from './actions/types';
+import RequireAuth from './components/auth/require_auth';
 
 import rootReducer from './reducers';
 
@@ -49,7 +50,7 @@ const routes = (
     <Route path="signin" component={Signin} />
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
-    <Route path="submission" component={Submission} />
+    <Route path="submission" component={RequireAuth(Submission)} />
     <Route path="challenges" component={Challenges} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
@@ -57,9 +58,13 @@ const routes = (
     <Route path="*" component={NotFound} />
   </Route>
 );
-
+const store = createStoreWithMiddleware(rootReducer)
+const token = localStorage.getItem('token');
+if(token) {
+  store.dispatch({type: AUTH_USER});
+}
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(rootReducer)}>
+  <Provider store={store}>
     <Router history={browserHistory}>
       { routes }
     </Router>

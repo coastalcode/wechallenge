@@ -12,7 +12,7 @@ class Signin extends Component {
   renderAlert() {
     if(this.props.errorMessage) {
       return(
-        <div className="alert alert-danger">
+        <div className="label1">
           <strong>Oops!</strong> {this.props.errorMessage}
         </div>
         )
@@ -23,17 +23,17 @@ class Signin extends Component {
     const { handleSubmit, fields: {email, password} } = this.props;
 
     return (
-    <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+    <form className="form1" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
       <fieldset className="form-group">
-        <label>Email:</label>
-        <input {...email} className="form-control" />
+        <label className="label1">Email</label>
+        <input className="input1" {...email} placeholder ="enter your email" className="form-control" />
       </fieldset>
       <fieldset className="form-group">
-        <label>Password:</label>
-        <input {...password} type="password" className="form-control" />
+        <label className="label1">Password</label>
+        <input {...password} className="input1" placeholder="enter your password" type="password" className="form-control" />
       </fieldset>
       {this.renderAlert()}
-      <button action="submit" className="btn btn-primary">Sign in</button>
+      <button action="submit" className="button1">Sign in</button>
     </form>
     );
   }
@@ -48,4 +48,3 @@ export default reduxForm({
   form: 'signin',
   fields: ['email', 'password']
 },mapStateToProps, actions)(Signin)
-
