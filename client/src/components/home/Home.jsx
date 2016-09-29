@@ -17,7 +17,6 @@ export default class Home extends React.Component {
   }
 
   fetchVideos() {
-    console.log('hi')
     let init = {
       method: 'GET',
       headers: new Headers()

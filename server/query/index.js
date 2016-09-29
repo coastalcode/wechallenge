@@ -270,6 +270,7 @@ module.exports = {
     },
 
     add(req, res) {
+      console.log('VOTEADD', req.body.submissionId, req.body.userId)
       db.Vote.create({
         voted: 1,
         UserId: req.body.userId,

@@ -93,6 +93,10 @@ h1.home-header.topGlobal {
   background-color: #011627;
 }
 
+.videoaction-button--voted {
+  color: #2EC4B6;
+}
+
 .videoaction-button.points {
   /*Should buttons have individual colors?*/
 }

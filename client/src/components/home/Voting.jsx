@@ -5,36 +5,74 @@ export default class Voting extends React.Component {
     super(props);
     console.log('voting stored', this.props)
     this.state = {
-      canVote: false
+      canVote: false,
+      showSignin: false,
+      voted: false
     };
   }
 
   componentDidMount() {
       if (localStorage.token) {
         this.setState({canVote: true});
+        // search for existing vote
+        this.checkVote(this.props.subId, localStorage.user)
       }
+  }
+
+  checkVote(subId, userId) {
+    let init = {
+      method: 'GET',
+      headers: new Headers()
+    }
+    let promise = fetch('/votes').then(res=>res.json());
+    promise.then((data)=>{
+      data = data.filter((el)=>{
+        return el.UserId == localStorage.user && el.SubmissionId == subId
+      })
+      if (data.length > 0) {
+        this.setState({voted: true})
+      }
+      console.log('filtered', data)
+    })
+  }
+
+  recordVote(subId, userId) {
+    let init = {
+      method: 'POST',
+      headers: new Headers(),
+      body: JSON.stringify({submissionId: subId, userId: userId})
+    }
+    fetch('/votes', init).then((res)=>{
+      // console.log(res)
+    })
   }
 
   addVote() {
     if (this.state.canVote) {
-      console.log('voting')
       var init = {
         method: 'POST',
         headers: new Headers()
       };
-      let promise = fetch('/submission/upvote/' + this.props.link, init).then((res)=>{
-        console.log('res', res)
-        return res.json()
-      });
+      let promise = fetch('/submission/upvote/' + this.props.link, init).then(res=>res.json());
       promise.then((data)=>{
-        console.log('voting data', data)
+        this.recordVote(data, Number(localStorage.user));
       })
     } else {
-      console.log('sign up or sign in')
+      this.setState({showSignin: true})
     }
   }
 
   render() {
-    return <span onClick={this.addVote.bind(this)} className="videoaction-button">Vote Up</span>
+
+    return (
+      <div className="videoaction-button">
+        {this.state.voted === false ?
+          <span onClick={this.addVote.bind(this)} className="videoaction-button">Vote Up</span>
+          :
+          <span className="videoaction-button videoaction-button--voted">Voted!</span>
+        }
+      </div>
+
+    )
   }
 }

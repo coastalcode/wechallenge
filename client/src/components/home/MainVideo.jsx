@@ -6,7 +6,6 @@ import VideoActions from './VideoActions';
 export default class MainVideo extends React.Component {
   constructor(props) {
     super(props);
-    console.log('mainvid', props)
     this.state = {
       hasUserVote: false
     };
@@ -24,7 +23,7 @@ export default class MainVideo extends React.Component {
     }
     let jprom = fetch('/records', init).then(res => res.json())
     jprom.then((data)=>{
-      console.log('data', data)
+      // console.log('data', data)
     })
   }
 
@@ -41,7 +40,7 @@ export default class MainVideo extends React.Component {
             opts={opts}
           />
         </div>
-        <VideoActions link={this.props.video.link} points={this.props.video.votes} comments={this.props.video.comments} />
+        <VideoActions subId={this.props.video.id} link={this.props.video.link} points={this.props.video.votes} comments={this.props.video.comments} />
       </div>
     )
   }

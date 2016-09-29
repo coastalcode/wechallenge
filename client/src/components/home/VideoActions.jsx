@@ -4,14 +4,13 @@ import Voting from './Voting';
 export default class VideoAction extends React.Component {
   constructor(props) {
     super(props)
-    console.log('props', this.props.votes, this.props.comments)
   }
   render() {
     return(
       <div className="videoactions-container">
         <span className="videolists-flexbuffer"></span>
         {this.props.link ?
-          <Voting link={this.props.link} />
+          <Voting subId={this.props.subId} link={this.props.link} />
           :
           null
         }
