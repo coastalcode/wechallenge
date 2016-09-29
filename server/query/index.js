@@ -77,8 +77,14 @@ module.exports = {
   submission: {
     findAll(req, res) {
       db.Submission.findAll()
-      .then(submissions => res.json(submissions))
-      .catch(err => console.error(err))
+        .then(submissions => res.json(submissions))
+        .catch(err => console.error(err))
+    },
+
+    findOneRecord(req, res) {
+      db.Submission.findAll({ where: { RecordId: req.params.recordid } })
+        .then(submissions => res.json(submissions))
+        .catch(err => console.error(err))
     },
 
     add(req, res) {
@@ -194,6 +200,12 @@ module.exports = {
       db.Comment.findAll()
       .then(comments => res.json(comments))
       .catch(err => console.error(error))
+    },
+
+    findAllWhere(req, res) {
+      db.Comment.findAll({ where: { SubmissionId: req.params.submissionid } })
+        .then(comments => res.json(comments))
+        .catch(err => console.error(err))
     },
 
     add(req, res) {

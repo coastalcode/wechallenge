@@ -5,6 +5,7 @@ const Authentication = require('./query/auth');
 const passportService = require('./query/passport');
 const passport = require('passport');
 const query = require('./query')
+const bodyParser = require('body-parser');
 
 const requireAuth = passport.authenticate('jwt', { session: false});
 const requireSignin = passport.authenticate('local', {session: false})
@@ -35,7 +36,7 @@ module.exports = function (app) {
   app.get('/submissions', query.submission.findAll);
   app.post('/submissions', query.submission.add);
 
-  app.get('/submissions/:id', query.submission.findOne);
+  app.get('/submissions/:recordid', query.submission.findOneRecord);
   app.post('/submission/upvote/:id', query.submission.upvote);
   app.post('/submission/downvote/:id', query.submission.downvote);
   app.put('/submissions/:id', query.submission.update);
@@ -46,7 +47,7 @@ module.exports = function (app) {
   app.get('/comments', query.comment.findAll);
   app.post('/comments', query.comment.add);
 
-  app.get('/comments/:id', query.comment.findOne);
+  app.get('/comments/:submissionid', query.comment.findAllWhere);
   app.post('/comments/pin/:id', query.comment.togglePin);
   app.put('/comments/:id', query.comment.update);
   app.delete('/comments/:id', query.comment.delete);

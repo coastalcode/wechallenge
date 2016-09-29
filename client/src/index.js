@@ -18,8 +18,6 @@ import Home from './components/home/Home';
 import Profile from './components/auth/profile';
 
 
-
-
 import rootReducer from './reducers';
 
 // Wrapping components to pass in props before using with React Router
@@ -53,9 +51,9 @@ const routes = (
     <Route path="signup" component={Signup} />
     <Route path="submission" component={Submission} />
     <Route path="challenges" component={Challenges} />
-    <Route path="record" component={DecoratedRecords} />
-    <Route path="indivrecord" component={DecoratedRecord} />
-     <Route path="profile" component={Profile} />
+    <Route path="allrecords" component={DecoratedRecords} />
+    <Route path='record' component={Record} />
+    <Route path="profile" component={Profile} />
     <Route path="*" component={NotFound} />
   </Route>
 );

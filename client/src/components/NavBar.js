@@ -43,11 +43,12 @@ class NavBar extends Component {
               <li>
                 <Link to="/" className="navbar-brand">Home</Link>
               </li>
+              { // <li>
+              //   <Link to="/challenges" className="navbar-brand">Challenges</Link>
+              // </li>
+            }
               <li>
-                <Link to="/challenges" className="navbar-brand">Challenges</Link>
-              </li>
-              <li>
-                <Link to="/record" className="navbar-brand">Records</Link>
+                <Link to="/allrecords" className="navbar-brand">Records</Link>
               </li>
               <li>
                 <Link to="/submission" className="navbar-brand">Submit Challenge</Link>

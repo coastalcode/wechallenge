@@ -204,6 +204,10 @@ h1.home-header.topGlobal {
   float: left;
 }
 
+.dropdown > p > button {
+  width: 200px;
+}
+
 .dropdown > button {
   width: 200px;
 }

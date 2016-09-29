@@ -9,8 +9,24 @@ export default class Records extends React.Component {
 
     this.state = {
       search: "",
+      records: [],
       submissions: [],
+      sortedSubmissions: []
     }
+  }
+
+  fetchRecords() {
+    let init = {
+      method: 'GET',
+      headers: new Headers()
+    }
+
+    fetch('/records')
+      .then((records)=> records.json())
+      .then((records)=>{
+        this.setState({ records });
+        console.log(records)
+    })
   }
 
   fetchVideos() {
@@ -21,13 +37,14 @@ export default class Records extends React.Component {
 
     fetch('/submissions')
       .then((submissions)=> submissions.json())
-      .then((submissions)=>{ this.setState({ submissions });
+      .then((submissions)=>{
+        this.setState({ submissions });
         console.log(submissions)
     })
   }
 
   componentDidMount() {
-    console.log("Records successfully mounted!")
+    this.fetchRecords();
     this.fetchVideos();
   }
 
@@ -42,7 +59,7 @@ export default class Records extends React.Component {
     }
 
     checkThese.forEach((item)=>{
-      if (item.toLowerCase().indexOf(forThis.toLowerCase()) > -1) {
+      if (item && item.toLowerCase().indexOf(forThis.toLowerCase()) > -1) {
         bool = true;
       }
     })
@@ -61,6 +78,7 @@ export default class Records extends React.Component {
         <RecordList
           search={ this.state.search }
           submissions={ this.state.submissions }
+          records={ this.state.records }
           checkForMatching={ this.checkForMatching }/>
       </div>
     )

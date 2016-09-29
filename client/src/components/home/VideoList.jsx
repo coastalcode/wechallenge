@@ -2,6 +2,7 @@ import React from 'react';
 import Video from './Video';
 import YouTube from 'react-youtube';
 import VideoActions from './VideoActions';
+import { Link } from 'react-router';
 
 export default class VideoList extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class VideoList extends React.Component {
       height: '200',
       width: '400'
     }
+
     return (
       <div className="videolist-columns">
         { this.props.locale === 'state' ?
@@ -28,11 +30,14 @@ export default class VideoList extends React.Component {
           let thumbStyle = {
             width: '80%'
           }
+          let path = `/record?id=${ val.RecordId }`
           return (
             <div key={i}>
               <div className="youtube-container">
+                <Link to={ path }>
                 <span className="title-banner">{val.title}</span>
                 <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
+                </Link>
               </div>
               <VideoActions points={val.points} comments={val.comments} />
             </div>

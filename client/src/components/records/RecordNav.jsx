@@ -12,7 +12,16 @@ export default class RecordNav extends React.Component {
   constructor(props) {
     super(props);
 
-    this.categories = [ ['eating', ['oranges', 'pizza']] , ['running', ['speed', 'distance']] ];
+    this.categories = [
+  ['Animal', 'Cats', 'Dogs', 'Size'],
+  ['Art', 'Drawing', 'Origami', 'Sculptures'],
+  ['Computers', 'Speed', 'Typing'],
+  ['Exercise', 'Chinups', 'Handstand time', 'Pullups', 'Pullups', 'Situps'],
+  ['Food', 'Fit in ones mouth', 'Speed Eating', 'Total Amount'],
+  ['Memorization', 'Movie Quotes', 'Phone Numbers', 'Pi digits'],
+  ['Music', 'Instruments'],
+  ['Sports', 'Basketball', 'Golf', 'Sailing', 'Skiing', 'Scoccer', 'Weightlifting']
+]
   }
 
   componentDidMount() {
@@ -20,17 +29,17 @@ export default class RecordNav extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        { this.categories.map((category)=>
-          <CategoryList key={ category[0] }
-            categoryName={ category[0] }
-            subcategories={ category[1] }
-            updateSearchTerm={ this.props.updateSearchTerm }/>
-        )}
-
-      </div>
-    )
+    // return (
+    //   <div>
+    //     { this.categories.map((category)=>
+    //       <CategoryList key={ category[0] }
+    //         categoryName={ category[0] }
+    //         subcategories={ category.slice(1) }
+    //         updateSearchTerm={ this.props.updateSearchTerm }/>
+    //     )}
+    //   </div>
+    // )
+    return (<CategoryList updateSearchTerm={ this.props.updateSearchTerm }/>)
   }
 }
 
