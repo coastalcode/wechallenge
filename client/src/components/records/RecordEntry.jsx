@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class RecordEntry extends React.Component {
   constructor(props) {
@@ -10,14 +11,16 @@ export default class RecordEntry extends React.Component {
   }
 
   render() {
+    let path = `/record?id=${ this.props.video.RecordId }`
     return (
       <div>
-        { this.props.video.name }
+        { this.props.video.title }
         <br/>
-        <img className="videolist-thumb"
-          src={ "http://img.youtube.com/vi/" + this.props.video.id + "/hqdefault.jpg" }
-          onClick={(event)=>{console.log(event)}} />
-
+        <Link to={ path }>
+          <img className="videolist-thumb"
+            src={ "http://img.youtube.com/vi/" + this.props.video.link + "/hqdefault.jpg" }
+            onClick={(event)=>{console.log(event)}} />
+        </Link>
       </div>
     )
   }
