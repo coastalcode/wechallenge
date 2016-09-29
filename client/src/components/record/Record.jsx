@@ -23,7 +23,7 @@ export default class Record extends React.Component {
     }
 
     fetch(`/users/${ localStorage.getItem('user') }`)
-      .then((currentUser)=> user.json())
+      .then((currentUser)=> currentUser.json())
       .then((currentUser)=>{
         this.setState({ currentUser });
     })
@@ -93,7 +93,7 @@ export default class Record extends React.Component {
       <div>
       <center>
         <SubmissionList
-          currentUser={ this.props.currentUser }
+          currentUser={ this.state.currentUser }
           submissions={ this.state.submissions }
           record={ this.state.recordInfo } />
       </center>
