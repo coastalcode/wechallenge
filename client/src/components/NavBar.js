@@ -51,7 +51,7 @@ class NavBar extends Component {
                 <Link to="/allrecords" className="navbar-brand">Records</Link>
               </li>
               <li>
-                <Link to="/submission" className="navbar-brand">Submit Challenge</Link>
+                <Link to="/submission" className="navbar-brand">Submit Video</Link>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">

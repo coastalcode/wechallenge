@@ -8,6 +8,17 @@ export default class CommentEntry extends React.Component {
   }
 
   fetchCurrentUser() {
+    // let init = {
+    //   method: 'GET',
+    //   headers: new Headers()
+    // }
+
+    // fetch(`/users/${ this.props.comment.UserId }`)
+    //   .then((user)=> user.json())
+    //   .then((user)=>{
+    //     this.setState({ user });
+    // })
+
     let init = {
       method: 'GET',
       headers: new Headers()

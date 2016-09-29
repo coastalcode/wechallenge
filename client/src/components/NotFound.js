@@ -4,7 +4,23 @@ export default class NotFound extends Component {
   constructor(props) {
     super(props)
 
-    this.users = [{ name: "Harris Lee", github: "https://www.google.com" }, { name: "John Smalley", github: "https://www.google.com" }, { name: "Jim Yang", github: "https://www.google.com" }, { name: "Anna Zhao", github: "https://www.google.com" }];
+    this.users = [
+      { name: "Harris Lee",
+        picture: "",
+        github: "https://www.google.com"
+      },
+      { name: "John Smalley",
+        picture: "",
+        github: "https://www.google.com"
+      },
+      { name: "Jim Yang",
+        picture: "",
+        github: "https://www.google.com"
+      },
+      { name: "Anna Zhao",
+        picture: "",
+        github: "https://www.google.com"
+      }];
   }
   render() {
     return (

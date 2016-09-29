@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
 });
 
 // sync the database before starting the server, unless there is an error
-db.sync({force: true})
+db.sync()
     .then(startApp)
     .catch(function (err) {
         throw new Error(err);
