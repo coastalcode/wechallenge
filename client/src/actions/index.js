@@ -2,7 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types';
 
-// const ROOT_URL = "http://localhost:3000";
+const ROOT_URL = '';
 
 //ajax(axios) request to server for authentication
 //thunk middleware allows us to dispatch without reducers
