@@ -7,27 +7,61 @@ export default class Records extends React.Component {
   constructor(props) {
     super(props);
 
-    // eventually, we'll pass in database data here
-    this.videos = [{ key: 1, name: "1", id: 'l6Zs_l7TOhg' }, { key: 2, name: "2", id: 'l6Zs_l7TOhg' }, { key: 3, name: "3", id: 'l6Zs_l7TOhg' }];
+    this.state = {
+      search: "",
+      submissions: [],
+    }
+  }
 
-    this.state = { search: "" }
+  fetchVideos() {
+    let init = {
+      method: 'GET',
+      headers: new Headers()
+    }
+
+    fetch('/submissions')
+      .then((submissions)=> submissions.json())
+      .then((submissions)=>{ this.setState({ submissions });
+        console.log(submissions)
+    })
   }
 
   componentDidMount() {
     console.log("Records successfully mounted!")
+    this.fetchVideos();
   }
 
   updateSearchTerm(search) {
     this.setState({ search })
   }
 
+  checkForMatching(checkThese, forThis) {
+    let bool = false;
+    if (forThis === "") {
+      return true;
+    }
+
+    checkThese.forEach((item)=>{
+      if (item.toLowerCase().indexOf(forThis.toLowerCase()) > -1) {
+        bool = true;
+      }
+    })
+
+    // it didn't work without this console log ..
+    console.log(checkThese)
+    return bool;
+  }
+
   render() {
     return (
       <div>
-        This is the parent state: { this.state.search }
+        For testing purposes, this is the parent state: { this.state.search }
         <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
         <RecordNav updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
-        <RecordList videos={ this.videos }/>
+        <RecordList
+          search={ this.state.search }
+          submissions={ this.state.submissions }
+          checkForMatching={ this.checkForMatching }/>
       </div>
     )
   }

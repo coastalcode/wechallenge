@@ -17,6 +17,11 @@ export default class Record extends React.Component {
       UserId: 0,
       RecordId: 0
     }
+
+    this.state = {
+      first: {},
+      other: []
+    }
   }
 
   componentDidMount() {

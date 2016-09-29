@@ -55,6 +55,7 @@ module.exports = function (app) {
 
   app.get('/votes', query.vote.findAll);
   app.post('/votes', query.vote.add);
+  app.put('/votes', query.vote.toggleVote)
   app.get('/votes/:id', query.vote.findOne);
 
   ///
@@ -71,4 +72,5 @@ module.exports = function (app) {
   // only for easy testing purposes. will be removed
   app.get('/addusers/:state', query.user.testAdd);
   app.get('/testaddcomments', query.comment.testAdd);
+  app.get('/testaddsubmission', query.submission.testAdd);
 }

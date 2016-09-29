@@ -12,7 +12,11 @@ export default class RecordList extends React.Component {
   render() {
     return (
       <div className="recordList">
-        { this.props.videos.map((video) => <RecordEntry key={ video.key }video={ video }/>) }
+        { this.props.submissions.map((submission) => {
+          if (this.props.checkForMatching([submission.title], this.props.search)) {
+            return (<RecordEntry key={ submission.id } video={ submission }/>)
+          }
+        })}
         <br/>
       </div>
     )
