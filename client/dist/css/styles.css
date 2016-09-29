@@ -220,6 +220,7 @@ h1.home-header.topGlobal {
 
 .recordList {
   width: 70%;
+  float: right;
 }
 
 .recordList-entry {
