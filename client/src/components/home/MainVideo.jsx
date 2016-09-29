@@ -6,6 +6,10 @@ import VideoActions from './VideoActions';
 export default class MainVideo extends React.Component {
   constructor(props) {
     super(props);
+    console.log('mainvid', props)
+    this.state = {
+      hasUserVote: false
+    };
   }
 
   componentDidMount() {
@@ -37,7 +41,7 @@ export default class MainVideo extends React.Component {
             opts={opts}
           />
         </div>
-        <VideoActions points={this.props.video.points} comments={this.props.video.comments} />
+        <VideoActions link={this.props.video.link} points={this.props.video.votes} comments={this.props.video.comments} />
       </div>
     )
   }
