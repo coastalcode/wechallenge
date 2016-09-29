@@ -13,7 +13,7 @@ export default class RecordEntry extends React.Component {
   render() {
     let path = `/record?id=${ this.props.video.RecordId }`
     return (
-      <div>
+      <div className="recordList-entry">
         { this.props.video.title }
         <br/>
         <Link to={ path }>

@@ -217,7 +217,12 @@ h1.home-header.topGlobal {
 }
 
 .recordList {
-  float: right;
+  width: 70%;
+}
+
+.recordList-entry {
+/*  width: 20%;*/
+  display: inline-block;
 }
 
 .submission-warning {
@@ -281,4 +286,9 @@ h1.home-header.topGlobal {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+}
+
+.records-catlist {
+  width: 20%;
+  float: left;
 }
