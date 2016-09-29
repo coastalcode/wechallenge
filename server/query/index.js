@@ -138,14 +138,13 @@ module.exports = {
     },
 
     upvote(req, res) {
-      db.Submission.findOne({ where : { id: req.params.id } })
+      db.Submission.findOne({ where : { link: req.params.id } })
         .then(submission => {
-          let vote = submission.vote;
+          console.log('SBSSS', submission)
+          let vote = submission.votes;
           vote++;
-          db.Submission.update({
-            vote
-          } , { where : { id: req.params.id } })
-            .then(submission => res.json(submission))
+          db.Submission.update({votes: vote}, { where : { link: req.params.id } })
+            .then(response => res.json(submission.id))
             .catch(error => console.error(error))
         })
     },
@@ -271,6 +270,7 @@ module.exports = {
     },
 
     add(req, res) {
+      console.log('VOTEADD', req.body.submissionId, req.body.userId)
       db.Vote.create({
         voted: 1,
         UserId: req.body.userId,
