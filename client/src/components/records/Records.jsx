@@ -72,7 +72,7 @@ export default class Records extends React.Component {
   render() {
     return (
       <div>
-        For testing purposes, this is the parent state: { this.state.search }
+        Your current search: { this.state.search }
         <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
         <RecordNav updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
         <RecordList

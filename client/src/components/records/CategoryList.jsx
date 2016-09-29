@@ -14,24 +14,9 @@ export default class CategoryList extends React.Component {
   }
 
   render() {
-    // return (
-
-    //   <p>
-    //   <div className="dropdown">
-    //     <button>{ this.props.categoryName }</button>
-    //     <br/>
-    //     { this.props.subcategories.map((subcategory)=>{
-    //       return (
-    //         <p>
-    //         <button onClick={ event => this.props.updateSearchTerm(subcategory) }>{ subcategory }</button>
-    //         </p>
-    //       )
-    //     })}
-    //   </div>
-    //   </p>
-    // )
     var that = this
     return (
+      <div className="records-catlist">
         <div className="panel-group" id="accordion">
           {list.map(function(category, catIndex) {
             return (
@@ -56,6 +41,7 @@ export default class CategoryList extends React.Component {
             )
           })}
         </div>
+      </div>
     )
   }
 }
