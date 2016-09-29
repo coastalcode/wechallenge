@@ -19,7 +19,7 @@ export function signinUser({email, password}) {
       browserHistory.push('/')
     })
     .catch(()=>{
-      dispatch(authError('Bad Longin Info'))
+      dispatch(authError('Bad Login Info'))
     });
   }
 }
