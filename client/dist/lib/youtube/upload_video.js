@@ -165,7 +165,6 @@ UploadVideo.prototype.uploadFile = function(file) {
       this.videoId = uploadResponse.id;
       $('#video-id').text(this.videoId);
       // Updates wechallenge Database with submission
-      console.log('on comp', localStorage.region)
       $.ajax({
         method: "POST",
         url: "/submissions",
@@ -184,7 +183,6 @@ UploadVideo.prototype.uploadFile = function(file) {
         })
       })
         .done(function(msg) {
-          console.log('done msg: ', msg, localStorage.region);
           document.location.pathname ='/';
         })
         .fail(function(msg) {
