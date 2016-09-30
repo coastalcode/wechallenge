@@ -53,7 +53,8 @@ const Submission = db.define('Submission', {
   measurement: Sequelize.INTEGER,
   votes: Sequelize.INTEGER,
   official: Sequelize.INTEGER,
-  measurement: Sequelize.INTEGER
+  measurement: Sequelize.INTEGER,
+  state: Sequelize.STRING
 });
 
 const Comment = db.define('Comment', {
