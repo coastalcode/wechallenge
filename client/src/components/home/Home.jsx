@@ -8,6 +8,7 @@ export default class Home extends React.Component {
     super();
     this.state = {
       videos: [],
+      stateVideos: [],
       mainvideo: null
     }
   }
@@ -25,7 +26,9 @@ export default class Home extends React.Component {
     let promise = fetch('/submissions').then(res=>res.json())
     promise.then((data)=>{
       console.log('submissions', data)
+      let stateVideos = data.filter(val=>val.state === localStorage.region)
       this.setState({videos: data});
+      this.setState({stateVideos: stateVideos})
       this.setState({mainvideo: data[data.length - 1]})
     })
   }
@@ -47,7 +50,7 @@ export default class Home extends React.Component {
         { this.state.videos.length > 0 ?
           <div className="videolists-container">
             <div className="videolists-flexbuffer"></div>
-            <VideoList videos={this.state.videos} locale={'state'}/>
+            <VideoList videos={this.state.stateVideos} locale={'state'}/>
             <VideoList videos={this.state.videos} locale={'global'}/>
             <div className="videolists-flexbuffer"></div>
           </div>
