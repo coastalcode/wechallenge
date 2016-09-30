@@ -12,6 +12,7 @@ import Submission from './components/Submission';
 import Challenges from './components/Challenges';
 import Record from './components/record/Record';
 import Records from './components/records/Records';
+import Admin from './components/admin/Admin';
 import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
@@ -54,6 +55,7 @@ const routes = (
     <Route path="challenges" component={Challenges} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
+    <Route path='secretpage' component={Admin} />
     <Route path="profile" component={Profile} />
     <Route path="*" component={NotFound} />
   </Route>

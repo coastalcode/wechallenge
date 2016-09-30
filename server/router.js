@@ -33,10 +33,17 @@ module.exports = function (app) {
 
   ///
 
+
+
   app.get('/submissions', query.submission.findAll);
   app.post('/submissions', query.submission.add);
 
+  app.get('/submissions/adminremove/:id', query.submission.adminRemove);
+  app.get('/submissions/flag/:id', query.submission.toggleOfficial);
+  app.get('/submissions/flagged', query.submission.findAllFlagged);
   app.get('/submissions/:recordid', query.submission.findOneRecord);
+
+
   app.post('/submission/upvote/:id', query.submission.upvote);
   app.post('/submission/downvote/:id', query.submission.downvote);
   app.put('/submissions/:id', query.submission.update);

@@ -52,7 +52,7 @@ const Submission = db.define('Submission', {
   description: Sequelize.STRING,
   measurement: Sequelize.INTEGER,
   votes: Sequelize.INTEGER,
-  official: Sequelize.STRING,
+  official: Sequelize.INTEGER,
   measurement: Sequelize.INTEGER
 });
 
