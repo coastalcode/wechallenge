@@ -12,12 +12,12 @@ import Submission from './components/Submission';
 import Challenges from './components/Challenges';
 import Record from './components/record/Record';
 import Records from './components/records/Records';
-import Admin from './components/admin/Admin';
 import NotFound from './components/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
 import Profile from './components/auth/profile';
-import { AUTH_USER } from './actions/types';
+import FlaggedVideos from './components/admin/FlaggedVideos';
+import { AUTH_USER, UNAUTH_USER } from './actions/types';
 import RequireAuth from './components/auth/require_auth';
 
 import rootReducer from './reducers';
@@ -55,16 +55,22 @@ const routes = (
     <Route path="challenges" component={Challenges} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
-    <Route path='secretpage' component={Admin} />
     <Route path="profile" component={Profile} />
+    <Route path="flaggedVideos" component={FlaggedVideos} />
     <Route path="*" component={NotFound} />
   </Route>
 );
 const store = createStoreWithMiddleware(rootReducer)
 const token = localStorage.getItem('token');
+
+// currently this is a bug, as any token will act like the user is logged in.
+// because of bug, userType is being set to 0 by default
 if(token) {
-  store.dispatch({type: AUTH_USER});
+  store.dispatch({type: AUTH_USER, userType: 0});
+} else {
+  store.dispatch({type: UNAUTH_USER})
 }
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
