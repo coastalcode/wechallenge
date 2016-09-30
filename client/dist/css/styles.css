@@ -126,11 +126,13 @@ h1.home-header.topGlobal {
 }
 
 .youtube-container .title-banner {
+  width: 80%;
   text-align: center;
   padding: 5px;
   border-radius: 5px;
-  position: absolute;
-  margin-top: 10%;
+  position: relative;
+  height: 0;
+  top: 30px;
   color: #FDFFFC;
   font-size: 2em;
   overflow-wrap: break-word;
@@ -218,10 +220,11 @@ h1.home-header.topGlobal {
 
 .recordList {
   width: 70%;
+  float: right;
 }
 
 .recordList-entry {
-/*  width: 20%;*/
+  width: 45%;
   display: inline-block;
 }
 
