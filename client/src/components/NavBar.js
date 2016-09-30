@@ -25,6 +25,17 @@ class NavBar extends Component {
       ];
     }
   }
+
+  // flagged videos will show if user is a type of 2 "power user" or greater
+  flaggedVideos() {
+    if (this.props.userType >= 2) {
+      return (
+        <li>
+          <Link to="/flaggedVideos" className="navbar-brand">Flagged Videos</Link>
+        </li>
+      )
+    }
+  }
   //default nav bar view
   render () {
     return (
@@ -55,7 +66,9 @@ class NavBar extends Component {
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+              {this.flaggedVideos()}
               {this.renderLinks()}
+              }
             </ul>
           </div>
         </div>
@@ -67,7 +80,8 @@ class NavBar extends Component {
 //retrieving redux state.auth to check if user is authentciated
 function mapStateToProps(state) {
   return{
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    userType: state.auth.userType
   }
 }
 

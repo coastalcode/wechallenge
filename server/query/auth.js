@@ -8,7 +8,7 @@ exports.signin = function(req, res, next) {
   //User has already had their email and password authorized
   //Give them token
   let user = req.user
-  res.send({ token: tokenForUser(req.user), user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state} });
+  res.send({ token: tokenForUser(req.user), user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type} });
 }
 
 exports.signup = function (req, res, next) {
@@ -17,6 +17,7 @@ exports.signup = function (req, res, next) {
   const username = req.body.username;
   const state = req.body.state;
   const country = req.body.country;
+  const type = req.body.type;
 
   if(!email || !password) {
     return res.status(422).send({error: 'Provide email AND password'})
@@ -35,10 +36,11 @@ exports.signup = function (req, res, next) {
         password: req.body.password,
         username: username,
         country: country,
-        state: state
+        state: state,
+        type: type
       })
         .then(function(user){
-          res.json({token: tokenForUser(user), user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state}
+          res.json({token: tokenForUser(user), user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type}
         });
           })
           .catch(function(err) {

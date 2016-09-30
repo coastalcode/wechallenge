@@ -26,6 +26,24 @@ if (process.env.DATABASE_URL) {
   });
 }
 
+// User Type determines users permissions
+// Each level of user accounts increase permissions
+// Basic User
+  // type = 1
+  // permissions:
+    // submit videos
+    // vote on videos
+    // comment on videos
+    // flagged videos that are not an official record
+// Power User
+  // type = 2
+  // permissions:
+    // edit existing videos
+    // view flagged videos and can remove them from the site
+// Staff user
+  // type = 3
+  // permissions:
+    // can set user levels of other users
 const User = db.define('User', {
   username: Sequelize.STRING,
   password: Sequelize.STRING,
