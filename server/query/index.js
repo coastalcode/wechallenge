@@ -117,6 +117,7 @@ module.exports = {
           UserId: req.body.userId,
           RecordId: record[0].dataValues.id,
           measurement: req.body.measurement,
+          state: req.body.state
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
       })
