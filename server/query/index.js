@@ -168,6 +168,37 @@ module.exports = {
         })
     },
 
+    findAllFlagged(req, res) {
+      db.Submission.findAll({ where: { official: { $lt: 1 } } })
+        .then(submissions => res.json(submissions))
+        .catch(err => console.error(err))
+    },
+
+    toggleOfficial(req, res) {
+      db.Submission.findOne({ where : { id: req.params.id } })
+        .then(submission => {
+          let official;
+          if (submission.official === 1) {
+            official = 0
+          } else if (submission.official < 1) {
+            official = 1
+          }
+          db.Submission.update({
+            official
+          } , { where : { id: req.params.id } })
+            .then(submission => res.json(submission))
+            .catch(error => console.error(error))
+        })
+    },
+
+    adminRemove(req, res) {
+      db.Submission.update({
+        official: -1
+      } , { where : { id: req.params.id } })
+        .then(submission => res.json(submission))
+        .catch(error => console.error(error))
+    },
+
     delete(req, res) {
       db.Comment.destroy({ where: { SubmissionId: req.params.id } });
       db.Vote.destroy({ where: { SubmissionId: req.params.id } });
