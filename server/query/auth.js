@@ -7,8 +7,10 @@ const config = require('../db/config');
 exports.signin = function(req, res, next) {
   //User has already had their email and password authorized
   //Give them token
-  let user = req.user
-  res.send({ token: tokenForUser(req.user), user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type} });
+  let user = req.user;
+  const token = tokenForUser(req.user);
+  db.User.update({type: token}, {where: {id: user.id}});
+  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state} });
 }
 
 exports.signup = function (req, res, next) {
@@ -40,8 +42,10 @@ exports.signup = function (req, res, next) {
         type: type
       })
         .then(function(user){
-          res.json({token: tokenForUser(user), user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type}
-        });
+          const token = tokenForUser(user);
+          db.User.update({type: token}, {where: {id: user.id}});
+          res.json({token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state}
+        })
           })
           .catch(function(err) {
             return next(err);

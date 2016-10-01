@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
+import { tokens } from './actions/index';
 
 import App from './components/App';
 import Signin from './components/auth/signin';
@@ -63,6 +64,7 @@ const routes = (
 const store = createStoreWithMiddleware(rootReducer)
 const token = localStorage.getItem('token');
 
+<<<<<<< ffb86f52153244049bd72b3e922827361323db91
 // currently this is a bug, as any token will act like the user is logged in.
 // because of bug, userType is being set to 0 by default
 if(token) {
@@ -70,6 +72,16 @@ if(token) {
 } else {
   store.dispatch({type: UNAUTH_USER})
 }
+=======
+fetch(`/users/${ localStorage.getItem('user') }`)
+  .then((currentUser)=> currentUser.json())
+  .then((currentUser)=>{
+    console.log('user token:', currentUser.type);
+    if(token === currentUser.type) {
+      store.dispatch({type:AUTH_USER});
+    }
+  })
+>>>>>>> bugbug
 
 ReactDOM.render(
   <Provider store={store}>
