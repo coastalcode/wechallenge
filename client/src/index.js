@@ -18,6 +18,7 @@ import Signup from './components/auth/signup';
 import Home from './components/home/Home';
 import Profile from './components/auth/profile';
 import FlaggedVideos from './components/admin/FlaggedVideos';
+import AdminControls from './components/admin/AdminControls';
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 import RequireAuth from './components/auth/require_auth';
 
@@ -58,6 +59,7 @@ const routes = (
     <Route path='record' component={Record} />
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={FlaggedVideos} />
+    <Route path="adminControls" component={AdminControls} />
     <Route path="*" component={NotFound} />
   </Route>
 );
