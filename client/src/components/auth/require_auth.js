@@ -65,7 +65,7 @@ function RequiresTypeTwo (ComposedComponent) {
   return connect(mapStateToProps)(Authentication);
 }
 
-// Type two user is a super user
+// Type three user is a super user
 function RequiresTypeThree (ComposedComponent) {
   console.log('inside requires Type Two');
   class Authentication extends Component {
