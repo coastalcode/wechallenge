@@ -19,8 +19,10 @@ import Home from './components/home/Home';
 import Profile from './components/auth/profile';
 import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
+import NeedSuperUser from './components/NeedSuperUser';
+import NeedAdminUser from './components/NeedAdminUser';
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
-import RequireAuth from './components/auth/require_auth';
+import {RequiresTypeOne, RequiresTypeTwo, RequiresTypeThree} from './components/auth/require_auth';
 
 import rootReducer from './reducers';
 
@@ -53,13 +55,15 @@ const routes = (
     <Route path="signin" component={Signin} />
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
-    <Route path="submission" component={RequireAuth(Submission)} />
+    <Route path="submission" component={RequiresTypeOne(Submission)} />
     <Route path="challenges" component={Challenges} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
     <Route path="profile" component={Profile} />
-    <Route path="flaggedVideos" component={FlaggedVideos} />
-    <Route path="adminControls" component={AdminControls} />
+    <Route path="flaggedVideos" component={RequiresTypeTwo(FlaggedVideos)} />
+    <Route path="adminControls" component={RequiresTypeThree(AdminControls)} />
+    <Route path="needSuperUser" component={NeedSuperUser} />
+    <Route path="needAdminUser" component={NeedAdminUser} />
     <Route path="*" component={NotFound} />
   </Route>
 );
@@ -70,7 +74,11 @@ fetch(`/users/${ localStorage.getItem('user') }`)
   .then((currentUser)=> currentUser.json())
   .then((currentUser)=>{
     if(token === currentUser.test) {
+      console.log('tokens match');
       store.dispatch({type:AUTH_USER, userType: currentUser.type});
+    } else {
+      console.log('tokens don\'t match');
+      store.dispatch({type: UNAUTH_USER});
     }
   })
 
