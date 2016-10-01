@@ -9,8 +9,8 @@ exports.signin = function(req, res, next) {
   //Give them token
   let user = req.user;
   const token = tokenForUser(req.user);
-  db.User.update({type: token}, {where: {id: user.id}});
-  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state} });
+  db.User.update({test: token}, {where: {id: user.id}});
+  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type} });
 }
 
 exports.signup = function (req, res, next) {
@@ -39,12 +39,13 @@ exports.signup = function (req, res, next) {
         username: username,
         country: country,
         state: state,
-        type: type
+        type: type,
+        test: ""
       })
         .then(function(user){
           const token = tokenForUser(user);
-          db.User.update({type: token}, {where: {id: user.id}});
-          res.json({token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state}
+          db.User.update({test: token}, {where: {id: user.id}});
+          res.json({token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type}
         })
           })
           .catch(function(err) {

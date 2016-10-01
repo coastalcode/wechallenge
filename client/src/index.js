@@ -66,24 +66,14 @@ const routes = (
 const store = createStoreWithMiddleware(rootReducer)
 const token = localStorage.getItem('token');
 
-<<<<<<< ffb86f52153244049bd72b3e922827361323db91
-// currently this is a bug, as any token will act like the user is logged in.
-// because of bug, userType is being set to 0 by default
-if(token) {
-  store.dispatch({type: AUTH_USER, userType: 0});
-} else {
-  store.dispatch({type: UNAUTH_USER})
-}
-=======
 fetch(`/users/${ localStorage.getItem('user') }`)
   .then((currentUser)=> currentUser.json())
   .then((currentUser)=>{
-    console.log('user token:', currentUser.type);
-    if(token === currentUser.type) {
-      store.dispatch({type:AUTH_USER});
+    if(token === currentUser.test) {
+      store.dispatch({type:AUTH_USER, userType: currentUser.type});
     }
   })
->>>>>>> bugbug
+
 
 ReactDOM.render(
   <Provider store={store}>
