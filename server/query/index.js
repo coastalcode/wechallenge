@@ -239,6 +239,13 @@ module.exports = {
         .catch(err => console.error(err))
     },
 
+    findByUser(req, res) {
+      console.log('USERID', req.params.userid)
+      db.Comment.findAll({ where: {UserId: req.params.userid} })
+        .then(comments => res.json(comments))
+        .catch(err => console.error(err))
+    },
+
     add(req, res) {
       db.Comment.create({
         title: req.body.title,
