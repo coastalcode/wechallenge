@@ -1,4 +1,5 @@
 import React from 'react';
+import UserList from './UserList';
 
 export default class AdminControls extends React.Component {
   constructor(props) {
@@ -16,16 +17,24 @@ export default class AdminControls extends React.Component {
     })
     .done((users) => {
       console.log('users: ', users);
+      this.setState({ users });
     })
     .fail((msg) => {
       console.log('failed to fetch users: ', msg);
     })
   }
 
-  render() {
+  componentDidMount() {
     this.fetchUsers()
+  }
+
+  render() {
+
     return (
-      <h1>Inside of Admin Controls</h1>
+      <div>
+        <h1>Inside of Admin Controls</h1>
+        <UserList users={ this.state.users } />
+      </div>
     )
   }
 }
