@@ -17,10 +17,15 @@ export default class Profile extends Component {
   componentWillMount() {
     this.fetchCurrentUser();
     this.fetchUserComments();
+    this.fetchUserVideos();
   }
 
   fetchUserVideos() {
-
+    fetch('/usersub/' + localStorage.user)
+      .then((res)=>res.json())
+      .then((data)=>{
+        console.log('find subs', data)
+      })
   }
 
   fetchUserComments() {

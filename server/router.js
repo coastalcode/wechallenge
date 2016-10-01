@@ -25,6 +25,7 @@ module.exports = function (app) {
 
   ///
   app.get('/users', query.user.findAll);
+  app.get('/usersub/:id', query.user.findUserSubs);
   app.post('/users', query.user.add);
 
   app.get('/users/:id', query.user.findOne);

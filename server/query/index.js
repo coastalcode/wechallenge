@@ -30,6 +30,18 @@ module.exports = {
         .catch(error => console.error(error))
     },
 
+    findUserSubs(req, res) {
+      console.log('SUBS', req.params.id)
+      db.User.findAll({
+        include: [{
+          model: db.Submission, required: true
+        }],
+        where: {id: req.params.id}
+      })
+      .then(data => res.json(data))
+      .catch(error => console.error(error))
+    },
+
     update(req, res) {
       db.User.findOne({ where : { id: req.params.id } })
         .then(user => {
@@ -241,7 +253,9 @@ module.exports = {
 
     findByUser(req, res) {
       console.log('USERID', req.params.userid)
-      db.Comment.findAll({ where: {UserId: req.params.userid} })
+      db.Comment.findAll({
+          include: [{model: db.Submission, required: true}],
+          where: {UserId: req.params.userid} })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))
     },
