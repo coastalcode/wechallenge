@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as actions from '../../actions';
 import UserInfo from './userInfo';
 import VideoEntry from './VideoEntry';
+import CommentList from './CommentList';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -10,21 +11,22 @@ export default class Profile extends Component {
     this.state = {
       currentUser: '',
       userComments: [],
-      userVideos: []
+      userSubs: []
     }
   }
 
   componentWillMount() {
     this.fetchCurrentUser();
     this.fetchUserComments();
-    this.fetchUserVideos();
+    this.fetchUserSubs();
   }
 
-  fetchUserVideos() {
+  fetchUserSubs() {
     fetch('/usersub/' + localStorage.user)
       .then((res)=>res.json())
       .then((data)=>{
         console.log('find subs', data)
+        this.setState({userSubs: data})
       })
   }
 
@@ -56,8 +58,11 @@ export default class Profile extends Component {
   render() {
     return (
       <div>
-      <h1>Hello! {this.state.currentUser.username}</h1>
-
+        <h1>Hello! {this.state.currentUser.username}</h1>
+        { this.state.userComments.length > 0 ?
+          <CommentList data={this.state.userComments} />
+          : null
+        }
       </div>
       )
   }
