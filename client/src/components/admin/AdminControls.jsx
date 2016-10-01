@@ -6,7 +6,8 @@ export default class AdminControls extends React.Component {
     super(props)
 
     this.state = {
-      users: []
+      users: [],
+      search: ""
     }
   }
 
