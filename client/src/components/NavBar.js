@@ -36,6 +36,16 @@ class NavBar extends Component {
       )
     }
   }
+
+  adminControls() {
+    if (this.props.userType >= 3) {
+      return (
+        <li>
+          <Link to="/adminControls" className="navbar-brand">Admin Controls</Link>
+        </li>
+      )
+    }
+  }
   //default nav bar view
   render () {
     return (
@@ -67,6 +77,7 @@ class NavBar extends Component {
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {this.flaggedVideos()}
+              {this.adminControls()}
               {this.renderLinks()}
               }
             </ul>
