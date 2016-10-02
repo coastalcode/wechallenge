@@ -4,10 +4,7 @@ import CommentEntry from './CommentEntry';
 export default class CommentList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      displayed: {}
-    };
-    console.log('commentlist', this.props)
+    this.state = {};
   }
 
   render() {

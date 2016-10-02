@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import * as actions from '../../actions';
 import UserInfo from './userInfo';
-import VideoEntry from './VideoEntry';
 import CommentList from './CommentList';
+import VideoList from './VideoList';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -31,12 +31,10 @@ export default class Profile extends Component {
   }
 
   fetchUserComments() {
-    console.log('localStorage', localStorage.user)
     fetch('/comments/user/' + localStorage.user)
       .then((res)=>res.json())
       .then((data)=>{
         this.setState({userComments: data})
-        console.log('findcomments', data)
       })
   }
 
@@ -45,7 +43,6 @@ export default class Profile extends Component {
       method: 'GET',
       headers: new Headers()
     }
-    console.log(localStorage.user)
 
     fetch(`/users/${ localStorage.getItem('user') }`)
       .then((currentUser)=> currentUser.json())
@@ -58,9 +55,13 @@ export default class Profile extends Component {
   render() {
     return (
       <div>
-        <h1>Hello! {this.state.currentUser.username}</h1>
+        <h1>Hello, {this.state.currentUser.username}!</h1>
         { this.state.userComments.length > 0 ?
           <CommentList data={this.state.userComments} />
+          : null
+        }
+        { this.state.userSubs.length > 0 ?
+          <VideoList data={this.state.userSubs} />
           : null
         }
       </div>
