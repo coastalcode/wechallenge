@@ -30,17 +30,24 @@ module.exports = {
         .catch(error => console.error(error))
     },
 
+    findUserSubs(req, res) {
+      console.log('SUBS', req.params.id)
+      db.User.findAll({
+        include: [{
+          model: db.Submission, required: true
+        }],
+        where: {id: req.params.id}
+      })
+      .then(data => res.json(data))
+      .catch(error => console.error(error))
+    },
+
     update(req, res) {
       db.User.findOne({ where : { id: req.params.id } })
         .then(user => {
-          let username = req.body.username || user.username;
-          let password = req.body.password || user.password;
-          let email = req.body.email || user.email;
-          let state = req.body.state  || user.state;
-          let country = req.body.country || user.country;
           let type = req.body.type || user.type;
           db.User.update({
-            username, password, email, state, country, type
+            type
           } , { where : { id: req.params.id } })
             .then(user => res.json(user))
             .catch(error => console.error(error))
@@ -117,6 +124,7 @@ module.exports = {
           UserId: req.body.userId,
           RecordId: record[0].dataValues.id,
           measurement: req.body.measurement,
+          state: req.body.state
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
       })
@@ -150,7 +158,7 @@ module.exports = {
           let vote = submission.votes;
           vote++;
           db.Submission.update({votes: vote}, { where : { link: req.params.id } })
-            .then(response => res.json(submission.id))
+            .then(response => res.json({id: submission.id, votes: vote}))
             .catch(error => console.error(error))
         })
     },
@@ -234,6 +242,15 @@ module.exports = {
 
     findAllWhere(req, res) {
       db.Comment.findAll({ where: { SubmissionId: req.params.submissionid } })
+        .then(comments => res.json(comments))
+        .catch(err => console.error(err))
+    },
+
+    findByUser(req, res) {
+      console.log('USERID', req.params.userid)
+      db.Comment.findAll({
+          include: [{model: db.Submission, required: true}],
+          where: {UserId: req.params.userid} })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))
     },

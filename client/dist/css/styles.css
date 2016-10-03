@@ -111,12 +111,13 @@ h1.home-header.topGlobal {
 
 .videolist-columns {
   margin: 5px;
+  flex-basis: 50%;
 }
 
 .videolists-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: baseline;
 }
 
 .youtube-container {
@@ -295,3 +296,6 @@ h1.home-header.topGlobal {
   width: 20%;
   float: left;
 }
+
+/* Admin user table */
+

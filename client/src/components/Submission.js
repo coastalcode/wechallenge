@@ -37,6 +37,10 @@ class Submission extends Component {
       moreisgood: moreisgood,
       lessisgood: lessisgood
     };
+    if(localStorage.region) {
+      obj.state = localStorage.region;
+    }
+
     if (data.snippet.tags && data.snippet.tags.length > 0) {
       obj.tag = data.snippet.tags.join(' ')
     }
@@ -129,22 +133,22 @@ class Submission extends Component {
             <textarea id="description"></textarea>
           </div>
           <div>
-            <label for="measurement">Measurement:</label>
+            <label htmlFor="measurement">Measurement:</label>
             <input id="measurement" type="text" />
           </div>
           <div>
-            <label for="units">Units:</label>
+            <label htmlFor="units">Units:</label>
             <input id="units" type="text" />
           </div>
           <div>
-            <label for="measurement-direction">Is a lower or higher measurment impressive?</label>
+            <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
             <select id="measurement-direction">
               <option>lower</option>
               <option>higher</option>
             </select>
           </div>
           <div>
-            <label for="privacy-status">Privacy Status:</label>
+            <label htmlFor="privacy-status">Privacy Status:</label>
             <select id="privacy-status">
               <option>public</option>
               <option>unlisted</option>

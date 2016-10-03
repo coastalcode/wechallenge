@@ -178,11 +178,11 @@ UploadVideo.prototype.uploadFile = function(file) {
           "measurement": measurement,
           "units": units,
           "moreisgood": moreisgood,
-          "lessisgood": lessisgood
+          "lessisgood": lessisgood,
+          "state": localStorage.region
         })
       })
         .done(function(msg) {
-          console.log('done msg: ', msg);
           document.location.pathname ='/';
         })
         .fail(function(msg) {

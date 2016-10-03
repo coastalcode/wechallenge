@@ -1,7 +1,7 @@
 import React from 'react';
 import FlaggedVideoList from './FlaggedVideoList';
 
-export default class RecordEntry extends React.Component {
+export default class FlaggedVideos extends React.Component {
   constructor(props) {
     super(props);
 
