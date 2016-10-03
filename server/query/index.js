@@ -15,10 +15,12 @@ module.exports = {
       db.User.create({
         username: req.body.username,
         password: req.body.password,
+        picture: "",
         email: req.body.email,
         state: req.body.state,
         country: req.body.country,
-        type: req.body.type
+        type: req.body.type,
+        frozen: 0
       })
       .then(user => res.sendStatus(201))
       .catch(error => console.error(error))
