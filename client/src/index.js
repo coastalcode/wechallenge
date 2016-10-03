@@ -10,7 +10,7 @@ import App from './components/App';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Submission from './components/Submission';
-import Challenges from './components/Challenges';
+import Challenge from './components/challenge/Challenge';
 import Record from './components/record/Record';
 import Records from './components/records/Records';
 import NotFound from './components/NotFound';
@@ -55,10 +55,13 @@ const routes = (
     <Route path="signin" component={Signin} />
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
+
     <Route path="submission" component={RequiresTypeOne(Submission)} />
-    <Route path="challenges" component={Challenges} />
+    <Route path='challenge/:id' component={Challenge} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
+
+
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={RequiresTypeTwo(FlaggedVideos)} />
     <Route path="adminControls" component={RequiresTypeThree(AdminControls)} />

@@ -1,21 +1,17 @@
 import React from 'react';
-import categories from './../../lib/categories.js';
 import list from './../../lib/categories.js';
 
 export default class CategoryList extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { on: false }
-  }
-
-  componentDidMount() {
-    console.log("RecordEntry successfully mounted!")
   }
 
   render() {
     var that = this
     return (
+      <div>
+      <button onClick={ event => that.props.updateSearchTerm("") }>Clear Search</button>
       <div className="records-catlist">
         <div className="panel-group" id="accordion">
           {list.map(function(category, catIndex) {
@@ -41,6 +37,7 @@ export default class CategoryList extends React.Component {
             )
           })}
         </div>
+      </div>
       </div>
     )
   }

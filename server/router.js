@@ -45,8 +45,8 @@ module.exports = function (app) {
   app.get('/submissions/:recordid', query.submission.findOneRecord);
 
 
-  app.post('/submission/upvote/:id', query.submission.upvote);
-  app.post('/submission/downvote/:id', query.submission.downvote);
+  app.post('/submissions/upvote/:id', query.submission.upvote);
+  app.post('/submissions/downvote/:id', query.submission.downvote);
   app.put('/submissions/:id', query.submission.update);
   app.delete('/submissions/:id', query.submission.delete);
 
@@ -56,8 +56,10 @@ module.exports = function (app) {
   app.post('/comments', query.comment.add);
 
   app.get('/comments/:submissionid', query.comment.findAllWhere);
+
   app.get('/comments/user/:userid', query.comment.findByUser)
   app.post('/comments/pin/:id', query.comment.togglePin);
+
   app.put('/comments/:id', query.comment.update);
   app.delete('/comments/:id', query.comment.delete);
 

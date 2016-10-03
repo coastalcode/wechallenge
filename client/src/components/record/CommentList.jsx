@@ -6,13 +6,10 @@ export default class CommentList extends React.Component {
     super(props);
 
     this.state = {
-      testcomments : [ { key: 1, title: 'Comment1', comment: 'This is comment #1. Blah, blah blah, blah', user: 'CoastalCode'}, { key: 2, title: 'Comment2', comment: 'This is comment #2. Blah, blah blah, blah', user: 'CC'} ],
-      nextKey: 3,
       newTitle: "",
       newDescription: "",
       comments: []
     }
-
   }
 
   fetchComments() {
@@ -58,9 +55,13 @@ export default class CommentList extends React.Component {
   }
 
   render() {
-    return (
+    return (true) ? (
       <div className="commentList">
-        { this.state.comments.map((comment) => <CommentEntry key={ comment.id } comment={ comment }/>) }
+        { this.state.comments.map((comment) =>
+          <CommentEntry
+            key={ comment.id }
+            comment={ comment }
+            fetch={ this.fetchComments.bind(this) }/>) }
         <br/>
         <input placeholder="title" onChange={ event => this.setState({ newTitle: event.target.value}) } />
         <br/>
@@ -70,6 +71,6 @@ export default class CommentList extends React.Component {
           Add a comment!
         </button>
       </div>
-    )
+    ) : null
   }
 }
