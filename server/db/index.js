@@ -165,12 +165,12 @@ Community.hasMany(Submission)
 Community.hasMany(CommunityBulletin)
 Community.hasMany(UsersCommunitiesJoin)
 
-User.sync(/*{force: true}*/);
-Submission.sync(/*{force: true}*/);
-Comment.sync(/*{force: true}*/);
-Vote.sync(/*{force: true}*/);
-Record.sync(/*{force: true}*/);
-// turn on "force:true" to drop any existing table and replace with new one (ie: drop "User" table, create new "User" table)
+// User.sync(/*{force: true}*/);
+// Submission.sync(/*{force: true}*/);
+// Comment.sync(/*{force: true}*/);
+// Vote.sync(/*{force: true}*/);
+// Record.sync({force: true});
+// // turn on "force:true" to drop any existing table and replace with new one (ie: drop "User" table, create new "User" table)
 
 db.Sequelize = Sequelize;
 module.exports = db;

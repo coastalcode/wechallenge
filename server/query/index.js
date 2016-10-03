@@ -20,7 +20,7 @@ module.exports = {
         state: req.body.state,
         country: req.body.country,
         type: req.body.type,
-        frozen: 0
+        frozen: 0,
       })
       .then(user => res.sendStatus(201))
       .catch(error => console.error(error))
