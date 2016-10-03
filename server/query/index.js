@@ -158,7 +158,7 @@ module.exports = {
           let vote = submission.votes;
           vote++;
           db.Submission.update({votes: vote}, { where : { link: req.params.id } })
-            .then(response => res.json(submission.id))
+            .then(response => res.json({id: submission.id, votes: vote}))
             .catch(error => console.error(error))
         })
     },
