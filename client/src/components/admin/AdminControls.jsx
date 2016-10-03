@@ -1,5 +1,6 @@
 import React from 'react';
 import UserList from './UserList';
+import SearchBar from './SearchBar';
 
 export default class AdminControls extends React.Component {
   constructor(props) {
@@ -29,12 +30,38 @@ export default class AdminControls extends React.Component {
     this.fetchUsers()
   }
 
+  updateSearchTerm(search) {
+    this.setState({search})
+  }
+
+  checkForMatching(checkThese, forThis) {
+    let bool = false;
+    if (forThis === "") {
+      return true;
+    }
+
+    checkThese.forEach((item)=>{
+      if (item && item.toLowerCase().indexOf(forThis.toLowerCase()) > -1) {
+        bool = true;
+      }
+    })
+
+    // it didn't work without this console log ..
+    console.log(checkThese)
+    return bool;
+  }
+
   render() {
 
     return (
       <div>
         <h1>Inside of Admin Controls</h1>
-        <UserList users={ this.state.users } />
+        <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) } />
+        <UserList
+          users={ this.state.users }
+          search={ this.state.search }
+          checkForMatching={ this.checkForMatching }
+        />
       </div>
     )
   }
