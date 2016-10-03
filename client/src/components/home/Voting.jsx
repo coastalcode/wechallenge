@@ -55,7 +55,8 @@ export default class Voting extends React.Component {
       };
       let promise = fetch('/submission/upvote/' + this.props.link, init).then(res=>res.json());
       promise.then((data)=>{
-        this.recordVote(data, Number(localStorage.user));
+        this.recordVote(data.id, Number(localStorage.user));
+        this.props.callback(data.votes);
       })
     } else {
       this.setState({showSignin: true})
