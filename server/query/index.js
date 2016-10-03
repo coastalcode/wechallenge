@@ -45,14 +45,9 @@ module.exports = {
     update(req, res) {
       db.User.findOne({ where : { id: req.params.id } })
         .then(user => {
-          let username = req.body.username || user.username;
-          let password = req.body.password || user.password;
-          let email = req.body.email || user.email;
-          let state = req.body.state  || user.state;
-          let country = req.body.country || user.country;
           let type = req.body.type || user.type;
           db.User.update({
-            username, password, email, state, country, type
+            type
           } , { where : { id: req.params.id } })
             .then(user => res.json(user))
             .catch(error => console.error(error))
