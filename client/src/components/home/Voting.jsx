@@ -44,11 +44,12 @@ export default class Voting extends React.Component {
     }
     fetch('/votes', init).then((res)=>{
       // console.log(res)
+      this.setState({voted: true})
     })
   }
 
   addVote() {
-    if (this.state.canVote) {
+    if (this.state.canVote && !this.state.voted) {
       var init = {
         method: 'POST',
         headers: new Headers()
@@ -58,7 +59,7 @@ export default class Voting extends React.Component {
         this.recordVote(data.id, Number(localStorage.user));
         this.props.callback(data.votes);
       })
-    } else {
+    } else if(!this.state.canVote) {
       this.setState({showSignin: true})
     }
   }
@@ -66,11 +67,11 @@ export default class Voting extends React.Component {
   render() {
 
     return (
-      <div className="videoaction-button">
+      <div className="videoaction-button" onClick={this.addVote.bind(this)}>
         {this.state.voted === false ?
-          <span onClick={this.addVote.bind(this)} className="videoaction-button">Vote Up</span>
+          <span>Vote Up</span>
           :
-          <span className="videoaction-button videoaction-button--voted">Voted!</span>
+          <span className="videoaction-button--voted">Voted!</span>
         }
       </div>
 
