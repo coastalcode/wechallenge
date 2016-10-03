@@ -45,10 +45,6 @@ export default class Record extends React.Component {
 
   fetchVideos() {
     let sortFunction = this.sortSubmissions.bind(this)
-    let init = {
-      method: 'GET',
-      headers: new Headers()
-    }
 
     fetch(`/submissions/${ this.props.location.query.id }`)
       .then((submissions)=> submissions.json())

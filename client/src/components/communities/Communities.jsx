@@ -3,7 +3,7 @@ import RecordList from './RecordList';
 import RecordNav from './RecordNav';
 import SearchBar from './SearchBar';
 
-export default class Records extends React.Component {
+export default class Communities extends React.Component {
   constructor(props) {
     super(props);
 

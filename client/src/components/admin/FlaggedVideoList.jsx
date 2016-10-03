@@ -12,7 +12,7 @@ export default class RecordEntry extends React.Component {
   render() {
     return (
       <div>
-        { this.props.flagged.map((flag) => <FlaggedVideoEntry flag={ flag }/>) }
+        { this.props.flagged.map((flag) => <FlaggedVideoEntry key={ flag.id }flag={ flag }/>) }
       </div>
     )
   }

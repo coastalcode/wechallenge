@@ -40,7 +40,7 @@ export default class MainVideo extends React.Component {
             opts={opts}
           />
         </div>
-        <VideoActions subId={this.props.video.id} link={this.props.video.link} points={this.props.video.votes} comments={this.props.video.comments} />
+        <VideoActions subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
       </div>
     )
   }

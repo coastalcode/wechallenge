@@ -13,13 +13,11 @@ export default class SubmissionList extends React.Component {
       <div>
         <h2>{ this.props.record.title }</h2>
         { this.props.submissions.map((submission) => {
-          if (submission.official > -1) {
-            return (<SubmissionEntry
-              currentUser={ this.props.currentUser }
-              key={ submission.id }
-              submission={ submission }
-              record={ this.props.record }/>)
-          }
+          return (<SubmissionEntry
+            currentUser={ this.props.currentUser }
+            key={ submission.id }
+            submission={ submission }
+            record={ this.props.record }/>)
         })}
         <br/>
       </div>

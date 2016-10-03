@@ -13,7 +13,6 @@ export default class Search extends React.Component {
         Search:
         <input
           onChange={ event => this.props.updateSearchTerm(event.target.value) } />
-        <button>Search</button>
       </center>
       </div>
     )

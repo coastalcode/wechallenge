@@ -9,7 +9,7 @@ import App from './components/App';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Submission from './components/Submission';
-import Challenges from './components/Challenges';
+import Challenge from './components/challenge/Challenge';
 import Record from './components/record/Record';
 import Records from './components/records/Records';
 import Admin from './components/admin/Admin';
@@ -52,9 +52,9 @@ const routes = (
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
     <Route path="submission" component={RequireAuth(Submission)} />
-    <Route path="challenges" component={Challenges} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
+    <Route path='challenge/:id' component={Challenge} />
     <Route path='secretpage' component={Admin} />
     <Route path="profile" component={Profile} />
     <Route path="*" component={NotFound} />

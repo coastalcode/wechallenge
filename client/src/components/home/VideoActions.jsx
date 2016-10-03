@@ -14,8 +14,7 @@ export default class VideoAction extends React.Component {
           :
           null
         }
-        <span className="videoaction-button points">{this.props.points} points</span>
-        <span className="videoaction-button comments">{this.props.comments} comments</span>
+        <span className="videoaction-button points">{this.props.votes} points</span>
         <span className="videoaction-button share">Share</span>
         <span className="videolists-flexbuffer"></span>
       </div>

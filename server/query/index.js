@@ -396,6 +396,73 @@ module.exports = {
         .catch(error => console.error(error))
     }
 
-  }
+  },
+
+  ////
+  community: {
+    findAll(req, res) {
+      db.Community.findAll()
+      .then(communities => res.json(communities))
+      .catch(err => console.error(error))
+    },
+
+    add(req, res) {
+      db.Community.create({
+        name: req.body.name,
+        description: req.body.description
+      })
+      .then(community => res.sendStatus(201))
+      .then()
+      .catch(error => console.error(error))
+    },
+
+    findAllMembers(req, res) {
+      db.UsersCommunitiesJoin.findAll({ where: { CommunityId: req.params.communityid } })
+        .then(users => res.json(users))
+        .catch(err => console.error(err))
+    },
+
+    findAllCommunities(req, res) {
+      db.UsersCommunitiesJoin.findAll({ where: { UserId: req.params.userid } })
+        .then(communities => res.json(communities))
+        .catch(err => console.error(err))
+    },
+
+  },
+
+  communityComments: {
+    findAll(req, res) {
+      db.CommunityComment.findAll()
+      .then(comments => res.json(comments))
+      .catch(err => console.error(error))
+    },
+
+    findForOne(req, res) {
+      db.CommunityComment.findAll({ where: {
+        SubmissionId: req.params.submissionid,
+        CommunityId: req.params.communityid }
+      })
+        .then(comments => res.json(comments))
+        .catch(err => console.error(err))
+    },
+
+  },
+
+  communityBulletins: {
+    findAll(req, res) {
+      db.CommunityBulletin.findAll()
+      .then(bulletins => res.json(bulletins))
+      .catch(err => console.error(error))
+    },
+
+    findForOne(req, res) {
+      db.CommunityBulletin.findAll({ where: { CommunityId: req.params.communityid } })
+        .then(bulletins => res.json(bulletins))
+        .catch(err => console.error(err))
+    },
+
+  },
+
+
 
 }

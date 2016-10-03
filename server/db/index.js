@@ -29,11 +29,13 @@ if (process.env.DATABASE_URL) {
 const User = db.define('User', {
   username: Sequelize.STRING,
   password: Sequelize.STRING,
+  picture: Sequelize.STRING,
   email: Sequelize.STRING,
   state: Sequelize.STRING,
   country: Sequelize.STRING,
   type: Sequelize.STRING,
-  test: Sequelize.STRING
+  test: Sequelize.STRING,
+  frozen: Sequelize.INTEGER
 },
 {
   instanceMethods: {
@@ -53,7 +55,8 @@ const Submission = db.define('Submission', {
   measurement: Sequelize.INTEGER,
   votes: Sequelize.INTEGER,
   official: Sequelize.INTEGER,
-  measurement: Sequelize.INTEGER
+  measurement: Sequelize.INTEGER,
+  public: Sequelize.INTEGER
 });
 
 const Comment = db.define('Comment', {
@@ -74,6 +77,26 @@ const Record = db.define('Record', {
   moreisgood: Sequelize.INTEGER,
   lessisgood: Sequelize.INTEGER
 });
+
+const Community = db.define('Community', {
+  name: Sequelize.STRING,
+  description: Sequelize.STRING,
+  picture: Sequelize.STRING
+})
+
+const CommunityComment = db.define('CommunityComment', {
+  title: Sequelize.STRING,
+  description: Sequelize.STRING
+})
+
+const UsersCommunitiesJoin = db.define('UsersCommunitiesJoin', {
+})
+
+const CommunityBulletin = db.define('CommunityBulletin', {
+  subject: Sequelize.STRING,
+  message: Sequelize.STRING,
+  pinned: Sequelize.INTEGER
+})
 
 // puts a UserId column on each Message instance
 // also gives us the `.setUser` method available
@@ -96,6 +119,31 @@ Submission.hasMany(Comment);
 Submission.hasMany(Vote);
 
 Record.hasMany(Submission);
+
+///
+
+CommunityComment.belongsTo(User);
+CommunityComment.belongsTo(Submission);
+CommunityComment.belongsTo(Community);
+
+Submission.belongsTo(Community);
+
+CommunityBulletin.belongsTo(User);
+CommunityBulletin.belongsTo(Community);
+
+UsersCommunitiesJoin.belongsTo(User);
+UsersCommunitiesJoin.belongsTo(Community);
+
+User.hasMany(CommunityComment)
+User.hasMany(CommunityBulletin)
+User.hasMany(UsersCommunitiesJoin)
+
+Submission.hasMany(CommunityComment)
+
+Community.hasMany(CommunityComment)
+Community.hasMany(Submission)
+Community.hasMany(CommunityBulletin)
+Community.hasMany(UsersCommunitiesJoin)
 
 User.sync(/*{force: true}*/);
 Submission.sync(/*{force: true}*/);
