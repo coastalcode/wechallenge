@@ -10,7 +10,7 @@ exports.signin = function(req, res, next) {
   let user = req.user;
   const token = tokenForUser(req.user);
   db.User.update({test: token}, {where: {id: user.id}});
-  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type} });
+  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type, picture: user.picture, frozen: user.frozen} });
 }
 
 exports.signup = function (req, res, next) {
@@ -40,12 +40,14 @@ exports.signup = function (req, res, next) {
         country: country,
         state: state,
         type: type,
-        test: ""
+        test: "",
+        frozen: 0,
+        picture: "dummyPicture.awesome"
       })
         .then(function(user){
           const token = tokenForUser(user);
           db.User.update({test: token}, {where: {id: user.id}});
-          res.json({token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type}
+          res.json({token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type, picture: user.picture, frozen: user.frozen}
         })
           })
           .catch(function(err) {
