@@ -8,15 +8,16 @@ const LocalStrategy = require('passport-local');
 //Create local strategy
 const localOptions = {usernameField: 'email'};
 const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
-  //verify this emailand passwor,d call done with the user
+  //verify this email and password call done with the user
   //if it is the correct email and password
-  //otherwise, call doen with false
+  //otherwise, call done with false
   db.User.findOne({ where:{ email:email} }).then(user=>{
     if(!user) { return done(null, false)};
     user.comparePassword(password, function(err, isMatch) {
       if (err) {return done(err); }
       if (!isMatch) { return done(null, false); }
-
+      // if user is frozen do not allow them to sign in
+      if (user.frozen != 0) { return done(null, false); }
       return done(null, user);
     });
   }).catch(err=>{return done(err)})

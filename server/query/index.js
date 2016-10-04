@@ -48,8 +48,10 @@ module.exports = {
       db.User.findOne({ where : { id: req.params.id } })
         .then(user => {
           let type = req.body.type || user.type;
+          let frozen = req.body.frozen === undefined ? user.frozen : req.body.frozen;
           db.User.update({
-            type
+            type,
+            frozen
           } , { where : { id: req.params.id } })
             .then(user => res.json(user))
             .catch(error => console.error(error))
