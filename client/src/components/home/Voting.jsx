@@ -40,7 +40,7 @@ export default class Voting extends React.Component {
     let init = {
       method: 'POST',
       headers: new Headers(),
-      body: JSON.stringify({submissionId: subId, userId: userId})
+      body: JSON.stringify({submissionId: subId, userId: userId, token: localStorage.token})
     }
     fetch('/votes', init).then((res)=>{
       // console.log(res)
@@ -52,9 +52,12 @@ export default class Voting extends React.Component {
     if (this.state.canVote && !this.state.voted) {
       var init = {
         method: 'POST',
-        headers: new Headers()
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({token: localStorage.token})
       };
-      let promise = fetch('/submission/upvote/' + this.props.link, init).then(res=>res.json());
+      let promise = fetch('/submissions/upvote/' + this.props.link, init).then(res=>res.json());
       promise.then((data)=>{
         this.recordVote(data.id, Number(localStorage.user));
         this.props.callback(data.votes);

@@ -25,7 +25,7 @@ export default class VideoAction extends React.Component {
         {this.state.points ?
           <span className="videoaction-button points">{this.state.points} points</span>
           :
-          <span className="videoaction-button points">0 points</span>
+          null
         }
 
         <span className="videoaction-button points">{this.props.votes} points</span>
