@@ -3,13 +3,11 @@ const db = require('../db/index.js')
 let testToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb3VyQGpvLmNvbSIsImlhdCI6MTQ3NTUzODExNzU1Nn0.Izn7gl9sVI21PdrKQYuhgI2yGdE01C6VbstOQmvTBmY"
 
 let checkUserType = (token, type, callback, res) => {
-  console.log('whi')
   db.User.find({ where: {test: token }})
   .then((user)=>{
       if (Number(user.type) >= type) {
         callback();
       } else {
-        console.log('what is this', user.type, type)
         res.sendStatus(404)
       }
   }).catch((err)=> console.error(err))
