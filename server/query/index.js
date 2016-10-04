@@ -1,5 +1,18 @@
 const db = require('../db/index.js')
 
+let testToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb3VyQGpvLmNvbSIsImlhdCI6MTQ3NTUzODExNzU1Nn0.Izn7gl9sVI21PdrKQYuhgI2yGdE01C6VbstOQmvTBmY"
+
+let checkUserType = (token, type, callback, res) => {
+  db.User.find({ where: {test: token }})
+  .then((user)=>{
+      if (Number(user.type) >= type) {
+        callback();
+      } else {
+        res.sendStatus(404)
+      }
+  }).catch((err)=> console.error(err))
+}
+
 // [tablename].findAll = select * from table (ex: user.findAll)
 // [tablename].add = insert into table
 
@@ -33,7 +46,6 @@ module.exports = {
     },
 
     findUserSubs(req, res) {
-      console.log('SUBS', req.params.id)
       db.User.findAll({
         include: [{
           model: db.Submission, required: true
@@ -45,27 +57,39 @@ module.exports = {
     },
 
     update(req, res) {
-      db.User.findOne({ where : { id: req.params.id } })
-        .then(user => {
-          let type = req.body.type || user.type;
-          let frozen = req.body.frozen === undefined ? user.frozen : req.body.frozen;
-          db.User.update({
-            type,
-            frozen
-          } , { where : { id: req.params.id } })
-            .then(user => res.json(user))
-            .catch(error => console.error(error))
-        })
-        .catch(error => console.error(error))
+
+      let authedAction = () => {
+        db.User.findOne({ where : { id: req.params.id } })
+          .then(user => {
+            let type = req.body.type || user.type;
+            let frozen = req.body.frozen === undefined ? user.frozen : req.body.frozen;
+            db.User.update({
+              type,
+              frozen
+            } , { where : { id: req.params.id } })
+              .then(user => res.json(user))
+              .catch(error => console.error(error))
+          })
+          .catch(error => console.error(error))
+      }
+
+      checkUserType(req.body.token, 2, authedAction, res);
+
     },
 
     delete(req, res) {
-      db.Submission.destroy({ where: { UserId: req.params.id } });
-      db.Comment.destroy({ where: { UserId: req.params.id } });
-      db.Vote.destroy({ where: { UserId: req.params.id } });
-      db.User.destroy({ where: { id: req.params.id } })
-        .then(user => res.json(user))
-        .catch(error => console.error(error))
+
+      let authedAction = () => {
+        db.Submission.destroy({ where: { UserId: req.params.id } });
+        db.Comment.destroy({ where: { UserId: req.params.id } });
+        db.Vote.destroy({ where: { UserId: req.params.id } });
+        db.User.destroy({ where: { id: req.params.id } })
+          .then(user => res.json(user))
+          .catch(error => console.error(error))
+      }
+
+      checkUserType(req.body.token, 3, authedAction, res);
+
     },
 
     // this function is used for quick testing. will be removed.
@@ -159,18 +183,23 @@ module.exports = {
             .catch(error => console.error(error))
         })
         .catch(error => console.error(error))
+
     },
 
     upvote(req, res) {
-      db.Submission.findOne({ where : { link: req.params.id } })
-        .then(submission => {
-          console.log('SBSSS', submission)
-          let vote = submission.votes;
-          vote++;
-          db.Submission.update({votes: vote}, { where : { link: req.params.id } })
-            .then(response => res.json({id: submission.id, votes: vote}))
-            .catch(error => console.error(error))
-        })
+      
+      let authedAction = () => {
+        db.Submission.findOne({ where : { link: req.params.id } })
+          .then(submission => {
+            let vote = submission.votes;
+            vote++;
+            db.Submission.update({votes: vote}, { where : { link: req.params.id } })
+              .then(response => res.json({id: submission.id, votes: vote}))
+              .catch(error => console.error(error))
+          })
+      }
+
+      checkUserType(req.body.token, 1, authedAction, res)
     },
 
     downvote(req, res) {
@@ -342,14 +371,19 @@ module.exports = {
     },
 
     add(req, res) {
-      console.log('VOTEADD', req.body.submissionId, req.body.userId)
-      db.Vote.create({
-        voted: 1,
-        UserId: req.body.userId,
-        SubmissionId: req.body.submissionId
-      })
-      .then(vote => res.sendStatus(201))
-      .catch(error => console.error(error))
+
+      let authedAction = () => {
+        db.Vote.create({
+          voted: 1,
+          UserId: req.body.userId,
+          SubmissionId: req.body.submissionId
+        })
+        .then(vote => res.sendStatus(201))
+        .catch(error => console.error(error))
+      }
+
+      checkUserType(req.body.token, 1, authedAction, res);
+
     },
 
     findOne(req, res) {
