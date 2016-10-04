@@ -22,7 +22,7 @@ export default class RecordEntry extends React.Component {
     })
   }
 
-  flagVideo () {
+  toggleFlagVideo () {
     console.log(this.props.flag.id)
     let init = {
       method: 'GET',
@@ -44,7 +44,7 @@ export default class RecordEntry extends React.Component {
         <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen></iframe>
         <br />
         <button onClick={event=>{ this.adminRemoveVideo() }} >Remove this video</button>
-        <button onClick={event=>{ this.flagVideo()  }} >Unflag this video</button>
+        <button onClick={event=>{ this.toggleFlagVideo()  }} >Unflag this video</button>
       </div>
     )
   }
