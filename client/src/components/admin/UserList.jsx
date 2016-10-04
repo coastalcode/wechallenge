@@ -18,7 +18,7 @@ export default class UserList extends React.Component {
                   <th>UserName</th>
                   <th>Email</th>
                   <th>User Type</th>
-                  <th>Froozen</th>
+                  <th>Frozen</th>
                   <th>Options</th>
                 </tr>
               </thead>
