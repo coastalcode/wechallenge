@@ -187,7 +187,7 @@ module.exports = {
     },
 
     upvote(req, res) {
-      console.log('yes')
+      
       let authedAction = () => {
         db.Submission.findOne({ where : { link: req.params.id } })
           .then(submission => {
