@@ -10,7 +10,7 @@ exports.signin = function(req, res, next) {
   let user = req.user;
   const token = tokenForUser(req.user);
   db.User.update({test: token}, {where: {id: user.id}});
-  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type, picture: user.picture, frozen: user.frozen} });
+  res.send({ token: token, user: {id: user.id, username: user.username, email:user.email, country: user.country, state: user.state, type: user.type, frozen: user.frozen, picture: user.picture} });
 }
 
 exports.signup = function (req, res, next) {

@@ -16,14 +16,12 @@ export default class MainVideo extends React.Component {
   }
 
   fetchTopVideo() {
-    let headers = new Headers();
-    let init = {
-      method: 'GET',
-      headers: headers
-    }
-    let jprom = fetch('/records', init).then(res => res.json())
+    let jprom = fetch('/records').then(res => {
+      // console.log('res', res)
+      return res.json()
+    })
     jprom.then((data)=>{
-      // console.log('data', data)
+      // console.log('fetch data', data)
     })
   }
 
@@ -40,7 +38,7 @@ export default class MainVideo extends React.Component {
             opts={opts}
           />
         </div>
-        <VideoActions subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
+        <VideoActions className="video-actions" subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
       </div>
     )
   }
