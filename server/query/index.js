@@ -20,7 +20,7 @@ module.exports = {
         state: req.body.state,
         country: req.body.country,
         type: req.body.type,
-        frozen: 0
+        frozen: 0,
       })
       .then(user => res.sendStatus(201))
       .catch(error => console.error(error))
@@ -136,6 +136,12 @@ module.exports = {
 
     findOne(req, res) {
       db.Submission.findOne({ where: { id: req.params.id } })
+        .then(submission => res.json(submission))
+        .catch(error => console.error(error))
+    },
+
+    findOneCommunity(req, res) {
+      db.Submission.findAll({ where: { CommunityId: req.params.id } })
         .then(submission => res.json(submission))
         .catch(error => console.error(error))
     },
@@ -421,32 +427,62 @@ module.exports = {
 
   ////
   community: {
+    // find all the currently existing communities
     findAll(req, res) {
       db.Community.findAll()
       .then(communities => res.json(communities))
       .catch(err => console.error(error))
     },
 
-    add(req, res) {
+    // add a community
+    addCommunity(req, res) {
       db.Community.create({
         name: req.body.name,
         description: req.body.description
       })
-      .then(community => res.sendStatus(201))
-      .then()
+      .then(community => res.json(community))
       .catch(error => console.error(error))
     },
 
+    // find all the members that are part of a given community
     findAllMembers(req, res) {
       db.UsersCommunitiesJoin.findAll({ where: { CommunityId: req.params.communityid } })
         .then(users => res.json(users))
         .catch(err => console.error(err))
     },
 
+    // find all the communities a given member is a part of
     findAllCommunities(req, res) {
       db.UsersCommunitiesJoin.findAll({ where: { UserId: req.params.userid } })
         .then(communities => res.json(communities))
         .catch(err => console.error(err))
+    },
+
+    // add a member to a community
+    addMembership(req, res) {
+      db.UsersCommunitiesJoin.create({
+        UserId: req.body.userid,
+        CommunityId: req.body.submissionid
+      })
+      .then(membership => res.sendStatus(201))
+      .catch(error => console.error(error))
+    },
+
+    createAndJoinCommunity(req, res) {
+      db.Community.create({
+        name: req.body.name,
+        description: req.body.description
+      })
+      .then(community => {
+        db.UsersCommunitiesJoin.create({
+        UserId: req.body.userid,
+        CommunityId: community.dataValues.id
+        // automatically uses newly created community
+      })
+      .then(membership => res.sendStatus(201))
+      .catch(error => console.error(error))
+      })
+      .catch(error => console.error(error))
     },
 
   },
@@ -477,9 +513,21 @@ module.exports = {
     },
 
     findForOne(req, res) {
-      db.CommunityBulletin.findAll({ where: { CommunityId: req.params.communityid } })
+      db.CommunityBulletin.findAll({ where: { CommunityId: req.params.id } })
         .then(bulletins => res.json(bulletins))
         .catch(err => console.error(err))
+    },
+
+    add(req, res) {
+      db.CommunityBulletin.create({
+        subject: req.body.subject,
+        message: req.body.message,
+        pinned: 0,
+        UserId: req.body.userid,
+        CommunityId: req.body.communityid
+      })
+      .then(bulletin => res.sendStatus(201))
+      .catch(error => console.error(error))
     },
 
   },

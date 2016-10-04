@@ -43,6 +43,7 @@ exports.signup = function (req, res, next) {
         test: "",
         frozen: 0,
         picture: "dummyPicture.awesome"
+
       })
         .then(function(user){
           const token = tokenForUser(user);
