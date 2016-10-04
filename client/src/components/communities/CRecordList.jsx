@@ -1,7 +1,7 @@
 import React from 'react';
-import RecordEntry from './RecordEntry';
+import CRecordEntry from './CRecordEntry';
 
-export default class RecordList extends React.Component {
+export default class CRecordList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -15,7 +15,7 @@ export default class RecordList extends React.Component {
     return (
       <div className="recordList">
         { this.props.submissions.map((submission) => {
-          return (<RecordEntry key={ submission.id }
+          return (<CRecordEntry key={ submission.id }
             submission={ submission }
             checkForMatching={ this.props.checkForMatching }
             search={ this.props.search }/>)

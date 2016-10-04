@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class RecordEntry extends React.Component {
+export default class CRecordEntry extends React.Component {
   constructor(props) {
     super(props);
 

@@ -81,6 +81,11 @@ module.exports = function (app) {
 
   ///
 
+  app.get('/communities/submissions/:id', query.submission.findOneCommunity)
+
+  app.get('/bulletins/:id', query.communityBulletins.findForOne);
+    app.post('/bulletins', query.communityBulletins.add);
+
   // only for easy testing purposes. will be removed
   app.get('/addusers/:state', query.user.testAdd);
   app.get('/testaddcomments', query.comment.testAdd);

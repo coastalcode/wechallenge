@@ -1,9 +1,9 @@
 import React from 'react';
-import RecordList from './RecordList';
-import RecordNav from './RecordNav';
-import SearchBar from './SearchBar';
+import CRecordList from './CRecordList';
+import CRecordNav from './CRecordNav';
+import CSearchBar from './CSearchBar';
 
-export default class Communities extends React.Component {
+export default class CRecords extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,7 +29,7 @@ export default class Communities extends React.Component {
   fetchVideos() {
     let sortFunction = this.sortSubmissions.bind(this)
 
-    fetch(`/submissions/`)
+    fetch(`/communities/submissions/${ this.props.location.query.id }`)
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
@@ -86,8 +86,8 @@ export default class Communities extends React.Component {
 
         <div>
           Your current search: { this.state.search }
-          <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
-          <RecordNav updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
+          <CSearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
+          <CRecordNav updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
         </div>
 
         <div>
@@ -97,7 +97,7 @@ export default class Communities extends React.Component {
         </div>
 
 
-        <RecordList
+        <CRecordList
           search={ this.state.search }
           submissions={ this.state.submissions }
           records={ this.state.records }
