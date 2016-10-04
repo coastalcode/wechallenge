@@ -198,7 +198,7 @@ module.exports = {
               .catch(error => console.error(error))
           })
       }
-      console.log(req.body)
+
       checkUserType(req.body.token, 1, authedAction, res)
     },
 
