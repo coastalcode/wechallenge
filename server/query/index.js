@@ -3,11 +3,13 @@ const db = require('../db/index.js')
 let testToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb3VyQGpvLmNvbSIsImlhdCI6MTQ3NTUzODExNzU1Nn0.Izn7gl9sVI21PdrKQYuhgI2yGdE01C6VbstOQmvTBmY"
 
 let checkUserType = (token, type, callback, res) => {
+  console.log('whi')
   db.User.find({ where: {test: token }})
   .then((user)=>{
-      if (user.type >= type) {
+      if (Number(user.type) >= type) {
         callback();
       } else {
+        console.log('what is this', user.type, type)
         res.sendStatus(404)
       }
   }).catch((err)=> console.error(err))
@@ -183,18 +185,23 @@ module.exports = {
             .catch(error => console.error(error))
         })
         .catch(error => console.error(error))
+
     },
 
     upvote(req, res) {
-      db.Submission.findOne({ where : { link: req.params.id } })
-        .then(submission => {
-          console.log('SBSSS', submission)
-          let vote = submission.votes;
-          vote++;
-          db.Submission.update({votes: vote}, { where : { link: req.params.id } })
-            .then(response => res.json({id: submission.id, votes: vote}))
-            .catch(error => console.error(error))
-        })
+      console.log('yes')
+      let authedAction = () => {
+        db.Submission.findOne({ where : { link: req.params.id } })
+          .then(submission => {
+            let vote = submission.votes;
+            vote++;
+            db.Submission.update({votes: vote}, { where : { link: req.params.id } })
+              .then(response => res.json({id: submission.id, votes: vote}))
+              .catch(error => console.error(error))
+          })
+      }
+      console.log(req.body)
+      checkUserType(req.body.token, 1, authedAction, res)
     },
 
     downvote(req, res) {
@@ -364,14 +371,19 @@ module.exports = {
     },
 
     add(req, res) {
-      console.log('VOTEADD', req.body.submissionId, req.body.userId)
-      db.Vote.create({
-        voted: 1,
-        UserId: req.body.userId,
-        SubmissionId: req.body.submissionId
-      })
-      .then(vote => res.sendStatus(201))
-      .catch(error => console.error(error))
+
+      let authedAction = () => {
+        db.Vote.create({
+          voted: 1,
+          UserId: req.body.userId,
+          SubmissionId: req.body.submissionId
+        })
+        .then(vote => res.sendStatus(201))
+        .catch(error => console.error(error))
+      }
+
+      checkUserType(req.body.token, 1, authedAction, res);
+
     },
 
     findOne(req, res) {
