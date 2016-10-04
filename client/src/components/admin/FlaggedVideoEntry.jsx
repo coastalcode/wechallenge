@@ -38,7 +38,8 @@ export default class RecordEntry extends React.Component {
 
     fetch(`/submissions/flag/${ this.props.flag.id }`)
       .then((flagged)=>{
-        console.log("You flagged a video! Nice!")
+        console.log("You flagged a video! Nice!");
+        this.setState({view: 'unflagged'});
     })
   }
 
