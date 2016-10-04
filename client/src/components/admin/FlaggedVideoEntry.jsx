@@ -7,6 +7,7 @@ export default class RecordEntry extends React.Component {
 
     this.state = {}
     this.state.showDeleteModal = false;
+    this.state.view = 'normal';
   }
 
   showDeleteModal() {
@@ -28,6 +29,7 @@ export default class RecordEntry extends React.Component {
         console.log(this.props.flag.id);
         console.log("Bye!!");
         this.hideDeleteModal();
+        this.setState({view: 'deleted'});
     })
   }
 
@@ -44,7 +46,7 @@ export default class RecordEntry extends React.Component {
     let url = `https://www.youtube.com/embed/${ this.props.flag.link }`
     return (
       <div>
-
+        {this.state.view === 'normal' ? <div>
         { this.props.flag.title }
         <br/>
         <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen></iframe>
@@ -64,7 +66,7 @@ export default class RecordEntry extends React.Component {
             <Button onClick={this.hideDeleteModal.bind(this)}>Cancel</Button>
             <Button bsStyle="danger" onClick={this.deleteSubmission.bind(this)}>Yes Delete Submission</Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> </div> : null }
 
       </div>
     )
