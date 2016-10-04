@@ -218,8 +218,10 @@ module.exports = {
     },
 
     delete(req, res) {
+      console.log('inside delete submission');
       db.Comment.destroy({ where: { SubmissionId: req.params.id } });
       db.Vote.destroy({ where: { SubmissionId: req.params.id } });
+      db.CommunityComment.destroy({ where: { SubmissionId: req.params.id } });
       db.Submission.destroy({ where: { id: req.params.id } })
         .then(submission => res.json(submission))
         .catch(error => console.error(error))
