@@ -77,7 +77,7 @@ export default class UserEntry extends React.Component {
     $.ajax({
       url: '/users/' + this.props.user.id,
       method: 'PUT',
-      data: JSON.stringify({type: this.state.type})
+      data: JSON.stringify({type: this.state.type, token: localStorage.token})
     })
     .done((user) => {
       this.props.user.type = this.state.type;
@@ -92,7 +92,7 @@ export default class UserEntry extends React.Component {
     $.ajax({
       url: '/users/' + this.props.user.id,
       method: 'PUT',
-      data: JSON.stringify({frozen: 1})
+      data: JSON.stringify({frozen: 1, token: localStorage.token})
     })
     .done((user) => {
       this.props.user.frozen = 1;
@@ -104,7 +104,7 @@ export default class UserEntry extends React.Component {
     $.ajax({
       url: '/users/' + this.props.user.id,
       method: 'PUT',
-      data: JSON.stringify({frozen: 0})
+      data: JSON.stringify({frozen: 0, token: localStorage.token})
     })
     .done((user) => {
       this.props.user.frozen = 0;
