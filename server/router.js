@@ -82,7 +82,11 @@ module.exports = function (app) {
   ///
 
   app.get('/communities/submissions/:id', query.submission.findOneCommunity)
+  app.post('/communities', query.community.createAndJoinCommunity)
+  app.get('/communities/:userid', query.community.findAllCommunities)
+  app.get('/communities/:id', query.community.findCommunity)
 
+  ///
   app.get('/bulletins/:id', query.communityBulletins.findForOne);
     app.post('/bulletins', query.communityBulletins.add);
 
