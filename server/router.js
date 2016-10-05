@@ -39,9 +39,13 @@ module.exports = function (app) {
   app.post('/submissions', query.submission.add);
 
   app.get('/submissions/adminremove/:id', query.submission.adminRemove);
+
   app.get('/submissions/flag/:id', query.submission.toggleOfficial);
+
   app.get('/submissions/flagged', query.submission.findAllFlagged);
-  app.get('/submissions/:recordid', query.submission.findOneRecord);
+
+  app.get('/submissions/community', query.submission.findACommunity);
+  app.get('/submissions/:id', query.submission.findAllPublic);
 
 
   app.post('/submissions/upvote/:id', query.submission.upvote);
@@ -87,7 +91,7 @@ module.exports = function (app) {
 
   ///
   app.get('/bulletins/:id', query.communityBulletins.findForOne);
-    app.post('/bulletins', query.communityBulletins.add);
+  app.post('/bulletins', query.communityBulletins.add);
 
   // only for easy testing purposes. will be removed
   app.get('/addusers/:state', query.user.testAdd);

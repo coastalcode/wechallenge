@@ -111,13 +111,19 @@ module.exports = {
   ////
   submission: {
     findAll(req, res) {
-      db.Submission.findAll()
+      db.Submission.findAll({ where: { id: 4 }, include: [ db.User, db.Record ] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
 
-    findOneRecord(req, res) {
-      db.Submission.findAll({ where: { RecordId: req.params.recordid } })
+    findAllPublic(req, res) {
+      db.Submission.findAll({ where: { public: 1, RecordId: req.params.id } })
+        .then(submissions => res.json(submissions))
+        .catch(err => console.error(err))
+    },
+
+    findACommunity(req, res) {
+      db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid } })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
@@ -152,7 +158,8 @@ module.exports = {
           UserId: req.body.userId,
           RecordId: record[0].dataValues.id,
           measurement: req.body.measurement,
-          state: req.body.state
+          state: req.body.state,
+          public: 1
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
       })
