@@ -21,7 +21,8 @@ import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
-import Communities from './components/community/CRecords'; //needs to be changed
+import Communities from './components/communities/CommunitiesMain';  //For Anna
+
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 import {RequiresTypeOne, RequiresTypeTwo, RequiresTypeThree} from './components/auth/require_auth';
 
