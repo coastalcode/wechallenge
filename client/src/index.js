@@ -21,7 +21,8 @@ import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
-import Community from './components/community/CRecords'; //needs to be changed
+import CommunityRecords from './components/community/records/CRecords';
+import CommunityRecord from './components/community/record/CRecord';
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 import {RequiresTypeOne, RequiresTypeTwo, RequiresTypeThree} from './components/auth/require_auth';
@@ -62,7 +63,8 @@ const routes = (
     <Route path='challenge/:id' component={Challenge} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
-    <Route path='community' component={Community} />
+    <Route path='communityrecords' component={CommunityRecords} />
+    <Route path='communityrecord' component={CommunityRecord} />
 
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={RequiresTypeTwo(FlaggedVideos)} />
