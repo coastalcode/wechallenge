@@ -8,7 +8,8 @@ export default class AdminControls extends React.Component {
 
     this.state = {
       users: [],
-      search: ""
+      search: "",
+      authenticated: false
     }
   }
 
@@ -24,6 +25,18 @@ export default class AdminControls extends React.Component {
     .fail((msg) => {
       console.log('failed to fetch users: ', msg);
     })
+  }
+
+  componentWillMount() {
+    const token = localStorage.getItem('token');
+
+    fetch(`/users/${ localStorage.getItem('user') }`)
+      .then((currentUser)=> currentUser.json())
+      .then((currentUser)=>{
+        if(token === currentUser.test && currentUser.type >= 3) {
+          this.setState({authenticated: true});
+        }
+      })
   }
 
   componentDidMount() {
@@ -55,13 +68,13 @@ export default class AdminControls extends React.Component {
 
     return (
       <div>
-        <h1>Inside of Admin Controls</h1>
+        {this.state.authenticated ? <div> <h1>Inside of Admin Controls</h1>
         <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) } />
         <UserList
           users={ this.state.users }
           search={ this.state.search }
           checkForMatching={ this.checkForMatching }
-        />
+        /> </div> : <h1>You need to be an Admin User to access this page </h1> }
       </div>
     )
   }
