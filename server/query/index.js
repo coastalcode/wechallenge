@@ -477,6 +477,13 @@ module.exports = {
       .catch(err => console.error(error))
     },
 
+    // find one community
+    findCommunity(req, res) {
+      db.Community.findAll({where:{ id: req.params.id}})
+        .then(community=> res.json(users))
+        .catch(error=>console.error(error))
+    },
+
     // add a community
     addCommunity(req, res) {
       db.Community.create({
@@ -496,7 +503,7 @@ module.exports = {
 
     // find all the communities a given member is a part of
     findAllCommunities(req, res) {
-      db.UsersCommunitiesJoin.findAll({ where: { UserId: req.params.userid } })
+      db.UsersCommunitiesJoin.findAll({ where:{UserId: req.params.userid }, include:[db.Community] })
         .then(communities => res.json(communities))
         .catch(err => console.error(err))
     },

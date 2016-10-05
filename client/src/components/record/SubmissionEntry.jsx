@@ -5,12 +5,18 @@ import { Link } from 'react-router';
 export default class SubmissonEntry extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
+    this.state.clickedFlagged = false;
   }
 
   flagVideo () {
     fetch(`/submissions/flag/${ this.props.submission.id }`)
       .then((flagged)=>{
-        console.log("You flagged a video! Nice!")
+        console.log("You flagged a video! Nice!");
+        console.log('this: ', this);
+        this.props.submission.official = 0;
+        this.setState({clickedFlagged: true});
     })
   }
 
@@ -27,7 +33,7 @@ export default class SubmissonEntry extends React.Component {
         <button> Challenge! </button>
         </Link>
         <br />
-        <button onClick={event=>{ this.flagVideo() }} > { this.props.submission.official === 1 ? "Flag this video" : "Unflag this video" } </button>
+        {this.props.submission.official === 1 ? <button onClick={this.flagVideo.bind(this)} >Flag this video</button> : null }
         <CommentList
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }/>

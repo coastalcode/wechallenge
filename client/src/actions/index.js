@@ -52,3 +52,17 @@ export function authError (error) {
     payload:error
   }
 }
+
+export function createCommunity({name, description}) {
+  let userID = localStorage.getItem('user');
+  return function(dispatch) {
+    axios.post('/communities', {name, description, userid:userID})
+      .then(response=>{
+        console.log('community created');
+        browserHistory.push('/communities')
+      })
+      .catch(response=> {
+        console.log('error :', response);
+      })
+  }
+}

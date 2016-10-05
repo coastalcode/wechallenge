@@ -23,6 +23,7 @@ import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
 import CommunityRecords from './components/community/records/CRecords';
 import CommunityRecord from './components/community/record/CRecord';
+import Communities from './components/communities/CommunitiesMain';  //For Anna
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
 import {RequiresTypeOne, RequiresTypeTwo, RequiresTypeThree} from './components/auth/require_auth';
@@ -59,7 +60,7 @@ const routes = (
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
 
-    <Route path="submission" component={RequiresTypeOne(Submission)} />
+    <Route path="submission" component={Submission} />
     <Route path='challenge/:id' component={Challenge} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
@@ -67,8 +68,8 @@ const routes = (
     <Route path='communityrecord' component={CommunityRecord} />
 
     <Route path="profile" component={Profile} />
-    <Route path="flaggedVideos" component={RequiresTypeTwo(FlaggedVideos)} />
-    <Route path="adminControls" component={RequiresTypeThree(AdminControls)} />
+    <Route path="flaggedVideos" component={FlaggedVideos} />
+    <Route path="adminControls" component={AdminControls} />
     <Route path="needSuperUser" component={NeedSuperUser} />
     <Route path="needAdminUser" component={NeedAdminUser} />
     <Route path="*" component={NotFound} />
@@ -77,9 +78,11 @@ const routes = (
 const store = createStoreWithMiddleware(rootReducer)
 const token = localStorage.getItem('token');
 
+
 fetch(`/users/${ localStorage.getItem('user') }`)
   .then((currentUser)=> currentUser.json())
   .then((currentUser)=>{
+    console.log('currentuser: ', currentUser);
     if(token === currentUser.test) {
       console.log('tokens match');
       store.dispatch({type:AUTH_USER, userType: currentUser.type});
@@ -89,7 +92,6 @@ fetch(`/users/${ localStorage.getItem('user') }`)
     }
   })
 
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -98,3 +100,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+
