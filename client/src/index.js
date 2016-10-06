@@ -71,8 +71,12 @@ const routes = (
 =======
     <Route path='communityrecords' component={CommunityRecords} />
     <Route path='communityrecord' component={CommunityRecord} />
+<<<<<<< f5f3be21e1c8436616cc5d82732bb073d24a508b
 >>>>>>> various changes, resolving merge conflict
 
+=======
+    <Route path='communities' component={Communities} />
+>>>>>>> Added communities functionality
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={FlaggedVideos} />
     <Route path="adminControls" component={AdminControls} />

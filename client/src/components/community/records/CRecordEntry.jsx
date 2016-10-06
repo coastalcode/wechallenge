@@ -36,7 +36,7 @@ export default class CRecordEntry extends React.Component {
       <br/>
       Votes: { this.props.submission.votes }
       <br/>
-      Created at: { this.props.submission.createdAt }
+      Created at: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }
     </div>) : null
   }
 }

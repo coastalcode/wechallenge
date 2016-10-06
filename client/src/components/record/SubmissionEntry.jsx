@@ -22,18 +22,14 @@ export default class SubmissonEntry extends React.Component {
 
   render() {
     let url = `https://www.youtube.com/embed/${ this.props.submission.link }`
-    let challenge = `/challenge/${ this.props.submission.id }`
     return (
       <div>
         { this.props.submission.title }
         <br/>
         <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen></iframe>
         <br />
-        <Link to={ challenge }>
-        <button> Challenge! </button>
-        </Link>
-        <br />
-        {this.props.submission.official === 1 ? <button onClick={this.flagVideo.bind(this)} >Flag this video</button> : null }
+
+        { (this.props.submission.official === 1) ? <button onClick={event => this.flagVideo() } ><i className="fa fa-flag" aria-hidden="true"></i></button> : null }
         <CommentList
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }/>

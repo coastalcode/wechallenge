@@ -1,6 +1,8 @@
 import React from 'react';
 import CommentList from './CommentList';
 import SubmissionList from './SubmissionList';
+import Challenge from '../challenge/Challenge'
+import { Link } from 'react-router';
 
 export default class Record extends React.Component {
   constructor(props) {
@@ -12,7 +14,9 @@ export default class Record extends React.Component {
       currentUser: "",
 
       first: {},
-      other: []
+      other: [],
+
+      challengeShow: false
     }
   }
 
@@ -45,6 +49,7 @@ export default class Record extends React.Component {
 
   fetchVideos() {
     let sortFunction = this.sortSubmissions.bind(this)
+    let toggle = this.props.toggle
 
     fetch(`/submissions/${ this.props.location.query.id }`)
       .then((submissions)=> submissions.json())
@@ -52,7 +57,9 @@ export default class Record extends React.Component {
         this.setState({ submissions });
         console.log(submissions)
         return submissions})
-      .then((submissions)=> sortFunction())
+      .then((submissions)=> {
+        sortFunction();
+      })
   }
 
   sortSubmissions() {
@@ -74,6 +81,9 @@ export default class Record extends React.Component {
     })
   }
 
+  toggleChallengeShow() {
+    this.setState({ challengeShow: !this.state.challengeShow })
+  }
 
   componentDidMount() {
     this.fetchRecordInfo();
@@ -82,12 +92,19 @@ export default class Record extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-    console.log("records:", this.state.recordInfo)
-    console.log("submissions:", this.state.submissions)
     return (
       <div>
       <center>
+      <button onClick={ event => this.toggleChallengeShow() }> Challenge! </button>
+      <br/>
+
+      { (this.state.challengeShow) ?
+        <Challenge
+          toggle={ this.toggleChallengeShow.bind(this) }
+          rid={ this.props.location.query.id  } />
+          : null }
+
+        <br/>
         <SubmissionList
           currentUser={ this.state.currentUser }
           submissions={ this.state.submissions }

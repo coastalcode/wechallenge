@@ -55,6 +55,7 @@ export default class CommentList extends React.Component {
   }
 
   render() {
+    let userId = this.props.currentUser.id
     return (true) ? (
       <div className="commentList">
         { this.state.comments.map((comment) =>
@@ -62,14 +63,14 @@ export default class CommentList extends React.Component {
             key={ comment.id }
             comment={ comment }
             fetch={ this.fetchComments.bind(this) }/>) }
-        <br/>
+        { userId ? (<div><br/>
         <input placeholder="title" onChange={ event => this.setState({ newTitle: event.target.value}) } />
         <br/>
         <input placeholder="comment" onChange={ event => this.setState({ newDescription: event.target.value}) } />
         <br/>
         <button onClick={ event =>{ this.addComment(this.state.newTitle, this.state.newDescription) }}>
           Add a comment!
-        </button>
+        </button></div>) : "Login to comment!" }
       </div>
     ) : null
   }
