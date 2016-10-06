@@ -21,6 +21,8 @@ import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
+import CommunityRecords from './components/community/CommunityPage';
+import CommunityRecord from './components/community/record/CRecord';
 import Communities from './components/communities/CommunitiesMain';  //For Anna
 import Community from './components/community/CRecords'; //needs to be changed
 import CommunityRecords from './components/community/records/CRecords';
@@ -66,17 +68,11 @@ const routes = (
     <Route path='challenge/:id' component={Challenge} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
-<<<<<<< 65b9c836669bab71f353b6f3c0dfe5af52b9bf69
+
     <Route path='communities' component={Communities} />
-=======
     <Route path='communityrecords' component={CommunityRecords} />
     <Route path='communityrecord' component={CommunityRecord} />
-<<<<<<< f5f3be21e1c8436616cc5d82732bb073d24a508b
->>>>>>> various changes, resolving merge conflict
 
-=======
-    <Route path='communities' component={Communities} />
->>>>>>> Added communities functionality
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={FlaggedVideos} />
     <Route path="adminControls" component={AdminControls} />
