@@ -8,6 +8,17 @@ describe('auth functions', () => {
 
   describe('signup method', () => {
     before(()=>{
+      const User = db.define('User', {
+        username: Sequelize.STRING,
+        password: Sequelize.STRING,
+        picture: Sequelize.STRING,
+        email: Sequelize.STRING,
+        state: Sequelize.STRING,
+        country: Sequelize.STRING,
+        type: Sequelize.STRING,
+        test: Sequelize.STRING,
+        frozen: Sequelize.INTEGER
+      })
       db.sync({force: true});
     })
 
