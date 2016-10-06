@@ -9,7 +9,7 @@ describe('auth functions', () => {
   describe('signup method', () => {
     before(()=>{
       db.sync({force: true});
-    )
+    })
 
     it('returns a 422 response if info is missing', (done) => {
       let res = {
