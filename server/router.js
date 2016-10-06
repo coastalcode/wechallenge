@@ -38,7 +38,7 @@ module.exports = function (app) {
 
   app.get('/submissions', query.submission.findAll);
   app.post('/submissions', query.submission.add);
-
+  app.post('/submissions/challenge', query.submission.addChallenge);
   app.get('/submissions/adminremove/:id', query.submission.adminRemove);
 
   app.get('/submissions/flag/:id', query.submission.toggleOfficial);
@@ -62,7 +62,7 @@ module.exports = function (app) {
   app.get('/comments/:submissionid', query.comment.findAllWhere);
 
   app.get('/comments/user/:userid', query.comment.findByUser)
-  app.post('/comments/pin/:id', query.comment.togglePin);
+  app.put('/comments/pin/:id', query.comment.togglePin);
 
   app.put('/comments/:id', query.comment.update);
   app.delete('/comments/:id', query.comment.delete);
@@ -86,12 +86,18 @@ module.exports = function (app) {
   ///
 
   app.get('/communities/submissions/:id', query.submission.findOneCommunity)
+  app.get('/communities/comments', query.communityComments.findForOne)
+  app.post('/communities/comments', query.communityComments.add)
+
   app.post('/communities', query.community.createAndJoinCommunity)
+  // there is an issue here**
   app.get('/communities/:userid', query.community.findAllCommunities)
   app.get('/communities/:id', query.community.findCommunity)
 
+
   ///
   app.get('/bulletins/:id', query.communityBulletins.findForOne);
+  app.put('/bulletins/pin/:id', query.communityBulletins.togglePin);
   app.post('/bulletins', query.communityBulletins.add);
 
   // only for easy testing purposes. will be removed

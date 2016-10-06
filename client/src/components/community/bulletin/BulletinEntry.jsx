@@ -13,7 +13,7 @@ export default class CommentEntry extends React.Component {
       headers: new Headers()
     }
 
-    fetch(`/users/${ this.props.comment.UserId }`)
+    fetch(`/users/${ this.props.bulletin.UserId }`)
       .then((user)=> user.json())
       .then((user)=>{
         this.setState({ user });
@@ -26,12 +26,12 @@ export default class CommentEntry extends React.Component {
 
   deleteComment() {
     let that = this;
-    return fetch(`/comments/${ this.props.comment.id }`, {
+    return fetch(`/comments/${ this.props.bulletin.id }`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         method: 'delete',
-        // body: JSON.stringify(comment)
+        // body: JSON.stringify(bulletin)
     }).then(function(response) {
         console.log(response);
     }).then(function(response) {
@@ -41,12 +41,12 @@ export default class CommentEntry extends React.Component {
 
   pinComment() {
     let that = this;
-    return fetch(`/comments/pin/${ this.props.comment.id }`, {
+    return fetch(`/bulletins/pin/${ this.props.bulletin.id }`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         method: 'put',
-        // body: JSON.stringify(comment)
+        // body: JSON.stringify(bulletin)
     }).then(function(response) {
         console.log(response);
     }).then(function(response) {
@@ -58,7 +58,7 @@ export default class CommentEntry extends React.Component {
 
     return (
       <p>
-        { this.props.bulletin.pinned ? "This is a pinned comment" : "This is not a pinned comment"}
+        { this.props.bulletin.pinned ? (<i className="fa fa-thumb-tack" aria-hidden="true"></i>) : null }
         <br />
         { this.props.bulletin.subject }
         <br/>

@@ -1,6 +1,8 @@
 import React from 'react';
 import CCommentList from './CCommentList';
 import CSubmissionList from './CSubmissionList';
+import Challenge from '../../challenge/Challenge'
+import { Link } from 'react-router';
 
 export default class CRecord extends React.Component {
   constructor(props) {
@@ -12,7 +14,9 @@ export default class CRecord extends React.Component {
       currentUser: "",
 
       first: {},
-      other: []
+      other: [],
+
+      challengeShow: false
     }
   }
 
@@ -35,7 +39,7 @@ export default class CRecord extends React.Component {
       headers: new Headers()
     }
 
-    fetch(`/records/${ this.props.location.query.id }`)
+    fetch(`/records/${ this.props.location.query.rid }`)
       .then((recordInfo)=> recordInfo.json())
       .then((recordInfo)=>{
         this.setState({ recordInfo });
@@ -46,13 +50,17 @@ export default class CRecord extends React.Component {
   fetchVideos() {
     let sortFunction = this.sortSubmissions.bind(this)
 
-    fetch(`/submissions/${ this.props.location.query.id }`)
+    fetch(`/submissions/community?rid=${ this.props.location.query.rid }&cid=${ this.props.location.query.cid }`)
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
         console.log(submissions)
         return submissions})
       .then((submissions)=> sortFunction())
+  }
+
+  toggleChallengeShow() {
+    this.setState({ challengeShow: !this.state.challengeShow })
   }
 
   sortSubmissions() {
@@ -82,16 +90,31 @@ export default class CRecord extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-    console.log("records:", this.state.recordInfo)
-    console.log("submissions:", this.state.submissions)
+    let mainpage = `/record?id=${ this.props.location.query.rid }`
+    let challenge = `/challenge/${ this.state.recordInfo.id }`
+
     return (
       <div>
       <center>
+      <button onClick={ event => this.toggleChallengeShow() }> Challenge! </button>
+      <br/>
+
+      { (this.state.challengeShow) ?
+        <Challenge
+          toggle={ this.toggleChallengeShow.bind(this) }
+          rid={ this.props.location.query.rid  }
+          cid={ this.props.location.query.cid } />
+          : null }
+
+      <Link to={ mainpage }>
+      <button>Check out the main page for this record!</button>
+      </Link>
+
         <CSubmissionList
           currentUser={ this.state.currentUser }
           submissions={ this.state.submissions }
-          record={ this.state.recordInfo } />
+          record={ this.state.recordInfo }
+          cid={ this.props.location.query.cid } />
       </center>
       </div>
     )

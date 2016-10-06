@@ -111,7 +111,7 @@ module.exports = {
   ////
   submission: {
     findAll(req, res) {
-      db.Submission.findAll({ where: { id: 4 }, include: [ db.User, db.Record ] })
+      db.Submission.findAll({ where: { public: 1 }, include: [ db.User, db.Record ] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
@@ -123,6 +123,7 @@ module.exports = {
     },
 
     findACommunity(req, res) {
+      console.log(req)
       db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid } })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
@@ -163,6 +164,24 @@ module.exports = {
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
       })
+    },
+
+
+    addChallenge(req, res) {
+      db.Submission.create({
+          title: req.body.title,
+          link: req.body.link,
+          description: req.body.description,
+          votes: 0,
+          official: 1,
+          UserId: req.body.userId,
+          RecordId: req.body.recordId,
+          measurement: req.body.measurement,
+          state: req.body.state,
+          public: req.body.public
+      })
+      .then(submission => res.sendStatus(201))
+      .catch(error => console.error(error))
     },
 
     findOne(req, res) {
@@ -545,14 +564,27 @@ module.exports = {
     },
 
     findForOne(req, res) {
+      console.log("sid, cid", req.query.sid, req.query.cid)
       db.CommunityComment.findAll({ where: {
-        SubmissionId: req.params.submissionid,
-        CommunityId: req.params.communityid }
+        SubmissionId: req.query.sid,
+        CommunityId: req.query.cid }
       })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))
     },
 
+    add(req, res) {
+      db.CommunityComment.create({
+        title: req.body.title,
+        description: req.body.description,
+        pinned: 0,
+        UserId: req.body.userId,
+        SubmissionId: req.body.submissionId,
+        CommunityId: req.body.communityId
+      })
+      .then(comment => res.sendStatus(201))
+      .catch(error => console.error(error))
+    }
   },
 
   communityBulletins: {
@@ -573,11 +605,26 @@ module.exports = {
         subject: req.body.subject,
         message: req.body.message,
         pinned: 0,
-        UserId: req.body.userid,
-        CommunityId: req.body.communityid
+        UserId: req.body.userId,
+        CommunityId: req.body.communityId
       })
       .then(bulletin => res.sendStatus(201))
       .catch(error => console.error(error))
+    },
+
+    togglePin(req, res) {
+      db.CommunityBulletin.findOne({ where : { id: req.params.id } })
+        .then(bulletin => {
+          let pinned;
+          if (bulletin.pinned === 0) {
+            pinned = 1;
+          } else {
+            pinned = 0;
+          }
+          db.CommunityBulletin.update({ pinned } , { where : { id: req.params.id } })
+            .then(bulletin => res.json(bulletin))
+            .catch(error => console.error(error))
+        })
     },
 
   },

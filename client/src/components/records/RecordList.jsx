@@ -18,7 +18,8 @@ export default class RecordList extends React.Component {
           return (<RecordEntry key={ submission.id }
             submission={ submission }
             checkForMatching={ this.props.checkForMatching }
-            search={ this.props.search }/>)
+            search={ this.props.search }
+            searchRegion = { this.props.searchRegion }/>)
         })}
         <br/>
       </div>

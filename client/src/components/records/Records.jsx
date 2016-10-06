@@ -9,11 +9,13 @@ export default class Records extends React.Component {
 
     this.state = {
       search: "",
+      searchRegion: "",
       searchType: "createdAt",
       filterType: "",
       records: [],
       submissions: [],
-      sortedSubmissions: []
+      sortedSubmissions: [],
+      regions: []
     }
   }
 
@@ -33,13 +35,28 @@ export default class Records extends React.Component {
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
-        console.log(submissions)
+        let tempRegions = {};
+        let regions = [];
+        submissions.map(submission => {
+          if (!tempRegions[submission.state]) {
+            tempRegions[submission.state] = true;
+          }
+        })
+        for (var key in tempRegions) {
+          regions.push(key)
+        }
+        this.setState({ regions })
         return submissions})
       .then((submissions)=> sortFunction(this.state.searchType))
   }
 
   updateSearchTerm(search) {
     this.setState({ search })
+  }
+
+  updateSearchRegion(searchRegion) {
+    this.setState({ searchRegion })
+    console.log(this.state.searchRegion)
   }
 
   // use this to account for non-exact matches
@@ -81,9 +98,16 @@ export default class Records extends React.Component {
   }
 
   render() {
+
     return (
       <div>
-
+          Showing videos for: { this.state.searchRegion }
+          <select onChange={ event => this.updateSearchRegion( event.target.value )}>
+            <option value="">Show all</option>
+            <option value={ localStorage.getItem('region') }>My region ({ localStorage.getItem('region') })</option>
+          { this.state.regions.map((region)=>
+            <option value={ region }>{ region }</option>) }
+          </select>
         <div>
           Your current search: { this.state.search }
           <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
@@ -99,6 +123,7 @@ export default class Records extends React.Component {
 
         <RecordList
           search={ this.state.search }
+          searchRegion = { this.state.searchRegion }
           submissions={ this.state.submissions }
           records={ this.state.records }
           checkForMatching={ this.checkForMatching }/>

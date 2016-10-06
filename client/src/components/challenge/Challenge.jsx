@@ -13,19 +13,12 @@ export default class Challenges extends React.Component {
           title: "",
           link: "",
           description: "",
-          votes: 0,
-          official: 1,
-          UserId: this.userId,
-          RecordId: window.location.pathname.slice(window.location.pathname.lastIndexOf("/") + 1),
+          public: 0,
+          userId: this.userId,
+          recordId: this.props.rid,
           measurement: 0
       }
     }
-  }
-
-  getRecordId() {
-    let last = window.location.pathname.lastIndexOf("/") + 1
-    let recordId = window.location.pathname.slice(window.location.pathname.lastIndexOf("/") + 1)
-
   }
 
   getVideoId(url) {
@@ -34,31 +27,48 @@ export default class Challenges extends React.Component {
   }
 
   addSubmission(submission) {
-    return fetch('/submissions/', {
+    let toggle = this.props.toggle
+    return fetch('/submissions/challenge', {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         method: 'post',
         body: JSON.stringify(submission)
     }).then(function(response) {
+        toggle();
         console.log(response);
     })
   }
 
+  changeSubmissionProperties(property, propertyName) {
+    let submission = this.state.submission;
+    submission[propertyName] = property;
+    this.setState({ submission });
+  }
+
   render() {
     let retrieve = this.getVideoId
+    console.log(this.props.rid, "record info????")
     return (
       <div>
       Title:
       <br/>
-      <input onChange={ event => this.setState({ title: event.target.value }) } />
+      <input onChange={ event => this.changeSubmissionProperties(event.target.value, 'title') } />
       <br/>
-      <input onChange={ event => this.setState({ description: event.target.value }) } />
+      Video description:
       <br/>
+      <input onChange={ event => this.changeSubmissionProperties(event.target.value, 'description') } />
+      <br/>
+      <form onChange={ event => this.changeSubmissionProperties(event.target.value, 'public') }>
+        <input type="radio" value='0'/> Show in communities only
+        <br/>
+        <input type="radio" value='1'/> Show on global page
+        <br/>
+      </form>
       <br/>
       Use Link:
       <br/>
-      <input onChange={ event => this.setState({ link: retrieve(event.target.value) }) } />
+      <input onChange={ event => this.changeSubmissionProperties(retrieve(event.target.value), 'link') } />
       <br/>
       <button onClick={ event => this.addSubmission(this.state.submission)} >Upload!!</button>
       </div>

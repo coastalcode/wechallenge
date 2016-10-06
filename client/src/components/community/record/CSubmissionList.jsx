@@ -17,7 +17,8 @@ export default class CSubmissionList extends React.Component {
             currentUser={ this.props.currentUser }
             key={ submission.id }
             submission={ submission }
-            record={ this.props.record }/>)
+            record={ this.props.record }
+            cid={ this.props.cid } />)
         })}
         <br/>
       </div>
