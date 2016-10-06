@@ -155,6 +155,11 @@ h1.home-header.topGlobal {
   flex-grow: 2;
 }
 
+/*Profile Component*/
+.profile--userPic {
+  width: 100px;
+}
+
 /*Media queries*/
 
 @media (min-width: 900px) {

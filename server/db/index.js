@@ -118,6 +118,12 @@ const CommunityBulletin = db.define('CommunityBulletin', {
   pinned: Sequelize.INTEGER
 })
 
+const Image = db.define('Image', {
+  user: Sequelize.INTEGER,
+  data: Sequelize.BLOB,
+  json: Sequelize.JSON
+})
+
 // puts a UserId column on each Message instance
 // also gives us the `.setUser` method available
 // after creating a new instance of Message
@@ -180,3 +186,4 @@ module.exports.Community = Community;
 module.exports.CommunityComment = CommunityComment;
 module.exports.UsersCommunitiesJoin = UsersCommunitiesJoin;
 module.exports.CommunityBulletin = CommunityBulletin;
+module.exports.Image = Image;
