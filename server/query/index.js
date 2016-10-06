@@ -633,18 +633,18 @@ module.exports = {
 
   image: {
     add(req, res) {
-      db.Image.find({where: { user: req.body.user }})
+      db.Image.find({where: { uid: req.body.user }})
         .then((data)=> {
           // console.log('found dis', data)
           if (!data) {
             db.Image.create({
-              user: req.body.id,
+              uid: req.body.user,
               json: req.body.data
             }).then((data)=>res.sendStatus(200))
           } else {
             db.Image.update({
               json: req.body.data
-            }, {where: {user: req.body.user}}).then((data)=>res.sendStatus(200))
+            }, {where: {uid: req.body.user}}).then((data)=>res.sendStatus(200))
           }
         })
     },
