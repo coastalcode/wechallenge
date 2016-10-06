@@ -15,6 +15,7 @@ export default class Communities extends Component {
     this.state.community = {};
   }
 
+
   openModal() {
     this.setState({ showModal: true });
   }
@@ -52,6 +53,7 @@ export default class Communities extends Component {
   }
 
   render() {
+
     return (
       <div>
       <h1>hello welcome to communities page</h1>
