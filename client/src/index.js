@@ -10,7 +10,6 @@ import App from './components/App';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Submission from './components/Submission';
-import SubmissionDynamic from './components/SubmissionDynamic';
 import Challenge from './components/challenge/Challenge';
 import Record from './components/record/Record';
 import Records from './components/records/Records';
@@ -60,7 +59,6 @@ const routes = (
     <Route path="signup" component={Signup} />
 
     <Route path="submission" component={Submission} />
-    <Route path="SubmissionDynamic" component={SubmissionDynamic} />
     <Route path='challenge/:id' component={Challenge} />
     <Route path="allrecords" component={DecoratedRecords} />
     <Route path='record' component={Record} />
