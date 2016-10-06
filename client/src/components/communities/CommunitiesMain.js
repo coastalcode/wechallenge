@@ -3,7 +3,7 @@ import { Modal, OverlayTrigger, Popover, Tooltip, Button } from 'react-bootstrap
 
 import CreateCommunity from './CreateCommunity';
 import Nav from './Nav';
-import CRecords from '../community/records/CRecords';
+import CommunityPage from '../community/CommunityPage';
 
 export default class Communities extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Communities extends Component {
     this.state={};
     this.state.showModal = false;
     this.state.communities = [];
-    this.state.community = [];
+    this.state.community = {};
   }
 
   openModal() {
@@ -22,13 +22,14 @@ export default class Communities extends Component {
   closeModal() {
     this.setState({ showModal: false });
   }
-  //******************FOR ANNA**************
+  //******************FOR ANNA************** THANK YOU HARRIS
   openCommunity(id) {
     const communityID = id
     console.log("____ID", communityID)
-    fetch(`/community?id=${communityID}`)
+    fetch(`/community/${communityID}`)
       .then((community) => community.json())
       .then((community) =>{
+        console.log("are you getting called")
         this.setState({community})
       })
       .catch((error) => {
@@ -71,7 +72,7 @@ export default class Communities extends Component {
         </Modal.Footer>
       </Modal>
       <button onClick={this.openModal.bind(this)}>Create One</button>
-      <CRecords data={this.state.community}/>
+      { (this.state.community[0]) ? (<CommunityPage community={this.state.community} />) : null }
       </div>
       )
   }

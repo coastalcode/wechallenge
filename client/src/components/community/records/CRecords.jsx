@@ -81,7 +81,6 @@ export default class CRecords extends React.Component {
   }
 
   render() {
-    let cid = this.props.cid;
     return (
       <div>
 
@@ -99,7 +98,7 @@ export default class CRecords extends React.Component {
 
 
         <CRecordList
-          cid={ cid }
+          cid={ this.props.cid }
           search={ this.state.search }
           submissions={ this.state.submissions }
           records={ this.state.records }
