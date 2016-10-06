@@ -3,7 +3,7 @@ import { Modal, OverlayTrigger, Popover, Tooltip, Button } from 'react-bootstrap
 
 import CreateCommunity from './CreateCommunity';
 import Nav from './Nav';
-import CRecords from '../community/CRecords';
+import CRecords from '../community/records/CRecords';
 
 export default class Communities extends Component {
   constructor(props) {

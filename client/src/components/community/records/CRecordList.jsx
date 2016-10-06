@@ -16,6 +16,7 @@ export default class CRecordList extends React.Component {
       <div className="recordList">
         { this.props.submissions.map((submission) => {
           return (<CRecordEntry key={ submission.id }
+            cid={ this.props.cid }
             submission={ submission }
             checkForMatching={ this.props.checkForMatching }
             search={ this.props.search }/>)

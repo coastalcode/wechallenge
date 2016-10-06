@@ -18,7 +18,7 @@ export default class BulletinList extends React.Component {
       headers: new Headers()
     }
 
-    fetch(`/bulletins/${ this.props.location.query.id }`)
+    fetch(`/bulletins/${ this.props.cid }`)
       .then((bulletins)=> bulletins.json())
       .then((bulletins)=>{
         this.setState({ bulletins });
@@ -47,7 +47,7 @@ export default class BulletinList extends React.Component {
       subject: subject,
       message: message,
       userId: 1,
-      submissionId: this.props.submission.id
+      communityId: this.props.cid
     }
     console.log("bulletin to be added", bulletin)
     this.postBulletin(bulletin)
@@ -55,21 +55,22 @@ export default class BulletinList extends React.Component {
   }
 
   render() {
-    return (true) ? (
+      let userId = localStorage.getItem('user')
+      return (true) ? (
       <div className="bulletinList">
         { this.state.bulletins.map((bulletin) =>
           <BulletinEntry
             key={ bulletin.id }
             bulletin={ bulletin }
             fetch={ this.fetchBulletins.bind(this) }/>) }
-        <br/>
+        { userId ? (<div><br/>
         <input placeholder="subject" onChange={ event => this.setState({ newSubject: event.target.value}) } />
         <br/>
         <input placeholder="message" onChange={ event => this.setState({ newMessage: event.target.value}) } />
         <br/>
         <button onClick={ event =>{ this.addbulletin(this.state.newSubject, this.state.newMessage) }}>
           Add a bulletin!
-        </button>
+        </button></div>) : "Login to add a message!" }
       </div>
     ) : null
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import list from './../../lib/categories.js';
+import list from './../../../lib/categories.js';
 
 export default class CategoryList extends React.Component {
   constructor(props) {

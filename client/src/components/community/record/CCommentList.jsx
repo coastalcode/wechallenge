@@ -1,7 +1,7 @@
 import React from 'react';
-import CommentEntry from './CommentEntry';
+import CCommentEntry from './CCommentEntry';
 
-export default class CommentList extends React.Component {
+export default class CCommentList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +18,7 @@ export default class CommentList extends React.Component {
       headers: new Headers()
     }
 
-    fetch(`/comments/${ this.props.submission.id }`)
+    fetch(`/communities/comments?sid=${ this.props.submission.id }&cid=${ this.props.cid }`)
       .then((comments)=> comments.json())
       .then((comments)=>{
         this.setState({ comments });
@@ -27,7 +27,7 @@ export default class CommentList extends React.Component {
   }
 
   postComment(comment) {
-    return fetch('/comments/', {
+    return fetch('/communities/comments', {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -47,7 +47,8 @@ export default class CommentList extends React.Component {
       title: title,
       description: description,
       userId: this.props.currentUser.id,
-      submissionId: this.props.submission.id
+      submissionId: this.props.submission.id,
+      communityId: this.props.cid
     }
     console.log("comment to be added", comment)
     this.postComment(comment)
@@ -59,7 +60,7 @@ export default class CommentList extends React.Component {
     return (true) ? (
       <div className="commentList">
         { this.state.comments.map((comment) =>
-          <CommentEntry
+          <CCommentEntry
             key={ comment.id }
             comment={ comment }
             fetch={ this.fetchComments.bind(this) }/>) }

@@ -29,7 +29,7 @@ export default class CRecords extends React.Component {
   fetchVideos() {
     let sortFunction = this.sortSubmissions.bind(this)
 
-    fetch(`/communities/submissions/${ this.props.location.query.id }`)
+    fetch(`/communities/submissions/${ this.props.cid }`)
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
@@ -81,6 +81,7 @@ export default class CRecords extends React.Component {
   }
 
   render() {
+    let cid = this.props.cid;
     return (
       <div>
 
@@ -98,6 +99,7 @@ export default class CRecords extends React.Component {
 
 
         <CRecordList
+          cid={ cid }
           search={ this.state.search }
           submissions={ this.state.submissions }
           records={ this.state.records }

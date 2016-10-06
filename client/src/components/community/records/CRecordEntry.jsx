@@ -24,7 +24,7 @@ export default class CRecordEntry extends React.Component {
   }
 
   render() {
-    let path = `/record?id=${ this.props.submission.RecordId }`
+    let path = `/communityrecord?rid=${ this.props.submission.RecordId }&cid=${ this.props.cid }`
     return (this.props.submission.official > -1 && this.props.checkForMatching([this.props.submission.title, this.props.submission.description, this.state.matchingRecord.category, this.state.matchingRecord.subcategory], this.props.search)) ? (
       <div className="recordList-entry">
       { this.props.submission.title }
@@ -36,7 +36,7 @@ export default class CRecordEntry extends React.Component {
       <br/>
       Votes: { this.props.submission.votes }
       <br/>
-      Created at: { this.props.submission.createdAt }
+      Created at: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }
     </div>) : null
   }
 }
