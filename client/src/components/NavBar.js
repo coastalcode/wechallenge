@@ -6,11 +6,14 @@ class NavBar extends Component {
   //if user is authenticated, show "sign out" & "profile" on nav bar
   renderLinks() {
     if(this.props.authenticated) {
-      return [<li key={1}>
-          <Link to="/signout" className="navbar-brand">Sign Out</Link>
+      return [<li key={4}>
+          <Link to="/communities" className="navbar-brand">Communities</Link>
       </li>,
       <li key={2}>
         <Link to="/profile" className="navbar-brand">Profile</Link>
+      </li>,
+      <li key={1}>
+          <Link to="/signout" className="navbar-brand">Sign Out</Link>
       </li>
       ];
     } else {
