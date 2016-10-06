@@ -160,6 +160,10 @@ h1.home-header.topGlobal {
   width: 100px;
 }
 
+.comment--userPic {
+  width: 40px;
+}
+
 /*Media queries*/
 
 @media (min-width: 900px) {

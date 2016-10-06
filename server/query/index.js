@@ -652,7 +652,7 @@ module.exports = {
     get(req, res) {
       let user = Number(req.params.id)
       // console.log('hi', user)
-      db.Image.findOne({where: {user: user}})
+      db.Image.findOne({where: {uid: user}})
         .then((data)=>{
           // console.log('data', data)
           res.json(data)
