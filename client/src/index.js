@@ -22,7 +22,7 @@ import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
 import Communities from './components/communities/CommunitiesMain';  //For Anna
-import CommunityRecords from './components/community/records/CRecords';
+import CommunityPage from './components/community/CommunityPage';
 import CommunityRecord from './components/community/record/CRecord';
 
 
@@ -67,7 +67,7 @@ const routes = (
     <Route path='record' component={Record} />
 
     <Route path='communities' component={Communities} />
-    <Route path='communityrecords' component={CommunityRecords} />
+    <Route path='communityrecords' component={CommunityPage} />
     <Route path='communityrecord' component={CommunityRecord} />
 
     <Route path="profile" component={Profile} />

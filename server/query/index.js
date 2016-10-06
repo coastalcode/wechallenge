@@ -193,6 +193,7 @@ module.exports = {
     },
 
     findOneCommunity(req, res) {
+      console.log("!!!!!! req params", req.params)
       db.Submission.findAll({ where: { CommunityId: req.params.id } })
         .then(submission => res.json(submission))
         .catch(error => console.error(error))
@@ -211,7 +212,6 @@ module.exports = {
             .catch(error => console.error(error))
         })
         .catch(error => console.error(error))
-
     },
 
     upvote(req, res) {
