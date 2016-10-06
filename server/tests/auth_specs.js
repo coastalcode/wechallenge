@@ -19,7 +19,7 @@ describe('auth functions', () => {
         test: Sequelize.STRING,
         frozen: Sequelize.INTEGER
       })
-      db.sync({force: true});
+      User.sync({force: true});
     })
 
     it('returns a 422 response if info is missing', (done) => {
