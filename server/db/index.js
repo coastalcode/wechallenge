@@ -172,6 +172,7 @@ Community.hasMany(UsersCommunitiesJoin)
 
 // TableName.sync(/*{force: true}*/);
 // // turn on "force:true" to drop any existing table and replace with new one (ie: drop "User" table, create new "User" table)
+User.sync();
 
 db.Sequelize = Sequelize;
 module.exports = db;
