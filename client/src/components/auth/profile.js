@@ -4,14 +4,17 @@ import * as actions from '../../actions';
 import UserInfo from './userInfo';
 import CommentList from './CommentList';
 import VideoList from './VideoList';
+import FileInput from 'react-file-input'
 
 export default class Profile extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       currentUser: '',
       userComments: [],
-      userSubs: []
+      userSubs: [],
+      userPic: null
     }
   }
 
@@ -19,6 +22,19 @@ export default class Profile extends Component {
     this.fetchCurrentUser();
     this.fetchUserComments();
     this.fetchUserSubs();
+  }
+
+  componentDidMount() {
+      this.fetchUserPic();
+  }
+
+  fetchUserPic() {
+    fetch('/images/' + localStorage.user)
+      .then((res)=> res.json())
+      .then((image)=> {
+        console.log('here be da data', image)
+        this.setState({ userPic: image.json })
+      })
   }
 
   fetchUserSubs() {
@@ -52,10 +68,42 @@ export default class Profile extends Component {
     })
   }
 
+  handleImage(event) {
+    let that = this;
+    let file = event.target.files[0],
+    reader = new FileReader(),
+    url = '/images';
+    let data = reader.readAsDataURL(file)
+
+    reader.onload = (e) => {
+      fetch( url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({data: e.target.result, user: localStorage.user, token: localStorage.token})
+      }).then((res)=>{
+        if (res.status === 200) {
+          this.setState({userPic: e.target.result})
+        }
+      })
+    }
+
+  }
+
   render() {
     return (
       <div>
         <h1>Hello, {this.state.currentUser.username}!</h1>
+        { this.state.userPic ? <img className="profile--userPic" src={this.state.userPic}/> : null}
+        <form>
+          <label htmlFor="profile-img-input">Upload a profile picture</label>
+             <FileInput name="myImage"
+                   accept=".png,.gif,.jpg,.jpeg"
+                   placeholder="My Image"
+                   className="inputClass"
+                   onChange={this.handleImage.bind(this)} />
+        </form>
         { this.state.userComments.length > 0 ?
           <CommentList data={this.state.userComments} />
           : null

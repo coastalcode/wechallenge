@@ -70,6 +70,7 @@
     "react-async-script-loader": "^0.2.1",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
+    "react-file-input": "^0.2.5",
     "react-http-request": "^1.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",

@@ -13,8 +13,7 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use(bodyParser.json({type:'*/*'}));
-
+app.use(bodyParser.json({type:'*/*'}, {limit: '50mb'}));
 app.use(express.static(path.join(__dirname, './../client/dist')))
 
 router(app);

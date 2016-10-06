@@ -5,14 +5,13 @@ const Authentication = require('./query/auth');
 const passportService = require('./query/passport');
 const passport = require('passport');
 const query = require('./query')
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 const requireAuth = passport.authenticate('jwt', { session: false});
 const requireSignin = passport.authenticate('local', {session: false})
 
 module.exports = function (app) {
   ///
-
   //testing purposes: will be removed
   app.get('/test', requireAuth, function(req, res) {
     res.send({message: 'authenticated message'})
@@ -94,4 +93,7 @@ module.exports = function (app) {
   app.get('/addusers/:state', query.user.testAdd);
   app.get('/testaddcomments', query.comment.testAdd);
   app.get('/testaddsubmission', query.submission.testAdd);
+
+  app.post('/images', query.image.add);
+  app.get('/images/:id', query.image.get);
 }

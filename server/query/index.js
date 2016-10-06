@@ -187,7 +187,7 @@ module.exports = {
     },
 
     upvote(req, res) {
-      
+
       let authedAction = () => {
         db.Submission.findOne({ where : { link: req.params.id } })
           .then(submission => {
@@ -575,6 +575,33 @@ module.exports = {
 
   },
 
+  image: {
+    add(req, res) {
+      db.Image.find({where: { user: req.body.user }})
+        .then((data)=> {
+          // console.log('found dis', data)
+          if (!data) {
+            db.Image.create({
+              user: req.body.id,
+              json: req.body.data
+            }).then((data)=>res.sendStatus(200))
+          } else {
+            db.Image.update({
+              json: req.body.data
+            }, {where: {user: req.body.user}}).then((data)=>res.sendStatus(200))
+          }
+        })
+    },
 
+    get(req, res) {
+      let user = Number(req.params.id)
+      // console.log('hi', user)
+      db.Image.findOne({where: {user: user}})
+        .then((data)=>{
+          // console.log('data', data)
+          res.json(data)
+        })
+    }
+  }
 
 }
