@@ -501,7 +501,7 @@ module.exports = {
     // find one community
     findCommunity(req, res) {
       db.Community.findAll({where:{ id: req.params.id}})
-        .then(community=> res.json(users))
+        .then(community=> res.json(community))
         .catch(error=>console.error(error))
     },
 

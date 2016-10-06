@@ -7,15 +7,23 @@ export default class CommunityPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { cid : this.props.community[0].id };
   }
 
-  render() {
+  render2() {
     return (
       <div>
-        <BulletinList cid={ this.props.location.query.cid }/>
-        <CRecords cid={ this.props.location.query.cid }/>
+        <BulletinList cid={ this.state.cid }/>
+        <CRecords cid={ this.state.cid }/>
       </div>
     )
+  }
+  render() {
+    console.log("props for community page", this.props);
+    return (<div>
+
+    { this.render2() }
+
+    </div>)
   }
 }
