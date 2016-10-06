@@ -21,10 +21,7 @@ import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
-import CommunityRecords from './components/community/CommunityPage';
-import CommunityRecord from './components/community/record/CRecord';
 import Communities from './components/communities/CommunitiesMain';  //For Anna
-import Community from './components/community/CRecords'; //needs to be changed
 import CommunityRecords from './components/community/records/CRecords';
 import CommunityRecord from './components/community/record/CRecord';
 
