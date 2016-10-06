@@ -21,7 +21,7 @@ export default class VideoList extends React.Component {
     return (
       <div className="videolist-columns">
         { this.props.locale === 'state' ?
-          <h1 className="home-header topLocal">Top Records In Your Area</h1>
+          <h1 className="home-header topLocal">Top Records In {localStorage.region}</h1>
           :
           <h1 className="home-header topGlobal">Top Records Worldwide</h1>
         }
