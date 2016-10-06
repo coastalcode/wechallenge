@@ -10,8 +10,8 @@ export default class CommentEntry extends React.Component {
     }
   }
 
-  fetchUserPic() {
-    fetch('/images/' + localStorage.user)
+  fetchUserPic(id) {
+    fetch('/images/' + id)
       .then((res)=> res.json())
       .then((image)=> {
         this.setState({ userPic: image.json })
@@ -28,12 +28,12 @@ export default class CommentEntry extends React.Component {
       .then((user)=> user.json())
       .then((user)=>{
         this.setState({ user });
+        this.fetchUserPic(user.id)
     })
   }
 
   componentDidMount() {
     this.fetchCurrentUser();
-    this.fetchUserPic();
   }
 
   deleteComment() {
