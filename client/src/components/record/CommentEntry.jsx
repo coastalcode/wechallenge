@@ -4,7 +4,18 @@ export default class CommentEntry extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: {} }
+    this.state = {
+      user: {},
+      userPic: null
+    }
+  }
+
+  fetchUserPic() {
+    fetch('/images/' + localStorage.user)
+      .then((res)=> res.json())
+      .then((image)=> {
+        this.setState({ userPic: image.json })
+      })
   }
 
   fetchCurrentUser() {
@@ -22,6 +33,7 @@ export default class CommentEntry extends React.Component {
 
   componentDidMount() {
     this.fetchCurrentUser();
+    this.fetchUserPic();
   }
 
   deleteComment() {
@@ -65,6 +77,9 @@ export default class CommentEntry extends React.Component {
         { this.props.comment.description }
         <br/>
         Posted by: { this.state.user.username }
+        { this.state.userPic?
+          <img className="comment--userPic" src={this.state.userPic} />
+          : null }
         <br/>
         <button onClick={ event=> this.deleteComment() }>Delete Button</button>
         <button onClick={ event=> this.pinComment() }>Toggle Pin</button>
