@@ -120,7 +120,6 @@ const CommunityBulletin = db.define('CommunityBulletin', {
 
 const Image = db.define('Image', {
   user: Sequelize.INTEGER,
-  data: Sequelize.BLOB,
   json: Sequelize.JSON
 })
 
