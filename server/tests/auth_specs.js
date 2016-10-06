@@ -3,11 +3,13 @@ import Auth from '../query/auth';
 import Sinon from 'sinon';
 import db from '../db/index'
 
-db.sync();
 
 describe('auth functions', () => {
 
   describe('signup method', () => {
+    before(()=>{
+      db.sync({force: true});
+    )
 
     it('returns a 422 response if info is missing', (done) => {
       let res = {
