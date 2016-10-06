@@ -7,6 +7,7 @@ import VideoList from './VideoList';
 import FileInput from 'react-file-input'
 
 export default class Profile extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -68,22 +69,23 @@ export default class Profile extends Component {
   }
 
   handleImage(event) {
+    let that = this;
     let file = event.target.files[0],
     reader = new FileReader(),
     url = '/images';
-
     let data = reader.readAsDataURL(file)
 
     reader.onload = (e) => {
-      console.log('form', e.target)
       fetch( url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({data: e.target.result, id: localStorage.user, token: localStorage.token})
+        body: JSON.stringify({data: e.target.result, user: localStorage.user, token: localStorage.token})
       }).then((res)=>{
-        console.log('hi', res)
+        if (res.status === 200) {
+          this.setState({userPic: e.target.result})
+        }
       })
     }
 
@@ -100,7 +102,7 @@ export default class Profile extends Component {
                    accept=".png,.gif,.jpg,.jpeg"
                    placeholder="My Image"
                    className="inputClass"
-                   onChange={this.handleImage} />
+                   onChange={this.handleImage.bind(this)} />
         </form>
         { this.state.userComments.length > 0 ?
           <CommentList data={this.state.userComments} />
