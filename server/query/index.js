@@ -160,7 +160,9 @@ module.exports = {
           RecordId: record[0].dataValues.id,
           measurement: req.body.measurement,
           state: req.body.state,
-          public: 1
+          public: req.body.public,
+          CommunityId: req.body.CommunityId
+
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
       })

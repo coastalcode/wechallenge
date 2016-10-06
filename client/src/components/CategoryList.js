@@ -10,7 +10,6 @@ export default class CategoryList extends Component {
     var that = this;
     return (
       <div>
-        <h1>Inside the CategoryList</h1>
         <div className="panel-group" id="accordion">
           {list.map(function(category, catIndex) {
             return (

@@ -8,7 +8,18 @@ describe('auth functions', () => {
 
   describe('signup method', () => {
     before(()=>{
-      db.sync({force: true});
+      const User = db.define('User', {
+        username: Sequelize.STRING,
+        password: Sequelize.STRING,
+        picture: Sequelize.STRING,
+        email: Sequelize.STRING,
+        state: Sequelize.STRING,
+        country: Sequelize.STRING,
+        type: Sequelize.STRING,
+        test: Sequelize.STRING,
+        frozen: Sequelize.INTEGER
+      })
+      User.sync({force: true});
     })
 
     it('returns a 422 response if info is missing', (done) => {
