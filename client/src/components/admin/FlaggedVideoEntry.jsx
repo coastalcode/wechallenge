@@ -83,11 +83,11 @@ export default class RecordEntry extends React.Component {
             </Modal.Header>
             <Modal.Body>
               <h3>Are you sure you want to delete this submission?</h3>
-              <p>A all of the content assoicated to this submission like comments, votes, community comments will also be deleted.</p>
+              <p>All of the content associated to this submission like comments, votes, community comments will also be deleted.</p>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.hideDeleteModal.bind(this)}>Cancel</Button>
-              <Button bsStyle="danger" onClick={this.deleteSubmission.bind(this)}>Yes Delete Submission</Button>
+              <Button bsStyle="danger" onClick={this.deleteSubmission.bind(this)}>Yes, Delete Submission</Button>
             </Modal.Footer>
           </Modal>
         </div> : null }
