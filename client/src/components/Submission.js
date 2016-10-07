@@ -284,8 +284,6 @@ export default class Submission extends Component {
             </div>
           </div>
 
-          <h3>Please pick a category</h3>
-          <CategoryList selectCategory={this.selectCategory.bind(this)} />
         </div>
       )
     } else if (this.state.submitUploadOption === 'url') {
