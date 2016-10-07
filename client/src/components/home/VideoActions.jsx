@@ -10,7 +10,7 @@ export default class VideoAction extends React.Component {
     super(props)
     this.state = {}
     console.log('props', props)
-    this.state.points = props.points
+    this.state.points = props.votes
   }
 
   renderPoints(points) {
@@ -29,10 +29,8 @@ export default class VideoAction extends React.Component {
         {this.state.points ?
           <span className="videoaction-button points">{this.state.points} points</span>
           :
-          null
+          <span className="videoaction-button points">{this.props.votes} points</span>
         }
-
-        <span className="videoaction-button points">{this.props.votes} points</span>
         <span className="videoaction-button share">
           <FacebookShareButton
             className="facebookShare-button"
