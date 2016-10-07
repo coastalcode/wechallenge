@@ -306,5 +306,13 @@ h1.home-header.topGlobal {
   float: left;
 }
 
-/* Admin user table */
+/* Flagged Video Page */
+.btn-group-vertical > button{
+    margin-bottom:10px;
+    border-radius:10px !important;
+}
+
+.flagged-row {
+  padding: 10px;
+}
 
