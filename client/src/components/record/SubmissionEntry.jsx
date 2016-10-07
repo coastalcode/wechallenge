@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentList from './CommentList';
 import { Link } from 'react-router';
+import VideoActions from '../home/VideoActions';
 
 export default class SubmissonEntry extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class SubmissonEntry extends React.Component {
         <br/>
         <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen></iframe>
         <br />
-
+        <VideoActions className="video-actions" title={this.props.submission.title} subId={this.props.submission.id} link={this.props.submission.link} votes={this.props.submission.votes} comments={this.props.submission.comments} />
         { (this.props.submission.official === 1) ? <button onClick={event => this.flagVideo() } ><i className="fa fa-flag" aria-hidden="true"></i></button> : null }
         <CommentList
           currentUser={ this.props.currentUser }
