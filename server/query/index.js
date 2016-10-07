@@ -244,7 +244,7 @@ module.exports = {
     },
 
     findAllFlagged(req, res) {
-      db.Submission.findAll({ where: { official: { $lt: 1 } } })
+      db.Submission.findAll({ where: { official: { $lt: 1 } }, include: [ db.Record ] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
