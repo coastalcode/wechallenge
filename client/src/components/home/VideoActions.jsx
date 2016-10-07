@@ -1,5 +1,9 @@
 import React from 'react';
 import Voting from './Voting';
+import { ShareButtons, generateShareIcon } from 'react-share';
+
+const { FacebookShareButton } = ShareButtons;
+const FacebookIcon = generateShareIcon('facebook');
 
 export default class VideoAction extends React.Component {
   constructor(props) {
@@ -29,8 +33,15 @@ export default class VideoAction extends React.Component {
         }
 
         <span className="videoaction-button points">{this.props.votes} points</span>
-
-        <span className="videoaction-button share">Share</span>
+        <span className="videoaction-button share">
+          <FacebookShareButton
+            className="facebookShare-button"
+            title={'Check out this submission on weChallenge!'}
+            url={'wechallenge.herokuapp.com/record?id=' + this.props.subId}
+            description={this.props.title}>Share
+            <FacebookIcon className="facebookShare-icon" size={32} round={true}/>
+          </FacebookShareButton>
+        </span>
         <span className="videolists-flexbuffer"></span>
       </div>
     )
