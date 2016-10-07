@@ -98,13 +98,30 @@ h1.home-header.topGlobal {
 }
 
 .videoaction-button.points {
-  /*Should buttons have individual colors?*/
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
 
 .videoaction-button:hover {
   cursor: pointer;
   color: #FDFFFC;
   background-color: #FF9F1C;
+}
+
+.videoaction-button.share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.facebookShare-button {
+  display: flex;
+  align-items: center;
+}
+
+.facebookShare-icon {
+  padding-left: 10px;
 }
 
 /*VideoList Component*/
