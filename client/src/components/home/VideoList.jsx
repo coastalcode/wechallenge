@@ -39,7 +39,7 @@ export default class VideoList extends React.Component {
                 <span className="title-banner">{val.title}</span>
                 <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
                 </Link>
-                <UserPic user={val.UserId} username={username}/>
+                <UserPic user={val.UserId} username={val.User.username}/>
             </div>
           )
         })}
