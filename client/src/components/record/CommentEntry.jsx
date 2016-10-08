@@ -42,7 +42,6 @@ export default class CommentEntry extends React.Component {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         method: 'delete',
-        // body: JSON.stringify(comment)
     }).then(function(response) {
       that.props.fetchComments();
     })

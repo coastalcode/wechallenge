@@ -76,14 +76,15 @@ export default class Records extends React.Component {
   }
 
   sortSubmissions(searchType) {
-    this.state.submissions.sort(function (a, b) {
+    let submissions = this.state.submissions.slice();
+    submissions.sort(function (a, b) {
       if (a[searchType] > b[searchType]) {
         return -1
       } else {
         return 1
       }
     })
-    console.log("sorted", this.state.submissions)
+    this.setState({ submissions })
     this.setState({ searchType })
   }
 
@@ -121,12 +122,15 @@ export default class Records extends React.Component {
         </div>
 
 
+        { (this.state.submissions.length > 0) ?
         <RecordList
           search={ this.state.search }
           searchRegion = { this.state.searchRegion }
           submissions={ this.state.submissions }
           records={ this.state.records }
-          checkForMatching={ this.checkForMatching }/>
+          checkForMatching={ this.checkForMatching }/> : null
+
+        }
       </div>
     )
   }
