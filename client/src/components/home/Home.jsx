@@ -25,21 +25,15 @@ export default class Home extends React.Component {
     let promise = fetch('/submissions').then(res=>res.json())
     promise.then((data)=>{
       console.log('submissions', data)
-      let stateVideos = data.filter(val=>val.state === localStorage.region)
-      this.setState({videos: data});
+      let videos = data.sort((a,b)=> b.votes > a.votes)
+      let stateVideos = videos.filter(val=>val.state === localStorage.region)
+      this.setState({videos: videos});
       this.setState({stateVideos: stateVideos})
-      this.setState({mainvideo: data[data.length - 1]})
+      this.setState({mainvideo: videos[0]})
     })
   }
 
   render() {
-    let testVideo = {
-      videoID: 'l6Zs_l7TOhg',
-      title: 'Oranges?!',
-      comments: 23,
-      points: 99
-    }
-    let testVideoArray = new Array(5).fill(testVideo)
     return (
       <div>
         { this.state.mainvideo ?
