@@ -67,3 +67,17 @@ export function createCommunity({name, description}) {
       })
   }
 }
+
+export function joinCommunity(id) {
+  let userid = localStorage.getItem('user');
+  return function(dispatch) {
+    axios.post('/communities/join', {userid, submissionid: id})
+      .then(response=>{
+        console.log('community created');
+        browserHistory.push('/communities')
+      })
+      .catch(response=> {
+        console.log('error :', response);
+      })
+  }
+}

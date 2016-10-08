@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 import { state_list, country_list, canada_list } from './states';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Signup extends Component {
   constructor (props){
@@ -73,43 +74,30 @@ class Signup extends Component {
   render() {
     const { handleSubmit, fields: {email, password, passwordConfirm, username, state, country}} = this.props
     return(
-
       <form className="form1" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <fieldset className="form-group">
           <label className="label1">Username</label>
           <input className="form-control input1" {...username}/>
-          {username.touched && username.error && <div className="error">{username.error}</div> }
+          {username.touched && username.error && <div className="error1">{username.error}</div> }
         </fieldset>
 
         <fieldset className="form-group">
           <label className="label1">Email</label>
           <input className="form-control input1" {...email}/>
-          {email.touched && email.error && <div className="error">{email.error}</div> }
+          {email.touched && email.error && <div className="error1">{email.error}</div> }
         </fieldset>
 
         <fieldset className="form-group">
           <label className="label1" >Password</label>
           <input className="form-control input1" {...password} type="password" />
-
-          {password.touched && password.error && <div className="error">{password.error}</div> }
+          {password.touched && password.error && <div className="error1">{password.error}</div> }
         </fieldset>
 
         <fieldset className="form-group">
           <label className="label1">Confirm Password</label>
           <input className="form-control input1" {...passwordConfirm} type="password" />
-          {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div> }
+          {passwordConfirm.touched && passwordConfirm.error && <div className="error1">{passwordConfirm.error}</div> }
         </fieldset>
-
-        <fieldset className="form-group" {...country}>
-            <label className="label1">Country</label>
-          {this.renderCountry()}
-        </fieldset>
-
-        <fieldset className="form-group" {...state}>
-            <label className="label1">State/Province</label>
-          {this.renderStates()}
-        </fieldset>
-
         <button action="submit" className="button1">Sign Up</button>
         {this.renderAlert()}
       </form>

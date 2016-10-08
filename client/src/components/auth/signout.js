@@ -14,4 +14,4 @@ class Signout extends Component {
   }
 }
 
-export default connect(null,actions)(Signout)
+export default connect(null, actions)(Signout)
