@@ -11,11 +11,10 @@ export default class Nav extends Component {
   render() {
     const that = this;
     return (
-      <div className="records-catlist">
+      <div className="flex-container">
         <div className="panel-group" id="accordion">
           <div className="panel panel-default">
         {this.props.communities.map(function(community){
-          console.log("community", community)
           return (
               <div onClick={()=> that.props.open(community.CommunityId)} className="panel-heading">
               {community.Community.name}

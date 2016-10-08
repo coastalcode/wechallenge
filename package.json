@@ -66,6 +66,7 @@
     "pg-hstore": "^2.3.2",
     "rc-collapse": "^1.6.6",
     "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-async-script-loader": "^0.2.1",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
