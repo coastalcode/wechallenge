@@ -88,7 +88,9 @@ module.exports = function (app) {
   app.get('/communities/comments', query.communityComments.findForOne)
   app.post('/communities/comments', query.communityComments.add)
 
+  app.get('/communitiesall', query.community.findAll);
   app.post('/communities', query.community.createAndJoinCommunity)
+  app.post('/communities/join', query.community.addMembership)
   // there is an issue here**
   app.get('/communities/:userid', query.community.findAllCommunities)
   app.get('/community/:id', query.community.findCommunity)

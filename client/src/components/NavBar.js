@@ -13,7 +13,7 @@ class NavBar extends Component {
         <Link to="/profile" className="navbar-brand">Profile</Link>
       </li>,
       <li key={1}>
-          <Link to="/signout" className="navbar-brand">Sign Out</Link>
+          <Link to="/" className="navbar-brand">Sign Out</Link>
       </li>
       ];
     } else {
@@ -64,9 +64,6 @@ class NavBar extends Component {
           </div>
           <div className="collapse navbar-collapse" id="myNavbar">
             <ul className="nav navbar-nav">
-              <li>
-                <Link to="/" className="navbar-brand">Home</Link>
-              </li>
               { // <li>
               //   <Link to="/challenges" className="navbar-brand">Challenges</Link>
               // </li>
