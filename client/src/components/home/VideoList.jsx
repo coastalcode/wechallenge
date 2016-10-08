@@ -28,6 +28,7 @@ export default class VideoList extends React.Component {
         }
         { this.props.videos.map((val,i)=>{
           console.log('videolistval', val)
+          let username = val.User.username || '';
           let thumbStyle = {
             width: '80%'
           }
@@ -38,7 +39,7 @@ export default class VideoList extends React.Component {
                 <span className="title-banner">{val.title}</span>
                 <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
                 </Link>
-                <UserPic user={val.UserId} username={val.User.username} />
+                <UserPic user={val.UserId} username={username}/>
             </div>
           )
         })}
