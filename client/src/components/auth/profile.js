@@ -68,27 +68,47 @@ export default class Profile extends Component {
     })
   }
 
+  storeImage(data) {
+    fetch( '/images', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({data: data, user: localStorage.user, token: localStorage.token})
+    }).then((res)=>{
+      if (res.status === 200) {
+        this.setState({userPic: data})
+      }
+    })
+  }
+
+  compressImage(bigdata) {
+    let img = new Image();
+    img.src = bigdata;
+
+    img.onload = () => {
+      let canvas = document.createElement('canvas');
+      let width = 150;
+      let height = Math.floor(img.height / (img.width / width));
+      canvas.width = width;
+      canvas.height = height;
+      let ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      let data = canvas.toDataURL('image/jpeg', 0.7);
+      this.storeImage(data);
+    }
+
+  }
+
   handleImage(event) {
-    let that = this;
     let file = event.target.files[0],
     reader = new FileReader(),
     url = '/images';
-    let data = reader.readAsDataURL(file)
+    reader.readAsDataURL(file)
 
     reader.onload = (e) => {
-      fetch( url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({data: e.target.result, user: localStorage.user, token: localStorage.token})
-      }).then((res)=>{
-        if (res.status === 200) {
-          this.setState({userPic: e.target.result})
-        }
-      })
+      this.compressImage(e.target.result)
     }
-
   }
 
   render() {

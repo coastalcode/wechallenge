@@ -3,6 +3,7 @@ import Video from './Video';
 import YouTube from 'react-youtube';
 import VideoActions from './VideoActions';
 import { Link } from 'react-router';
+import UserPic from './UserPic';
 
 export default class VideoList extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class VideoList extends React.Component {
                 <span className="title-banner">{val.title}</span>
                 <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
                 </Link>
-              <VideoActions title={val.title} subId={val.id} votes={val.votes} comments={val.comments} />
+                <UserPic user={val.UserId} username={val.User.username} />
             </div>
           )
         })}
