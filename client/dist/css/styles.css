@@ -323,6 +323,11 @@ h1.home-header.topGlobal {
   float: left;
 }
 
+.submissionContainer {
+  margin: 0 10px;
+}
+
+
 /* Flagged Video Page */
 .btn-group-vertical > button{
     margin-bottom:10px;
@@ -331,5 +336,13 @@ h1.home-header.topGlobal {
 
 .flagged-row {
   padding: 10px;
+}
+
+/* Site Buttons */
+.btn-primary {
+  background-color: #011627;
+  color: #FF9F1C;
+  border-color: #011627;
+  margin: 0 3px;
 }
 
