@@ -68,7 +68,7 @@ module.exports = function (app) {
 
   ///
 
-  app.get('/votes', query.vote.findAll);
+  app.get('/votes/all', query.vote.findAll);
   app.post('/votes', query.vote.add);
   app.put('/votes', query.vote.toggleVote)
   app.get('/votes/:id', query.vote.findOne);

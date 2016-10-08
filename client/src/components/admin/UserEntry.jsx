@@ -61,7 +61,13 @@ export default class UserEntry extends React.Component {
           {this.state.type > 0 && this.state.type < 4 ? <button
             type="button"
             className="btn btn-success btn-xs"
-            onClick={this.saveUser.bind(this)}>Save</button> : null}
+            onClick={this.saveUser.bind(this)}>Save</button>
+            :
+          <button
+            type="button"
+            className="btn btn-warning btn-xs"
+            onClick={this.changeView.bind(this, 'normal')}>Cancel</button>
+          }
           {this.props.user.frozen === 0 ? <button onClick={this.openFreeze.bind(this)} type="button" className="btn btn-danger btn-xs">Freeze</button> : <button onClick={this.openMelt.bind(this)} type="button" className="btn btn-danger btn-xs">Melt</button>}
         </td>,
         ]

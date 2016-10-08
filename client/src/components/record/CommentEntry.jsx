@@ -3,8 +3,36 @@ import React from 'react';
 export default class CommentEntry extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: {},
+      userPic: null
+    }
+  }
 
-    this.state = {}
+  fetchUserPic(id) {
+    fetch('/images/' + id)
+      .then((res)=> res.json())
+      .then((image)=> {
+        this.setState({ userPic: image.json })
+      })
+  }
+
+  fetchCurrentUser() {
+    let init = {
+      method: 'GET',
+      headers: new Headers()
+    }
+
+    fetch(`/users/${ this.props.comment.UserId }`)
+      .then((user)=> user.json())
+      .then((user)=>{
+        this.setState({ user });
+        this.fetchUserPic(user.id)
+    })
+  }
+
+  componentDidMount() {
+    this.fetchCurrentUser();
   }
 
   deleteComment() {
@@ -31,6 +59,9 @@ export default class CommentEntry extends React.Component {
         { this.props.comment.description }
         <br/>
         Posted by: { this.props.comment.User.username }
+        { this.state.userPic?
+          <img className="comment--userPic" src={this.state.userPic} />
+          : null }
         <br/>
         { ( this.props.comment.UserId === this.props.currentUser.id ) ?
         <button onClick={ event=> this.deleteComment() }> Delete </button>

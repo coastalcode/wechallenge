@@ -24,8 +24,9 @@ export default class Voting extends React.Component {
       method: 'GET',
       headers: new Headers()
     }
-    let promise = fetch('/votes').then(res=>res.json());
+    let promise = fetch('/votes/all').then(res=>res.json());
     promise.then((data)=>{
+      console.log('data', data)
       data = data.filter((el)=>{
         return el.UserId == localStorage.user && el.SubmissionId == subId
       })
@@ -59,7 +60,7 @@ export default class Voting extends React.Component {
       };
       let promise = fetch('/submissions/upvote/' + this.props.link, init).then(res=>res.json());
       promise.then((data)=>{
-        this.recordVote(data.id, Number(localStorage.user));
+        this.recordVote(this.props.subId, Number(localStorage.user));
         this.props.callback(data.votes);
       })
     } else if(!this.state.canVote) {
@@ -70,7 +71,7 @@ export default class Voting extends React.Component {
   render() {
 
     return (
-      <div className="videoaction-button" onClick={this.addVote.bind(this)}>
+      <div className="videoaction-button points" onClick={this.addVote.bind(this)}>
         {this.state.voted === false ?
           <span>Vote Up</span>
           :

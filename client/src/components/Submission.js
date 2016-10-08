@@ -225,7 +225,7 @@ export default class Submission extends Component {
 
           <div className="post-sign-in">
             <h3>Now that you are signed into YouTube, please fill out the following information</h3>
-            <h4>Pick a category</h4>
+
             <CategoryList selectCategory={this.selectCategory.bind(this)} />
 
             <h4>Selected Category: &nbsp;
@@ -284,15 +284,13 @@ export default class Submission extends Component {
             </div>
           </div>
 
-          <h3>Please pick a category</h3>
-          <CategoryList selectCategory={this.selectCategory.bind(this)} />
         </div>
       )
     } else if (this.state.submitUploadOption === 'url') {
       return (
         <div>
           <h3>You will be submitting an existing YouTube url, please fill out the following information</h3>
-          <h4>Pick a category</h4>
+
           <CategoryList selectCategory={this.selectCategory.bind(this)} />
 
           <h4>Selected Category: &nbsp;
@@ -316,7 +314,7 @@ export default class Submission extends Component {
               <option>higher</option>
             </select>
           </div>
-
+          <label>The title and description will be taken from the YouTube link</label>
           <p className="flexbox-container--column">
             <input placeholder="Add existing YouTube link" type="text" id="submittedLink" className="button" />
             { this.state.invalidLink ?
@@ -335,7 +333,7 @@ export default class Submission extends Component {
   render() {
     console.log('in render community id select: ', this.state.submitCommunity);
     return (
-      <div>
+      <div  className="submissionContainer">
         {this.state.authenticated ? <div>
           <h1>Submit a Challenge</h1>
           <h3>Is this challenge for the entire site or a specific community?</h3>

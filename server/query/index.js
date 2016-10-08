@@ -244,7 +244,7 @@ module.exports = {
     },
 
     findAllFlagged(req, res) {
-      db.Submission.findAll({ where: { official: { $lt: 1 } } })
+      db.Submission.findAll({ where: { official: { $lt: 1 } }, include: [ db.Record ] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
@@ -654,7 +654,7 @@ module.exports = {
     get(req, res) {
       let user = Number(req.params.id)
       // console.log('hi', user)
-      db.Image.findOne({where: {user: user}})
+      db.Image.findOne({where: {uid: user}})
         .then((data)=>{
           // console.log('data', data)
           res.json(data)

@@ -2,6 +2,7 @@ import React from 'react';
 import SubmissionEntryVideo from './SubmissionEntryVideo';
 import SubmissionEntryInfo from './SubmissionEntryInfo';
 import { Link } from 'react-router';
+import VideoActions from '../home/VideoActions';
 
 export default class SubmissonEntry extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export default class SubmissonEntry extends React.Component {
   render() {
     return (
       <div>
+
         Submission Title: { this.props.submission.title }
 
         { (this.state.flagged) ? <div> Thanks for flagging the video! </div> : null }
@@ -35,6 +37,7 @@ export default class SubmissonEntry extends React.Component {
 
         <SubmissionEntryVideo submission={ this.props.submission } />
         <br/>
+        <VideoActions className="video-actions" title={this.props.submission.title} subId={this.props.submission.id} link={this.props.submission.link} votes={this.props.submission.votes} comments={this.props.submission.comments} />
         <SubmissionEntryInfo
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }

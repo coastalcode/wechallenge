@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 export default class RecordEntry extends React.Component {
   constructor(props) {
@@ -47,27 +48,49 @@ export default class RecordEntry extends React.Component {
     let url = `https://www.youtube.com/embed/${ this.props.flag.link }`
     return (
       <div>
-        {this.state.view === 'normal' ? <div>
-        { this.props.flag.title }
-        <br/>
-        <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen></iframe>
-        <br />
-        <button onClick={this.showDeleteModal.bind(this)} >Remove this video</button>
-        <button onClick={event=>{ this.toggleFlagVideo()  }} >Unflag this video</button>
+        {this.state.view === 'normal' ?
+        <div>
+          <div className="row flagged-row">
+            <div className="col-sm-5">
+              <div className="embed-responsive embed-responsive-16by9">
+                <iframe className="col-sm-5" src={ url } frameBorder="0" allowFullScreen></iframe>
+              </div>
+            </div>
 
-        <Modal show={this.state.showDeleteModal} onHide={this.hideDeleteModal.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Confirm Deleting a Submission</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h3>Are you sure you want to delete this submission?</h3>
-            <p>A all of the content assoicated to this submission like comments, votes, community comments will also be deleted.</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.hideDeleteModal.bind(this)}>Cancel</Button>
-            <Button bsStyle="danger" onClick={this.deleteSubmission.bind(this)}>Yes Delete Submission</Button>
-          </Modal.Footer>
-        </Modal> </div> : null }
+            <div className="col-sm-4">
+              <label>Title: </label>
+              { this.props.flag.title }
+              <label>Category / Subcategory:</label>
+              { `${this.props.flag.Record.category} / ${this.props.flag.Record.subcategory}` }
+              <label>Measurment:</label>
+              {`${this.props.flag.measurement} ${this.props.flag.Record.units}`}
+            </div>
+
+            <div className="col-sm-3">
+              <div className="btn-group-vertical">
+                <button className="btn btn-success" onClick={event=>{ this.toggleFlagVideo()  }} >Unflag this video</button>
+                <button className="btn btn-danger" onClick={this.showDeleteModal.bind(this)} >Remove this video</button>
+                <Link to={`/record?id=${this.props.flag.RecordId}`}><button className="btn btn-primary" onClick={this.showDeleteModal.bind(this)} >Go to Record Page</button></Link>
+              </div>
+            </div>
+          </div>
+
+
+
+          <Modal show={this.state.showDeleteModal} onHide={this.hideDeleteModal.bind(this)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Deleting a Submission</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h3>Are you sure you want to delete this submission?</h3>
+              <p>All of the content associated to this submission like comments, votes, community comments will also be deleted.</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.hideDeleteModal.bind(this)}>Cancel</Button>
+              <Button bsStyle="danger" onClick={this.deleteSubmission.bind(this)}>Yes, Delete Submission</Button>
+            </Modal.Footer>
+          </Modal>
+        </div> : null }
 
       </div>
     )

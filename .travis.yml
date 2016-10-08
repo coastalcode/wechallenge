@@ -5,6 +5,7 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database wechallenge;' -U postgres
+  - psql -U postgres wechallenge < dbexport.pgsql
 deploy:
   provider: heroku
   api_key:
