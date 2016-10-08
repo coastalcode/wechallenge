@@ -28,7 +28,7 @@ export default class VideoList extends React.Component {
         }
         { this.props.videos.map((val,i)=>{
           console.log('videolistval', val)
-          let username = val.User.username || '';
+          val.User = val.User || {username: 'Anonymous'}
           let thumbStyle = {
             width: '80%'
           }
