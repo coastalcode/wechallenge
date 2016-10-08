@@ -167,6 +167,21 @@ h1.home-header.topGlobal {
   cursor: pointer;
 }
 
+.videolist-userFlex {
+  display: flex;
+  align-items: center;
+}
+
+.videolist-userpic {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+
 /*centers video lists*/
 .videolists-flexbuffer {
   flex-grow: 2;
