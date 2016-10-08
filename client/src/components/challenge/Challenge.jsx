@@ -7,6 +7,7 @@ export default class Challenges extends React.Component {
     super(props);
 
     this.userId = localStorage.getItem('user') || 0;
+    this.region = localStorage.getItem('region');
 
     this.state = {
       submission: {
@@ -14,6 +15,7 @@ export default class Challenges extends React.Component {
           link: "",
           description: "",
           public: 0,
+          state: this.region,
           userId: this.userId,
           recordId: this.props.rid,
           measurement: 0
@@ -51,14 +53,24 @@ export default class Challenges extends React.Component {
     console.log(this.props.rid, "record info????")
     return (
       <div>
+      This is the current record: { this.props.first.measurement } { this.props.record.units }
+      <br/>
+
       Title:
       <br/>
       <input onChange={ event => this.changeSubmissionProperties(event.target.value, 'title') } />
       <br/>
+
       Video description:
       <br/>
       <input onChange={ event => this.changeSubmissionProperties(event.target.value, 'description') } />
       <br/>
+
+      Measurement:
+      <br/>
+      <input onChange={ event => this.changeSubmissionProperties(event.target.value, 'measurement') } />
+      <br/>
+
       <form onChange={ event => this.changeSubmissionProperties(event.target.value, 'public') }>
         <input type="radio" value='0'/> Show in communities only
         <br/>

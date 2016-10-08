@@ -21,11 +21,6 @@ export default class Record extends React.Component {
   }
 
   fetchCurrentUser() {
-    let init = {
-      method: 'GET',
-      headers: new Headers()
-    }
-
     fetch(`/users/${ localStorage.getItem('user') }`)
       .then((currentUser)=> currentUser.json())
       .then((currentUser)=>{
@@ -34,11 +29,6 @@ export default class Record extends React.Component {
   }
 
   fetchRecordInfo() {
-    let init = {
-      method: 'GET',
-      headers: new Headers()
-    }
-
     fetch(`/records/${ this.props.location.query.id }`)
       .then((recordInfo)=> recordInfo.json())
       .then((recordInfo)=>{
@@ -48,23 +38,25 @@ export default class Record extends React.Component {
   }
 
   fetchVideos() {
-    let sortFunction = this.sortSubmissions.bind(this)
+    let that = this;
     let toggle = this.props.toggle
 
     fetch(`/submissions/${ this.props.location.query.id }`)
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
-        console.log(submissions)
-        return submissions})
+        return submissions;
+      })
       .then((submissions)=> {
-        sortFunction();
+        that.sortSubmissions();
       })
   }
 
   sortSubmissions() {
-    let more = this.state.recordInfo.moreisgood
-    this.state.submissions.sort(function (a, b) {
+    let more = this.state.recordInfo.moreisgood;
+    let submissions = this.state.submissions.slice();
+
+    submissions.sort((a, b) => {
       if (more) {
         if (a.measurement > b.measurement) {
           return -1
@@ -79,6 +71,8 @@ export default class Record extends React.Component {
         }
       }
     })
+    this.setState({ submissions })
+
   }
 
   toggleChallengeShow() {
@@ -100,8 +94,10 @@ export default class Record extends React.Component {
 
       { (this.state.challengeShow) ?
         <Challenge
+          first={ this.state.submissions[0] }
+          record={ this.state.recordInfo }
           toggle={ this.toggleChallengeShow.bind(this) }
-          rid={ this.props.location.query.id  } />
+          rid={ this.props.location.query.id } />
           : null }
 
         <br/>

@@ -11,7 +11,6 @@ export default class SubmissionList extends React.Component {
   render() {
     return (
       <div>
-        <h2>{ this.props.record.title }</h2>
         { this.props.submissions.map((submission) => {
           return (<SubmissionEntry
             currentUser={ this.props.currentUser }
