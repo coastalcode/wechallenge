@@ -19,6 +19,7 @@ export default class CSubmissonEntry extends React.Component {
     return (
       <div>
         { this.props.submission.title }
+        { (this.props.submission.official === 0) ? <div>This video is currently under review!</div> : null }
         <br/>
         <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen></iframe>
         <br />

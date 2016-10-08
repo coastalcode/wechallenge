@@ -46,7 +46,7 @@ export default class BulletinList extends React.Component {
     let bulletin = {
       subject: subject,
       message: message,
-      userId: 1,
+      userId: localStorage.getItem('user'),
       communityId: this.props.cid
     }
     console.log("bulletin to be added", bulletin)

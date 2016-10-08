@@ -304,13 +304,15 @@ module.exports = {
   ////
   comment: {
     findAll(req, res) {
-      db.Comment.findAll()
+      db.Comment.findAll({ include: [ db.User ] })
       .then(comments => res.json(comments))
       .catch(err => console.error(error))
     },
 
     findAllWhere(req, res) {
-      db.Comment.findAll({ where: { SubmissionId: req.params.submissionid } })
+      db.Comment.findAll({
+        include: [ db.User ],
+        where: { SubmissionId: req.params.submissionid } })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))
     },
