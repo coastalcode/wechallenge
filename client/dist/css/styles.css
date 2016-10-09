@@ -173,6 +173,15 @@ h1.home-header.topGlobal {
   overflow-wrap: break-word;
 }
 
+.record-banner {
+  display: flex;
+  align-items: center;
+}
+
+.user-wrapper {
+  display: flex;
+}
+
 .videolist-thumb {
   width: 50%;
   height: 50%;

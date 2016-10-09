@@ -40,7 +40,10 @@ export default class VideoList extends React.Component {
                 </Link>
                 <div className="youtube-deets">
                   <span className="title-banner">{val.title}</span>
-                  <UserPic user={val.UserId} username={val.User.username}/>
+                  <div className="user-wrapper">
+                    <UserPic user={val.UserId} username={val.User.username}/>
+                    <span className="record-banner">&nbsp;in&nbsp;<strong>{val.Record.category}</strong></span>
+                  </div>
                 </div>
             </div>
           )
