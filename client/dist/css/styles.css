@@ -25,6 +25,7 @@ body {
   color: #FF9F1C !important;
 }
 
+<<<<<<< 85602b96e1acad3d6cf738783a86b9e03b26f680
 .bar {
   font-family: 'Oswald', sans-serif;
   background-color: #101010;
@@ -54,6 +55,12 @@ body {
 
 
 
+=======
+.navbar-brand:hover {
+  cursor: pointer;
+}
+
+>>>>>>> Refactor Submitted and Voted List on Profile page
 /*home component*/
 
 h1 {
@@ -241,14 +248,7 @@ h1.home-header.topGlobal {
   flex-grow: 2;
 }
 
-/*Profile Component*/
-.profile--userPic {
-  width: 100px;
-}
 
-.comment--userPic {
-  width: 40px;
-}
 
 /*Media queries*/
 
@@ -514,6 +514,7 @@ h1.home-header.topGlobal {
   margin: 0 3px;
 }
 
+
 /* starting state of animation*/
 
 .business-header {
@@ -575,4 +576,18 @@ footer {
   order: 1;
   margin: 0 0 0 1em;
 
+
+
+/*Profile Component*/
+.profile--userPic {
+  width: 100px;
+}
+
+.comment--userPic {
+  width: 40px;
+}
+
+.profileButton {
+  margin-bottom: 15px;
+}
 
