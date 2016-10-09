@@ -12,8 +12,9 @@ export default class UserPic extends React.Component {
     fetch('/images/' + id)
       .then(data=>data.json())
       .then((image)=>{
-        image.json = image.json || null
-        this.setState({userPic: image.json})
+        if (image) {
+          this.setState({userPic: image.json})
+        }
       })
   }
 
