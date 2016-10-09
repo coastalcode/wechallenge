@@ -34,12 +34,17 @@ export default class VideoList extends React.Component {
           }
           let path = `/record?id=${ val.RecordId }`
           return (
-            <div key={i}>
+            <div className="youtube-flexbox" key={i}>
                 <Link className="youtube-container" to={ path }>
-                <span className="title-banner">{val.title}</span>
-                <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
+                <div className="youtube-thumbnail" style={{ backgroundImage: 'url(http://img.youtube.com/vi/' + val.link + '/hqdefault.jpg)'}}></div>
                 </Link>
-                <UserPic user={val.UserId} username={val.User.username}/>
+                <div className="youtube-deets">
+                  <span className="title-banner">{val.title}</span>
+                  <div className="user-wrapper">
+                    <UserPic user={val.UserId} username={val.User.username}/>
+                    <span className="record-banner">&nbsp;in&nbsp;<strong>{val.Record.category}</strong></span>
+                  </div>
+                </div>
             </div>
           )
         })}

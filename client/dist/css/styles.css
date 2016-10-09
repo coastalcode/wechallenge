@@ -166,24 +166,49 @@ h1.home-header.topGlobal {
   align-items: baseline;
 }
 
+.youtube-flexbox {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 99;
+}
+
 .youtube-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.youtube-container .title-banner {
-  width: 80%;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  position: relative;
-  height: 0;
-  top: 30px;
-  color: #FDFFFC;
-  font-size: 2em;
+.youtube-deets {
+  display: flex;
+  width: 40%;
+  padding-left: 10px;
+  flex-direction: column;
+  flex-flow: wrap;
+}
+
+.youtube-thumbnail {
+  border-radius: 10px;
+  width: 320px;
+  height: 180px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.title-banner {
+  font-size: 1.5em;
   overflow-wrap: break-word;
-  text-shadow: black 1px 1px 4px;
+}
+
+.record-banner {
+  display: flex;
+  align-items: center;
+}
+
+.user-wrapper {
+  display: flex;
 }
 
 .videolist-thumb {
