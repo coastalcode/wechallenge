@@ -38,7 +38,7 @@ export default class Records extends React.Component {
         let tempRegions = {};
         let regions = [];
         submissions.map(submission => {
-          if (!tempRegions[submission.state]) {
+          if (!tempRegions[submission.state] && submission.state) {
             tempRegions[submission.state] = true;
           }
         })
@@ -56,7 +56,6 @@ export default class Records extends React.Component {
 
   updateSearchRegion(searchRegion) {
     this.setState({ searchRegion })
-    console.log(this.state.searchRegion)
   }
 
   // use this to account for non-exact matches
@@ -106,13 +105,21 @@ export default class Records extends React.Component {
           <select onChange={ event => this.updateSearchRegion( event.target.value )}>
             <option value="">Show all</option>
             <option value={ localStorage.getItem('region') }>My region ({ localStorage.getItem('region') })</option>
+
           { this.state.regions.map((region)=>
             <option value={ region }>{ region }</option>) }
           </select>
+
         <div>
           Your current search: { this.state.search }
           <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
-          <RecordNav updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
+
+          { (this.state.regions.length > 0) ?
+            <RecordNav
+              updateSearchRegion={ this.updateSearchRegion.bind(this) }
+              updateSearchTerm={ this.updateSearchTerm.bind(this) }
+              regions={ this.state.regions } /> : null }
+
         </div>
 
         <div>
@@ -128,9 +135,7 @@ export default class Records extends React.Component {
           searchRegion = { this.state.searchRegion }
           submissions={ this.state.submissions }
           records={ this.state.records }
-          checkForMatching={ this.checkForMatching }/> : null
-
-        }
+          checkForMatching={ this.checkForMatching }/> : null }
       </div>
     )
   }

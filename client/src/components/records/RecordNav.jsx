@@ -14,6 +14,44 @@ export default class RecordNav extends React.Component {
   }
 
   render() {
-    return ( <CategoryList updateSearchTerm={ this.props.updateSearchTerm }/> )
+    return (
+      <div>
+      <div className="records-catlist">
+        <div className="panel-group">
+
+          <div onClick={ event => this.props.updateSearchRegion('') } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                Show all
+              </h4>
+            </div>
+          </div>
+
+          <div onClick={ event => this.props.updateSearchRegion(localStorage.getItem('region')) } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                My region ({ localStorage.getItem('region') })
+              </h4>
+            </div>
+          </div>
+
+          { this.props.regions.map((region) => {
+            return (
+              <div onClick={ event => this.props.updateSearchRegion(region) } className="panel panel-default">
+                <div className="panel-heading">
+                  <h4 className="panel-title">
+                    { region }
+                  </h4>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <CategoryList updateSearchTerm={ this.props.updateSearchTerm }/>
+      </div>
+    )
   }
 }

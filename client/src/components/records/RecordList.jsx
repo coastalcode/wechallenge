@@ -6,15 +6,15 @@ export default class RecordList extends React.Component {
     super(props);
 
     this.state = {
-      currentlyShowing : this.props.submissions.slice(0, 5),
-      index: 0
+      currentlyShowing : [],
+      index: 0,
+      perPage: 5
+      // change this to easily change number shown per page
     }
   }
 
   selectSubmissions(index) {
-    console.log("this is the index we're using", index)
-    console.log(this.props.submissions)
-    let currentlyShowing = this.props.submissions.slice(index, index + 5);
+    let currentlyShowing = this.props.submissions.slice(index, index + this.state.perPage);
     this.setState({ currentlyShowing });
     this.setState({ index })
   }
@@ -25,24 +25,23 @@ export default class RecordList extends React.Component {
   }
 
   render() {
-    console.log("inside render:", this.props.submissions)
     return (
       <div className="recordList">
-        { this.state.currentlyShowing.map((submission) => {
-          return (<RecordEntry key={ submission.id }
+        { this.state.currentlyShowing.map((submission) =>
+          (<RecordEntry key={ submission.id }
             submission={ submission }
             checkForMatching={ this.props.checkForMatching }
             search={ this.props.search }
             searchRegion = { this.props.searchRegion }/>)
-        })}
+        )}
         <br/>
         {
           (this.state.index > 0) ?
-          <button onClick={ event => this.selectSubmissions(this.state.index - 5) }>Prev!</button> : null
+          <button onClick={ event => this.selectSubmissions(this.state.index - this.state.perPage) }>Prev!</button> : null
         }
         {
-          (this.state.index < this.props.submissions.length) ?
-          <button onClick={ event => this.selectSubmissions(this.state.index + 5) }>Next!</button> : null
+          ((this.state.index + this.state.perPage) < this.props.submissions.length) ?
+          <button onClick={ event => this.selectSubmissions(this.state.index + this.state.perPage) }>Next!</button> : null
         }
       </div>
     )
