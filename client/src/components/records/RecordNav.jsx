@@ -5,6 +5,8 @@
 import React from 'react';
 import Collapse from 'rc-collapse'
 import CategoryList from './CategoryList';
+import SearchBar from './SearchBar';
+
 
 const Panel = Collapse.Panel;
 
@@ -14,6 +16,18 @@ export default class RecordNav extends React.Component {
   }
 
   render() {
-    return ( <CategoryList updateSearchTerm={ this.props.updateSearchTerm }/> )
+    return (
+      <div className="allrecords-children allrecords-recordnav">
+
+      <SearchBar updateSearchTerm={ this.props.updateSearchTerm }/>
+        <br/>
+
+      <CategoryList
+        sortSubmissions={ this.props.sortSubmissions }
+        updateSearchRegion={ this.props.updateSearchRegion }
+        updateSearchTerm={ this.props.updateSearchTerm }
+        regions={ this.props.regions }/>
+      </div>
+    )
   }
 }

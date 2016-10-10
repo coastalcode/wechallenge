@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentList from './CommentList';
 import SubmissionList from './SubmissionList';
+
 import Challenge from '../challenge/Challenge'
 import { Link } from 'react-router';
 
@@ -29,7 +30,7 @@ export default class Record extends React.Component {
   }
 
   fetchRecordInfo() {
-    fetch(`/records/${ this.props.location.query.id }`)
+    fetch(`/records/${ this.props.location.query.rid }`)
       .then((recordInfo)=> recordInfo.json())
       .then((recordInfo)=>{
         this.setState({ recordInfo });
@@ -40,8 +41,15 @@ export default class Record extends React.Component {
   fetchVideos() {
     let that = this;
     let toggle = this.props.toggle
+    let fetchPath;
 
-    fetch(`/submissions/${ this.props.location.query.id }`)
+    if (this.props.location.query.cid) {
+      fetchPath = `/submissions/community?rid=${ this.props.location.query.rid }&cid=${ this.props.location.query.cid }`
+    } else {
+      fetchPath = `/submissions/${ this.props.location.query.rid }`
+    }
+
+    fetch(fetchPath)
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
@@ -86,8 +94,11 @@ export default class Record extends React.Component {
   }
 
   render() {
+  let mainpage = `/record?rid=${ this.props.location.query.rid }`
+  let that = this;
+
     return (
-      <div>
+      <div className="indivrecord">
       <center>
       <button onClick={ event => this.toggleChallengeShow() }> Challenge! </button>
       <br/>
@@ -97,11 +108,16 @@ export default class Record extends React.Component {
           first={ this.state.submissions[0] }
           record={ this.state.recordInfo }
           toggle={ this.toggleChallengeShow.bind(this) }
-          rid={ this.props.location.query.id } />
+          rid={ this.props.location.query.rid } />
           : null }
 
         <br/>
+        { (this.props.location.query.cid) ? <Link to={ mainpage }>
+          <button onClick={ event => window.location.reload() }>Check out the main page for this record!</button>
+        </Link> : null }
+
         <SubmissionList
+          cid={ this.props.location.query.cid }
           currentUser={ this.state.currentUser }
           submissions={ this.state.submissions }
           record={ this.state.recordInfo } />

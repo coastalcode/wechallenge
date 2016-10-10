@@ -8,12 +8,11 @@ export default class SearchBar extends React.Component {
 
   render() {
     return (
-      <div>
-      <center>
+      <div className="allrecords-searchbar">
         Search:
+        <br/>
         <input
           onChange={ event => this.props.updateSearchTerm(event.target.value) } />
-      </center>
       </div>
     )
   }

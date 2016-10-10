@@ -314,16 +314,6 @@ h1.home-header.topGlobal {
   width: 200px;
 }
 
-.recordList {
-  width: 70%;
-  float: right;
-}
-
-.recordList-entry {
-  width: 45%;
-  display: inline-block;
-}
-
 .submission-warning {
   font-size: .8em;
   color: red;
@@ -392,11 +382,114 @@ h1.home-header.topGlobal {
   font-size: 14px;
 }
 
-.records-catlist {
-  width: 20%;
+.allrecords-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.allrecords-children {
+  flex-grow: 1;
+  display: flex;
+}
+
+.allrecords-catlist {
+  width: 85%;
+}
+
+.allrecords-searchbar {
   float: left;
 }
 
+.allrecords-searchbar > input {
+  width: 85%;
+}
+
+.allrecords-recordlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 85%;
+}
+
+.allrecords-recordnav {
+  flex-direction: column;
+  width: 15%;
+}
+
+.allrecords-recordlist-entry {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.allrecords-recordlist-entry > div {
+  width: 50%;
+  height: 50%;
+  margin: 2%;
+}
+
+
+.title {
+  font-size: 1.5em;
+}
+
+.allrecords-recordlist-entry > div > img {
+  width: 100%;
+  height: 100%;
+}
+
+.indivrecord {
+  display: flex;
+  flex-direction: column;
+}
+
+.indivrecord-entry {
+  display: flex;
+  flex-direction: row;
+}
+
+.indivrecord-commentlist > div {
+  overflow: scroll;
+  height: 200px;
+}
+
+
+.indivrecord-entry-info {
+  background-color: white;
+  box-sizing: border-box;
+  border: solid black 5px;
+  padding: 10px;
+  width: 600px;
+  height: 335px;
+
+}
+
+.indivrecord-entry-vid {
+  background-color: black;
+  box-sizing: border-box;
+  border: solid black 5px;
+
+}
+
+.indivrecord-entry-info-tab {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  width: 40%;
+  margin-right: 5%;
+  background-color: red;
+}
+
+.indivrecord-entry-info-tabs {
+  background-color: white;
+}
+
+.indivrecord-entry-info-main {
+  background-color: gold;
+  padding: 10px;
+  height: 85%;
+}
 
 .submissionContainer {
   margin: 0 10px;
