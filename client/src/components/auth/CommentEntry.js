@@ -41,7 +41,7 @@ export default class CommentEntry extends React.Component {
 
             <div className="col-sm-5">
 
-                <Link to={`/record?id=${this.props.data.Submission.RecordId}`}>
+                <Link to={`/record?rid=${this.props.data.Submission.RecordId}`}>
 
                 <img className="img-responsive" src={ "http://img.youtube.com/vi/" + this.props.data.Submission.link + "/hqdefault.jpg" }/>
                 </Link>
@@ -84,18 +84,3 @@ export default class CommentEntry extends React.Component {
   }
 
 }
-
-  // render() {
-  //   let dateObj = new Date(this.props.data.createdAt);
-  //   let path = `/record?id=${ this.props.data.Submission.RecordId }`;
-  //   return(
-  //     <div className="comments-container--flexbox">
-  //       <Link to={path}>
-  //         <h3>Record: {this.props.data.Submission.title}</h3>
-  //       </Link>
-  //       <div>Title: {this.props.data.title}</div>
-  //       <div>Comment: {this.props.data.description}</div>
-  //       <div>Date: {dateObj.toLocaleString()}</div>
-  //     </div>
-  //   )
-  // }

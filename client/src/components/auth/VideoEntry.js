@@ -41,7 +41,7 @@ export default class VideoEntry extends Component {
           <div className="row flagged-row">
             <div className="col-sm-5">
 
-                <Link to={`/record?id=${this.props.data.RecordId}`}>
+                <Link to={`/record?rid=${this.props.data.RecordId}`}>
 
                 <img className="img-responsive" src={ "http://img.youtube.com/vi/" + this.props.data.link + "/hqdefault.jpg" }/>
                 </Link>
@@ -59,7 +59,7 @@ export default class VideoEntry extends Component {
 
             <div className="col-sm-3">
               <div className="btn-group-vertical">
-                <Link to={`/record?id=${this.props.data.RecordId}`}><button className="btn btn-primary profileButton" >Go to Record Page</button></Link>
+                <Link to={`/record?rid=${this.props.data.RecordId}`}><button className="btn btn-primary profileButton" >Go to Record Page</button></Link>
 
                 <Link><button className="btn btn-danger profileButton" onClick={this.showDeleteModal.bind(this)} >Remove this video</button></Link>
               </div>

@@ -19,7 +19,7 @@ export default class VideoEntry extends Component {
 
             <div className="col-sm-5">
 
-                <Link to={`/record?id=${this.props.data.Submission.RecordId}`}>
+                <Link to={`/record?rid=${this.props.data.Submission.RecordId}`}>
 
                 <img className="img-responsive" src={ "http://img.youtube.com/vi/" + this.props.data.Submission.link + "/hqdefault.jpg" }/>
                 </Link>
@@ -37,7 +37,7 @@ export default class VideoEntry extends Component {
 
             <div className="col-sm-3">
               <div className="btn-group-vertical">
-                <Link to={`/record?id=${this.props.data.Submission.RecordId}`}><button className="btn btn-primary profileButton">Go to Record Page</button></Link>
+                <Link to={`/record?rid=${this.props.data.Submission.RecordId}`}><button className="btn btn-primary profileButton">Go to Record Page</button></Link>
               </div>
             </div>
           </div>

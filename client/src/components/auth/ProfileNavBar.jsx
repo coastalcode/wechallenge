@@ -11,7 +11,7 @@ export default class App extends Component {
       <nav className="navbar navbar-inverse">
         <div className="container-fluid" id="myNavbar">
           <ul className="nav navbar-nav">
-            <li>
+            <li className="profile-navbar">
               <a
                 className="navbar-brand"
                 onClick={this.props.changeProfileView.bind(null, 'submissions')}
