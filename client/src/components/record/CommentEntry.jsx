@@ -52,13 +52,12 @@ export default class CommentEntry extends React.Component {
     console.log("look at me!", this.props.comment.UserId, this.props.currentUser.id)
     return (
       <div>
-        <br />
         { this.props.comment.title }
         <br/>
         { this.props.comment.description }
         <br/>
         Posted by: { this.props.comment.User.username }
-        { this.state.userPic?
+        { this.state.userPic ?
           <img className="comment--userPic" src={this.state.userPic} />
           : null }
         <br/>

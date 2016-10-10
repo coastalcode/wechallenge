@@ -7,7 +7,14 @@ export default class RecordEntry extends React.Component {
   }
 
   render() {
-    let path = `/record?id=${ this.props.submission.RecordId }`
+    let path;
+
+    if (this.props.cid) {
+      path = `/record?rid=${ this.props.submission.RecordId }&cid=${ this.props.cid }`
+    } else {
+      path = `/record?rid=${ this.props.submission.RecordId }`
+    }
+
     return (
         this.props.submission.official > -1 &&
         this.props.checkForMatching([
@@ -20,21 +27,32 @@ export default class RecordEntry extends React.Component {
           this.props.submission.state],
           this.props.searchRegion)) ?
 
-    ( <div className="recordList-entry">
-      { this.props.submission.title }
-      <br/>
-      <Link to={ path }>
-        <img className="videolist-thumb"
-          src={ "http://img.youtube.com/vi/" + this.props.submission.link + "/hqdefault.jpg" }/>
-      </Link>
-      <br/>
-      Votes: { this.props.submission.votes }
-      <br/>
-      Created at: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }
-      <br/>
-      { this.props.submission.Record.category }
-      { this.props.submission.Record.subcategory }
-    </div> )
+    ( <Link to={ path }>
+        <center>
+        <span className="title">{ this.props.submission.title }</span>
+        </center>
+      <div className="allrecords-recordlist-entry">
+
+
+        <br/>
+
+        <div>
+          <img
+            src={ "http://img.youtube.com/vi/" + this.props.submission.link + "/hqdefault.jpg" }/>
+        </div>
+
+        <div>
+          Votes: { this.props.submission.votes }
+          <br/>
+          Created at: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }
+          <br/>
+          { this.props.submission.Record.category }
+          { this.props.submission.Record.subcategory }
+        </div>
+
+      </div>
+
+    </Link> )
     : null
   }
 }

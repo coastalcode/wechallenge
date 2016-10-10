@@ -1,7 +1,6 @@
 import React from 'react';
 import RecordList from './RecordList';
 import RecordNav from './RecordNav';
-import SearchBar from './SearchBar';
 
 export default class Records extends React.Component {
   constructor(props) {
@@ -31,6 +30,7 @@ export default class Records extends React.Component {
   fetchVideos() {
     let sortFunction = this.sortSubmissions.bind(this)
 
+    if (!this.props.cid) {
     fetch(`/submissions/`)
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
@@ -48,6 +48,16 @@ export default class Records extends React.Component {
         this.setState({ regions })
         return submissions})
       .then((submissions)=> sortFunction(this.state.searchType))
+
+    } else {
+    fetch(`/communities/submissions/${ this.props.cid }`)
+      .then((submissions)=> submissions.json())
+      .then((submissions)=>{
+        this.setState({ submissions });
+        console.log(submissions)
+        return submissions})
+      .then((submissions)=> sortFunction(this.state.searchType))
+    }
   }
 
   updateSearchTerm(search) {
@@ -87,12 +97,8 @@ export default class Records extends React.Component {
     this.setState({ searchType })
   }
 
-
-  filterSubmissions(filterType) {
-
-  }
-
   componentDidMount() {
+    console.log("this is the correct one")
     this.fetchRecords();
     this.fetchVideos();
   }
@@ -100,34 +106,36 @@ export default class Records extends React.Component {
   render() {
 
     return (
-      <div>
-          Showing videos for: { this.state.searchRegion }
-          <select onChange={ event => this.updateSearchRegion( event.target.value )}>
-            <option value="">Show all</option>
-            <option value={ localStorage.getItem('region') }>My region ({ localStorage.getItem('region') })</option>
+      (this.props.cid)
+      ?
+      ( <div className="allrecords-main">
 
-          { this.state.regions.map((region)=>
-            <option value={ region }>{ region }</option>) }
-          </select>
+        { (this.state.regions.length > 0) ?
+          <RecordNav
+            sortSubmissions={ this.sortSubmissions.bind(this) }
+            updateSearchRegion={ this.updateSearchRegion.bind(this) }
+            updateSearchTerm={ this.updateSearchTerm.bind(this) }
+            regions={ this.state.regions } /> : null }
 
-        <div>
-          Your current search: { this.state.search }
-          <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) }/>
+        { (this.state.submissions.length > 0) ?
+        <RecordList
+          cid={ this.props.cid }
+          search={ this.state.search }
+          searchRegion = { this.state.searchRegion }
+          submissions={ this.state.submissions }
+          records={ this.state.records }
+          checkForMatching={ this.checkForMatching }/> : null }
 
-          { (this.state.regions.length > 0) ?
-            <RecordNav
-              updateSearchRegion={ this.updateSearchRegion.bind(this) }
-              updateSearchTerm={ this.updateSearchTerm.bind(this) }
-              regions={ this.state.regions } /> : null }
+      </div> )
+      :
+      ( <div className="allrecords-main">
 
-        </div>
-
-        <div>
-          <button onClick={ event => this.sortSubmissions("createdAt") }>Sort by newest videos</button>
-          <br/>
-          <button onClick={ event => this.sortSubmissions("votes") }>Sort by most upvoted videos</button>
-        </div>
-
+        { (this.state.regions.length > 0) ?
+          <RecordNav
+            sortSubmissions={ this.sortSubmissions.bind(this) }
+            updateSearchRegion={ this.updateSearchRegion.bind(this) }
+            updateSearchTerm={ this.updateSearchTerm.bind(this) }
+            regions={ this.state.regions } /> : null }
 
         { (this.state.submissions.length > 0) ?
         <RecordList
@@ -136,7 +144,9 @@ export default class Records extends React.Component {
           submissions={ this.state.submissions }
           records={ this.state.records }
           checkForMatching={ this.checkForMatching }/> : null }
-      </div>
+
+      </div> )
+
     )
   }
 }

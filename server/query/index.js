@@ -117,14 +117,13 @@ module.exports = {
     },
 
     findAllPublic(req, res) {
-      db.Submission.findAll({ where: { public: 1, RecordId: req.params.id } })
+      db.Submission.findAll({ where: { public: 1, RecordId: req.params.id }, include: [ db.User, db.Record ] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
 
     findACommunity(req, res) {
-      console.log(req)
-      db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid } })
+      db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid }, include: [ db.User, db.Record ] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
@@ -193,8 +192,7 @@ module.exports = {
     },
 
     findOneCommunity(req, res) {
-      console.log("!!!!!! req params", req.params)
-      db.Submission.findAll({ where: { CommunityId: req.params.id } })
+      db.Submission.findAll({ where: { CommunityId: req.params.id }, include: [ db.User, db.Record ] })
         .then(submission => res.json(submission))
         .catch(error => console.error(error))
     },
@@ -571,7 +569,8 @@ module.exports = {
       console.log("sid, cid", req.query.sid, req.query.cid)
       db.CommunityComment.findAll({ where: {
         SubmissionId: req.query.sid,
-        CommunityId: req.query.cid }
+        CommunityId: req.query.cid },
+        include: [ db.User, db.Submission ]
       })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))
@@ -599,7 +598,7 @@ module.exports = {
     },
 
     findForOne(req, res) {
-      db.CommunityBulletin.findAll({ where: { CommunityId: req.params.id } })
+      db.CommunityBulletin.findAll({ where: { CommunityId: req.params.id }, include: [ db.User ] })
         .then(bulletins => res.json(bulletins))
         .catch(err => console.error(err))
     },

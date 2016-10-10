@@ -13,7 +13,13 @@ export default class CommentView extends React.Component {
   }
 
   fetchComments() {
-    fetch(`/comments/${ this.props.submission.id }`)
+    let fetchPath;
+    if (this.props.cid) {
+      fetchPath = `/communities/comments?sid=${ this.props.submission.id }&cid=${ this.props.cid }`
+    } else {
+      fetchPath = `/comments/${ this.props.submission.id }`
+    }
+    fetch(fetchPath)
       .then((comments)=> comments.json())
       .then((comments)=>{
         this.setState({ comments });
@@ -21,7 +27,13 @@ export default class CommentView extends React.Component {
   }
 
   postComment(comment) {
-    return fetch('/comments/', {
+    let fetchPath;
+    if (this.props.cid) {
+      fetchPath = '/communities/comments'
+    } else {
+      fetchPath = '/comments/'
+    }
+    return fetch(fetchPath, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -31,31 +43,33 @@ export default class CommentView extends React.Component {
   }
 
   componentDidMount() {
+    console.log("this is the right comment view!")
     this.fetchComments();
   }
 
   render() {
     let switchView = () => { this.setState({ listView: true }) }
     return (
-      <div className="commentList">
+      <div className="indivrecord-commentlist">
         <button onClick={ event => this.setState({ listView: true }) }>List View</button>
         <button onClick={ event => this.setState({ listView: false }) }>Add Comment View</button>
 
-        { ( this.state.listView ) ?
-          <CommentList
-            currentUser={ this.props.currentUser }
-            comments={ this.state.comments }
-            fetchComments={ this.fetchComments.bind(this) }
-          />
-        :
-          <CommentAdd
-            currentUser={ this.props.currentUser }
-            submission={ this.props.submission }
-            fetchComments={ this.fetchComments.bind(this) }
-            postComment={ this.postComment.bind(this) }
-            switchView={ switchView.bind(this) }
-          />
-        }
+
+        <CommentList
+          currentUser={ this.props.currentUser }
+          comments={ this.state.comments }
+          fetchComments={ this.fetchComments.bind(this) }
+        />
+
+        <CommentAdd
+          cid={ this.props.cid }
+          currentUser={ this.props.currentUser }
+          submission={ this.props.submission }
+          fetchComments={ this.fetchComments.bind(this) }
+          postComment={ this.postComment.bind(this) }
+          switchView={ switchView.bind(this) }
+        />
+
 
       </div>
     )

@@ -11,7 +11,7 @@ export default class SubmissonEntryVideo extends React.Component {
   render() {
     let url = `https://www.youtube.com/embed/${ this.props.submission.link }`
     return (
-      <div>
+      <div className="indivrecord-entry-vid">
         <iframe width="560" height="315" src={ url } frameBorder="0" allowFullScreen />
       </div>
     )

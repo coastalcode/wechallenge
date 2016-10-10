@@ -8,7 +8,7 @@ export default class CommentList extends React.Component {
 
   render() {
     return (
-        <div>
+        <div className="indivrecord-commentlist">
         { (this.props.comments.length > 0) ? this.props.comments.map((comment) =>
           <CommentEntry
             key={ comment.id }

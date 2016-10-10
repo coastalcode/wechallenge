@@ -11,9 +11,74 @@ export default class CategoryList extends React.Component {
     var that = this
     return (
       <div>
-      <button onClick={ event => that.props.updateSearchTerm("") }>Clear Search</button>
-      <div className="records-catlist">
+
+
+      <div className="allrecords-catlist">
+        <div className="panel-group">
+
+          <div onClick={ event => this.props.sortSubmissions("createdAt") } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                Sort by upload date
+              </h4>
+            </div>
+          </div>
+
+          <div onClick={ event => this.props.sortSubmissions("votes") } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                Sort by # of votes
+              </h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div className="allrecords-catlist">
+        <div className="panel-group">
+
+          <div onClick={ event => this.props.updateSearchRegion('') } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                Clear search region
+              </h4>
+            </div>
+          </div>
+
+          <div onClick={ event => this.props.updateSearchRegion(localStorage.getItem('region')) } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                My region ({ localStorage.getItem('region') })
+              </h4>
+            </div>
+          </div>
+
+          { this.props.regions.map((region) => (
+            <div onClick={ event => this.props.updateSearchRegion(region) } className="panel panel-default">
+              <div className="panel-heading">
+                <h4 className="panel-title">
+                  { region }
+                </h4>
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+
+      <div className="allrecords-catlist">
         <div className="panel-group" id="accordion">
+
+          <div onClick={ event => this.props.updateSearchTerm('') } className="panel panel-default">
+            <div className="panel-heading">
+              <h4 className="panel-title">
+                Clear search term
+              </h4>
+            </div>
+          </div>
+
           {list.map(function(category, catIndex) {
             return (
               <div className="panel panel-default">

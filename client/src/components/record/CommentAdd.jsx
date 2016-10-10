@@ -18,6 +18,11 @@ export default class CommentAdd extends React.Component {
       userId: this.props.currentUser.id,
       submissionId: this.props.submission.id
     }
+
+    if (this.props.cid) {
+      comment.communityId = this.props.cid
+    }
+
     this.props.postComment(comment)
     .then((data)=> this.props.fetchComments())
     .then((data)=> {
@@ -28,7 +33,7 @@ export default class CommentAdd extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="indivrecord-commentadd">
       { (this.props.currentUser.id) ?
       <div>
         <input

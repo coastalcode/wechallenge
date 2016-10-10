@@ -23,11 +23,12 @@ export default class SubmissonEntry extends React.Component {
 
   render() {
     return (
-      <div>
+      <div >
 
         Submission Title: { this.props.submission.title }
 
         { (this.state.flagged) ? <div> Thanks for flagging the video! </div> : null }
+
 
         { (this.props.submission.official === 1) ?
           <div><button onClick={event => this.flagVideo() } >
@@ -35,14 +36,17 @@ export default class SubmissonEntry extends React.Component {
           </button></div> :
           <div> This video is currently under review, please watch at your own discretion. </div> }
 
-        <SubmissionEntryVideo submission={ this.props.submission } />
-        <br/>
         <VideoActions className="video-actions" title={this.props.submission.title} subId={this.props.submission.id} link={this.props.submission.link} votes={this.props.submission.votes} comments={this.props.submission.comments} />
+
+        <div className="indivrecord-entry">
+        <SubmissionEntryVideo submission={ this.props.submission } />
+
         <SubmissionEntryInfo
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }
-          record={ this.props.record }/>
-        <br/>
+          record={ this.props.record }
+          cid={ this.props.cid }/>
+        </div>
 
       </div>
     )

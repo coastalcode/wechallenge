@@ -21,12 +21,28 @@ export default class RecordList extends React.Component {
 
 
   componentDidMount() {
+    console.log("the right record list is mounting")
     this.selectSubmissions(this.state.index);
   }
 
   render() {
     return (
-      <div className="recordList">
+     (this.props.cid) ?
+      (
+         <div className="recordList">
+          { this.props.submissions.map((submission) => {
+            return (<RecordEntry key={ submission.id }
+              cid={ this.props.cid }
+              submission={ submission }
+              checkForMatching={ this.props.checkForMatching }
+              search={ this.props.search }
+              searchRegion = { this.props.searchRegion }/>)
+          })}
+          <br/>
+        </div>
+      )
+      : ( <div className="allrecords-children allrecords-recordlist">
+
         { this.state.currentlyShowing.map((submission) =>
           (<RecordEntry key={ submission.id }
             submission={ submission }
@@ -35,6 +51,8 @@ export default class RecordList extends React.Component {
             searchRegion = { this.props.searchRegion }/>)
         )}
         <br/>
+
+        <div>
         {
           (this.state.index > 0) ?
           <button onClick={ event => this.selectSubmissions(this.state.index - this.state.perPage) }>Prev!</button> : null
@@ -43,7 +61,8 @@ export default class RecordList extends React.Component {
           ((this.state.index + this.state.perPage) < this.props.submissions.length) ?
           <button onClick={ event => this.selectSubmissions(this.state.index + this.state.perPage) }>Next!</button> : null
         }
-      </div>
-    )
+        </div>
+      </div> )
+      )
   }
 }

@@ -22,8 +22,8 @@ import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
 import Communities from './components/communities/CommunitiesMain';  //For Anna
-import CommunityPage from './components/community/CommunityPage';
-import CommunityRecord from './components/community/record/CRecord';
+// import CommunityPage from './components/community/CommunityPage';
+// import CommunityRecord from './components/community/record/CRecord';
 
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
@@ -67,8 +67,10 @@ const routes = (
     <Route path='record' component={Record} />
 
     <Route path='communities' component={Communities} />
-    <Route path='communityrecords' component={CommunityPage} />
-    <Route path='communityrecord' component={CommunityRecord} />
+    {
+    // <Route path='communityrecords' component={CommunityPage} />
+    // <Route path='communityrecord' component={CommunityRecord} />
+    }
 
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={FlaggedVideos} />

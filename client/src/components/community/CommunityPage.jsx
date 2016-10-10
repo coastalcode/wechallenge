@@ -1,6 +1,6 @@
 import React from 'react';
-import BulletinList from './bulletin/BulletinList';
-import CRecords from './records/CRecords';
+import BulletinList from './BulletinList';
+import Records from './../records/Records';
 import { Link } from 'react-router';
 
 export default class CommunityPage extends React.Component {
@@ -14,7 +14,7 @@ export default class CommunityPage extends React.Component {
     return (
       <div>
         <BulletinList cid={ this.state.cid }/>
-        <CRecords cid={ this.state.cid }/>
+        <Records cid={ this.state.cid }/>
       </div>
     )
   }
