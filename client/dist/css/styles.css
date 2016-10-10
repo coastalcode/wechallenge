@@ -17,7 +17,6 @@ body {
   background-color: #011627;
 }
 
-
 /*navbar component*/
 
 .navbar-brand {
@@ -25,6 +24,10 @@ body {
   color: #FF9F1C !important;
 }
 
+.navbar.margin-zero {
+  margin: 0;
+  box-shadow: 0 1px 6px 0 black;
+}
 
 .bar {
   font-family: 'Oswald', sans-serif;
@@ -73,7 +76,8 @@ h1 {
 }
 
 h1.home-header.mainHeader {
-  color: #FF9F1C;
+  background-color: #FF9F1C;
+  margin: 0;
 }
 
 h1.home-header.topLocal {

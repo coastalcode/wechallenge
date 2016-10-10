@@ -60,7 +60,7 @@ class NavBar extends Component {
   //default nav bar view
   render () {
     return (
-      <nav className="navbar navbar-inverse">
+      <nav className="navbar navbar-inverse margin-zero">
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
