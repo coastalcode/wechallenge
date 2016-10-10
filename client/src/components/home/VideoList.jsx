@@ -3,6 +3,7 @@ import Video from './Video';
 import YouTube from 'react-youtube';
 import VideoActions from './VideoActions';
 import { Link } from 'react-router';
+import UserPic from './UserPic';
 
 export default class VideoList extends React.Component {
   constructor(props) {
@@ -27,17 +28,23 @@ export default class VideoList extends React.Component {
         }
         { this.props.videos.map((val,i)=>{
           console.log('videolistval', val)
+          val.User = val.User || {username: 'Anonymous'}
           let thumbStyle = {
             width: '80%'
           }
           let path = `/record?id=${ val.RecordId }`
           return (
-            <div key={i}>
+            <div className="youtube-flexbox" key={i}>
                 <Link className="youtube-container" to={ path }>
-                <span className="title-banner">{val.title}</span>
-                <img style={thumbStyle} className="videolist-thumb" src={ "http://img.youtube.com/vi/" + val.link + "/hqdefault.jpg" }/>
+                <div className="youtube-thumbnail" style={{ backgroundImage: 'url(http://img.youtube.com/vi/' + val.link + '/hqdefault.jpg)'}}></div>
                 </Link>
-              <VideoActions title={val.title} subId={val.id} votes={val.votes} comments={val.comments} />
+                <div className="youtube-deets">
+                  <span className="title-banner">{val.title}</span>
+                  <div className="user-wrapper">
+                    <UserPic user={val.UserId} username={val.User.username}/>
+                    <span className="record-banner">&nbsp;in&nbsp;<strong>{val.Record.category}</strong></span>
+                  </div>
+                </div>
             </div>
           )
         })}
