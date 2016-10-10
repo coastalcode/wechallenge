@@ -62,7 +62,6 @@ export default class VideoEntry extends Component {
                 <Link to={`/record?id=${this.props.data.RecordId}`}><button className="btn btn-primary profileButton" >Go to Record Page</button></Link>
 
                 <Link><button className="btn btn-danger profileButton" onClick={this.showDeleteModal.bind(this)} >Remove this video</button></Link>
-                <h1>Hello</h1>
               </div>
             </div>
           </div>

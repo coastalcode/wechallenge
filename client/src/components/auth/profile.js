@@ -133,6 +133,14 @@ export default class Profile extends Component {
   }
 
   changeProfileView(view) {
+    if (view === 'submissions') {
+      this.fetchUserComments();
+    } else if (view === 'votes') {
+      this.fetchUserComments();
+      this.fetchUserSubs();
+    } else if (view === 'comments') {
+      this.fetchUserSubs();
+    }
     this.setState({profileView: view});
   }
 

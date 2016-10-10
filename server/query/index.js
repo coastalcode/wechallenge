@@ -319,7 +319,9 @@ module.exports = {
     findByUser(req, res) {
       console.log('USERID', req.params.userid)
       db.Comment.findAll({
-          include: [{model: db.Submission, required: true}],
+          include: [{model: db.Submission, required: true, include: [{
+            model: db.Record}]
+          }],
           where: {UserId: req.params.userid} })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))

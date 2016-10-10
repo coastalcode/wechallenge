@@ -8,6 +8,7 @@ export default class CommentList extends React.Component {
   }
 
   render() {
+    console.log('data inside comment list: ', this.props.data);
     return(
       <div>
         <h2>Comment History</h2>
@@ -18,3 +19,4 @@ export default class CommentList extends React.Component {
     )
   }
 }
+
