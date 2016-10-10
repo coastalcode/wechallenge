@@ -11,7 +11,7 @@ export default class SubmissionList extends React.Component {
   render() {
     return (
       <div>
-        Current Winner! { this.props.submissions[0].measurement } { this.props.record.units }
+        { (this.props.submissions[0]) ? <div> Current Winner! { this.props.submissions[0].measurement } { this.props.record.units } </div> : null }
         { this.props.submissions.map((submission) => {
           return (<SubmissionEntry
             currentUser={ this.props.currentUser }
