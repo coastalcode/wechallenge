@@ -4,7 +4,9 @@ import * as actions from '../../actions';
 import UserInfo from './userInfo';
 import CommentList from './CommentList';
 import VideoList from './VideoList';
-import FileInput from 'react-file-input'
+import FileInput from 'react-file-input';
+import ProfileNavBar from './ProfileNavBar';
+import VoteVideoList from './VoteVideoList';
 
 export default class Profile extends Component {
 
@@ -14,7 +16,10 @@ export default class Profile extends Component {
       currentUser: '',
       userComments: [],
       userSubs: [],
-      userPic: null
+      userVotes: [],
+      userPic: null,
+      profileView: 'submissions',
+      readyToRenderVideoList: false
     }
   }
 
@@ -22,6 +27,7 @@ export default class Profile extends Component {
     this.fetchCurrentUser();
     this.fetchUserComments();
     this.fetchUserSubs();
+    this.fetchUserVotes();
   }
 
   componentDidMount() {
@@ -42,7 +48,22 @@ export default class Profile extends Component {
       .then((res)=>res.json())
       .then((data)=>{
         console.log('find subs', data)
-        this.setState({userSubs: data})
+        this.setState({
+          userSubs: data,
+          readyToRenderVideoList: true
+        })
+      })
+  }
+
+  fetchUserVotes() {
+    console.log('inside fetchUservotes on profile page')
+    fetch('/votes/users/' + localStorage.user)
+      .then((res)=>res.json())
+      .then((data)=>{
+        console.log('find votes', data)
+        this.setState({
+          userVotes: data,
+        })
       })
   }
 
@@ -111,6 +132,18 @@ export default class Profile extends Component {
     }
   }
 
+  changeProfileView(view) {
+    if (view === 'submissions') {
+      this.fetchUserComments();
+    } else if (view === 'votes') {
+      this.fetchUserComments();
+      this.fetchUserSubs();
+    } else if (view === 'comments') {
+      this.fetchUserSubs();
+    }
+    this.setState({profileView: view});
+  }
+
   render() {
     return (
       <div>
@@ -124,12 +157,20 @@ export default class Profile extends Component {
                    className="inputClass"
                    onChange={this.handleImage.bind(this)} />
         </form>
-        { this.state.userComments.length > 0 ?
-          <CommentList data={this.state.userComments} />
+        <ProfileNavBar changeProfileView={this.changeProfileView.bind(this)}/>
+
+        { this.state.profileView === 'submissions' && this.state.readyToRenderVideoList ?
+          <VideoList data={this.state.userSubs} />
           : null
         }
-        { this.state.userSubs.length > 0 ?
-          <VideoList data={this.state.userSubs} />
+
+        { this.state.profileView === 'votes' ?
+          <VoteVideoList data={this.state.userVotes} />
+          : null
+        }
+
+        { this.state.profileView === 'comments' ?
+          <CommentList data={this.state.userComments} />
           : null
         }
       </div>

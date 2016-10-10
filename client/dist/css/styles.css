@@ -25,6 +25,7 @@ body {
   color: #FF9F1C !important;
 }
 
+
 .bar {
   font-family: 'Oswald', sans-serif;
   background-color: #101010;
@@ -53,6 +54,11 @@ body {
 }
 
 
+
+
+.navbar-brand:hover {
+  cursor: pointer;
+}
 
 /*home component*/
 
@@ -241,14 +247,7 @@ h1.home-header.topGlobal {
   flex-grow: 2;
 }
 
-/*Profile Component*/
-.profile--userPic {
-  width: 100px;
-}
 
-.comment--userPic {
-  width: 40px;
-}
 
 /*Media queries*/
 
@@ -514,6 +513,7 @@ h1.home-header.topGlobal {
   margin: 0 3px;
 }
 
+
 /* starting state of animation*/
 
 .business-header {
@@ -575,4 +575,18 @@ footer {
   order: 1;
   margin: 0 0 0 1em;
 
+
+
+/*Profile Component*/
+.profile--userPic {
+  width: 100px;
+}
+
+.comment--userPic {
+  width: 40px;
+}
+
+.profileButton {
+  margin-bottom: 15px;
+}
 

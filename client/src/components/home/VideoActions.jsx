@@ -35,7 +35,7 @@ export default class VideoAction extends React.Component {
           <FacebookShareButton
             className="facebookShare-button"
             title={'Check out this submission on weChallenge!'}
-            url={'wechallenge.herokuapp.com/record?id=' + this.props.subId}
+            url={'wechallenge.herokuapp.com/record?rid=' + this.props.subId}
             description={this.props.title}>Share
             <FacebookIcon className="facebookShare-icon" size={32} round={true}/>
           </FacebookShareButton>

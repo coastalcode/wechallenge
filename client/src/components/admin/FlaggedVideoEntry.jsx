@@ -70,7 +70,7 @@ export default class RecordEntry extends React.Component {
               <div className="btn-group-vertical">
                 <button className="btn btn-success" onClick={event=>{ this.toggleFlagVideo()  }} >Unflag this video</button>
                 <button className="btn btn-danger" onClick={this.showDeleteModal.bind(this)} >Remove this video</button>
-                <Link to={`/record?id=${this.props.flag.RecordId}`}><button className="btn btn-primary" onClick={this.showDeleteModal.bind(this)} >Go to Record Page</button></Link>
+                <Link to={`/record?rid=${this.props.flag.RecordId}`}><button className="btn btn-primary" onClick={this.showDeleteModal.bind(this)} >Go to Record Page</button></Link>
               </div>
             </div>
           </div>

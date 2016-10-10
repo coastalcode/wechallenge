@@ -48,7 +48,8 @@ module.exports = {
     findUserSubs(req, res) {
       db.User.findAll({
         include: [{
-          model: db.Submission, required: true
+          model: db.Submission, required: true, include: [
+            {model: db.Record}]
         }],
         where: {id: req.params.id}
       })
@@ -318,7 +319,9 @@ module.exports = {
     findByUser(req, res) {
       console.log('USERID', req.params.userid)
       db.Comment.findAll({
-          include: [{model: db.Submission, required: true}],
+          include: [{model: db.Submission, required: true, include: [{
+            model: db.Record}]
+          }],
           where: {UserId: req.params.userid} })
         .then(comments => res.json(comments))
         .catch(err => console.error(err))
@@ -396,6 +399,16 @@ module.exports = {
       db.Vote.findAll()
       .then(votes => res.json(votes))
       .catch(err => console.error(error))
+    },
+
+    findByUser(req, res) {
+      console.log('----Inside Vote find by users', req.params.userid)
+      db.Vote.findAll({
+          include: [{model: db.Submission, required: true, include: [{model: db.Record}]
+          }],
+          where: {UserId: req.params.userid} })
+        .then(votes => res.json(votes))
+        .catch(err => console.error(err))
     },
 
     add(req, res) {

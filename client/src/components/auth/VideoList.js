@@ -4,7 +4,7 @@ import VideoEntry from './VideoEntry';
 export default class VideoList extends React.Component {
   constructor(props){
     super(props)
-    console.log('hi', this.props)
+    console.log('hi Subs', this.props)
   }
 
   render() {
