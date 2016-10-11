@@ -6,23 +6,26 @@ export default class Nav extends Component {
     this.state={};
     this.state.communities=[];
 
+
   }
 
   render() {
     const that = this;
     return (
-      <div className="flex-container">
+      <div className="records-catlist">
         <div className="panel-group" id="accordion">
-          <div className="panel panel-default">
         {this.props.communities.map(function(community){
           return (
-              <div onClick={()=> that.props.open(community.CommunityId)} className="panel-heading">
+            <div className="panel panel-default">
+            <div className="panel-heading">
+              <div onClick={()=> that.props.open(community.CommunityId)} className="panel-title">
               {community.Community.name}
               </div>
+              </div>
+          </div>
             )
         })}
-          <div onClick={this.props.submit} className="panel-heading">Create One</div>
-          </div>
+
         </div>
       </div>
       )

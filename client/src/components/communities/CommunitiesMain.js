@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, OverlayTrigger, Popover, Tooltip, Button } from 'react-bootstrap';
+import * as actions from '../../actions';
 
 import CreateCommunity from './CreateCommunity';
 import Nav from './Nav';
@@ -17,7 +18,9 @@ export default class Communities extends Component {
     this.state.allcommunities = [];
     this.state.yours = true;
     this.state.all = false;
-    this.state.showModal1 = false;
+    this.state.showJoin = false;
+    this.state.showJoined= false;
+    this.state.showPage = false;
   }
 
   showYou() {
@@ -28,15 +31,29 @@ export default class Communities extends Component {
   showAll() {
     this.setState({ all: true});
     this.setState({ yours: false });
+    this.setState({ showPage : false});
   }
 
-  openModal1 () {
-    this.setState({ showModal1: true });
+  openPage () {
+    this.setState({ showPage: true });
   }
 
-  closeModal1() {
-    this.setState({ showModal1: false });
+  openJoin() {
+    this.setState({ showJoin: true });
   }
+
+  closeJoin() {
+    this.setState({ showJoin: false });
+  }
+
+  openJoined() {
+    this.setState({ showJoined: true });
+  }
+
+  closeJoined() {
+    this.setState({ showJoined: false });
+  }
+
   openModal() {
     this.setState({ showModal: true });
   }
@@ -46,7 +63,7 @@ export default class Communities extends Component {
   }
   //******************FOR ANNA************** THANK YOU HARRIS
   openCommunity(id) {
-    this.openModal1();
+    this.openPage();
     const communityID = id
     console.log("____ID", communityID)
     fetch(`/community/${communityID}`)
@@ -104,14 +121,22 @@ export default class Communities extends Component {
         open={this.openCommunity.bind(this)}
         /> : null }
 
-      {this.state.all ? <List data={this.state.communities} all={this.state.allcommunities} /> : null}
+      {this.state.all ? <List data={this.state.communities} all={this.state.allcommunities} openJoin={this.openJoin.bind(this)} openJoined={this.openJoined.bind(this)} /> : null}
 
-      <Modal show={this.state.showModal1} onHide={this.closeModal1.bind(this)}>
+      <div>
+      { (this.state.showPage) ? (<CommunityPage community={this.state.community} />) : null }
+      </div>
+
+
+      <Modal show={this.state.showJoin} onHide={this.closeJoin.bind(this)}>
         <Modal.Header closeButton>
+        Want to Join?
         </Modal.Header>
         <Modal.Body>
-          { (this.state.community[0]) ? (<CommunityPage community={this.state.community} />) : null }
         </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={this.closeModal.bind(this)}>Close</Button>
+        </Modal.Footer>
       </Modal>
 
       <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
