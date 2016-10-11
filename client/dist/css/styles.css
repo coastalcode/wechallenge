@@ -291,6 +291,20 @@ h1.home-header.topGlobal {
   cursor: pointer;
 }
 
+.panel-group {
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
+.panel-default>.panel-heading {
+    font-family: 'Oswald', sans-serif;
+    color: #FF9F1C;
+    background-color: #FDFFFC;
+    border-color: #ddd;
+}
+
+
 .channel-thumbnail {
   width: 15%;
 }
@@ -544,36 +558,49 @@ footer {
     margin: 50px 0;
 }
 /* Flex Grid*/
+@import "compass/css3";
 
 .community-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  align-items: flex-start;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
 }
 
-.community-body{
-  flex:1;
+.community-item {
+  background: #FF9F1C;
+  padding: 5px;
+  width: 300px;
+  height: 150px;
+  margin-top: 10px;
+
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+.community-item:hover {
+  cursor: pointer;
+  background: #ff851c;
+  width:305px;
+  height:155px;
 }
 
-.community-figure{
-  margin-right: 1em;
-}
-
-.community-body,
-.community-body :last-child {
-  margin-bottom: 0;
-}
-
-.community-title {
-  margin: 0 0 .5em;
-}
-
-.community--center {
-  align-items: center;
-}
-
-.community--reverse > .community-figure {
-  order: 1;
-  margin: 0 0 0 1em;
+.community-item .comment { display: none; }
+.community-item:hover .replies { display: none; }
+.community-item:hover .comment { display: inline; }
 
 
 
