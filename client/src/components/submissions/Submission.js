@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import CategoryList from './CategoryList';
-import UploadToYoutube from './upload/UploadToYoutube';
+import UploadToYoutube from './UploadToYoutube';
 
 export default class Submission extends Component {
   constructor(props) {
