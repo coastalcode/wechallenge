@@ -168,6 +168,7 @@ export default class Profile extends Component {
 
         { this.state.viewOwnProfile ?
         <form>
+          <label>{`Email Address: ${this.state.currentUser.email}`}</label>
           <label htmlFor="profile-img-input">Upload a profile picture</label>
              <FileInput name="myImage"
                    accept=".png,.gif,.jpg,.jpeg"
