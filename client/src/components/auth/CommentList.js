@@ -8,13 +8,15 @@ export default class CommentList extends React.Component {
   }
 
   render() {
+    console.log('data inside comment list: ', this.props.data);
     return(
       <div>
         <h2>Comment History</h2>
         { this.props.data.map((comment, i)=>{
-          return <CommentEntry key={i} data={comment} />
+          return <CommentEntry key={i} data={comment} viewOwnProfile={this.props.viewOwnProfile} />
         })}
       </div>
     )
   }
 }
+

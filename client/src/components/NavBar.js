@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import * as actions from '../actions';
 
 class NavBar extends Component {
   //if user is authenticated, show "sign out" & "profile" on nav bar
+  signout() {
+    this.props.signoutUser();
+  }
   renderLinks() {
     if(this.props.authenticated) {
       return [<li key={4}>
           <Link to="/communities" className="navbar-brand">Communities</Link>
       </li>,
       <li key={2}>
-        <Link to="/profile" className="navbar-brand">Profile</Link>
+        <Link to={`/profile?uid=${localStorage.user}`} className="navbar-brand">Profile</Link>
       </li>,
       <li key={1}>
-          <Link to="/" className="navbar-brand">Sign Out</Link>
+          <Link to="/" className="navbar-brand" onClick={this.signout.bind(this)}>Sign Out</Link>
       </li>
       ];
     } else {
@@ -96,5 +100,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, actions)(NavBar);
 

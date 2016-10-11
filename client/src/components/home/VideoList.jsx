@@ -32,7 +32,7 @@ export default class VideoList extends React.Component {
           let thumbStyle = {
             width: '80%'
           }
-          let path = `/record?id=${ val.RecordId }`
+          let path = `/record?rid=${ val.RecordId }`
           return (
             <div className="youtube-flexbox" key={i}>
                 <Link className="youtube-container" to={ path }>
