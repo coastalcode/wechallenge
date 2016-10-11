@@ -61,7 +61,8 @@ export default class VideoEntry extends Component {
               <div className="btn-group-vertical">
                 <Link to={`/record?rid=${this.props.data.RecordId}`}><button className="btn btn-primary profileButton" >Go to Record Page</button></Link>
 
-                <Link><button className="btn btn-danger profileButton" onClick={this.showDeleteModal.bind(this)} >Remove this video</button></Link>
+                {this.props.viewOwnProfile ?
+                  <Link><button className="btn btn-danger profileButton" onClick={this.showDeleteModal.bind(this)} >Remove this video</button></Link> : null }
               </div>
             </div>
           </div>
