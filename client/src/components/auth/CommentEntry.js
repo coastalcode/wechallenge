@@ -61,7 +61,8 @@ export default class CommentEntry extends React.Component {
 
             <div className="col-sm-3">
               <div className="btn-group-vertical">
-                <Link><button className="btn btn-danger profileButton" onClick={this.showDeleteModal.bind(this)} >Delete this comment</button></Link>
+                { this.props.viewOwnProfile ?
+                <Link><button className="btn btn-danger profileButton" onClick={this.showDeleteModal.bind(this)} >Delete this comment</button></Link> : null }
               </div>
             </div>
           </div>

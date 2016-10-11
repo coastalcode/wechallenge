@@ -12,7 +12,7 @@ export default class VideoList extends React.Component {
       <div>
         <h2>Challenge Submission History</h2>
         { this.props.data[0].Submissions.map((sub, i)=>{
-          return <VideoEntry key={i} data={sub} />
+          return <VideoEntry key={i} data={sub} viewOwnProfile={this.props.viewOwnProfile}/>
         })}
       </div>
 

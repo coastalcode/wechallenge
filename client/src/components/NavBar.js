@@ -10,7 +10,7 @@ class NavBar extends Component {
           <Link to="/communities" className="navbar-brand">Communities</Link>
       </li>,
       <li key={2}>
-        <Link to="/profile" className="navbar-brand">Profile</Link>
+        <Link to={`/profile?uid=${localStorage.user}`} className="navbar-brand">Profile</Link>
       </li>,
       <li key={1}>
           <Link to="/" className="navbar-brand">Sign Out</Link>

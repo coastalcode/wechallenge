@@ -13,13 +13,15 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: this.props.location.query.uid,
       currentUser: '',
       userComments: [],
       userSubs: [],
       userVotes: [],
       userPic: null,
       profileView: 'submissions',
-      readyToRenderVideoList: false
+      readyToRenderVideoList: false,
+      viewOwnProfile: false
     }
   }
 
@@ -28,6 +30,20 @@ export default class Profile extends Component {
     this.fetchUserComments();
     this.fetchUserSubs();
     this.fetchUserVotes();
+
+    const token = localStorage.getItem('token');
+
+    fetch(`/users/${ this.state.userId }`)
+      .then((currentUser)=> currentUser.json())
+      .then((currentUser)=>{
+        console.log('token: ', token);
+        console.log('currentUser.test: ', currentUser.test);
+        console.log('this.state.userId:', this.state.userId);
+        console.log('currentUser.id:', currentUser.id);
+        if(token === currentUser.test && Number(this.state.userId) === currentUser.id) {
+          this.setState({viewOwnProfile: true});
+        }
+      })
   }
 
   componentDidMount() {
@@ -35,7 +51,7 @@ export default class Profile extends Component {
   }
 
   fetchUserPic() {
-    fetch('/images/' + localStorage.user)
+    fetch('/images/' + this.state.userId)
       .then((res)=> res.json())
       .then((image)=> {
         console.log('here be da data', image)
@@ -44,7 +60,7 @@ export default class Profile extends Component {
   }
 
   fetchUserSubs() {
-    fetch('/usersub/' + localStorage.user)
+    fetch('/usersub/' + this.state.userId)
       .then((res)=>res.json())
       .then((data)=>{
         console.log('find subs', data)
@@ -57,7 +73,7 @@ export default class Profile extends Component {
 
   fetchUserVotes() {
     console.log('inside fetchUservotes on profile page')
-    fetch('/votes/users/' + localStorage.user)
+    fetch('/votes/users/' + this.state.userId)
       .then((res)=>res.json())
       .then((data)=>{
         console.log('find votes', data)
@@ -68,7 +84,7 @@ export default class Profile extends Component {
   }
 
   fetchUserComments() {
-    fetch('/comments/user/' + localStorage.user)
+    fetch('/comments/user/' + this.state.userId)
       .then((res)=>res.json())
       .then((data)=>{
         this.setState({userComments: data})
@@ -81,7 +97,7 @@ export default class Profile extends Component {
       headers: new Headers()
     }
 
-    fetch(`/users/${ localStorage.getItem('user') }`)
+    fetch(`/users/${ this.state.userId }`)
       .then((currentUser)=> currentUser.json())
       .then((currentUser)=>{
         console.log('user: ', currentUser)
@@ -95,7 +111,7 @@ export default class Profile extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({data: data, user: localStorage.user, token: localStorage.token})
+      body: JSON.stringify({data: data, user: this.state.userId, token: localStorage.token})
     }).then((res)=>{
       if (res.status === 200) {
         this.setState({userPic: data})
@@ -149,6 +165,8 @@ export default class Profile extends Component {
       <div>
         <h1>Hello, {this.state.currentUser.username}!</h1>
         { this.state.userPic ? <img className="profile--userPic" src={this.state.userPic}/> : null}
+
+        { this.state.viewOwnProfile ?
         <form>
           <label htmlFor="profile-img-input">Upload a profile picture</label>
              <FileInput name="myImage"
@@ -156,21 +174,22 @@ export default class Profile extends Component {
                    placeholder="My Image"
                    className="inputClass"
                    onChange={this.handleImage.bind(this)} />
-        </form>
+        </form> : null }
+
         <ProfileNavBar changeProfileView={this.changeProfileView.bind(this)}/>
 
         { this.state.profileView === 'submissions' && this.state.readyToRenderVideoList ?
-          <VideoList data={this.state.userSubs} />
+          <VideoList data={this.state.userSubs} viewOwnProfile={this.state.viewOwnProfile}/>
           : null
         }
 
         { this.state.profileView === 'votes' ?
-          <VoteVideoList data={this.state.userVotes} />
+          <VoteVideoList data={this.state.userVotes} viewOwnProfile={this.state.viewOwnProfile} />
           : null
         }
 
         { this.state.profileView === 'comments' ?
-          <CommentList data={this.state.userComments} />
+          <CommentList data={this.state.userComments}viewOwnProfile={this.state.viewOwnProfile} />
           : null
         }
       </div>
