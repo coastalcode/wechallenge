@@ -82,6 +82,7 @@
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.24.3",
     "sequelize-cli": "^2.4.0",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "whatwg-fetch": "^1.0.0"
   }
 }

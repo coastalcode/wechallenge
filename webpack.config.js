@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 module.exports = {
   entry: [
+    'whatwg-fetch',
     'webpack/hot/only-dev-server',
     './client/src/index.js'
   ],

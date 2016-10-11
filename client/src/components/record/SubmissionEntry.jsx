@@ -14,6 +14,22 @@ export default class SubmissonEntry extends React.Component {
   }
 
   flagVideo () {
+    let flaggedVideo = {
+      reason: "here is the reason",
+      userid: this.props.currentUser.id,
+      submissionid: this.props.submission.id
+    }
+
+    fetch('/flagvideo', {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'post',
+        body: JSON.stringify(flaggedVideo)
+    }).then(function(response) {
+      console.log("added a flagged video")
+    })
+
     fetch(`/submissions/flag/${ this.props.submission.id }`)
       .then((flagged)=>{
         this.props.submission.official = 0;

@@ -117,13 +117,13 @@ module.exports = {
     },
 
     findAllPublic(req, res) {
-      db.Submission.findAll({ where: { public: 1, RecordId: req.params.id }, include: [ db.User, db.Record ] })
+      db.Submission.findAll({ where: { public: 1, RecordId: req.params.id }, include: [ db.User, db.Record ], order: [['createdAt', 'ASC']] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
 
     findACommunity(req, res) {
-      db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid }, include: [ db.User, db.Record ] })
+      db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid }, include: [ db.User, db.Record ], order: [['createdAt', 'ASC']] })
         .then(submissions => res.json(submissions))
         .catch(err => console.error(err))
     },
@@ -659,6 +659,40 @@ module.exports = {
           res.json(data)
         })
     }
+  },
+
+  notifications: {
+    sendInvite(req, res) {
+      db.CommunityInvite.create({
+        sender: req.body.sender,
+        receiver: req.body.receiver,
+        message: req.body.message,
+        done: 0,
+        CommunityId: req.body.communityId
+      })
+      .then(invite=> res.sendStatus(201))
+      .catch(error=> console.error(error))
+    },
+
+    clearInvite(req, res) {
+      db.CommunityInvite.destroy({ where: { id: req.params.id } })
+        .catch(error => console.error(error))
+    },
+
+    flagVideo(req, res) {
+      db.FlaggedVideo.create({
+        reason: req.body.reason,
+        done: 0,
+        UserId: req.body.userid,
+        SubmissionId: req.body.submissionid
+      })
+    },
+
+    clearFlaggedVideo(req, res) {
+      db.FlaggedVideo.destroy({ where: { id: req.params.id } })
+        .catch(error => console.error(error))
+    }
+
   }
 
 }

@@ -29,6 +29,11 @@ export default class Record extends React.Component {
     })
   }
 
+  http://localhost:3000/record  ?id=3
+
+{ rid: 2,
+ cid : 3 }
+
   fetchRecordInfo() {
     fetch(`/records/${ this.props.location.query.rid }`)
       .then((recordInfo)=> recordInfo.json())
@@ -56,8 +61,45 @@ export default class Record extends React.Component {
         return submissions;
       })
       .then((submissions)=> {
+        that.getDurations();
+        return submissions;
+      })
+      .then((submissions)=> {
+        console.log("durations!!!!", this.state.submissions)
         that.sortSubmissions();
       })
+  }
+
+  getDurations() {
+    let submissions = this.state.submissions.slice();
+    if (!submissions.length) { return submissions }
+
+    let best = submissions[0].measurement;
+    submissions[0].history = 1;
+    let history = 2;
+    let index = 0;
+
+    for (var i = 0; i < submissions.length; i++) {
+      if (submissions[i].measurement > best) {
+        let prev = moment(submissions[index].createdAt)
+        let updated = moment(submissions[i].createdAt)
+
+        let duration = moment.duration(updated.diff(prev));
+        let hours = duration.asHours();
+        let days = duration.asDays();
+
+
+        submissions[index].duration = (hours > 24) ?
+          Math.floor(days) + " day(s)" : Math.floor(hours) + " hour(s)"
+        submissions[i].history = history;
+        history++;
+        index = i;
+        best = submissions[i].measurement;
+      }
+    }
+
+    submissions[index].duration = "current winner!"
+    this.setState({ submissions })
   }
 
   sortSubmissions() {
@@ -81,6 +123,14 @@ export default class Record extends React.Component {
     })
     this.setState({ submissions })
 
+  }
+
+  getRecordHistory() {
+    let submissions = this.state.submissions.slice();
+
+    for (var i = 0; i < submissions.length; i++) {
+
+    }
   }
 
   toggleChallengeShow() {

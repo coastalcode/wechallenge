@@ -108,4 +108,11 @@ module.exports = function (app) {
 
   app.post('/images', query.image.add);
   app.get('/images/:id', query.image.get);
+
+  app.post('/communityinvite', query.notifications.sendInvite)
+  app.get('/communityinvite/delete/:id', query.notifications.clearInvite)
+
+  app.post('/flagvideo', query.notifications.flagVideo)
+  app.get('/flagvideo/delete/:id', query.notifications.clearFlaggedVideo)
+
 }
