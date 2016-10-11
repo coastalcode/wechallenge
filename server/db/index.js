@@ -123,6 +123,18 @@ const Image = db.define('Image', {
   json: Sequelize.JSON
 })
 
+const CommunityInvite = db.define('CommunityInvite', {
+  sender: Sequelize.INTEGER,
+  receiver: Sequelize.INTEGER,
+  message: Sequelize.STRING,
+  done: Sequelize.INTEGER
+})
+
+const FlaggedVideo = db.define('FlaggedVideo', {
+  reason: Sequelize.STRING,
+  done: Sequelize.INTEGER
+})
+
 // puts a UserId column on each Message instance
 // also gives us the `.setUser` method available
 // after creating a new instance of Message
@@ -170,9 +182,19 @@ Community.hasMany(Submission)
 Community.hasMany(CommunityBulletin)
 Community.hasMany(UsersCommunitiesJoin)
 
+FlaggedVideo.belongsTo(User);
+FlaggedVideo.belongsTo(Submission);
+
+User.hasMany(FlaggedVideo)
+Submission.hasMany(FlaggedVideo)
+
+CommunityInvite.belongsTo(Community)
+
+Community.hasMany(CommunityInvite)
+
 // TableName.sync(/*{force: true}*/);
 // // turn on "force:true" to drop any existing table and replace with new one (ie: drop "User" table, create new "User" table)
-User.sync();
+// User.sync();
 
 db.Sequelize = Sequelize;
 module.exports = db;
@@ -187,3 +209,5 @@ module.exports.CommunityComment = CommunityComment;
 module.exports.UsersCommunitiesJoin = UsersCommunitiesJoin;
 module.exports.CommunityBulletin = CommunityBulletin;
 module.exports.Image = Image;
+module.exports.CommunityInvite = CommunityInvite;
+module.exports.FlaggedVideo = FlaggedVideo;
