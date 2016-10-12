@@ -71,14 +71,13 @@ export default class Voting extends React.Component {
   render() {
 
     return (
-      <div className="videoaction-button points" onClick={this.addVote.bind(this)}>
-        {this.state.voted === false ?
-          <span>Vote Up</span>
+      <div>
+        { this.state.voted === false ?
+          <div className="videoaction-button points" onClick={this.addVote.bind(this)}>Vote Up</div>
           :
-          <span className="videoaction-button--voted">Voted!</span>
+          <div className="videoaction-button-voted">Voted!</div>
         }
       </div>
-
     )
   }
 }

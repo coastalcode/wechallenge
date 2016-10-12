@@ -20,7 +20,7 @@ body {
 /*navbar component*/
 
 .navbar-brand {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #FF9F1C !important;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 .bar {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: #101010;
   color: #FF9F1C !important;
   padding: 25px;
@@ -65,8 +65,8 @@ body {
 
 /*home component*/
 
-h1 {
-  font-family: 'Oswald', sans-serif;
+h2 {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .home-header {
@@ -75,17 +75,20 @@ h1 {
   overflow-wrap: break-word;
 }
 
-h1.home-header.mainHeader {
+h2.home-header.mainHeader {
   background-color: #FF9F1C;
   margin: 0;
+  box-shadow: 0px 1px 8px black;
 }
 
-h1.home-header.topLocal {
+h3.home-header.topLocal {
   color: #E71D36;
+  text-align: left;
 }
 
-h1.home-header.topGlobal {
+h3.home-header.topGlobal {
   color: #2EC4B6;
+  text-align: left;
 }
 
 .home-container--flex {
@@ -96,6 +99,20 @@ h1.home-header.topGlobal {
 
 
 /*css for responsive front page video*/
+
+.mainVideo-flexbox {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainVideo-container {
+  height: 360px;
+  width: 640px;
+ }
+
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -117,23 +134,50 @@ h1.home-header.topGlobal {
 
 .videoactions-container {
   display: flex;
+  flex-direction: column;
   position: relative;
   z-index: 99;
 }
 
 .videoaction-button {
+  width: 100px;
+  height: 50px;
+  padding: 10px 5px 10px 5px;
+  border-radius: 3px;
+  color: #FDFFFC;
+  color: #011627;
+  font-size: .8em;
+  margin: 3px;
+  font-weight:bold;
+  border: 3px solid #011627;
+/*  background-color: #011627;
+*/}
+
+.videoaction-button.more {
+  text-decoration: none;
+  text-align: center;
+}
+
+.videoaction-button.share {
+  padding-left: 20px;
+}
+
+.videoaction-button-voted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
   padding: 10px 5px 10px 5px;
   flex-grow: 1;
-  text-align: center;
   border-radius: 3px;
   color: #FDFFFC;
   margin: 3px;
-  font-weight: bold;
-  background-color: #011627;
-}
-
-.videoaction-button--voted {
-  color: #2EC4B6;
+  font-size: .8em;
+  text-align: center;
+  border: 3px solid #011627;
+  background-color: limegreen;
+  cursor: default;
 }
 
 .videoaction-button.points {
@@ -144,8 +188,17 @@ h1.home-header.topGlobal {
 
 .videoaction-button:hover {
   cursor: pointer;
-  color: #FDFFFC;
-  background-color: #FF9F1C;
+  animation: colorFadeIn .2s ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes colorFadeIn {
+  0% {
+    background-color: whitesmoke;
+  }
+  100% {
+    background-color: #FF9F1C;
+  }
 }
 
 .videoaction-button.share {
@@ -160,28 +213,38 @@ h1.home-header.topGlobal {
 }
 
 .facebookShare-icon {
-  padding-left: 10px;
+  padding-left: 3px;
 }
 
 /*VideoList Component*/
 
 .videolist-columns {
   margin: 5px;
-  flex-basis: 50%;
+  width: 740px;
+  display: flex;
+  flex-direction: column;
+}
+
+.videolist-thumbnailRow {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .videolists-container {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-items: center;
 }
 
 .youtube-flexbox {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-bottom: 10px;
   position: relative;
   z-index: 99;
+  flex-basis: 100px;
+  margin-right: 10px;
 }
 
 .youtube-container {
@@ -192,7 +255,6 @@ h1.home-header.topGlobal {
 
 .youtube-deets {
   display: flex;
-  width: 40%;
   padding-left: 10px;
   flex-direction: column;
   flex-flow: wrap;
@@ -200,16 +262,16 @@ h1.home-header.topGlobal {
 
 .youtube-thumbnail {
   border-radius: 10px;
-  width: 320px;
-  height: 180px;
+  width: 205px;
+  height: 135px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .title-banner {
-  font-size: 1.5em;
-  overflow-wrap: break-word;
+  font-size: .9em;
+  word-wrap: break-word;
 }
 
 .record-banner {
@@ -234,6 +296,10 @@ h1.home-header.topGlobal {
 .videolist-userFlex {
   display: flex;
   align-items: center;
+}
+
+.videolist-username {
+  font-size: .9em;
 }
 
 .videolist-userpic {
@@ -261,10 +327,6 @@ h1.home-header.topGlobal {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .videolists-container {
-    flex-direction: row;
   }
 
 }
@@ -303,7 +365,7 @@ h1.home-header.topGlobal {
 }
 
 .panel-default>.panel-heading {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #FF9F1C;
     background-color: #FDFFFC;
     border-color: #ddd;
@@ -350,7 +412,7 @@ h1.home-header.topGlobal {
 }
 
 .input1 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -370,7 +432,7 @@ h1.home-header.topGlobal {
 }
 
 .button1 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #FF9F1C;
@@ -389,7 +451,7 @@ h1.home-header.topGlobal {
 }
 
 .select1 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -696,7 +758,7 @@ h1.home-header.topGlobal {
 
 .tagline {
     position: relative;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     text-shadow: 0 0 10px #000;
     color: #FDFFFC;
     top: 340px;

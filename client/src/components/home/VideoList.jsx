@@ -21,33 +21,36 @@ export default class VideoList extends React.Component {
 
     return (
       <div className="videolist-columns">
-        { this.props.locale === 'state' ?
-          <h1 className="home-header topLocal">Top Records In {localStorage.region}</h1>
-          :
-          <h1 className="home-header topGlobal">Top Records Worldwide</h1>
-        }
-        { this.props.videos.map((val,i)=>{
-          console.log('videolistval', val)
-          val.User = val.User || {username: 'Anonymous'}
-          let thumbStyle = {
-            width: '80%'
+        <div className="videoList-header">
+          { this.props.locale === 'state' ?
+            <h3 className="home-header topLocal">Top Records In {localStorage.region}</h3>
+            :
+            <h3 className="home-header topGlobal">Top Records Worldwide</h3>
           }
-          let path = `/record?rid=${ val.RecordId }`
-          return (
-            <div className="youtube-flexbox" key={i}>
-                <Link className="youtube-container" to={ path }>
-                <div className="youtube-thumbnail" style={{ backgroundImage: 'url(http://img.youtube.com/vi/' + val.link + '/hqdefault.jpg)'}}></div>
-                </Link>
-                <div className="youtube-deets">
-                  <span className="title-banner">{val.title}</span>
-                  <div className="user-wrapper">
-                    <UserPic user={val.UserId} username={val.User.username}/>
-                    <span className="record-banner">&nbsp;in&nbsp;<strong>{val.Record.category}</strong></span>
+        </div>
+        <div className="videolist-thumbnailRow">
+          { this.props.videos.map((val,i)=>{
+            console.log('videolistval', val)
+            val.User = val.User || {username: 'Anonymous'}
+            let path = `/record?rid=${ val.RecordId }`
+            return (
+              <div className="youtube-flexbox" key={i}>
+                  <Link className="youtube-container" to={ path }>
+                  <div className="youtube-thumbnail" style={{ backgroundImage: 'url(http://img.youtube.com/vi/' + val.link + '/hqdefault.jpg)'}}></div>
+                  </Link>
+                  <div className="youtube-deets">
+                    <span className="title-banner">
+                      { val.title.length > 55 ? val.title.slice(0,55) + '...' : val.title }
+                    </span>
+                    <div className="user-wrapper">
+                      <UserPic user={val.UserId} username={val.User.username}/>
+                      <span className="record-banner">&nbsp;in&nbsp;<strong>{val.Record.category}</strong></span>
+                    </div>
                   </div>
-                </div>
-            </div>
-          )
-        })}
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
