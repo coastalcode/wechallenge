@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class SubmissonEntryVideo extends React.Component {
+export default class MainSubmissionVideo extends React.Component {
   constructor(props) {
     super(props);
 
