@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-
 export default class UserPic extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,7 @@ export default class UserPic extends React.Component {
       })
   }
 
-  componentWillMount() {
+  componentDidMount() {
       this.fetchUserPic(this.props.user);
   }
 

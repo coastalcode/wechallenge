@@ -7,7 +7,6 @@ export default class MainSubmissionInfo extends React.Component {
     super(props);
 
     this.state = {
-      defaultView: true
     };
   }
 
@@ -30,12 +29,10 @@ export default class MainSubmissionInfo extends React.Component {
           </div>
           <div className="videocomments">
             <div className="title">Comments</div>
-            <div>
-              <CommentView
-                currentUser={ this.props.currentUser }
-                submission={ this.props.submission }
-                cid={ this.props.cid }/>
-            </div>
+            <CommentView
+              currentUser={ this.props.currentUser }
+              submission={ this.props.submission }
+              cid={ this.props.cid }/>
           </div>
       </div>
     )

@@ -65,11 +65,18 @@ export default class SubmissonEntry extends React.Component {
             <button onClick={ event=> this.flagVideo() } >Button</button>
           </div> : null }
 
-        { (false) ? <VideoActions className="video-actions" title={this.props.submission.title} subId={this.props.submission.id} link={this.props.submission.link} votes={this.props.submission.votes} comments={this.props.submission.comments} /> : null }
+
 
         <div className="mainsubmission">
+        <center>
+        <div className="mainsubmission mainsubtop">
+
         <MainSubmissionVideo submission={ this.props.submission } />
 
+        { (true) ? <VideoActions className="video-actions" title={this.props.submission.title} subId={this.props.submission.id} link={this.props.submission.link} votes={this.props.submission.votes} comments={this.props.submission.comments} /> : null }
+
+        </div>
+        </center>
         <MainSubmissionInfo
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }

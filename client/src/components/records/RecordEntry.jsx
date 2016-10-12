@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import UserPic from './../home/UserPic';
 
 export default class RecordEntry extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ export default class RecordEntry extends React.Component {
           <br/>
           { this.props.submission.Record.category }
           { this.props.submission.Record.subcategory }
+          <UserPic user={ this.props.submission.User.id } username={ this.props.submission.User.username }/>
         </div>
 
       </div>
