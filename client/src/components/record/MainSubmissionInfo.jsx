@@ -13,43 +13,31 @@ export default class MainSubmissionInfo extends React.Component {
 
   render() {
     return (
-      <div className="indivrecord-entry-info">
-        <div className="indivrecord-entry-info-tabs">
-          <button className="indivrecord-entry-info-tab"
-            onClick={ event => this.setState({ defaultView: true }) }>Submission Info</button>
-          <button className="indivrecord-entry-info-tab"
-            onClick={ event => this.setState({ defaultView: false }) }>Comments</button>
-        </div>
-        <div className="indivrecord-entry-info-main">
-            { this.props.submission.title } <br/>
-            { this.props.submission.description } <br/>
-            { this.props.submission.measurement } { this.props.record.units }
-          </div>
-
+      <div>
           <div>
-            <CommentView
-              currentUser={ this.props.currentUser }
-              submission={ this.props.submission }
-              cid={ this.props.cid }/>
+            { (this.props.submission.duration==='current winner!') ?
+            <div className="iscurrentwinner">
+              <img src='/images/FirstPlace.png'/>
+              <span> Current winner! </span> This video has held this record since { moment(this.props.submission.createdAt).format("MMM Do YYYY") }! Think you can beat them?
+            </div> : null }
+
+            <div className="videoinfo">
+              <div className="title">{ this.props.submission.title } <span> { this.props.submission.measurement } { this.props.record.units } </span></div>
+              <br/>
+              { this.props.submission.description }
+
+            </div>
+          </div>
+          <div className="videocomments">
+            <div className="title">Comments</div>
+            <div>
+              <CommentView
+                currentUser={ this.props.currentUser }
+                submission={ this.props.submission }
+                cid={ this.props.cid }/>
+            </div>
           </div>
       </div>
     )
   }
 }
-
-
-// { (this.state.defaultView) ?
-
-//           <div className="indivrecord-entry-info-main">
-//             { this.props.submission.title } <br/>
-//             { this.props.submission.description } <br/>
-//             { this.props.submission.measurement } { this.props.record.units }
-//           </div>
-//           :
-//           <div>
-//             <CommentView
-//               currentUser={ this.props.currentUser }
-//               submission={ this.props.submission }
-//               cid={ this.props.cid }/>
-//           </div>
-//         }

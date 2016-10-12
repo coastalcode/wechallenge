@@ -162,26 +162,16 @@ export default class Record extends React.Component {
     return (
       <div className="indivrecord">
       <center>
-      <Link to={ path }>
-      <button>Real challenge button</button>
-      </Link>
-      <button onClick={ event => this.toggleChallengeShow() }> Challenge! </button>
-      <br/>
 
-      { (this.state.challengeShow) ?
-        <Challenge
-          first={ this.state.submissions[0] }
-          record={ this.state.recordInfo }
-          toggle={ this.toggleChallengeShow.bind(this) }
-          rid={ this.props.location.query.rid } />
-          : null }
+        { (this.state.recordInfo.title) ? <div className="title">{ this.state.recordInfo.title }</div> : null }
 
         <br/>
         { (this.props.location.query.cid) ? <Link to={ mainpage }>
           <button onClick={ event => window.location.reload() }>Check out the main page for this record!</button>
         </Link> : null }
 
-         { (this.state.submissions[0]) ? <div> Current Winner! { this.state.submissions[0].measurement } { this.state.recordInfo.units } </div> : null }
+        <img src='/images/Trophy.png'/>
+         { (this.state.submissions[0]) ? <div> The current record to beat is { this.state.submissions[0].measurement } { this.state.recordInfo.units }! <br/>Submit your own video for this record by clicking <Link to={ path }>here</Link>.</div> : null }
 
 
         { (this.state.submissions[0]) ? <MainSubmission
