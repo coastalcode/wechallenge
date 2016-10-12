@@ -130,26 +130,11 @@ module.exports = {
     },
 
     add(req, res) {
-      db.Record.findOrCreate({
-        where: {
-          category: req.body.selectedCategory,
-          subcategory: req.body.selectedSubCategory,
-          title: req.body.title,
-          units: req.body.units,
-          moreisgood: req.body.moreisgood,
-          lessisgood: req.body.lessisgood
-        },
-        defaults: {
-          category: req.body.selectedCategory,
-          subcategory: req.body.selectedSubCategory,
-          title: req.body.title,
-          units: req.body.units,
-          moreisgood: req.body.moreisgood,
-          lessisgood: req.body.lessisgood
-        }
-      }).then((record) => {
-        console.log('record-------', record);
-        console.log('record ID----', record[0].dataValues.id);
+      // If the submission is a challenge, it will have a
+      // record id, so no need to create a new record
+      if(req.body.recordId) {
+        console.log('going to create a submission');
+        console.log('here is the stuff on the submission body', req.body);
         db.Submission.create({
           title: req.body.title,
           link: req.body.link,
@@ -157,15 +142,51 @@ module.exports = {
           votes: 0,
           official: 1,
           UserId: req.body.userId,
-          RecordId: record[0].dataValues.id,
+          RecordId: req.body.recordId,
           measurement: req.body.measurement,
           state: req.body.state,
           public: req.body.public,
           CommunityId: req.body.CommunityId
-
         }).then(submission => res.sendStatus(201))
           .catch(error => console.error(error))
-      })
+      } else {
+        db.Record.findOrCreate({
+          where: {
+            category: req.body.selectedCategory,
+            subcategory: req.body.selectedSubCategory,
+            title: req.body.title,
+            units: req.body.units,
+            moreisgood: req.body.moreisgood,
+            lessisgood: req.body.lessisgood
+          },
+          defaults: {
+            category: req.body.selectedCategory,
+            subcategory: req.body.selectedSubCategory,
+            title: req.body.title,
+            units: req.body.units,
+            moreisgood: req.body.moreisgood,
+            lessisgood: req.body.lessisgood
+          }
+        }).then((record) => {
+          console.log('record-------', record);
+          console.log('record ID----', record[0].dataValues.id);
+          db.Submission.create({
+            title: req.body.title,
+            link: req.body.link,
+            description: req.body.description,
+            votes: 0,
+            official: 1,
+            UserId: req.body.userId,
+            RecordId: record[0].dataValues.id,
+            measurement: req.body.measurement,
+            state: req.body.state,
+            public: req.body.public,
+            CommunityId: req.body.CommunityId
+
+          }).then(submission => res.sendStatus(201))
+            .catch(error => console.error(error))
+        })
+      }
     },
 
 
