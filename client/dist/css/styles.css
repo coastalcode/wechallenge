@@ -817,7 +817,19 @@ footer {
 .community-item:hover .replies { display: none; }
 .community-item:hover .comment { display: inline; }
 
+.list-container {
+  display: flex;
+  flex-direction; column;
+}
+.list-item{
+  padding: 5px;
+}
 
+.community-box {
+  position: fixed;
+  left: 500px;
+  top: 500px;
+}
 
 /*Profile Component*/
 .profile--userPic {

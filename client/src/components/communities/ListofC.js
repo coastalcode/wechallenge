@@ -17,12 +17,14 @@ class List extends Component {
     })
     this.state.showJoin = false;
     this.state.currentCom = null;
+    this.state.description = null;
 
   }
 
-  openJoin(id) {
+  openJoin(id, description) {
     this.setState({ showJoin: true });
     this.setState({ currentCom: id});
+    this.setState({ description: description})
   }
 
   closeJoin() {
@@ -32,7 +34,9 @@ class List extends Component {
   joinCommunity(id){
     this.props.joinCommunity(id);
     this.setState({ currentCom: null});
+    this.setState({ description: null});
     this.setState({ showJoin: false });
+    location.reload(true);
   }
 
   render() {
@@ -41,13 +45,16 @@ class List extends Component {
     console.log(this.state.currenCom, 'iteration!!')
 
     let current = this.state.currenCom
+    if(this.props.checkForMatching(this.state.exists, this.props.search)) {
+
+    }
     return (
       <div>
       <ul className="community-container">
         {this.state.real.map(one=>{
           console.log('here', one);
           return(
-            <li onClick= {this.openJoin.bind(this, one.id)} className="community-item">
+            <li onClick= {this.openJoin.bind(this, one.id, one.description)} className="community-item">
             <div>{one.name}</div>
             </li>
             )
@@ -56,10 +63,10 @@ class List extends Component {
 
       <Modal show={this.state.showJoin} onHide={this.closeJoin.bind(this)}>
         <Modal.Header closeButton>
-        Are you sure you want to join?
+        Join a Community
         </Modal.Header>
         <Modal.Body>
-        {this.state.currentCom}
+        Description: {this.state.description}
         </Modal.Body>
         <Modal.Footer>
         <Button onClick={this.joinCommunity.bind(this, this.state.currentCom )}>Join</Button>
