@@ -9,6 +9,7 @@ export default class App extends Component {
     this.findRegion();
   }
 
+  // Finds the state that the user's IP address is coming from
   findRegion(ip) {
     fetch('https://ipapi.co/json/').then(res=> res.json())
       .then(data=> localStorage.setItem('region', data.region))
