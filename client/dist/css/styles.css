@@ -572,6 +572,12 @@ h3.home-header.topGlobal {
   width: 65%;
 }
 
+.mainsubtop {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
 .othersubslist {
   display: flex;
   flex-direction: column;
