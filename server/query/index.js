@@ -675,6 +675,12 @@ module.exports = {
   },
 
   notifications: {
+    allCommunityInvites(req, res){
+      db.CommunityInvite.findAll()
+      .then(invites=> res.json(invites))
+      .catch(error=> console.error(error))
+    },
+
     sendInvite(req, res) {
       db.CommunityInvite.create({
         sender: req.body.sender,
@@ -689,7 +695,14 @@ module.exports = {
 
     clearInvite(req, res) {
       db.CommunityInvite.destroy({ where: { id: req.params.id } })
+        .then(invite=> res.json(invite))
         .catch(error => console.error(error))
+    },
+
+    allFlaggedVideos(req, res){
+      db.FlaggedVideo.findAll()
+      .then(videos=> res.json(videos))
+      .catch(error=> console.error(error))
     },
 
     flagVideo(req, res) {

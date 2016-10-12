@@ -2,6 +2,10 @@ import React from 'react';
 import CommentList from './CommentList';
 import SubmissionList from './SubmissionList';
 
+import MainSubmission from './MainSubmission';
+import OtherSubmissionsList from './OtherSubmissionsList';
+
+
 import Challenge from '../challenge/Challenge'
 import { Link } from 'react-router';
 
@@ -17,7 +21,8 @@ export default class Record extends React.Component {
       first: {},
       other: [],
 
-      challengeShow: false
+      challengeShow: false,
+      currentlyShown: 0
     }
   }
 
@@ -137,6 +142,10 @@ export default class Record extends React.Component {
     this.setState({ challengeShow: !this.state.challengeShow })
   }
 
+  setMainVideo(id) {
+    this.setState({currentlyShown: id})
+  }
+
   componentDidMount() {
     this.fetchRecordInfo();
     this.fetchVideos();
@@ -146,10 +155,16 @@ export default class Record extends React.Component {
   render() {
   let mainpage = `/record?rid=${ this.props.location.query.rid }`
   let that = this;
+  let path = `/submission?rid=${this.props.location.query.rid}`
+
+  if (this.props.location.query.cid) {path = path + `&cid=${this.props.location.query.cid }`}
 
     return (
       <div className="indivrecord">
       <center>
+      <Link to={ path }>
+      <button>Real challenge button</button>
+      </Link>
       <button onClick={ event => this.toggleChallengeShow() }> Challenge! </button>
       <br/>
 
@@ -166,11 +181,21 @@ export default class Record extends React.Component {
           <button onClick={ event => window.location.reload() }>Check out the main page for this record!</button>
         </Link> : null }
 
-        <SubmissionList
-          cid={ this.props.location.query.cid }
+         { (this.state.submissions[0]) ? <div> Current Winner! { this.state.submissions[0].measurement } { this.state.recordInfo.units } </div> : null }
+
+
+        { (this.state.submissions[0]) ? <MainSubmission
           currentUser={ this.state.currentUser }
+          submission={ this.state.submissions[this.state.currentlyShown] }
+          record={ this.state.recordInfo }
+          cid={ this.props.location.query.cid }
+        /> : null }
+
+        <OtherSubmissionsList
           submissions={ this.state.submissions }
-          record={ this.state.recordInfo } />
+          setMainVideo={ this.setMainVideo.bind(this) }
+        />
+
       </center>
       </div>
     )

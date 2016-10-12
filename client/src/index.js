@@ -21,9 +21,8 @@ import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
 import NeedSuperUser from './components/NeedSuperUser';
 import NeedAdminUser from './components/NeedAdminUser';
-import Communities from './components/communities/CommunitiesMain';  //For Anna
-// import CommunityPage from './components/community/CommunityPage';
-// import CommunityRecord from './components/community/record/CRecord';
+import Communities from './components/communities/CommunitiesMain';
+import CommunityInvites from './components/communities/Test';
 
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
@@ -77,6 +76,8 @@ const routes = (
     <Route path="adminControls" component={AdminControls} />
     <Route path="needSuperUser" component={NeedSuperUser} />
     <Route path="needAdminUser" component={NeedAdminUser} />
+
+    <Route path="communityinvites" component={CommunityInvites} />
     <Route path="*" component={NotFound} />
   </Route>
 );
