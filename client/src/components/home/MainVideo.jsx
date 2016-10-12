@@ -43,7 +43,7 @@ export default class MainVideo extends React.Component {
               <UserPic user={this.props.video.UserId} username={this.props.video.User.username}/><span className="record-banner">&nbsp;in&nbsp;<strong>{this.props.video.Record.category}</strong></span>
             </div>
           </div>
-          <VideoActions className="video-actions" title={this.props.video.title} subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
+          <VideoActions className="video-actions" rid={this.props.video.Record.id} title={this.props.video.title} subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
         </div>
       </div>
     )
