@@ -20,16 +20,14 @@ export default class RecordEntry extends React.Component {
   }
 
   deleteSubmission () {
-    console.log(this.props.flag.id)
     let init = {
       method: 'DELETE'
     }
 
     fetch(`/submissions/${ this.props.flag.id }`, init)
       .then((removed)=>{
-        console.log(this.props.flag.id);
-        console.log("Bye!!");
         this.hideDeleteModal();
+        // the state view is being changed to render that page and remove the video
         this.setState({view: 'deleted'});
     })
   }
