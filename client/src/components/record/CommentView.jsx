@@ -40,6 +40,7 @@ export default class CommentView extends React.Component {
         method: 'post',
         body: JSON.stringify(comment)
     })
+    .then((comment)=> {this.fetchComments()})
   }
 
   componentDidMount() {
@@ -50,11 +51,7 @@ export default class CommentView extends React.Component {
   render() {
     let switchView = () => { this.setState({ listView: true }) }
     return (
-      <div className="indivrecord-commentlist">
-        <button onClick={ event => this.setState({ listView: true }) }>List View</button>
-        <button onClick={ event => this.setState({ listView: false }) }>Add Comment View</button>
-
-
+      <div>
         <CommentList
           currentUser={ this.props.currentUser }
           comments={ this.state.comments }

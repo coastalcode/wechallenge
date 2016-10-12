@@ -210,4 +210,4 @@ module.exports.UsersCommunitiesJoin = UsersCommunitiesJoin;
 module.exports.CommunityBulletin = CommunityBulletin;
 module.exports.Image = Image;
 module.exports.CommunityInvite = CommunityInvite;
-module.exports.FlaggedVideo = FlaggedVideo;
+module.exports.FlaggedVideo = FlaggedVideo  ;

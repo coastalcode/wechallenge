@@ -18,7 +18,7 @@ export default class OtherSubmissionsList extends React.Component {
         <div className="title">
           Previous winners!
         </div>
-        <br/>
+
         { this.props.submissions.map((submission, subindex) => {
           return (submission.duration) ?
           <OtherSubmissionsListEntry
@@ -27,14 +27,10 @@ export default class OtherSubmissionsList extends React.Component {
             setMainVideo={ this.props.setMainVideo }/> : null
         })}
 
-        <br/>
-        <br/>
-
         <div className="title">
           Record attempts!
         </div>
 
-        <br/>
         { this.props.submissions.map((submission, subindex) => {
           return (!submission.duration) ?
           <OtherSubmissionsListEntry
@@ -48,7 +44,6 @@ export default class OtherSubmissionsList extends React.Component {
           Record suggestions!
         </div>
 
-        <br/>
         { this.props.submissions.map((submission, subindex) => {
           return (!submission.duration) ?
           <OtherSubmissionsListEntry

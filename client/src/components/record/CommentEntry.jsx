@@ -1,4 +1,5 @@
 import React from 'react';
+import UserPic from './../home/UserPic';
 
 export default class CommentEntry extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class CommentEntry extends React.Component {
          this.setState({ userPic: image.json })
        })
    }
- 
+
   fetchCurrentUser() {
     let init = {
       method: 'GET',
@@ -51,19 +52,18 @@ export default class CommentEntry extends React.Component {
   render() {
     console.log("look at me!", this.props.comment.UserId, this.props.currentUser.id)
     return (
-      <div>
-        { this.props.comment.title }
+      <div className="commententry">
+
+        <span className="title">{ this.props.comment.title }</span>
         <br/>
         { this.props.comment.description }
-        <br/>
-        Posted by: { this.props.comment.User.username }
-        { this.state.userPic ?
-          <img className="comment--userPic" src={this.state.userPic} />
-          : null }
-        <br/>
+
+        <UserPic user={ this.props.comment.User.id } username={ this.props.comment.User.username }/>
+
         { ( this.props.comment.UserId === this.props.currentUser.id ) ?
         <button onClick={ event=> this.deleteComment() }> Delete </button>
         : null }
+
       </div>
     )
   }
