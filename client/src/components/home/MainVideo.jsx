@@ -2,6 +2,7 @@ import React from 'react';
 import Video from './Video';
 import YouTube from 'react-youtube';
 import VideoActions from './VideoActions';
+import UserPic from './UserPic';
 
 export default class MainVideo extends React.Component {
   constructor(props) {
@@ -27,18 +28,23 @@ export default class MainVideo extends React.Component {
 
   render() {
     const opts = {
-      height: '349',
-      width: '560'
+      height: '360',
+      width: '640'
     }
     return (
       <div>
-        <h1 className="home-header mainHeader">weChallenge of the Day: {this.props.video.title}</h1>
-        <div className="video-container">
-          <YouTube videoId={this.props.video.link}
-            opts={opts}
-          />
+        <h2 className="home-header mainHeader">weChallenge of the Day: {this.props.video.title}</h2>
+        <div className="mainVideo-flexbox">
+          <div className="mainVideo-container">
+            <YouTube videoId={this.props.video.link}
+              opts={opts}
+            />
+            <div className="user-wrapper">
+              <UserPic user={this.props.video.UserId} username={this.props.video.User.username}/><span className="record-banner">&nbsp;in&nbsp;<strong>{this.props.video.Record.category}</strong></span>
+            </div>
+          </div>
+          <VideoActions className="video-actions" title={this.props.video.title} subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
         </div>
-        <VideoActions className="video-actions" title={this.props.video.title} subId={this.props.video.id} link={this.props.video.link} votes={this.props.video.votes} comments={this.props.video.comments} />
       </div>
     )
   }

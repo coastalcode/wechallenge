@@ -1,6 +1,7 @@
 import React from 'react';
 import Voting from './Voting';
 import { ShareButtons, generateShareIcon } from 'react-share';
+import { Link } from 'react-router';
 
 const { FacebookShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');
@@ -19,6 +20,7 @@ export default class VideoAction extends React.Component {
   }
 
   render() {
+    let path = `/record?rid=${ this.props.subId }`
     return(
       <div className="videoactions-container">
         <span className="videolists-flexbuffer"></span>
@@ -37,9 +39,11 @@ export default class VideoAction extends React.Component {
             title={'Check out this submission on weChallenge!'}
             url={'wechallenge.herokuapp.com/record?rid=' + this.props.subId}
             description={this.props.title}>Share
-            <FacebookIcon className="facebookShare-icon" size={32} round={true}/>
+            <FacebookIcon className="facebookShare-icon" size={25} round={true}/>
           </FacebookShareButton>
         </span>
+        <Link className="videoaction-button more"
+          to={ path }>More</Link>
         <span className="videolists-flexbuffer"></span>
       </div>
     )
