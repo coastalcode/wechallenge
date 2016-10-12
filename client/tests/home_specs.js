@@ -61,7 +61,7 @@ describe('Main Video', ()=>{
       const component = renderIntoDocument(
         <MainVideo video={testVideo} />
       )
-      const h1 = scryRenderedDOMComponentsWithTag(component, 'h1');
+      const h1 = scryRenderedDOMComponentsWithTag(component, 'h2');
 
       expect(h1.length).to.equal(1);
     })
