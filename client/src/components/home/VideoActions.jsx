@@ -20,7 +20,7 @@ export default class VideoAction extends React.Component {
   }
 
   render() {
-    let path = `/record?rid=${ this.props.subId }`
+    let path = `/record?rid=${ this.props.rid }`
     return(
       <div className="videoactions-container">
         <span className="videolists-flexbuffer"></span>
@@ -42,8 +42,9 @@ export default class VideoAction extends React.Component {
             <FacebookIcon className="facebookShare-icon" size={25} round={true}/>
           </FacebookShareButton>
         </span>
-        <Link className="videoaction-button more"
-          to={ path }>More</Link>
+
+        { (this.props.nomore) ? null : <Link className="videoaction-button more"
+          to={ path }>More</Link>  }
         <span className="videolists-flexbuffer"></span>
       </div>
     )

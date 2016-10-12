@@ -73,7 +73,14 @@ export default class SubmissonEntry extends React.Component {
 
         <MainSubmissionVideo submission={ this.props.submission } />
 
-        { (true) ? <VideoActions className="video-actions" title={this.props.submission.title} subId={this.props.submission.id} link={this.props.submission.link} votes={this.props.submission.votes} comments={this.props.submission.comments} /> : null }
+        { (true) ? <VideoActions className="video-actions"
+          title={this.props.submission.title}
+          subId={this.props.submission.id}
+          link={this.props.submission.link}
+          votes={this.props.submission.votes}
+          comments={this.props.submission.comments}
+          rid={this.props.submission.Record.id}
+          nomore={ true } /> : null }
 
         </div>
         </center>
