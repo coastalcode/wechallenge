@@ -44,9 +44,10 @@ export default class OtherSubmissionsList extends React.Component {
           Record suggestions!
         </div>
 
-        { this.props.submissions.map((submission, subindex) => {
+        { this.props.othersubmissions.map((submission, subindex) => {
           return (!submission.duration) ?
           <OtherSubmissionsListEntry
+            random={ true }
             submission={ submission }
             subindex={ subindex }
             setMainVideo={ this.props.setMainVideo }/> : null

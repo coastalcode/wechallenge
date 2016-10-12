@@ -562,7 +562,7 @@ h1.home-header.topGlobal {
   padding: 5%;
 }
 
-.othersublist-entry > div > img {
+.othersublist-entry > div > div > img {
   height: 10%;
   width: 10%;
   float: right;

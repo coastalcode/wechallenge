@@ -43,8 +43,7 @@ export default class CommentView extends React.Component {
     .then((comment)=> {this.fetchComments()})
   }
 
-  componentDidMount() {
-    console.log("this is the right comment view!")
+  componentWillMount() {
     this.fetchComments();
   }
 

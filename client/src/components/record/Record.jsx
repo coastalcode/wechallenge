@@ -16,6 +16,7 @@ export default class Record extends React.Component {
     this.state = {
       recordInfo: {},
       submissions: [],
+      othersubmissions: [],
       currentUser: "",
 
       first: {},
@@ -48,6 +49,29 @@ export default class Record extends React.Component {
     })
   }
 
+  fetchRandomVideos() {
+    fetch(`/submissions`)
+      .then((submissions)=> submissions.json())
+      .then((submissions)=> {
+        console.log(submissions, "submissions before adding anything")
+        let othersubmissions = [];
+
+        for (var i = 0; i < 5; i++) {
+          let num = this.generateRandomNumber(submissions.length);
+          othersubmissions.push(submissions[num])
+          submissions.splice(num, 1)
+        }
+
+        console.log(othersubmissions, "this one look at me!!!")
+        this.setState({ othersubmissions });
+      })
+
+  }
+
+  generateRandomNumber(max) {
+    return Math.floor(Math.random() * max);
+
+  }
   fetchVideos() {
     let that = this;
     let toggle = this.props.toggle
@@ -149,7 +173,9 @@ export default class Record extends React.Component {
   componentDidMount() {
     this.fetchRecordInfo();
     this.fetchVideos();
+    this.fetchRandomVideos();
     this.fetchCurrentUser();
+
   }
 
   render() {
@@ -183,6 +209,7 @@ export default class Record extends React.Component {
 
         <OtherSubmissionsList
           submissions={ this.state.submissions }
+          othersubmissions={ this.state.othersubmissions }
           setMainVideo={ this.setMainVideo.bind(this) }
         />
 
