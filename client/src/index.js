@@ -9,20 +9,22 @@ import { tokens } from './actions/index';
 import App from './components/App';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
-import Submission from './components/Submission';
+import Submission from './components/submissions/Submission';
 import Challenge from './components/challenge/Challenge';
 import Record from './components/record/Record';
 import Records from './components/records/Records';
-import NotFound from './components/NotFound';
+import NotFound from './components/error-page/NotFound';
 import Signup from './components/auth/signup';
 import Home from './components/home/Home';
 import Profile from './components/auth/profile';
 import FlaggedVideos from './components/admin/FlaggedVideos';
 import AdminControls from './components/admin/AdminControls';
-import NeedSuperUser from './components/NeedSuperUser';
-import NeedAdminUser from './components/NeedAdminUser';
+import NeedSuperUser from './components/error-page/NeedSuperUser';
+import NeedAdminUser from './components/error-page/NeedAdminUser';
 import Communities from './components/communities/CommunitiesMain';
-import CommunityInvites from './components/communities/Test';
+import CommunityInvites from './components/communities/Test';  //For Anna
+// import CommunityPage from './components/community/CommunityPage';
+// import CommunityRecord from './components/community/record/CRecord';
 
 
 import { AUTH_USER, UNAUTH_USER } from './actions/types';
