@@ -74,6 +74,7 @@
     "react-http-request": "^1.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
+    "react-search-bar": "^1.1.4",
     "react-share": "^1.10.0",
     "react-youtube": "^7.1.1",
     "redux": "^3.6.0",

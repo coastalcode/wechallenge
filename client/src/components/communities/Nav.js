@@ -5,30 +5,30 @@ export default class Nav extends Component {
     super(props)
     this.state={};
     this.state.communities=[];
-
-
   }
 
   render() {
     const that = this;
     return (
-      <div className="records-catlist">
-        <div className="panel-group" id="accordion">
+      <div className="list-container">
+        <div className="list-item" id="accordion">
         {this.props.communities.map(function(community){
           return (
             <div className="panel panel-default">
             <div className="panel-heading">
-              <div onClick={()=> that.props.open(community.CommunityId)} className="panel-title">
+              <div
+              onClick={()=> that.props.open(community.CommunityId)}
+              className="panel-title">
               {community.Community.name}
               </div>
               </div>
           </div>
             )
-        })}
-
+          })
+        }
         </div>
       </div>
-      )
+    )
   }
 }
 

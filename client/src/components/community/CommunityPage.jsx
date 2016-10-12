@@ -7,7 +7,7 @@ export default class CommunityPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { cid : this.props.community[0].id };
+    this.state = { cid : this.props.community.id };
   }
 
   render2() {
@@ -19,10 +19,10 @@ export default class CommunityPage extends React.Component {
     )
   }
   render() {
-    console.log("props for community page", this.props);
-    return (<div>
+    return (<div className="community-box">
 
     { this.render2() }
+    { this.state.cid ? this.state.cid : null }
 
     </div>)
   }
