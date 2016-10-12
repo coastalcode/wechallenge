@@ -1,3 +1,6 @@
+// This file is used to upload videos to youtube
+// This file was taken from the youtube API example
+
 /*
 Copyright 2015 Google Inc. All Rights Reserved.
 
@@ -25,7 +28,7 @@ var DRIVE_UPLOAD_URL = 'https://www.googleapis.com/upload/drive/v2/files/';
  */
 var RetryHandler = function() {
   this.interval = 1000; // Start at one second
-  this.maxInterval = 60 * 1000; // Don't wait longer than a minute 
+  this.maxInterval = 60 * 1000; // Don't wait longer than a minute
 };
 
 /**

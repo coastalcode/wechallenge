@@ -1,3 +1,6 @@
+// This file is used to upload videos to Youtube
+// The majority of this file was the original example from youtube
+// but some modifications have been made to write the submission to the database
 
 /*
 Copyright 2015 Google Inc. All Rights Reserved.
@@ -95,7 +98,7 @@ UploadVideo.prototype.ready = function(accessToken) {
  * @param {object} file File object corresponding to the video to upload.
  */
 UploadVideo.prototype.uploadFile = function(file) {
-  // grab recordId and communityId from url
+  // grabs recordId and communityId from url
   var searchParams = window.location.search.slice(1);
   if (searchParams.length > 0) {
     searchParams = searchParams.split('&');
@@ -109,6 +112,7 @@ UploadVideo.prototype.uploadFile = function(file) {
     var communityIdQuery = null;
   }
 
+  // grabs other items from the submission page
   var uploadTitle = $('#title').val();
   var uploadDescription = $('#description').val();
   var selectedCategory = $('#selectedCategory').text();
@@ -118,6 +122,8 @@ UploadVideo.prototype.uploadFile = function(file) {
   var CommunityId = communityIdQuery || $('input[name=community]:checked').val();
   var RecordId = recordIdQuery;
 
+  // more and less isgood is an integer value representing 0 for false and 1 for true
+  // if more is the true value, that means larger measurements are needed to set a new record
   if ($('#measurement-direction').val() === 'lower') {
     var moreisgood = 0;
     var lessisgood = 1;
@@ -125,25 +131,24 @@ UploadVideo.prototype.uploadFile = function(file) {
     var moreisgood = 1;
     var lessisgood = 0;
   }
-var params = window.location.search.slice(1).split('&');
-undefined
-params
-["rid=13", "cid=1"]
-params[0].replace(/\D/,'')
-"id=13"
-params[0].replace(/\D*/,'')
-"13"
+
+  // isPublic is an integer value representing 0 for false and 1 for true
+  // if isPublic is true, then the whole site can see the video submission
+  // if isPublic is false, then only the community this record is associated
+  // with can see it
   if ($('#check_public').is(":checked")) {
     var isPublic = 0;
   } else {
     var isPublic = 1;
   }
 
-  // + "\n\nThis video was submitted as part of the wechallenge.heroku.com project";
+  // metadata is what is sent to youtube
+  // title and description comes from the submission page
+  // the description has an ending to add a link to wechallenge
   var metadata = {
     snippet: {
       title: uploadTitle,
-      description: uploadDescription,
+      description: uploadDescription + "\n\nThis video was submitted as part of the http://wechallenge.heroku.com project",
       tags: this.tags,
       categoryId: this.categoryId
     },
@@ -217,6 +222,7 @@ params[0].replace(/\D*/,'')
         })
       })
         .done(function(msg) {
+          // redirects back to the homepage after successful upload
           document.location.search = '';
           document.location.pathname ='/';
         })

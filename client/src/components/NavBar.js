@@ -8,6 +8,8 @@ class NavBar extends Component {
   signout() {
     this.props.signoutUser();
   }
+
+  // Used to show different options if user is logged in or not
   renderLinks() {
     if(this.props.authenticated) {
       return [<li key={4}>
@@ -44,6 +46,7 @@ class NavBar extends Component {
     }
   }
 
+  // admin controls will be shown if user is a type of 3 "admin" or greater
   adminControls() {
     if (this.props.userType >= 3) {
       return (
@@ -53,6 +56,7 @@ class NavBar extends Component {
       )
     }
   }
+
   //default nav bar view
   render () {
     return (

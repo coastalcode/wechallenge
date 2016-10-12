@@ -91,6 +91,8 @@ fetch(`/users/${ localStorage.getItem('user') }`)
   .then((currentUser)=> currentUser.json())
   .then((currentUser)=>{
     console.log('currentuser: ', currentUser);
+    // currentUser.test is the token store for the suer in the database
+    // if currentUser.test matches the localStorage 'token' than user is signed in
     if(token === currentUser.test) {
       console.log('tokens match');
       store.dispatch({type:AUTH_USER, userType: currentUser.type});
