@@ -9,6 +9,14 @@ export default class CommentEntry extends React.Component {
     }
   }
 
+  fetchUserPic(id) {
+     fetch('/images/' + id)
+       .then((res)=> res.json())
+       .then((image)=> {
+         this.setState({ userPic: image.json })
+       })
+   }
+ 
   fetchCurrentUser() {
     let init = {
       method: 'GET',
