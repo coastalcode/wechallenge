@@ -12,6 +12,8 @@ export default class FlaggedVideos extends React.Component {
   }
 
   componentWillMount() {
+    // checks to make sure the user is signed in and has a user type of 2 which
+    // is a super user or higher
     const token = localStorage.getItem('token');
 
     fetch(`/users/${ localStorage.getItem('user') }`)

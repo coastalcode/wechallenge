@@ -10,6 +10,8 @@ export default class RecordEntry extends React.Component {
     }
   }
 
+  // grabs all the flagged video in the database and stores those videos in
+  // the state flagged
   fetchFlaggedVideos() {
     let init = {
       method: 'GET',
