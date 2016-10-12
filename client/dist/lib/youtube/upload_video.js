@@ -95,13 +95,29 @@ UploadVideo.prototype.ready = function(accessToken) {
  * @param {object} file File object corresponding to the video to upload.
  */
 UploadVideo.prototype.uploadFile = function(file) {
+  // grab recordId and communityId from url
+  var searchParams = window.location.search.slice(1);
+  if (searchParams.length > 0) {
+    searchParams = searchParams.split('&');
+    var recordIdQuery = searchParams[0].replace(/\D*/,'');
+    var communityIdQuery = null;
+    if (searchParams.length > 1) {
+      var communityIdQuery = searchParams[1].replace(/\D*/,'');
+    }
+  } else {
+    var recordIdQuery = null;
+    var communityIdQuery = null;
+  }
+
   var uploadTitle = $('#title').val();
   var uploadDescription = $('#description').val();
   var selectedCategory = $('#selectedCategory').text();
   var selectedSubCategory = $('#selectedSubCategory').text();
   var measurement = $('#measurement').val();
   var units = $('#units').val();
-  var CommunityId = $('input[name=community]:checked').val();
+  var CommunityId = communityIdQuery || $('input[name=community]:checked').val();
+  var RecordId = recordIdQuery;
+
   if ($('#measurement-direction').val() === 'lower') {
     var moreisgood = 0;
     var lessisgood = 1;
@@ -109,7 +125,14 @@ UploadVideo.prototype.uploadFile = function(file) {
     var moreisgood = 1;
     var lessisgood = 0;
   }
-
+var params = window.location.search.slice(1).split('&');
+undefined
+params
+["rid=13", "cid=1"]
+params[0].replace(/\D/,'')
+"id=13"
+params[0].replace(/\D*/,'')
+"13"
   if ($('#check_public').is(":checked")) {
     var isPublic = 0;
   } else {
@@ -189,10 +212,12 @@ UploadVideo.prototype.uploadFile = function(file) {
           "lessisgood": lessisgood,
           "state": localStorage.region,
           "public": isPublic,
-          "CommunityId": CommunityId
+          "CommunityId": CommunityId,
+          "recordId": RecordId
         })
       })
         .done(function(msg) {
+          document.location.search = '';
           document.location.pathname ='/';
         })
         .fail(function(msg) {

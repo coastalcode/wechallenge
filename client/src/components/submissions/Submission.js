@@ -16,6 +16,8 @@ export default class Submission extends Component {
     this.state.userId;
     this.state.submitCommunity = false;
     this.state.submitUploadOption;
+    this.state.recordQuery = this.props.location.query.rid;
+    this.state.communityQuery = this.props.location.query.cid;
   }
 
   // no longer needed as pulling in upload scrip from a different component
@@ -54,6 +56,8 @@ export default class Submission extends Component {
       var isPublic = 1;
     }
 
+    var communityId = this.state.communityQuery || $('input[name=community]:checked').val()
+
     let obj = {
       link: data.id,
       title: data.snippet.title,
@@ -65,8 +69,9 @@ export default class Submission extends Component {
       units: $('#units').val(),
       moreisgood: moreisgood,
       lessisgood: lessisgood,
-      CommunityId: $('input[name=community]:checked').val(),
-      public: isPublic
+      CommunityId: communityId,
+      public: isPublic,
+      recordId: this.state.recordQuery
     };
     if(localStorage.region) {
       obj.state = localStorage.region;
@@ -88,6 +93,7 @@ export default class Submission extends Component {
 
     fetch('/submissions', init).then((res)=>{
       console.log('video added', res)
+      console.log('obj: ', obj);
       browserHistory.push('/');
     })
   }
@@ -177,7 +183,7 @@ export default class Submission extends Component {
   }
 
   renderSubmitUploadOption() {
-    if (this.state.submitCommunity) {
+    if (this.state.submitCommunity || this.state.recordQuery) {
       return (
         <div>
           <h3>How would you like to submit your video?</h3>
@@ -226,13 +232,16 @@ export default class Submission extends Component {
           <div className="post-sign-in">
             <h3>Now that you are signed into YouTube, please fill out the following information</h3>
 
-            <CategoryList selectCategory={this.selectCategory.bind(this)} />
+            {!this.state.recordQuery ?
+              <div>
+                <CategoryList selectCategory={this.selectCategory.bind(this)} />
 
-            <h4>Selected Category: &nbsp;
-              <span id="selectedCategory"></span>
-              { this.state.selected ? '  /  ' : null}
-              <span id="selectedSubCategory"></span>
-            </h4>
+                <h4>Selected Category: &nbsp;
+                  <span id="selectedCategory"></span>
+                  { this.state.selected ? '  /  ' : null}
+                  <span id="selectedSubCategory"></span>
+                </h4>
+              </div> : null }
 
             <div>
               <label htmlFor="title">Title:</label>
@@ -246,17 +255,21 @@ export default class Submission extends Component {
               <label htmlFor="measurement">Measurement:</label>
               <input id="measurement" type="text" />
             </div>
-            <div>
-              <label htmlFor="units">Units:</label>
-              <input id="units" type="text" />
-            </div>
-            <div>
-              <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
-              <select id="measurement-direction">
-                <option>lower</option>
-                <option>higher</option>
-              </select>
-            </div>
+
+            {!this.state.recordQuery ?
+              <div>
+                <div>
+                  <label htmlFor="units">Units:</label>
+                  <input id="units" type="text" />
+                </div>
+                <div>
+                  <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
+                  <select id="measurement-direction">
+                    <option>lower</option>
+                    <option>higher</option>
+                  </select>
+                </div>
+              </div> : null }
             <div>
               <label htmlFor="privacy-status">YouTube Privacy Status:</label>
               <select id="privacy-status">
@@ -268,6 +281,11 @@ export default class Submission extends Component {
 
             <div className="submission-flexboxCol">
               <input type="file" id="file" className="button" accept="video/*" />
+
+              { this.state.communityQuery ?
+                <div class="checkbox">
+                  <label><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
+                </div> : null }
               <button id="button">Upload Submission</button>
               <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
               <br/>
@@ -291,29 +309,38 @@ export default class Submission extends Component {
         <div>
           <h3>You will be submitting an existing YouTube url, please fill out the following information</h3>
 
-          <CategoryList selectCategory={this.selectCategory.bind(this)} />
+          {!this.state.recordQuery ?
+            <div>
+              <CategoryList selectCategory={this.selectCategory.bind(this)} />
 
-          <h4>Selected Category: &nbsp;
-            <span id="selectedCategory"></span>
-            { this.state.selected ? '  /  ' : null}
-            <span id="selectedSubCategory"></span>
-          </h4>
+              <h4>Selected Category: &nbsp;
+                <span id="selectedCategory"></span>
+                { this.state.selected ? '  /  ' : null}
+                <span id="selectedSubCategory"></span>
+              </h4>
+            </div> : null }
 
           <div>
             <label htmlFor="measurement">Measurement:</label>
             <input id="measurement" type="text" />
           </div>
-          <div>
-            <label htmlFor="units">Units:</label>
-            <input id="units" type="text" />
-          </div>
-          <div>
-            <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
-            <select id="measurement-direction">
-              <option>lower</option>
-              <option>higher</option>
-            </select>
-          </div>
+
+          {!this.state.recordQuery ?
+            <div>
+              <div>
+                <label htmlFor="units">Units:</label>
+                <input id="units" type="text" />
+              </div>
+
+              <div>
+                <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
+                <select id="measurement-direction">
+                  <option>lower</option>
+                  <option>higher</option>
+                </select>
+              </div>
+            </div> : null }
+
           <label>The title and description will be taken from the YouTube link</label>
           <p className="flexbox-container--column">
             <input placeholder="Add existing YouTube link" type="text" id="submittedLink" className="button" />
@@ -321,6 +348,12 @@ export default class Submission extends Component {
               <span className="submission-warning">Please enter a valid YouTube Link</span>
               : null
             }
+
+            { this.state.communityQuery ?
+              <div class="checkbox">
+                <label><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
+              </div> : null }
+
             <button onClick={this.parseYouTubeLink.bind(this)} id="linkButton">Submit a YouTube link</button>
           </p>
         </div>
@@ -334,23 +367,27 @@ export default class Submission extends Component {
     console.log('in render community id select: ', this.state.submitCommunity);
     return (
       <div  className="submissionContainer">
-        {this.state.authenticated ? <div>
-          <h1>Submit a Challenge</h1>
-          <h3>Is this challenge for the entire site or a specific community?</h3>
-          <form>
-            <label className="radio-inline">
-              <input onClick={this.submitLocation.bind(this, 'siteOnly')} type="radio" name="location" value="siteOnly" id="siteOnly" />Entire Site
-            </label>
-            <label className="radio-inline">
-              <input onClick={this.submitLocation.bind(this, 'communityOnly')} type="radio" name="location" value="communityOnly" id="communityOnly" />Community Only
-            </label>
-          </form>
+        {this.state.authenticated ?
+          <div>
+            {!this.state.recordQuery ?
+              <div>
+                <h1>Submit a Challenge</h1>
+                <h3>Is this challenge for the entire site or a specific community?</h3>
+                <form>
+                  <label className="radio-inline">
+                    <input onClick={this.submitLocation.bind(this, 'siteOnly')} type="radio" name="location" value="siteOnly" id="siteOnly" />Entire Site
+                  </label>
+                  <label className="radio-inline">
+                    <input onClick={this.submitLocation.bind(this, 'communityOnly')} type="radio" name="location" value="communityOnly" id="communityOnly" />Community Only
+                  </label>
+                </form>
 
-          { this.renderSubmitCommunity() }
+                { this.renderSubmitCommunity() }
+              </div> : null}
 
-          { this.renderSubmitUploadOption() }
+            { this.renderSubmitUploadOption() }
 
-          {this.renderSubmitUpload() }
+            {this.renderSubmitUpload() }
 
         </div> :
           <h1>You need to be a member of this site to submit a submission</h1>
