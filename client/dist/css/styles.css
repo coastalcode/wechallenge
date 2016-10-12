@@ -832,9 +832,9 @@ footer {
 }
 
 .community-box {
-  position: fixed;
+  position: relative;
   left: 500px;
-  top: 500px;
+  top: 0px;
 }
 
 /*Profile Component*/
