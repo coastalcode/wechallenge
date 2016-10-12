@@ -13,6 +13,7 @@ export default class AdminControls extends React.Component {
     }
   }
 
+  // grabs all users from database and adds them to the state users
   fetchUsers() {
     $.ajax({
       url: '/users',
@@ -27,6 +28,8 @@ export default class AdminControls extends React.Component {
     })
   }
 
+  // This checks to insure that the user who is logged in has a user type of
+  // 3 or higher which is an admin level or higher
   componentWillMount() {
     const token = localStorage.getItem('token');
 
@@ -47,6 +50,7 @@ export default class AdminControls extends React.Component {
     this.setState({search})
   }
 
+  // Used to check what matches the search term
   checkForMatching(checkThese, forThis) {
     let bool = false;
     if (forThis === "") {

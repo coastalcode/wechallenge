@@ -29,8 +29,10 @@ export default class UserEntry extends React.Component {
     this.setState({ showMeltModal: true });
   }
 
+  // renders each row of users
   renderUser() {
     if(this.state.view === 'normal') {
+      // admin view of each user if they are not being edited
       return (
         [
         <td>{this.props.user.username}</td>,
@@ -44,6 +46,7 @@ export default class UserEntry extends React.Component {
         ]
       )
     } else if(this.state.view === 'edit') {
+      // admin view of each user if they are being edited
       return (
         [
         <td>{this.props.user.username}</td>,
@@ -79,6 +82,7 @@ export default class UserEntry extends React.Component {
     this.setState({ view });
   }
 
+  // updates the user type of a user being edited
   saveUser() {
     $.ajax({
       url: '/users/' + this.props.user.id,
@@ -94,6 +98,8 @@ export default class UserEntry extends React.Component {
     })
   }
 
+  // freezes a specific user
+  // a frozen user cannot log in again until melted
   freezeUser() {
     $.ajax({
       url: '/users/' + this.props.user.id,
@@ -106,6 +112,8 @@ export default class UserEntry extends React.Component {
     })
   }
 
+  // melts a specific user
+  // a melted user can log in again as many times as they like
   meltUser() {
     $.ajax({
       url: '/users/' + this.props.user.id,
