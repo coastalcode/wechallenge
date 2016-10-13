@@ -1102,3 +1102,6 @@ footer {
   padding-right: 15px;
 }
 
+.othersublist-entry > div > .title {
+  color: black;
+}
