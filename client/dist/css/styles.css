@@ -281,6 +281,7 @@ h3.home-header.topGlobal {
 
 .user-wrapper {
   display: flex;
+  align-items:flex-end;
 }
 
 .videolist-thumb {
@@ -295,7 +296,7 @@ h3.home-header.topGlobal {
 
 .videolist-userFlex {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .videolist-username {
