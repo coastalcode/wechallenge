@@ -142,7 +142,7 @@ module.exports = {
         console.log('going to create a submission');
         console.log('here is the stuff on the submission body', req.body);
         db.Submission.create({
-          title: req.body.title,
+          title: req.body.submissionTitle,
           link: req.body.link,
           description: req.body.description,
           votes: 0,
@@ -160,7 +160,7 @@ module.exports = {
           where: {
             category: req.body.selectedCategory,
             subcategory: req.body.selectedSubCategory,
-            title: req.body.title,
+            title: req.body.recordName,
             units: req.body.units,
             moreisgood: req.body.moreisgood,
             lessisgood: req.body.lessisgood
@@ -168,7 +168,7 @@ module.exports = {
           defaults: {
             category: req.body.selectedCategory,
             subcategory: req.body.selectedSubCategory,
-            title: req.body.title,
+            title: req.body.recordName,
             units: req.body.units,
             moreisgood: req.body.moreisgood,
             lessisgood: req.body.lessisgood
@@ -177,7 +177,7 @@ module.exports = {
           console.log('record-------', record);
           console.log('record ID----', record[0].dataValues.id);
           db.Submission.create({
-            title: req.body.title,
+            title: req.body.submissionTitle,
             link: req.body.link,
             description: req.body.description,
             votes: 0,
