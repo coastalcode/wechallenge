@@ -71,21 +71,21 @@ export default class SubmissonEntry extends React.Component {
 
         <div className="mainsubmission">
         <center>
-        <div className="mainsubmission mainsubtop">
+          <div className="mainsubmission mainsubtop">
+            <div className="mainsubmission-flexbuffer"></div>
+            <MainSubmissionVideo submission={ this.props.submission } />
 
-        <MainSubmissionVideo submission={ this.props.submission } />
+            { (true) ? <VideoActions className="video-actions"
+              title={this.props.submission.title}
+              subId={this.props.submission.id}
+              link={this.props.submission.link}
+              votes={this.props.submission.votes}
+              comments={this.props.submission.comments}
+              rid={this.props.submission.Record.id}
+              clickFlagged={ this.clickFlagged.bind(this) }
+              nomore={ true } /> : null }
 
-        { (true) ? <VideoActions className="video-actions"
-          title={this.props.submission.title}
-          subId={this.props.submission.id}
-          link={this.props.submission.link}
-          votes={this.props.submission.votes}
-          comments={this.props.submission.comments}
-          rid={this.props.submission.Record.id}
-          clickFlagged={ this.clickFlagged.bind(this) }
-          nomore={ true } /> : null }
-
-        </div>
+          </div>
         </center>
         <MainSubmissionInfo
           comments={ this.props.comments }
