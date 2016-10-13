@@ -623,10 +623,19 @@ h3.home-header.topGlobal {
   margin: 2%;
 }
 
+.indivrecord-entry-vid {
+  width: 60%;
+}
+
 .mainsubmission {
   display: flex;
   flex-direction: column;
 }
+
+.mainsubmission-flexbuffer {
+  width: 20%;
+}
+
 
 .submityourown {
   background-color: #39a779;
@@ -666,7 +675,7 @@ h3.home-header.topGlobal {
 .mainsubtop {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  /*width: 70%;*/
 }
 
 .othersubslist {
