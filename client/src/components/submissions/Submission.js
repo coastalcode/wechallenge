@@ -60,7 +60,7 @@ export default class Submission extends Component {
 
     let obj = {
       link: data.id,
-      title: data.snippet.title,
+      submissionTitle: data.snippet.title,
       description: data.snippet.description,
       userId: Number(localStorage.user),
       selectedCategory: $('#selectedCategory').text(),
@@ -71,7 +71,8 @@ export default class Submission extends Component {
       lessisgood: lessisgood,
       CommunityId: communityId,
       public: isPublic,
-      recordId: this.state.recordQuery
+      recordId: this.state.recordQuery,
+      recordName: $('#recordName').val()
     };
     if(localStorage.region) {
       obj.state = localStorage.region;
@@ -165,7 +166,7 @@ export default class Submission extends Component {
                 })
               }
           <div class="checkbox">
-            <label><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
+            <label className="submission-private-question"><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
           </div>
         </div>
       )
@@ -241,6 +242,9 @@ export default class Submission extends Component {
                   { this.state.selected ? '  /  ' : null}
                   <span id="selectedSubCategory"></span>
                 </h4>
+
+                <label>Record Name</label>
+                <input id="recordName" type="text" />
               </div> : null }
 
             <div>
@@ -265,8 +269,8 @@ export default class Submission extends Component {
                 <div>
                   <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
                   <select id="measurement-direction">
-                    <option>lower</option>
                     <option>higher</option>
+                    <option>lower</option>
                   </select>
                 </div>
               </div> : null }
@@ -284,7 +288,7 @@ export default class Submission extends Component {
 
               { this.state.communityQuery ?
                 <div class="checkbox">
-                  <label><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
+                  <label className="submission-private-question"><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
                 </div> : null }
               <button id="button">Upload Submission</button>
               <p id="disclaimer">By uploading a video, you certify that you own all rights to the content or that you are authorized by the owner to make the content publicly available on YouTube, and that it otherwise complies with the YouTube Terms of Service located at <a href="http://www.youtube.com/t/terms" target="_blank">http://www.youtube.com/t/terms</a></p>
@@ -318,6 +322,9 @@ export default class Submission extends Component {
                 { this.state.selected ? '  /  ' : null}
                 <span id="selectedSubCategory"></span>
               </h4>
+
+              <label>Record Name</label>
+              <input id="recordName" type="text" />
             </div> : null }
 
           <div>
@@ -335,8 +342,8 @@ export default class Submission extends Component {
               <div>
                 <label htmlFor="measurement-direction">Is a lower or higher measurment impressive?</label>
                 <select id="measurement-direction">
-                  <option>lower</option>
                   <option>higher</option>
+                  <option>lower</option>
                 </select>
               </div>
             </div> : null }
@@ -351,7 +358,7 @@ export default class Submission extends Component {
 
             { this.state.communityQuery ?
               <div class="checkbox">
-                <label><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
+                <label className="submission-private-question"><input type="checkbox" id="check_public" defaultChecked={false}/>Make my submission private to my community only</label>
               </div> : null }
 
             <button onClick={this.parseYouTubeLink.bind(this)} id="linkButton">Submit a YouTube link</button>
