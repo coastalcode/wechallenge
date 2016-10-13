@@ -14,7 +14,7 @@ export default class CommunityPage extends React.Component {
     return (
       <div>
       <div className="community-header">{this.props.community.name}</div>
-      <div className="community-description">{this.props.community.description}</div>
+      <p className="community-description">{this.props.community.description}</p>
         <Records cid={ this.state.cid }/>
       </div>
     )

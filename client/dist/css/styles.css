@@ -920,7 +920,7 @@ h3.home-header.topGlobal {
 .community-description {
   font-family: 'Open Sans', sans-serif;
   color: #2EC4B6;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .tagline {
@@ -1001,9 +1001,8 @@ footer {
   #FF9F1C - bright yellow (orange)
 */
 .community-box {
-  position: absolute;
-  left: 200px;
-  top: 516px;
+  position: relative;
+  top: -210px;
 }
 .record-community {
     display: flex;
