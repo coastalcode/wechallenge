@@ -98,9 +98,9 @@ a:active {
 
 
 
-
 .navbar-brand:hover {
   cursor: pointer;
+  color: #FFBE1C;
 }
 
 /*home component*/
@@ -136,7 +136,6 @@ h3.home-header.topGlobal {
   flex-direction: column;
   align-items: center;
 }
-
 
 /*css for responsive front page video*/
 
@@ -408,7 +407,7 @@ h3.home-header.topGlobal {
   font-size: 2em;
 }
 
-/*Submission Page Category Menu*/
+
 .panel-heading {
   cursor: pointer;
 }
@@ -429,6 +428,12 @@ h3.home-header.topGlobal {
     background-color: #FF9F1C;
 }
 
+.panel-default>.panel-heading:hover {
+    font-family: 'Open Sans', sans-serif;
+    color: #FDFFFC;
+    background-color: #FF9F1C;
+    border-color: #ddd;
+}
 
 .channel-thumbnail {
   width: 15%;
@@ -610,6 +615,7 @@ h3.home-header.topGlobal {
 .title {
   font-size: 1.2em;
   font-weight: bold;
+  color: #FDFFFC;
 }
 
 .allrecords-recordlist-entry > div > img {
@@ -892,6 +898,17 @@ h3.home-header.topGlobal {
     -o-background-size: cover;
 }
 
+.community-header {
+  font-family: 'Open Sans', sans-serif;
+  color: #2EC4B6;
+  font-size: 3em;
+}
+
+.community-description {
+  font-family: 'Open Sans', sans-serif;
+  color: #2EC4B6;
+  font-size: 2em;
+}
 
 .tagline {
     position: relative;
@@ -961,12 +978,91 @@ footer {
 .list-item{
   padding: 5px;
 }
-
+/*Submission Page Category Menu*/
+/*Color Scheme
+  https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c
+  #011627 - maastricht blue (dark blue)
+  #FDFFFC - baby powder (white)
+  #2EC4B6 - max blue green (teal)
+  #E71D36 - rose madder (red/pink)
+  #FF9F1C - bright yellow (orange)
+*/
 .community-box {
-  position: relative;
-  left: 500px;
-  top: 0px;
+  position: absolute;
+  left: 200px;
+  top: 516px;
 }
+.record-community {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    float: left;
+    margin-top: 0;
+    margin-left: 0px;
+    background-color: #FF9F1C;
+    padding: 1%;
+    position: relative;
+    left: 3px;
+    top: 14px;
+}
+.entry-community:hover{
+    border-style:solid;
+    border-color:#ffca1c;
+}
+
+.record-list {
+  margin: 10px;
+}
+
+.details {
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+}
+
+.entry-community{
+    display: flex;
+    flex-direction: row;
+    background-color: #FDFFFC;
+    padding: 10px;
+    margin: 20px;
+}
+.bulletinList {
+    background-color: #fbb15e;
+    width: 60%;
+    padding: 5%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    margin: 4%;
+    position: absolute;
+    left: 789px;
+    top: 90px;
+}
+
+.bulletinadd > div > button {
+  font-size: 1em;
+  background-color: #f68b28;
+  color: white;
+  text-shadow:none !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+.input{
+  margin: auto;
+    width: 50%;
+}
+
+.bulletin-list {
+  background-color:white
+}
+.bulletin-list > button{
+  font-size: 0.8em;
+  background-color: #f68b28;
+  color: white;
+  text-shadow:none !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+
 
 /*Profile Component*/
 .profile--userPic {
