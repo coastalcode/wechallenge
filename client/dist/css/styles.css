@@ -971,7 +971,6 @@ footer {
   display:flex;
   justify-content: center;
   flex-direction: column;
-  line-height: 150px;
   color: white;
   font-weight: bold;
   font-size: 2em;
@@ -1006,7 +1005,8 @@ footer {
 */
 .community-box {
   position: relative;
-  top: -210px;
+  top: -100px;
+  text-align: center;
 }
 .record-community {
     display: flex;
