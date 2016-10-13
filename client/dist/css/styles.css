@@ -638,6 +638,7 @@ h3.home-header.topGlobal {
 .indivrecord > * > .title{
   font-size: 2em;
   margin: 2%;
+  color: black;
 }
 
 .indivrecord-entry-vid {
