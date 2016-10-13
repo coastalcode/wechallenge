@@ -71,8 +71,8 @@ export default class AdminControls extends React.Component {
   render() {
 
     return (
-      <div>
-        {this.state.authenticated ? <div> <h1>Inside of Admin Controls</h1>
+      <div className="admincontrols-container">
+        {this.state.authenticated ? <div> <h1>Welcome to Admin Controls</h1>
         <SearchBar updateSearchTerm={ this.updateSearchTerm.bind(this) } />
         <UserList
           users={ this.state.users }
