@@ -258,6 +258,7 @@ h3.home-header.topGlobal {
   padding-left: 10px;
   flex-direction: column;
   flex-flow: wrap;
+  flex-grow: 1;
 }
 
 .youtube-thumbnail {
