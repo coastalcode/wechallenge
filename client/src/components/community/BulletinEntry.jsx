@@ -26,7 +26,7 @@ export default class CommentEntry extends React.Component {
 
   deleteComment() {
     let that = this;
-    return fetch(`/comments/${ this.props.bulletin.id }`, {
+    return fetch(`/bulletins/${ this.props.bulletin.id }`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -48,8 +48,6 @@ export default class CommentEntry extends React.Component {
         method: 'put',
         // body: JSON.stringify(bulletin)
     }).then(function(response) {
-        console.log(response);
-    }).then(function(response) {
       that.props.fetch();
     })
   }
@@ -66,7 +64,7 @@ export default class CommentEntry extends React.Component {
         <br/>
         Posted by: { this.state.user.username }
         <br/>
-        <button onClick={ event=> this.deleteComment() }>Delete Button</button>
+        { (this.props.bulletin.UserId === this.props.uid) ? <button onClick={ event=> this.deleteComment() }>Delete Button</button> : <span> {this.props.bulletin.UserId} {this.props.uid} </span> }
         <button onClick={ event=> this.pinComment() }>Toggle Pin</button>
       </p>
     )

@@ -8,11 +8,14 @@ export default class BulletinList extends React.Component {
     this.state = {
       newsubject: "",
       newmessage: "",
-      bulletins: []
+      bulletins: [],
+      pinnedBulletins: [],
+      regularBulletins: []
     }
   }
 
   fetchBulletins() {
+    let that = this;
     let init = {
       method: 'GET',
       headers: new Headers()
@@ -22,8 +25,9 @@ export default class BulletinList extends React.Component {
       .then((bulletins)=> bulletins.json())
       .then((bulletins)=>{
         this.setState({ bulletins });
-        console.log(bulletins)
-    })
+        return bulletins })
+      .then((bulletins)=>
+        that.udpateBulletins() )
   }
 
   postBulletin(bulletin) {
@@ -40,6 +44,12 @@ export default class BulletinList extends React.Component {
 
   componentDidMount() {
     this.fetchBulletins();
+    this.udpateBulletins();
+  }
+
+  udpateBulletins() {
+    this.setState({ pinnedBulletins : this.state.bulletins.filter((bulletin)=> bulletin.pinned) })
+    this.setState({ regularBulletins : this.state.bulletins.filter((bulletin)=> !bulletin.pinned) })
   }
 
   addbulletin(subject, message) {
@@ -49,20 +59,31 @@ export default class BulletinList extends React.Component {
       userId: localStorage.getItem('user'),
       communityId: this.props.cid
     }
-    console.log("bulletin to be added", bulletin)
+
     this.postBulletin(bulletin)
     .then((data)=> this.fetchBulletins());
   }
 
   render() {
       let userId = localStorage.getItem('user')
-      return (true) ? (
+
+      return (
       <div className="bulletinList">
-        { this.state.bulletins.map((bulletin) =>
+
+        { (this.state.pinnedBulletins.length) ? <div>{ this.state.pinnedBulletins.map((bulletin) =>
           <BulletinEntry
             key={ bulletin.id }
+            uid={ userId }
             bulletin={ bulletin }
-            fetch={ this.fetchBulletins.bind(this) }/>) }
+            fetch={ this.fetchBulletins.bind(this) }/>) } </div>: null }
+
+        { (this.state.regularBulletins.length) ? <div>{ this.state.regularBulletins.map((bulletin) =>
+          <BulletinEntry
+            key={ bulletin.id }
+            uid={ userId }
+            bulletin={ bulletin }
+            fetch={ this.fetchBulletins.bind(this) }/>) } </div>: null }
+
         { userId ? (<div><br/>
         <input placeholder="subject" onChange={ event => this.setState({ newSubject: event.target.value}) } />
         <br/>
@@ -72,6 +93,6 @@ export default class BulletinList extends React.Component {
           Add a bulletin!
         </button></div>) : "Login to add a message!" }
       </div>
-    ) : null
+    )
   }
 }

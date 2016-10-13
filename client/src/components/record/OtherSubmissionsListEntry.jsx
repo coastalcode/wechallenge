@@ -32,6 +32,7 @@ export default class OtherSubmissionsListEntry extends React.Component {
 
       { (this.props.submission.duration && this.props.submission.duration!=="current winner!") ? <div>This submission was first place for { this.props.submission.duration }!</div> : null }
       <UserPic user={ this.props.submission.User.id } username={ this.props.submission.User.username }/>
+      { moment(this.props.submission.createdAt).format("MM-DD-YYYY")}
       </div>
     </div>
   )}

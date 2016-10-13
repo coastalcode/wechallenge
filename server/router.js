@@ -102,6 +102,7 @@ module.exports = function (app) {
   app.get('/bulletins/:id', query.communityBulletins.findForOne);
   app.put('/bulletins/pin/:id', query.communityBulletins.togglePin);
   app.post('/bulletins', query.communityBulletins.add);
+  app.delete('/bulletins/:id', query.communityBulletins.delete);
 
   // only for easy testing purposes. will be removed
   app.get('/addusers/:state', query.user.testAdd);
