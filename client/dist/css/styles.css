@@ -841,7 +841,7 @@ footer {
 
 /*Profile Component*/
 .profile--userPic {
-  width: 100px;
+  width: 40%;
 }
 
 .comment--userPic {
@@ -850,5 +850,10 @@ footer {
 
 .profileButton {
   margin-bottom: 15px;
+}
+
+.profile-container {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 

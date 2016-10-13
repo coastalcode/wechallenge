@@ -162,8 +162,8 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Hello, {this.state.currentUser.username}!</h1>
+      <div className="profile-container">
+        <h1>Profile of {this.state.currentUser.username}</h1>
         { this.state.userPic ? <img className="profile--userPic" src={this.state.userPic}/> : null}
 
         { this.state.viewOwnProfile ?
@@ -172,7 +172,7 @@ export default class Profile extends Component {
           <label htmlFor="profile-img-input">Upload a profile picture</label>
              <FileInput name="myImage"
                    accept=".png,.gif,.jpg,.jpeg"
-                   placeholder="My Image"
+                   placeholder="Click to Upload Picture"
                    className="inputClass"
                    onChange={this.handleImage.bind(this)} />
         </form> : null }
