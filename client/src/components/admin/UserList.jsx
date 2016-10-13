@@ -9,7 +9,7 @@ export default class UserList extends React.Component {
   render() {
     return (
       <div>
-        <h1>Inside User List</h1>
+        <h3>weChallenge Registered Users</h3>
         <div className="container">
           <div className="table-responsive">
             <table className="table table-hover">

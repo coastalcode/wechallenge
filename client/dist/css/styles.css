@@ -293,6 +293,7 @@ h3.home-header.topGlobal {
   padding-left: 10px;
   flex-direction: column;
   flex-flow: wrap;
+  flex-grow: 1;
 }
 
 .youtube-thumbnail {
@@ -316,6 +317,7 @@ h3.home-header.topGlobal {
 
 .user-wrapper {
   display: flex;
+  align-items:flex-end;
 }
 
 .videolist-thumb {
@@ -330,7 +332,7 @@ h3.home-header.topGlobal {
 
 .videolist-userFlex {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .videolist-username {
@@ -941,14 +943,14 @@ footer {
 }
 
 .community-box {
-  position: fixed;
+  position: relative;
   left: 500px;
-  top: 500px;
+  top: 0px;
 }
 
 /*Profile Component*/
 .profile--userPic {
-  width: 100px;
+  width: 40%;
 }
 
 .comment--userPic {
@@ -957,5 +959,16 @@ footer {
 
 .profileButton {
   margin-bottom: 15px;
+}
+
+.profile-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/*Admin Controls Component*/
+.admincontrols-container {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
