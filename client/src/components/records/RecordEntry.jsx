@@ -43,7 +43,7 @@ export default class RecordEntry extends React.Component {
         <div>
           Votes: { this.props.submission.votes }
           <br/>
-          { this.props.submission.Record.category }
+          { this.props.submission.Record.category } | 
           { this.props.submission.Record.subcategory }
           <UserPic user={ this.props.submission.User.id } username={ this.props.submission.User.username }/>
           <div className="uploaddate">Uploaded on: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }</div>
