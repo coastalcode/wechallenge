@@ -1,4 +1,6 @@
 import React from 'react';
+import { Modal, OverlayTrigger, Popover, Tooltip, Button } from 'react-bootstrap';
+
 import MainSubmissionVideo from './MainSubmissionVideo';
 import MainSubmissionInfo from './MainSubmissionInfo';
 import { Link } from 'react-router';
@@ -10,7 +12,8 @@ export default class SubmissonEntry extends React.Component {
 
     this.state = {
       flagged: false,
-      flagging: false
+      flagging: false,
+      showModal: false
     };
   }
 
@@ -44,6 +47,9 @@ export default class SubmissonEntry extends React.Component {
     this.setState({ flagging: true })
   }
 
+  unclickFlagged() {
+    this.setState({ flagging: false })
+  }
   render() {
     console.log(this.props, "look at me!!!!!")
     return (
@@ -60,14 +66,20 @@ export default class SubmissonEntry extends React.Component {
           null :
           <div> This video is currently under review, please watch at your own discretion. </div> }
 
-        { (this.state.flagging) ?
-          <div>
-            Please explain briefly why you are flagging this video. <br/>
+      <Modal show={this.state.flagging} onHide={this.unclickFlagged.bind(this)}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="flagvideomodal">
+            Please explain briefly why you are flagging this video. <br/><br/>
             <input onChange={ event=> this.setState({ reason: event.target.value }) }/>
-            <button onClick={ event=> this.flagVideo() } >Button</button>
-          </div> : null }
-
-
+            <button onClick={ event=> this.flagVideo() } >Flag!</button>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={this.unclickFlagged.bind(this)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
 
         <div className="mainsubmission">
         <center>
@@ -83,6 +95,7 @@ export default class SubmissonEntry extends React.Component {
           comments={this.props.submission.comments}
           rid={this.props.submission.Record.id}
           clickFlagged={ this.clickFlagged.bind(this) }
+          official={ this.props.submission.official }
           nomore={ true } /> : null }
 
         </div>

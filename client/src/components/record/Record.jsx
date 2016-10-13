@@ -1,4 +1,5 @@
 import React from 'react';
+
 import CommentList from './CommentList';
 import SubmissionList from './SubmissionList';
 
@@ -25,7 +26,7 @@ export default class Record extends React.Component {
       other: [],
 
       challengeShow: false,
-      currentlyShown: 0
+      currentlyShown: {}
     }
   }
 
@@ -91,6 +92,10 @@ export default class Record extends React.Component {
       .then((submissions)=> submissions.json())
       .then((submissions)=>{
         this.setState({ submissions });
+        return submissions;
+      })
+      .then((submissions)=>{
+        this.setState({ currentlyShown: submissions[0] })
         return submissions;
       })
       .then((submissions)=> {
@@ -184,8 +189,8 @@ export default class Record extends React.Component {
     this.setState({ challengeShow: !this.state.challengeShow })
   }
 
-  setMainVideo(id) {
-    this.setState({currentlyShown: id})
+  setMainVideo(submission) {
+    this.setState({ currentlyShown: submission })
   }
 
   componentDidMount() {
@@ -218,11 +223,11 @@ export default class Record extends React.Component {
          { (this.state.submissions[0]) ? <div> The current record to beat is { this.state.submissions[0].measurement } { this.state.recordInfo.units }! <br/> <Link to={ path }><span className="submityourown"> Submit your own video for this record!</span></Link>.</div> : null }
 
 
-        { (this.state.submissions[0]) ? <MainSubmission
+        { (this.state.currentlyShown.Record) ? <MainSubmission
           comments={ this.state.comments }
           fetchComments={ this.fetchComments.bind(this) }
           currentUser={ this.state.currentUser }
-          submission={ this.state.submissions[this.state.currentlyShown] }
+          submission={ this.state.currentlyShown }
           record={ this.state.recordInfo }
           cid={ this.props.location.query.cid }
         /> : null }
