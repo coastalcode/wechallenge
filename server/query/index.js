@@ -655,6 +655,12 @@ module.exports = {
       .catch(error => console.error(error))
     },
 
+    delete(req, res) {
+      db.CommunityBulletin.destroy({ where: { id: req.params.id } })
+        .then(bulletin => res.json(bulletin))
+        .catch(error => console.error(error))
+    },
+
     togglePin(req, res) {
       db.CommunityBulletin.findOne({ where : { id: req.params.id } })
         .then(bulletin => {

@@ -12,50 +12,59 @@ export default class OtherSubmissionsList extends React.Component {
   }
 
   render() {
+    let prevwinners = this.props.submissions.filter((submission)=> submission.duration)
+
+    let attempts = this.props.submissions.filter((submission)=> !submission.duration)
+    console.log(prevwinners, "prev")
+    console.log(attempts, "attempts")
+    console.log(this.props.othersubmissions)
+
     return(
       <div className="othersubslist">
 
-        <div className="title">
-          Previous winners!
-        </div>
 
-        { this.props.submissions.map((submission, subindex) => {
-          return (submission.duration) ?
-          <OtherSubmissionsListEntry
+        { (prevwinners.length) ?
+          <div>
+            <div className="title">
+              Previous winners!
+            </div>
+
+          { prevwinners.map((submission, subindex)=> <OtherSubmissionsListEntry
             fetchComments={ this.props.fetchComments }
             submission={ submission }
             subindex={ subindex }
-            setMainVideo={ this.props.setMainVideo }/> : null
-        })}
+            setMainVideo={ this.props.setMainVideo }/>)}
 
-        <div className="title">
-          Record attempts!
-        </div>
+          </div> : null }
 
-        { this.props.submissions.map((submission, subindex) => {
-          return (!submission.duration) ?
-          <OtherSubmissionsListEntry
+        { (attempts.length) ?
+          <div>
+            <div className="title">
+              Other record attempts!
+            </div>
+
+          { attempts.map((submission, subindex)=> <OtherSubmissionsListEntry
             fetchComments={ this.props.fetchComments }
             submission={ submission }
             subindex={ subindex }
-            setMainVideo={ this.props.setMainVideo }/> : null
+            setMainVideo={ this.props.setMainVideo }/>)}
 
-        })}
+          </div> : null }
 
-        <div className="title">
-          Record suggestions!
-        </div>
+        { (this.props.othersubmissions) ?
+          <div>
+            <div className="title">
+              Watch other records!
+            </div>
 
-        { this.props.othersubmissions.map((submission, subindex) => {
-          return (!submission.duration) ?
-          <OtherSubmissionsListEntry
+          { this.props.othersubmissions.map((submission, subindex)=> <OtherSubmissionsListEntry
             fetchComments={ this.props.fetchComments }
             random={ true }
             submission={ submission }
             subindex={ subindex }
-            setMainVideo={ this.props.setMainVideo }/> : null
+            setMainVideo={ this.props.setMainVideo }/>)}
 
-        })}
+          </div> : null }
 
       </div>)
   }
