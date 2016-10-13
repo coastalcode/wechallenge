@@ -318,6 +318,8 @@ h3.home-header.topGlobal {
 .title-banner {
   font-size: .9em;
   word-wrap: break-word;
+  min-height: 40px;
+  flex-grow: 1;
 }
 
 .record-banner {
@@ -329,6 +331,7 @@ h3.home-header.topGlobal {
   display: flex;
   flex-direction: column;
   align-items:flex-end;
+  flex-grow: 1;
 }
 
 .videolist-thumb {
