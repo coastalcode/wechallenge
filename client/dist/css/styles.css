@@ -1080,6 +1080,7 @@ footer {
 /*Profile Component*/
 .profile--userPic {
   width: 40%;
+  max-width: 300px;
 }
 
 .comment--userPic {
