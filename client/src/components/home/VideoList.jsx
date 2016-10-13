@@ -40,7 +40,7 @@ export default class VideoList extends React.Component {
                   </Link>
                   <div className="youtube-deets">
                     <span className="title-banner">
-                      { val.title.length > 50 ? val.title.slice(0,50) + '...' : val.title }
+                      { val.title.length > 45 ? val.title.slice(0,45) + '...' : val.title }
                     </span>
                     <div className="user-wrapper">
                       <UserPic user={val.UserId} username={val.User.username}/>
