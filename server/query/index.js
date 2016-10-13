@@ -123,6 +123,12 @@ module.exports = {
         .catch(err => console.error(err))
     },
 
+    findAllExcept(req, res) {
+      db.Submission.findAll({ where: { RecordId: { $ne: req.params.id } }, include: [ db.User, db.Record ] })
+        .then(submissions=> res.json(submissions))
+        .catch(err=> console.error(err))
+    },
+
     findACommunity(req, res) {
       db.Submission.findAll({ where: { RecordId: req.query.rid, CommunityId: req.query.cid }, include: [ db.User, db.Record ], order: [['createdAt', 'ASC']] })
         .then(submissions => res.json(submissions))

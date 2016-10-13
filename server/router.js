@@ -45,6 +45,7 @@ module.exports = function (app) {
   app.get('/submissions/flagged', query.submission.findAllFlagged);
 
   app.get('/submissions/community', query.submission.findACommunity);
+  app.get('/submissions/except/:id', query.submission.findAllExcept);
   app.get('/submissions/:id', query.submission.findAllPublic);
 
 

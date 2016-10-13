@@ -22,6 +22,7 @@ export default class OtherSubmissionsList extends React.Component {
         { this.props.submissions.map((submission, subindex) => {
           return (submission.duration) ?
           <OtherSubmissionsListEntry
+            fetchComments={ this.props.fetchComments }
             submission={ submission }
             subindex={ subindex }
             setMainVideo={ this.props.setMainVideo }/> : null
@@ -34,6 +35,7 @@ export default class OtherSubmissionsList extends React.Component {
         { this.props.submissions.map((submission, subindex) => {
           return (!submission.duration) ?
           <OtherSubmissionsListEntry
+            fetchComments={ this.props.fetchComments }
             submission={ submission }
             subindex={ subindex }
             setMainVideo={ this.props.setMainVideo }/> : null
@@ -47,6 +49,7 @@ export default class OtherSubmissionsList extends React.Component {
         { this.props.othersubmissions.map((submission, subindex) => {
           return (!submission.duration) ?
           <OtherSubmissionsListEntry
+            fetchComments={ this.props.fetchComments }
             random={ true }
             submission={ submission }
             subindex={ subindex }

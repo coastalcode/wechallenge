@@ -40,6 +40,10 @@ export default class SubmissonEntry extends React.Component {
     })
   }
 
+  clickFlagged() {
+    this.setState({ flagging: true })
+  }
+
   render() {
     console.log(this.props, "look at me!!!!!")
     return (
@@ -53,9 +57,7 @@ export default class SubmissonEntry extends React.Component {
 
 
         { (this.props.submission.official === 1) ?
-          <div><button onClick={event => this.setState({ flagging: true }) } >
-            <i className="fa fa-flag" aria-hidden="true"/> Flag this video.
-          </button></div> :
+          null :
           <div> This video is currently under review, please watch at your own discretion. </div> }
 
         { (this.state.flagging) ?
@@ -80,11 +82,14 @@ export default class SubmissonEntry extends React.Component {
           votes={this.props.submission.votes}
           comments={this.props.submission.comments}
           rid={this.props.submission.Record.id}
+          clickFlagged={ this.clickFlagged.bind(this) }
           nomore={ true } /> : null }
 
         </div>
         </center>
         <MainSubmissionInfo
+          comments={ this.props.comments }
+          fetchComments={ this.props.fetchComments }
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }
           record={ this.props.record }

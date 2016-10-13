@@ -9,8 +9,6 @@ export default class SearchBar extends React.Component {
   render() {
     return (
       <div className="allrecords-searchbar">
-        Search:
-        <br/>
         <input
           onChange={ event => this.props.updateSearchTerm(event.target.value) } />
       </div>

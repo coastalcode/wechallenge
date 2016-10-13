@@ -43,7 +43,8 @@ export default class VideoAction extends React.Component {
           </FacebookShareButton>
         </span>
 
-        { (this.props.nomore) ? null : <Link className="videoaction-button more"
+        { (this.props.nomore) ? <span className="videoaction-button flag" onClick={ event=> this.props.clickFlagged() }>Flag</span>
+          : <Link className="videoaction-button more"
           to={ path }>More</Link>  }
         <span className="videolists-flexbuffer"></span>
       </div>

@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import { tokens } from './actions/index';
 
 import App from './components/App';
+import About from './components/About';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Submission from './components/submissions/Submission';
@@ -58,6 +59,7 @@ const DecoratedRecords = withStaticProps('NewRecords', { foo: 'bar' })(Records)
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const routes = (
   <Route path="/" component={App}>
+    <Route path="about" component={About} />
     <Route path="signin" component={Signin} />
     <Route path="signout" component={Signout} />
     <Route path="signup" component={Signup} />
@@ -68,11 +70,6 @@ const routes = (
     <Route path='record' component={Record} />
 
     <Route path='communities' component={Communities} />
-    {
-    // <Route path='communityrecords' component={CommunityPage} />
-    // <Route path='communityrecord' component={CommunityRecord} />
-    }
-
     <Route path="profile" component={Profile} />
     <Route path="flaggedVideos" component={FlaggedVideos} />
     <Route path="adminControls" component={AdminControls} />

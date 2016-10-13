@@ -1,5 +1,6 @@
 import React from 'react';
 import RecordEntry from './RecordEntry';
+import SearchBar from './SearchBar';
 
 export default class RecordList extends React.Component {
   constructor(props) {
@@ -13,23 +14,39 @@ export default class RecordList extends React.Component {
     }
   }
 
-  selectSubmissions(index) {
-    let currentlyShowing = this.props.submissions.slice(index, index + this.state.perPage);
-    this.setState({ currentlyShowing });
+  selectSubmissions(one) {
+    let index = this.state.index + (one * 6)
     this.setState({ index })
   }
 
 
   componentDidMount() {
-    console.log("the right record list is mounting")
-    this.selectSubmissions(this.state.index);
+    this.selectSubmissions(1);
   }
 
   render() {
     return (
      (this.props.cid) ?
-      (
-         <div className="recordList">
+      ( <div className="allrecords-recordslist-main">
+         <div className="allrecords-recordslist-top">
+          <div>Search: </div>
+          <SearchBar updateSearchTerm={ this.props.updateSearchTerm }/>
+
+          <div>
+          {
+            (this.state.index > 0) ?
+            <button onClick={ event => this.changePage(-1) }>Prev!</button> : null
+          }
+          {
+            ((this.state.index + this.state.perPage) < this.props.submissions.length) ?
+            <button onClick={ event => this.changePage(1) }>Next!</button> : null
+          }
+          </div>
+        </div>
+
+
+         <div className="allrecords-children allrecords-recordlist">
+
           { this.props.submissions.map((submission) => {
             return (<RecordEntry key={ submission.id }
               cid={ this.props.cid }
@@ -40,11 +57,34 @@ export default class RecordList extends React.Component {
           })}
           <br/>
         </div>
+        </div>
       )
-      : ( <div className="allrecords-children allrecords-recordlist">
+      : (
+        <div className="allrecords-recordslist-main">
 
-        { this.state.currentlyShowing.map((submission) =>
+         <div className="allrecords-recordslist-top">
+          <div>Search: </div>
+          <SearchBar updateSearchTerm={ this.props.updateSearchTerm }/>
+
+          <div>
+          {
+            (this.state.index > 0) ?
+            <button onClick={ event => this.changePage(-1) }>Prev!</button> : null
+          }
+          {
+            ((this.state.index + this.state.perPage) < this.props.submissions.length) ?
+            <button onClick={ event => this.changePage(1) }>Next!</button> : null
+          }
+          </div>
+        </div>
+
+
+        <div className="allrecords-children allrecords-recordlist">
+
+
+        { this.props.submissions.map((submission, subindex) =>
           (<RecordEntry key={ submission.id }
+            subindex={ subindex }
             submission={ submission }
             checkForMatching={ this.props.checkForMatching }
             search={ this.props.search }
@@ -52,17 +92,9 @@ export default class RecordList extends React.Component {
         )}
         <br/>
 
-        <div>
-        {
-          (this.state.index > 0) ?
-          <button onClick={ event => this.selectSubmissions(this.state.index - this.state.perPage) }>Prev!</button> : null
-        }
-        {
-          ((this.state.index + this.state.perPage) < this.props.submissions.length) ?
-          <button onClick={ event => this.selectSubmissions(this.state.index + this.state.perPage) }>Next!</button> : null
-        }
-        </div>
-      </div> )
+
+      </div>
+      </div>)
       )
   }
 }

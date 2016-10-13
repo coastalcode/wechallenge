@@ -8,7 +8,7 @@ export default class OtherSubmissionsListEntry extends React.Component {
 
   render() {
   return (
-    <div onClick={ event => this.props.setMainVideo(this.props.subindex) } className="othersublist-entry">
+    <div onClick={ event => { this.props.setMainVideo(this.props.subindex); this.props.fetchComments(this.props.submission.id) } } className="othersublist-entry">
       <img
         src={ "http://img.youtube.com/vi/" + this.props.submission.link + "/hqdefault.jpg" }/>
 

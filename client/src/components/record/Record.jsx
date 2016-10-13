@@ -17,6 +17,8 @@ export default class Record extends React.Component {
       recordInfo: {},
       submissions: [],
       othersubmissions: [],
+
+      comments: [],
       currentUser: "",
 
       first: {},
@@ -50,19 +52,21 @@ export default class Record extends React.Component {
   }
 
   fetchRandomVideos() {
-    fetch(`/submissions`)
+    fetch(`/submissions/except/${ this.props.location.query.rid }`)
       .then((submissions)=> submissions.json())
       .then((submissions)=> {
-        console.log(submissions, "submissions before adding anything")
         let othersubmissions = [];
 
-        for (var i = 0; i < 5; i++) {
-          let num = this.generateRandomNumber(submissions.length);
-          othersubmissions.push(submissions[num])
-          submissions.splice(num, 1)
+        if (submissions.length < 6) {
+          othersubmissions = submissions.slice()
+        } else {
+          for (var i = 0; i < 5; i++) {
+            let num = this.generateRandomNumber(submissions.length);
+            othersubmissions.push(submissions[num])
+            submissions.splice(num, 1)
+          }
         }
 
-        console.log(othersubmissions, "this one look at me!!!")
         this.setState({ othersubmissions });
       })
 
@@ -97,6 +101,20 @@ export default class Record extends React.Component {
         console.log("durations!!!!", this.state.submissions)
         that.sortSubmissions();
       })
+  }
+
+  fetchComments(sid) {
+    let fetchPath;
+    if (this.props.location.query.cid) {
+      fetchPath = `/communities/comments?sid=${ sid }&cid=${ this.props.location.query.cid }`
+    } else {
+      fetchPath = `/comments/${ sid }`
+    }
+    fetch(fetchPath)
+      .then((comments)=> comments.json())
+      .then((comments)=>{
+        this.setState({ comments });
+    })
   }
 
   getDurations() {
@@ -191,16 +209,18 @@ export default class Record extends React.Component {
 
         { (this.state.recordInfo.title) ? <div className="title">{ this.state.recordInfo.title }</div> : null }
 
-        <br/>
+
         { (this.props.location.query.cid) ? <Link to={ mainpage }>
-          <button onClick={ event => window.location.reload() }>Check out the main page for this record!</button>
+          <button className="submityourown" onClick={ event => window.location.reload() }>Check out the main page for this record!</button>
         </Link> : null }
 
         <img src='/images/Trophy.png'/>
-         { (this.state.submissions[0]) ? <div> The current record to beat is { this.state.submissions[0].measurement } { this.state.recordInfo.units }! <br/>Submit your own video for this record by clicking <Link to={ path }>here</Link>.</div> : null }
+         { (this.state.submissions[0]) ? <div> The current record to beat is { this.state.submissions[0].measurement } { this.state.recordInfo.units }! <br/> <Link to={ path }><span className="submityourown"> Submit your own video for this record!</span></Link>.</div> : null }
 
 
         { (this.state.submissions[0]) ? <MainSubmission
+          comments={ this.state.comments }
+          fetchComments={ this.fetchComments.bind(this) }
           currentUser={ this.state.currentUser }
           submission={ this.state.submissions[this.state.currentlyShown] }
           record={ this.state.recordInfo }
@@ -208,6 +228,7 @@ export default class Record extends React.Component {
         /> : null }
 
         <OtherSubmissionsList
+          fetchComments={ this.fetchComments.bind(this) }
           submissions={ this.state.submissions }
           othersubmissions={ this.state.othersubmissions }
           setMainVideo={ this.setMainVideo.bind(this) }
