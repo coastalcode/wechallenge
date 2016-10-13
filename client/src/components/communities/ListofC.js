@@ -18,13 +18,15 @@ class List extends Component {
     this.state.showJoin = false;
     this.state.currentCom = null;
     this.state.description = null;
+    this.state.name = null;
 
   }
 
-  openJoin(id, description) {
+  openJoin(id, description, name) {
     this.setState({ showJoin: true });
     this.setState({ currentCom: id});
     this.setState({ description: description})
+    this.setState({ name })
   }
 
   closeJoin() {
@@ -54,7 +56,7 @@ class List extends Component {
         {this.state.real.map(one=>{
           console.log('here', one);
           return(
-            <li onClick= {this.openJoin.bind(this, one.id, one.description)} className="community-item">
+            <li onClick= {this.openJoin.bind(this, one.id, one.description, one.name)} className="community-item">
             <div>{one.name}</div>
             </li>
             )
@@ -63,14 +65,13 @@ class List extends Component {
 
       <Modal show={this.state.showJoin} onHide={this.closeJoin.bind(this)}>
         <Modal.Header closeButton>
-        Join a Community
+        <h1>Join {this.state.name}</h1>
         </Modal.Header>
-        <Modal.Body>
-        Description: {this.state.description}
+        <Modal.Body className="form-group">
+        <label className="label1">{this.state.description}</label>
         </Modal.Body>
         <Modal.Footer>
-        <Button onClick={this.joinCommunity.bind(this, this.state.currentCom )}>Join</Button>
-            <Button onClick={this.closeJoin.bind(this)}>Close</Button>
+        <Button className="button1" onClick={this.joinCommunity.bind(this, this.state.currentCom )}>Join</Button>
         </Modal.Footer>
       </Modal>
 

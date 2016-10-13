@@ -13,7 +13,8 @@ export default class CommunityPage extends React.Component {
   render2() {
     return (
       <div>
-        <BulletinList cid={ this.state.cid }/>
+      <div className="community-header">{this.props.community.name}</div>
+      <div className="community-description">{this.props.community.description}</div>
         <Records cid={ this.state.cid }/>
       </div>
     )
@@ -22,8 +23,9 @@ export default class CommunityPage extends React.Component {
     return (<div className="community-box">
 
     { this.render2() }
-    { this.state.cid ? this.state.cid : null }
 
     </div>)
   }
 }
+
+// <BulletinList cid={ this.state.cid }/>

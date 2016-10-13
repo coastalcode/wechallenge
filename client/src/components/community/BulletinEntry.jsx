@@ -53,7 +53,6 @@ export default class CommentEntry extends React.Component {
   }
 
   render() {
-
     return (
       <p>
         { this.props.bulletin.pinned ? (<i className="fa fa-thumb-tack" aria-hidden="true"></i>) : null }

@@ -30,6 +30,7 @@ export default class BulletinList extends React.Component {
         that.udpateBulletins() )
   }
 
+
   postBulletin(bulletin) {
     return fetch('/bulletins/', {
         headers: {
@@ -96,3 +97,4 @@ export default class BulletinList extends React.Component {
     )
   }
 }
+

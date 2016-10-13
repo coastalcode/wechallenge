@@ -8,6 +8,7 @@ import List from './ListofC';
 import CommunityPage from '../community/CommunityPage';
 import SearchBar from './SearchBar';
 
+
 export default class Communities extends Component {
   constructor(props) {
     super(props);
@@ -146,15 +147,27 @@ export default class Communities extends Component {
         <h1 className="tagline">Challenge Your Community</h1>
       </header>
 
-      <div className="bar">
-        <ul className="create">
-          <li onClick={this.openModal.bind(this)}>Create Community</li>
-        </ul>
-        <ul className="communities">
-          <li className="discover" onClick={this.showAll.bind(this)}>Discover</li>
-          <li className="yours" onClick={this.showYou.bind(this)}>Communities</li>
-        </ul>
-      </div>
+      <nav className="navbar navbar-inverse">
+        <div className="container-fluid" id="myNavbar">
+          <ul className="nav navbar-nav">
+            <li className="profile-navbar">
+              <a className="navbar-brand" onClick={this.openModal.bind(this)}>Create</a>
+            </li>
+            <li>
+              <a className="navbar-brand">||</a>
+            </li>
+            <li className="profile-navbar">
+              <a className="navbar-brand" onClick={this.showAll.bind(this)}>Discover</a>
+            </li>
+            <li>
+              <a className="navbar-brand">||</a>
+            </li>
+            <li>
+               <a className="navbar-brand" onClick={this.showYou.bind(this)}>My Communities</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
       {this.state.yours ? <Nav
         communities={this.state.communities}
