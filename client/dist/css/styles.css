@@ -1108,3 +1108,11 @@ footer {
 .othersublist-entry > div > .title {
   color: black;
 }
+
+.commententry > .title {
+  color: black;
+}
+
+.page-footer {
+  padding: 30px;
+}
