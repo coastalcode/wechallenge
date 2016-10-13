@@ -30,6 +30,8 @@ export default class MainSubmissionInfo extends React.Component {
           <div className="videocomments">
             <div className="title">Comments</div>
             <CommentView
+              comments={ this.props.comments }
+              fetchComments={ this.props.fetchComments }
               currentUser={ this.props.currentUser }
               submission={ this.props.submission }
               cid={ this.props.cid }/>

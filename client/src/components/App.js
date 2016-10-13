@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
+import Footer from './Footer';
 import Home from './home/Home';
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
           <Home />
           :
           null }
+        <Footer />
       </div>
     )
   }

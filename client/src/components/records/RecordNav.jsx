@@ -18,10 +18,6 @@ export default class RecordNav extends React.Component {
   render() {
     return (
       <div className="allrecords-children allrecords-recordnav">
-
-      <SearchBar updateSearchTerm={ this.props.updateSearchTerm }/>
-        <br/>
-
       <CategoryList
         sortSubmissions={ this.props.sortSubmissions }
         updateSearchRegion={ this.props.updateSearchRegion }

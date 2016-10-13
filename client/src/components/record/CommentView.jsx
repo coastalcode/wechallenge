@@ -44,7 +44,7 @@ export default class CommentView extends React.Component {
   }
 
   componentWillMount() {
-    this.fetchComments();
+    this.props.fetchComments(this.props.submission.id);
   }
 
   render() {
@@ -52,8 +52,9 @@ export default class CommentView extends React.Component {
     return (
       <div>
         <CommentList
+          submission={ this.props.submission }
           currentUser={ this.props.currentUser }
-          comments={ this.state.comments }
+          comments={ this.props.comments }
           fetchComments={ this.fetchComments.bind(this) }
         />
 
@@ -61,9 +62,8 @@ export default class CommentView extends React.Component {
           cid={ this.props.cid }
           currentUser={ this.props.currentUser }
           submission={ this.props.submission }
-          fetchComments={ this.fetchComments.bind(this) }
+          fetchComments={ this.props.fetchComments }
           postComment={ this.postComment.bind(this) }
-          switchView={ switchView.bind(this) }
         />
 
 

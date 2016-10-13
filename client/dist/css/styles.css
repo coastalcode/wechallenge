@@ -17,7 +17,42 @@ body {
   background-color: #011627;
 }
 
-/*navbar component*/
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
+a:hover {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
+a:visited {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
+a:link {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
+a:active {
+  color: black;
+  text-decoration: none; /* no underline */
+}/*navbar component*/
+
+.page-footer > * > a {
+  font-size: 0.8em;
+  color: #c4c4c4;
+  font-style: italic;
+  padding: 2%;
+  margin-bottom: 5%;
+}
+
+.page-footer > * > a:hover {
+  color: #e0e0e0;
+}
 
 .navbar-brand {
   font-family: 'Open Sans', sans-serif;
@@ -333,31 +368,48 @@ h3.home-header.topGlobal {
 
 }
 
-.teamProfile > div {
-  margin: 20px;
+.aboutpage > * > * >h3 {
+  font-family: 'Pacifico', 'Open Sans', sans-serif;
+  margin: 2%;
+  font-size: 2.5em;
 
-  display: inline-block;
+}
+.teamProfile {
+  display: flex;
+  flex-direction: row;
+}
+
+.teamProfile > div {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: 2%;
 }
 
 .teamProfile > div > img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.teamProfile > div > div {
+  font-size: 0.8em;
+  margin-bottom: 2%;
 }
 
 .teamProfile > div > span {
-  display: inline-block;
-  margin-top: 10px;
-  width: 200px;
-}
-
-.teamProfileName {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 /*Submission Page Category Menu*/
 .panel-heading {
   cursor: pointer;
+}
+
+.panel-title {
+  font-weight: bold;
 }
 
 .panel-group {
@@ -368,9 +420,8 @@ h3.home-header.topGlobal {
 
 .panel-default>.panel-heading {
     font-family: 'Open Sans', sans-serif;
-    color: #FF9F1C;
-    background-color: #FDFFFC;
-    border-color: #ddd;
+    color: white;
+    background-color: #FF9F1C;
 }
 
 
@@ -486,11 +537,45 @@ h3.home-header.topGlobal {
   width: 85%;
 }
 
+.allrecords-recordslist-main {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  padding: 2%;
+}
+
+.allrecords-recordslist-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.allrecords-recordslist-top > div {
+  padding-left: 5%;
+}
+
+.allrecords-recordslist-top > div > button {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  background-color: #FF9F1C;
+  text-shadow:none !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+
 .allrecords-recordlist {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 85%;
+  width: 100%;
+}
+
+.allrecords-recordlist > div {
+  color: black;
+}
+
+.allrecords-recordlist > div:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .allrecords-recordnav {
@@ -503,12 +588,17 @@ h3.home-header.topGlobal {
   flex-direction: row;
 }
 
+.allrecords-recordlist-entry:hover {
+  border: solid 5px #fbb15e;
+  cursor: pointer;
+}
 
 
 .allrecords-recordlist-entry > div {
   width: 50%;
   height: 50%;
   margin: 2%;
+  font-size: 0.7em;
 }
 
 
@@ -528,12 +618,27 @@ h3.home-header.topGlobal {
   flex-direction: row;
 }
 
+.indivrecord > * > .title{
+  font-size: 2em;
+  margin: 2%;
+}
+
 .mainsubmission {
   display: flex;
   flex-direction: column;
 }
 
+.submityourown {
+  background-color: #39a779;
+  color: white  ;
+  padding: 3px;
+  margin: 3px;
+}
 
+.submityourown:hover {
+  background-color: #61c092;
+  cursor: pointer;
+}
 .indivrecord-entry-info {
   background-color: white;
   box-sizing: border-box;
@@ -542,23 +647,6 @@ h3.home-header.topGlobal {
   width: 600px;
   height: 335px;
 
-}
-
-.indivrecord-entry-vid {
-
-}
-
-.indivrecord-entry-info-tab {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border: none;
-  width: 40%;
-  margin-right: 5%;
-  background-color: red;
-}
-
-.indivrecord-entry-info-tabs {
-  background-color: white;
 }
 
 .indivrecord-entry-info-main {
@@ -572,6 +660,7 @@ h3.home-header.topGlobal {
   flex-direction: column;
   float: right;
   width: 65%;
+  margin-top: 5%;
 }
 
 .mainsubtop {
@@ -585,7 +674,7 @@ h3.home-header.topGlobal {
   flex-direction: column;
   width: 30%;
   float: left;
-  margin-top: 3%;
+  margin-top: 5%;
   margin-left: 5%;
   background-color: #f68b28;
   padding: 1%;
@@ -602,10 +691,12 @@ h3.home-header.topGlobal {
 
 .othersubslist> div:hover {
   border: solid 5px #fbb15e;
+  cursor: pointer;
 }
 
 .othersubslist> .title:hover {
   border: none;
+  cursor: pointer;
 }
 .othersubslist > .title {
   background-color: #f68b28;
@@ -657,6 +748,24 @@ h3.home-header.topGlobal {
 
 .submissionContainer {
   margin: 0 10px;
+}
+
+.uploaddate {
+  font-size: 0.7;
+  font-style: italic;
+}
+
+.allrecords-recordlist > a {
+  width: 30%;
+}
+
+.allrecords-recordlist > a > * > .title {
+  font-size: 0.8em;
+  height: 40px;
+  background-color: #fbb15e;
+  margin: 5%;
+  padding: 2%;
+  padding-top: 4%;
 }
 
 .videoinfo {

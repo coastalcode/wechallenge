@@ -24,10 +24,9 @@ export default class CommentAdd extends React.Component {
     }
 
     this.props.postComment(comment)
-    .then((data)=> this.props.fetchComments())
+    .then((data)=> this.props.fetchComments(this.props.submission.id))
     .then((data)=> {
       this.setState({ newTitle: "", newDescription: "" })
-      this.props.switchView();
     })
   }
 

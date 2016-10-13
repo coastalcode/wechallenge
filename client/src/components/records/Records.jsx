@@ -98,18 +98,14 @@ export default class Records extends React.Component {
   }
 
   componentDidMount() {
-    console.log("this is the correct one")
     this.fetchRecords();
     this.fetchVideos();
   }
 
   render() {
-
+    let cid = (this.props.cid) ? this.props.cid : null;
     return (
-      (this.props.cid)
-      ?
-      ( <div className="allrecords-main">
-
+      <div className="allrecords-main">
         { (this.state.regions.length > 0) ?
           <RecordNav
             sortSubmissions={ this.sortSubmissions.bind(this) }
@@ -119,34 +115,15 @@ export default class Records extends React.Component {
 
         { (this.state.submissions.length > 0) ?
         <RecordList
-          cid={ this.props.cid }
+          cid={ cid }
+          updateSearchTerm={ this.updateSearchTerm.bind(this) }
           search={ this.state.search }
           searchRegion = { this.state.searchRegion }
           submissions={ this.state.submissions }
           records={ this.state.records }
           checkForMatching={ this.checkForMatching }/> : null }
 
-      </div> )
-      :
-      ( <div className="allrecords-main">
-
-        { (this.state.regions.length > 0) ?
-          <RecordNav
-            sortSubmissions={ this.sortSubmissions.bind(this) }
-            updateSearchRegion={ this.updateSearchRegion.bind(this) }
-            updateSearchTerm={ this.updateSearchTerm.bind(this) }
-            regions={ this.state.regions } /> : null }
-
-        { (this.state.submissions.length > 0) ?
-        <RecordList
-          search={ this.state.search }
-          searchRegion = { this.state.searchRegion }
-          submissions={ this.state.submissions }
-          records={ this.state.records }
-          checkForMatching={ this.checkForMatching }/> : null }
-
-      </div> )
-
+      </div>
     )
   }
 }

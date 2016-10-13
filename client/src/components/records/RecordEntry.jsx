@@ -9,6 +9,7 @@ export default class RecordEntry extends React.Component {
 
   render() {
     let path;
+    console.log(this.props.index)
 
     if (this.props.cid) {
       path = `/record?rid=${ this.props.submission.RecordId }&cid=${ this.props.cid }`
@@ -30,13 +31,10 @@ export default class RecordEntry extends React.Component {
 
     ( <Link to={ path }>
         <center>
-        <span className="title">{ this.props.submission.title }</span>
+        <div className="title">{ this.props.submission.title }</div>
         </center>
       <div className="allrecords-recordlist-entry">
-
-
         <br/>
-
         <div>
           <img
             src={ "http://img.youtube.com/vi/" + this.props.submission.link + "/hqdefault.jpg" }/>
@@ -45,11 +43,10 @@ export default class RecordEntry extends React.Component {
         <div>
           Votes: { this.props.submission.votes }
           <br/>
-          Created at: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }
-          <br/>
           { this.props.submission.Record.category }
           { this.props.submission.Record.subcategory }
           <UserPic user={ this.props.submission.User.id } username={ this.props.submission.User.username }/>
+          <div className="uploaddate">Uploaded on: { moment(this.props.submission.createdAt).format("MM-DD-YYYY") }</div>
         </div>
 
       </div>
