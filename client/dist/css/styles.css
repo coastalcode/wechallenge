@@ -43,15 +43,20 @@ a:active {
 }/*navbar component*/
 
 .page-footer > * > a {
-  font-size: 0.8em;
-  color: #c4c4c4;
+  font-size: 1em;
+  color: #545454;
   font-style: italic;
   padding: 2%;
   margin-bottom: 5%;
 }
 
 .page-footer > * > a:hover {
-  color: #e0e0e0;
+  color: #000000;
+  font-weight: 900;
+}
+
+.about-icon {
+  margin: 0 10px;
 }
 
 .navbar-brand {
