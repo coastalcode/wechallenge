@@ -121,6 +121,7 @@ UploadVideo.prototype.uploadFile = function(file) {
   var units = $('#units').val();
   var CommunityId = communityIdQuery || $('input[name=community]:checked').val();
   var RecordId = recordIdQuery;
+  var recordName = $('#recordName').val();
 
   // more and less isgood is an integer value representing 0 for false and 1 for true
   // if more is the true value, that means larger measurements are needed to set a new record
@@ -205,7 +206,7 @@ UploadVideo.prototype.uploadFile = function(file) {
         method: "POST",
         url: "/submissions",
         data: JSON.stringify({
-          "title": uploadTitle,
+          "submissionTitle": uploadTitle,
           "description": uploadDescription,
           "link": this.videoId,
           "userId": Number(localStorage.user),
@@ -218,7 +219,8 @@ UploadVideo.prototype.uploadFile = function(file) {
           "state": localStorage.region,
           "public": isPublic,
           "CommunityId": CommunityId,
-          "recordId": RecordId
+          "recordId": RecordId,
+          "recordName": recordName
         })
       })
         .done(function(msg) {
