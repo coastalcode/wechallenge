@@ -13,6 +13,7 @@ import sinon from 'sinon';
 describe('Main Video', ()=>{
   describe('fetchTopVideo', ()=>{
     const urlRegex = /\/records/;
+
     afterEach(()=>{
       localStorage.clear()
       fetchMock.restore();
@@ -42,21 +43,30 @@ describe('Main Video', ()=>{
       title: 'Oranges?!',
       comments: 23,
       votes: 99,
-      subId: 1
+      UserId: 1,
+      subId: 1,
+      User: {
+        username: 'testguy'
+      },
+      Record: {
+        category: 'sports'
+      }
     }
 
     it('should fetch from /records and render the video', ()=>{
+      fetchMock.mock('/images/1', testRes)
       fetchMock.mock(urlRegex, testRes);
       const component = renderIntoDocument(
         <MainVideo video={testVideo} />
       )
-      const YouTube = scryRenderedDOMComponentsWithClass(component, 'video-container');
+      const YouTube = scryRenderedDOMComponentsWithClass(component, 'mainVideo-container');
 
       expect(YouTube.length).to.equal(1)
       expect(fetchMock.called(urlRegex)).to.equal(true);
     })
 
     it('should render the top h1 text', ()=>{
+      fetchMock.mock('/images/1', testRes)
       fetchMock.mock(urlRegex, testRes);
       const component = renderIntoDocument(
         <MainVideo video={testVideo} />
