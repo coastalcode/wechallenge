@@ -99,7 +99,9 @@ npm test
 
 ## Deployment
 
-Jim can you give step by step instructions about deploying this to Heroku
+...
+The travis.yml file contains continuous integration and deployment commands for Travis-Ci including creating a PostgreSQL database during testing and importing an external database file.
+...
 
 ## Authors
 
