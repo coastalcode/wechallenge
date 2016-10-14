@@ -99,9 +99,9 @@ npm test
 
 ## Deployment
 
-...
+```
 The travis.yml file contains continuous integration and deployment commands for Travis-Ci including creating a PostgreSQL database during testing and importing an external database file.
-...
+```
 
 ## Authors
 
