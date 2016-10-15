@@ -17,37 +17,22 @@ Postgres
 
 webpack
 
-list additional items below
-
 ```
 ### Installing
 Here is a step by step instruction to get weChallenge running locally on your computer
 
 Start the postgres server on your local machine
-```
-inside terminal:
-
-postgres -D /usr/local/var/postgres/
-```
 
 Open up postgres in your terminal
-```
-inside terminal:
 
-psql
-```
 
 Create a new database in postgres called wechallenge
 ```
-inside postgres terminal:
-
 CREATE DATABASE wechallenge
 ```
 
 Update wechallenge with your postgres username and password
 ```
-inside file wechallenge/server/db/config.js:
-
   module.exports = {
     username: 'YOUR_USERNAME_FOR_POSTGRES',
     password: 'YOUR_PASSWORD_FOR_POSTGRES',
@@ -57,45 +42,30 @@ inside file wechallenge/server/db/config.js:
 
 Download all the associated node modules
 ```
-inside terminal:
-
 npm install
 ```
 
 Run Webpack to compile all the client side files to wechallenge/client/dist/bundle.js
 ```
-inside terminal:
-
 webpack
 ```
 
 Start the local server
 ```
-inside terminal:
-
 npm start
 ```
 
 Open web application in web browser
 ```
-inside web browser:
-
 http://localhost:3000/
 ```
-
-#SHOW SCREEN SHOT OF HOME PAGE WITH NAV BAR ADDRESS
-
 
 ## Running the tests
 
 To run the tests
 ```
-inside terminal:
-
 npm test
 ```
-
-# SHOW SCREEN SHOT OF RUNNING THE TESTS
 
 ## Deployment
 
